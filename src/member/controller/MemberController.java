@@ -1,13 +1,15 @@
 package member.controller;
 
 import java.io.IOException;
-import javax.servlet.ServletException;
+
+import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.*;
+import member.action.*;
 import vo.*;
 
 @WebServlet("*.me")
@@ -20,9 +22,34 @@ public class MemberController extends HttpServlet {
 		Action action = null;
 		ActionForward forward = null;
 		
+		if(command.equals("/MemberJoinForm.me")) {
+			forward = new ActionForward();
+			forward.setPath("/member/member_join.jsp");
+		} else if(command.equals("MemberJoinPro.me")) {
+			action = new MemberJoinProAction();
+			try {
+				forward = action.excute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 
 
 		
+		
+		
+		
+		
+		
+		
+		if(forward != null) {
+			if(forward.isRedirect()) {
+				response.sendRedirect(forward.getPath());
+			} else {
+				RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
+				dispatcher.forward(request, response);
+			}
+		}
 		
 	}
 
