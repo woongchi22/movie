@@ -1,5 +1,7 @@
 package member.dao;
 
+import static db.JdbcUtil.close;
+
 import java.sql.*;
 
 import member.vo.MemberBeen;
@@ -25,6 +27,40 @@ public class MemberDao {
 	PreparedStatement pstmt;
 	ResultSet rs;
 
+	
+	// 회원가입
+	
+	public int insertMember(MemberBeen mb) {
+		System.out.println("dao - insertMember");
+
+		int insertCount = 0;
+		
+		try {
+			String sql = "SELECT MAX(idx) FROM member";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			int maxNum = 0;
+			if(rs.next()) {
+				maxNum = rs.getInt(1) + 1;
+			}
+			
+			sql = "INSERT INTO member VALUES(?,?,?,?,now())"; 
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, maxNum);
+			pstmt.setString(2, mb.getEmail());
+			pstmt.setString(3, mb.getName());
+			pstmt.setString(4, mb.getPass());
+			
+			insertCount = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return insertCount;
+	}
 	
 	
 	
@@ -56,11 +92,14 @@ public class MemberDao {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return name;
 	}
+
+
+
+
 	
 	
 }
