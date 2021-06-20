@@ -4,18 +4,18 @@ import java.sql.*;
 
 public class MemberBeen {
 
-	private int index;
+	private int idx;
 	private String name;
-	private String password;
+	private String pass;
 	private String email;
 	private Date date;
 	
 	
 	public int getIndex() {
-		return index;
+		return idx;
 	}
 	public void setIndex(int index) {
-		this.index = index;
+		this.idx = index;
 	}
 	public String getName() {
 		return name;
@@ -24,10 +24,10 @@ public class MemberBeen {
 		this.name = name;
 	}
 	public String getPassword() {
-		return password;
+		return pass;
 	}
 	public void setPassword(String password) {
-		this.password = password;
+		this.pass = password;
 	}
 	public String getEmail() {
 		return email;

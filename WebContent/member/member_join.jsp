@@ -23,14 +23,14 @@ $(document).ready(function() {
             $('#email').focus();
             return false;
 	    }
-		if($('#password').val() == "") {
+		if($('#pass').val() == "") {
             alert("패스워드를 입력하세요");
-            $('#password').focus();
+            $('#pass').focus();
             return false;
 	    }
-		if($('#passwordConfirm').val() == "") {
+		if($('#passConfirm').val() == "") {
             alert("패스워드를 다시 입력해주세요");
-            $('#passwordConfirm').focus();
+            $('#passConfirm').focus();
             return false;
         }
 		
@@ -41,12 +41,12 @@ $(document).ready(function() {
 	
 	
 	// 패스워드 확인 -> 아직 안됨
-	var password = $('#password').val();
-	var passwordConfirm = $('#passwordConfirm').val();
+	var password = $('#pass').val();
+	var passwordConfirm = $('#passConfirm').val();
     
 	if(password != passwordConfirm) {
 		alert("불일치");
-		$('#passwordConfrim').focus();
+		$('#passConfirm').focus();
 		return false;
 	}
 	
@@ -72,11 +72,11 @@ $(document).ready(function() {
         </fieldset>
         <fieldset>
             <legend>패스워드</legend>
-            <input type="password" id="password" name="password">
+            <input type="password" id="pass" name="pass">
         </fieldset>
         <fieldset>
             <legend>패스워드 확인</legend>
-            <input type="password" id="passwordConfirm" name="passwordConfirm">
+            <input type="password" id="passConfirm" name="passConfirm">
         </fieldset>
         
         <button type="submit">가입</button>
