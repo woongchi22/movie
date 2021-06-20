@@ -33,6 +33,26 @@ public class MemberController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		if(command.equals("/MemberLoginForm.me")) {
+			forward = new ActionForward();
+			forward.setPath("/member/member_login.jsp");
+		}
+		if(command.equals("/MemberLoginPro.me")) {
+			try {
+				action = new MemberLoginProAction();
+				forward = action.excute(request, response);
+			} catch (Exception e) {
+			
+				e.printStackTrace();
+			}
+			
+		}
+		if(command.equals("/ForgetEmail.me")) {
+			forward = new ActionForward();
+			forward.setPath("/member/forget_email.jsp");
+		}
+		
+		
 
 
 		
