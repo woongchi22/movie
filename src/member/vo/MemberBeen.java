@@ -5,9 +5,9 @@ import java.sql.*;
 public class MemberBeen {
 
 	private int idx;
-	private String email;
 	private String name;
 	private String pass;
+	private String email;
 	private Date date;
 	
 	public int getIdx() {
@@ -15,12 +15,6 @@ public class MemberBeen {
 	}
 	public void setIdx(int idx) {
 		this.idx = idx;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
 	}
 	public String getName() {
 		return name;
@@ -33,6 +27,12 @@ public class MemberBeen {
 	}
 	public void setPass(String pass) {
 		this.pass = pass;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public Date getDate() {
 		return date;
