@@ -13,8 +13,10 @@
 이메일 : <input type = "text" name = "email" id = "email" ><br>
 비밀번호 : <input type = "password" name ="pass" id = "id"><br>
 <input type = "submit" value = "로그인" id = "submit">
-<input type = "button" value = "회원가입" id = "join" onclick="location.href='MemberJoinForm.me'">
-<input type = "button" value = "취소" onclick = "history.back()">
+<input type = "button" value = "회원가입" onclick="location.href='MemberJoinForm.me'">
+<input type = "button" value = "취소" onclick = "history.back()"><br>
+<a href = "ForgetEmail.me">이메일 찾기</a>
+<a href = "ForgetPass.me">비밀번호 찾기</a>
 </form>
 
 </body>
