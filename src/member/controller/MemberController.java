@@ -47,6 +47,12 @@ public class MemberController extends HttpServlet {
 			}
 			
 		}
+		if(command.equals("/ForgetEmail.me")) {
+			forward = new ActionForward();
+			forward.setPath("/member/forget_email.jsp");
+		}
+		
+		
 
 
 		
