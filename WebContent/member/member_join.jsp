@@ -61,8 +61,6 @@ $(document).ready(function() {
 </head>
 <body>
     <h2>회원가입</h2>
-    <h1>회원가입이시다!</h1>
-    <h1>진짜로!</h1>
     <form action="MemberJoinPro.me" method="post" name="join_insert">
         <fieldset>
             <legend>이름</legend>

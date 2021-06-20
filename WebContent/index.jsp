@@ -4,10 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Main</title>
 </head>
 <body>
-<h1>index~</h1>
-<h2><a href = "/MemberJoinForm.me">회원가입</a></h2>
+<h1>메인~ㅋ</h1>
+<h2><a href = "MemberJoinForm.me">회원가입</a></h2>
+<h2><a href = "MemberLoginForm.me">로그인</a></h2>
 </body>
 </html>
