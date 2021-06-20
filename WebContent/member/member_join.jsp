@@ -12,7 +12,7 @@
 $(document).ready(function() {
 	
 	// 회원가입 입력란
-	$("button").click(function() {
+	$('join_insert').submit(function() {
 		if($('#email').val() == "") {
             alert("이메일을 입력하세요");
             $('#email').focus();
@@ -61,7 +61,7 @@ $(document).ready(function() {
 </head>
 <body>
     <h2>회원가입</h2>
-    <form action="MemberJoinPro.me" method="post" name="join_insert">
+    <form action="MemberJoinPro.me" method="post" class="join_insert">
         <fieldset>
             <legend>이메일</legend>
             <input type="text" id="email" name="email">
@@ -79,8 +79,10 @@ $(document).ready(function() {
             <input type="password" id="passConfirm" name="passConfirm">
         </fieldset>
         
-        <button type="submit">가입</button>
-        <button type="reset">취소</button>
+        <input type="submit" value="가입">
+        <input type="button" value="취소" onclick="history.back()">
+        
+        
         
         
     </form>
