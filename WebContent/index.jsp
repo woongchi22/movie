@@ -8,6 +8,6 @@
 </head>
 <body>
 <h1>index~</h1>
-<h2><a href = "/MemberJoinForm.me">회원가입</a></h2>
+<h2><a href = "MemberJoinForm.me">회원가입</a></h2>
 </body>
 </html>

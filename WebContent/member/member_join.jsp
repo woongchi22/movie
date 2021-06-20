@@ -13,16 +13,16 @@ $(document).ready(function() {
 	
 	// 회원가입 입력란
 	$("button").click(function() {
-		if($('#name').val() == "") {
-			alert("이름을 입력하세요");
-			$('#name').focus();
-			return false;
-		}
 		if($('#email').val() == "") {
             alert("이메일을 입력하세요");
             $('#email').focus();
             return false;
 	    }
+		if($('#name').val() == "") {
+			alert("이름을 입력하세요");
+			$('#name').focus();
+			return false;
+		}
 		if($('#pass').val() == "") {
             alert("패스워드를 입력하세요");
             $('#pass').focus();
@@ -41,14 +41,14 @@ $(document).ready(function() {
 	
 	
 	// 패스워드 확인 -> 아직 안됨
-	var password = $('#pass').val();
-	var passwordConfirm = $('#passConfirm').val();
+	var pass = $('#pass').val();
+	var passConfirm = $('#passConfirm').val();
     
-	if(password != passwordConfirm) {
+	if(pass != passConfirm) {
 		alert("불일치");
 		$('#passConfirm').focus();
 		return false;
-	}
+	} 
 	
 		
 		
@@ -65,12 +65,12 @@ $(document).ready(function() {
     <h1>진짜로!</h1>
     <form action="MemberJoinPro.me" method="post" name="join_insert">
         <fieldset>
-            <legend>이름</legend>
-            <input type="text" id="name" name="name">
-        </fieldset>
-        <fieldset>
             <legend>이메일</legend>
             <input type="text" id="email" name="email">
+        </fieldset>
+        <fieldset>
+            <legend>이름</legend>
+            <input type="text" id="name" name="name">
         </fieldset>
         <fieldset>
             <legend>패스워드</legend>
