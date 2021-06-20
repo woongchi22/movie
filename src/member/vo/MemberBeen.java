@@ -10,12 +10,11 @@ public class MemberBeen {
 	private String email;
 	private Date date;
 	
-	
-	public int getIndex() {
+	public int getIdx() {
 		return idx;
 	}
-	public void setIndex(int index) {
-		this.idx = index;
+	public void setIdx(int idx) {
+		this.idx = idx;
 	}
 	public String getName() {
 		return name;
@@ -23,11 +22,11 @@ public class MemberBeen {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getPassword() {
+	public String getPass() {
 		return pass;
 	}
-	public void setPassword(String password) {
-		this.pass = password;
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 	public String getEmail() {
 		return email;
@@ -41,5 +40,6 @@ public class MemberBeen {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+	
 	
 }
