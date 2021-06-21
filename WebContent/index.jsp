@@ -3,12 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<%
+String name = (String)session.getAttribute("name");
+%>
 <title>Main</title>
 </head>
 <body>
-<h1>메인~ㅋ</h1>
-<h2><a href = "MemberJoinForm.me">회원가입</a></h2>
-<h2><a href = "MemberLoginForm.me">로그인</a></h2>
+    <jsp:include page="/inc/top.jsp"/>
+    
+
 </body>
 </html>

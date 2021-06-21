@@ -22,31 +22,33 @@ public class MemberController extends HttpServlet {
 		Action action = null;
 		ActionForward forward = null;
 		
+		// 회원가입
 		if(command.equals("/MemberJoinForm.me")) {
 			forward = new ActionForward();
 			forward.setPath("/member/member_join.jsp");
 		} else if(command.equals("/MemberJoinPro.me")) {
-			action = new MemberJoinProAction();
 			try {
+				action = new MemberJoinProAction();
 				forward = action.excute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+		
+		// 로그인
 		if(command.equals("/MemberLoginForm.me")) {
 			forward = new ActionForward();
 			forward.setPath("/member/member_login.jsp");
-		}
-		if(command.equals("/MemberLoginPro.me")) {
+		} else if(command.equals("/MemberLoginPro.me")) {
 			try {
 				action = new MemberLoginProAction();
 				forward = action.excute(request, response);
 			} catch (Exception e) {
-			
 				e.printStackTrace();
 			}
-			
 		}
+		
+		// 이메일 찾기
 		if(command.equals("/ForgetEmail.me")) {
 			forward = new ActionForward();
 			forward.setPath("/member/forget_email.jsp");

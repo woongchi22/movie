@@ -78,11 +78,10 @@ public class MemberDao {
 			rs = pstmt.executeQuery();
 
 			if(rs.next()) {
-				System.out.println("rs.next()");
-					if(mb.getPass().equals(rs.getString("pass"))) {
-						System.out.println("로그인가능");
-						name = rs.getString("name");
-				}else {//패스워드 불일치
+				if(mb.getPass().equals(rs.getString("pass"))) {
+					System.out.println("로그인가능");
+					name = rs.getString("name");
+		 		}else {//패스워드 불일치
 					System.out.println("패스워드 불일치");
 					
 				}
@@ -93,7 +92,11 @@ public class MemberDao {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
 		}
+		
 		return name;
 	}
 

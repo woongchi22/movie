@@ -23,11 +23,11 @@ public class MemberLoginProAction implements Action {
 		mb.setPass(request.getParameter("pass"));
 		boolean isLogin = false;
 		
-		String email = "";
+		String name = "";
 		String result = "";
 		
 		MemberLoginProService memberLoginProService = new MemberLoginProService();
-		email = memberLoginProService.login(mb);
+		name = memberLoginProService.login(mb);
 		isLogin = true;
 		
 		if(!isLogin) {
