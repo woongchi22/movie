@@ -11,34 +11,63 @@
 
 $(document).ready(function() {
 	
+	
+	//회원가입 이메일 중복 확인
+	$('#dupEmail').click(function(){
+		var email = $('#email').val();
+		console.log("성공");
+
+		if(email==""){
+			$('#check_email').text('이메일을 입력해주세요');
+ 			$('.check_font').css('color', 'gray');
+ 			$("#check_email").attr("disabled", true);			
+			return false;
+		} else {
+			$.ajax("dupEmail.me",{
+				data:{email:email},
+				success:function(rdata){
+					if(rdata=="이메일 중복"){
+						$('.confirm').eq(0).val("N");
+					} 
+					if(rdata=="사용가능 이메일") {
+						$('.confirm').eq(0).val("Y");
+					}
+					$('#email').html(rdata);
+				}
+			});
+		}
+	});
+	
+	
+	
 	// 회원가입 입력란
 	$('#join_insert').submit(function() {
 		
 		if($('#email').val() == "") {
 			$('#check_email').text('이메일을 입력해주세요');
 			$('.check_font').css('color', 'gray');
-			$("#join_insert").attr("disabled", true);			
+			$("#check_email").attr("disabled", true);			
             $('#email').focus();
             return false;
 	    }
 		if($('#name').val() == "") {
 			$('#check_name').text('이름을 입력해주세요');
 			$('.check_font').css('color','gray');
-			$("#join_insert").attr("disabled", true);			
+			$("#check_name").attr("disabled", true);			
 			$('#name').focus();
 			return false;
 		}
 		if($('#pass').val() == "") {
 			$('#check_pass').text('패스워드를 입력해주세요');
 			$('#check_font').css('color','gray','size','7px');
-			$("#join_insert").attr("disabled", true);			
+			$("#check_pass").attr("disabled", true);			
             $('#pass').focus();
             return false;
 	    }
 		if($('#passConfirm').val() == "") {
            $('#check_passConfirm').text('패스워드를 확인해주세요');
            $('#check_font').css('color','gray');
-			$("#join_insert").attr("disabled", true);			
+			$("#check_passConfirm").attr("disabled", true);			
             $('#passConfirm').focus();
             return false;
         }
@@ -46,7 +75,7 @@ $(document).ready(function() {
 		if ($('#passConfirm').val() != $('#pass')) {
 			$('#check_passConfirm').text('패스워드가 일치하지 않습니다');
 			 $('#check_font').css('color','gray');
-				$("#join_insert").attr("disabled", true);			
+				$("#check_email").attr("disabled", true);			
 	            $('#passConfirm').focus();
 	            return false;
 		}
@@ -82,6 +111,8 @@ $(document).ready(function() {
         <fieldset>
             <legend>이메일</legend>
             <input type="text" id="email" name="email">
+            <input type="button" value="이메일 중복체크"  id="dupEmail",>
+<!--             <button class = "check_font" id="dupEmail" type="button">이메일 중복체크</button> -->
             <div class = check_font id="check_email"></div>
         </fieldset>
         <fieldset>
@@ -107,52 +138,6 @@ $(document).ready(function() {
         
         
     </form>
-  <!-- 
-    <script>
-// 아이디 유효성 검사(1 = 중복 / 0 != 중복)
-	$("#user_id").blur(function() {
-		// id = "id_reg" / name = "userId"
-		var user_id = $('#user_id').val();
-		$.ajax({
-			url : '${pageContext.request.contextPath}/user/idCheck?userId='+ user_id,
-			type : 'get',
-			success : function(data) {
-				console.log("1 = 중복o / 0 = 중복x : "+ data);							
-				
-				if (data == 1) {
-						// 1 : 아이디가 중복되는 문구
-						$("#id_check").text("사용중인 아이디입니다 :p");
-						$("#id_check").css("color", "red");
-						$("#reg_submit").attr("disabled", true);
-					} else {
-						
-						if(idJ.test(user_id)){
-							// 0 : 아이디 길이 / 문자열 검사
-							$("#id_check").text("");
-							$("#reg_submit").attr("disabled", false);
-				
-						} else if(user_id == ""){
-							
-							$('#id_check').text('아이디를 입력해주세요 :)');
-							$('#id_check').css('color', 'red');
-							$("#reg_submit").attr("disabled", true);				
-							
-						} else {
-							
-							$('#id_check').text("아이디는 소문자와 숫자 4~12자리만 가능합니다 :) :)");
-							$('#id_check').css('color', 'red');
-							$("#reg_submit").attr("disabled", true);
-						}
-						
-					}
-				}, error : function() {
-						console.log("실패");
-				}
-			});
-		});
-</script>
-
- -->
-
+ 
 </body>
 </html>
