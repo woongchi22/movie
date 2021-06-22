@@ -47,6 +47,19 @@ public class MemberController extends HttpServlet {
 			}
 			
 		}
+		
+		if(command.equals("/dupEmail.me")) {
+			action = new MemberEmailAction();
+			try {
+				forward = action.excute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+		
 		if(command.equals("/ForgetEmail.me")) {
 			forward = new ActionForward();
 			forward.setPath("/member/forget_email.jsp");
