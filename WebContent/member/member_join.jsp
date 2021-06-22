@@ -42,7 +42,6 @@ $(document).ready(function() {
 	
 	// 회원가입 입력란
 	$('#join_insert').submit(function() {
-		
 		if($('#email').val() == "") {
 			$('#check_email').text('이메일을 입력해주세요');
 			$('.check_font').css('color', 'gray');
