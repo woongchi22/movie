@@ -81,6 +81,43 @@ $(document).ready(function() {
 		}
 	});
 	
+	// 패스워드 정규식 & 보안강도 표시
+	$('#pass').keyup(function(){
+		var pw = $('#pass').val();
+		
+		var lengthReg = /(?=.{8,15})/; // 8~15자리
+		var upperReg = /[A-Z]/;
+		var lowerReg = /[a-z]/;
+		var numReg = /[0-9]/;
+		var specialReg = /[!@]/;
+		
+		var length = lengthReg.test(pw)
+		var upper = null;
+		var lower = null;
+		var num = null;
+		var special = null;
+		
+		if(lenght){
+			
+			upper = upperReg.test(pw);
+			lower = lowerReg.test(pw);
+			num = numReg.test(pw);
+			sepcia = specialReg.test(pw);
+			
+			if(lower&&upper&&num&&special){
+				$('#pass_msg').removeClass();
+				$('#pass_msg').addClass('강함');
+				$('#pass_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 강함");
+				$('#regPass').html('사용 가능');
+ 				$('.confirm').eq(1).val("Y");
+			
+			
+			}
+		}
+		
+	});
+	
+	
 	
 	// 이메일 인증
 	
@@ -123,7 +160,9 @@ $(document).ready(function() {
         <fieldset>
             <legend>패스워드</legend>
             <input type="password" id="pass" name="pass">
-             <div class = check_font id="check_pass"></div>
+             <div class= check_font id="check_pass"></div>
+             <div id="regPass"></div>
+             <div id= "pass_msg"></div>
         </fieldset>
         <fieldset>
             <legend>패스워드 확인</legend>
