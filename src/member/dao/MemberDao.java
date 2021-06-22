@@ -28,6 +28,35 @@ public class MemberDao {
 	ResultSet rs;
 
 	
+
+	//이메일 중복 체크
+	public boolean dupCheck(String params, String type) {
+		boolean checkResult = true;
+		System.out.println(params);
+		System.out.println(type);
+		
+		try {
+			String sql = "SELECT " + type + " FROM member where " + type + "=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, params);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				checkResult = false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("MemberDAO - dupCheck() 오류!");
+
+		}finally{
+			close(rs);
+			close(pstmt);
+		}
+		
+		return checkResult;
+	}
+
+
+	
 	// 회원가입
 	
 	public int insertMember(MemberBeen mb) {
