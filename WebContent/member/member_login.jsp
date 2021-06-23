@@ -69,7 +69,7 @@ $(document).ready(function() {
 <input type = "submit" value = "로그인" id = "submit">
 <input type = "button" value = "회원가입" onclick="location.href='MemberJoinForm.me'">
 <input type = "button" value = "취소" onclick = "history.back()"><br>
-<a href = "ForgetPass.me">비밀번호 찾기</a>
+<a href = "ForgetPassForm.me">비밀번호 찾기</a>
 </form>
 
 

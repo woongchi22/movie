@@ -10,7 +10,7 @@ String name = (String)session.getAttribute("name");
 </head>
 <body>
     <jsp:include page="/inc/top.jsp"/>
-    
+    <h2>메인</h2>
 
 </body>
 </html>
