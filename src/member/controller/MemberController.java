@@ -84,6 +84,14 @@ public class MemberController extends HttpServlet {
 			forward.setPath("/index.jsp");
 			
 		// 비밀번호 찾기	
+		} else if(command.equals("/ForgetPass.me")) {
+			try {
+				action = new ForgetPassAction();
+				forward = action.excute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 
 
