@@ -73,6 +73,30 @@ public class MemberController extends HttpServlet {
 		}else if(command.equals("/Mypage.me")) { 
 			forward = new ActionForward();
 			forward.setPath("/member/mypage.jsp");
+			
+		// 로그아웃	
+		} else if(command.equals("/MemberLogout.me")) {
+			try {
+				action = new MemberLogoutAction();
+				forward = action.excute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		// 메인	
+		} else if(command.equals("/Main.me")) {
+			forward = new ActionForward();
+			forward.setPath("/index.jsp");
+			
+		// 비밀번호 찾기	
+		} else if(command.equals("/ForgetPass.me")) {
+			try {
+				action = new ForgetPassAction();
+				forward = action.excute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 
 		
