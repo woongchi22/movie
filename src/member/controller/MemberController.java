@@ -49,14 +49,12 @@ public class MemberController extends HttpServlet {
 		}
 
 		if(command.equals("/dupEmail.me")) {
-			action = new MemberEmailAction();
 			try {
+				action = new MemberEmailAction();
 				forward = action.excute(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 		}
 		
 		

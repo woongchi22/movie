@@ -27,6 +27,8 @@ $(document).ready(function() {
 		
 		// 로그인
 		
+
+		
 // 		var action = $('#login').attr('action');
 // 		var form_data = {
 // 				email: $('#email').val(),
@@ -55,6 +57,13 @@ $(document).ready(function() {
 	
 });
 
+<%
+String msg = request.getParameter("msg");
+
+if(msg != null && msg.equals("0")) {
+	out.println("비밀번호를 확인하세요");
+}
+%>
 
 
 
