@@ -11,6 +11,7 @@
 <title>Mypage</title>
 </head>
 <body>
+<jsp:include page="/inc/top.jsp"/>
 	<fieldset>
 	<legend>회원 정보 수정</legend>
 	<form action="MemberUpdatePro.me" method="post" id="update_fr" class="update_fr">
@@ -20,7 +21,7 @@
 		</fieldset>
 		
 		<fieldset>
-		<legend>닉네임</legend>
+		<legend>이름</legend>
 <%-- 		<input type="text" id="name" name="name" value="<%=memberBean.getName%>"> --%>
 		</fieldset>	
 	
