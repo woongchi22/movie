@@ -1,4 +1,4 @@
-<%@page import="member.vo.MemberBeen"%>
+<%@page import="member.vo.MemberBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -41,7 +41,7 @@ table {
     
 </style>
 <%
-ArrayList<MemberBeen> mbList = (ArrayList<MemberBeen>)request.getAttribute("mbList");
+	ArrayList<MemberBean> mbList = (ArrayList<MemberBean>)request.getAttribute("mbList");
 %>
 
 </head>
@@ -57,7 +57,9 @@ ArrayList<MemberBeen> mbList = (ArrayList<MemberBeen>)request.getAttribute("mbLi
 	            <td width="250">pass</td>
 	            <td width="300">date</td>
 	        </tr>
-	        <% for(MemberBeen mb : mbList) {%>
+	        <%
+	        	for(MemberBean mb : mbList) {
+	        %>
 		        <tr>
 		            <td align="center"><%= mb.getIdx() %></td>
 		            <td align="center"><%= mb.getEmail() %></td>

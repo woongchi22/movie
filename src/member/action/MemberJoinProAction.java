@@ -23,7 +23,7 @@ public class MemberJoinProAction implements Action {
 //		System.out.println(request.getParameter("name"));
 //		System.out.println(name);
 		
-		MemberBeen mb = new MemberBeen();
+		MemberBean mb = new MemberBean();
 		mb.setEmail(email);
 		mb.setName(name);
 		mb.setPass(pass);
