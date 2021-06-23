@@ -12,7 +12,6 @@
 
 $(document).ready(function() {
 	
-	
 	//회원가입 이메일 중복 확인
 	$('#dupEmail').click(function(){
 		var email = $('#email').val();
@@ -38,7 +37,6 @@ $(document).ready(function() {
 			});
 		}
 	});
-	
 	
 	
 	// 회원가입 입력란
@@ -150,7 +148,8 @@ $(document).ready(function() {
 			$('#regPass').html('비밀번호는 공백 없이 입력해주세요.');
 			$('.confirm').eq(1).val("N");
 		}
-});
+		
+	});
 
 	
 	
@@ -198,12 +197,7 @@ $(document).ready(function() {
             <input type="password" id="pass" name="pass">
              <div class= check_font id="check_pass"></div>
              <div id="regPass"></div>
-             <div id= "pass_msg">
-             
-             
-             
-             
-             </div>
+             <div id= "pass_msg"></div>
         </fieldset>
         <fieldset>
             <legend>패스워드 확인</legend>
@@ -214,12 +208,7 @@ $(document).ready(function() {
         <input type="submit" value="가입" > 
         <input type="button" value="취소" onclick="history.back()">
         
-        
-        
-        
     </form>
- 
-
  
 </body>
 </html>

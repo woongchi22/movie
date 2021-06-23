@@ -9,20 +9,19 @@ import member.vo.MemberBeen;
 
 public class MemberLoginProService {
 
-	public String login(MemberBeen mb) {
+	public int login(MemberBeen mb) {
 		System.out.println("MemberLoginProService");
 		
 		Connection con = getConnection();
 		
 		MemberDao dao = MemberDao.getInstance();
-		
 		dao.setConnection(con);
 		
-		String name = dao.login(mb);
+		int emailCheck = dao.login(mb);
 		
 		close(con);
 		
-		return name;
+		return emailCheck;
 	}
 
 }
