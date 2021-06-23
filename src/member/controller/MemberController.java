@@ -68,11 +68,6 @@ public class MemberController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		
-		// 마이페이지
-		}else if(command.equals("/Mypage.me")) { 
-			forward = new ActionForward();
-			forward.setPath("/mypage/mypage.jsp");
 			
 		// 로그아웃	
 		} else if(command.equals("/MemberLogout.me")) {
