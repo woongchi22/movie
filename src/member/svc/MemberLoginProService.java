@@ -9,7 +9,7 @@ import member.vo.MemberBeen;
 
 public class MemberLoginProService {
 
-	public int login(MemberBeen mb) {
+	public String login(MemberBeen mb) throws Exception {
 		System.out.println("MemberLoginProService");
 		
 		Connection con = getConnection();
@@ -17,11 +17,11 @@ public class MemberLoginProService {
 		MemberDao dao = MemberDao.getInstance();
 		dao.setConnection(con);
 		
-		int emailCheck = dao.login(mb);
+		String name = dao.login(mb);
 		
 		close(con);
 		
-		return emailCheck;
+		return name;
 	}
 
 }

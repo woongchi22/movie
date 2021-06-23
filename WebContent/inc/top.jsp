@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%
 request.setCharacterEncoding("UTF-8");
-String email = (String)session.getAttribute("email");
+String name = (String)session.getAttribute("name");
+
 %>
 
 <!DOCTYPE html>
@@ -15,11 +16,11 @@ String email = (String)session.getAttribute("email");
     <header>
         <a href="Main.me">Main</a>
 
-        <%if(email != null) { %>
-            <%if(email.equals("admin")) { %>
+        <%if(name != null) { %>
+            <%if(name.equals("관리자")) { %>
                 <a href="Mypage.me">관리자 님</a> | <a href="MemberLogout.me">로그아웃</a> | <a href="MemberList.me">관리자 페이지</a>
             <%} else { %>
-                <a href="Mypage.me"><%=email %> 님</a> | <a href="MemberLogout.me">로그아웃</a>
+                <a href="Mypage.me"><%=name %> 님</a> | <a href="MemberLogout.me">로그아웃</a>
 	        <%} %>
         <%} else {%>
             <a href="MemberLoginForm.me">로그인</a> | <a href="MemberJoinForm.me">회원가입</a>

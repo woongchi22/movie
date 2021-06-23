@@ -5,6 +5,7 @@ import static db.JdbcUtil.close;
 import java.sql.*;
 import java.util.*;
 
+import member.exception.*;
 import member.vo.MemberBeen;
 
 public class MemberDao {
@@ -92,9 +93,9 @@ public class MemberDao {
 	
 	
 	//로그인
-	public int login(MemberBeen mb) {
+	public String login(MemberBeen mb) throws Exception {
 		System.out.println("MemberDao - login");
-		int emailCheck = 0;
+		String name = "";
 		
 		try {
 			
@@ -107,14 +108,13 @@ public class MemberDao {
 				
 				if(mb.getPass().equals(rs.getString("pass"))) {
 					System.out.println("로그인 가능");
-					emailCheck = 1;
+					name = rs.getString("name");
 					
 		 		}else {//패스워드 불일치
-		 			System.out.println("패스워드 불일치");
-		 			emailCheck = -1;
+		 			throw new MemberLoginException("패스워드가 일치하지 않습니다");
 				}
 			}else {
-				System.out.println("없는 아이디입니다");
+				throw new MemberLoginException("없는 이메일 입니다");
 			}
 			
 		} catch (SQLException e) {
@@ -125,7 +125,7 @@ public class MemberDao {
 			close(pstmt);
 		}
 		
-		return emailCheck;
+		return name;
 	}
 
 
