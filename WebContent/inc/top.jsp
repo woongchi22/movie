@@ -4,23 +4,21 @@
 
 <%
 request.setCharacterEncoding("UTF-8");
-String name = (String)session.getAttribute("name");
+String email = (String)session.getAttribute("email");
 %>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<a href="Main.me">Main</a>
+<a href="./index.jsp">Main</a>
 
 <%
-if(name != null) { %>
-	  <a href="Mypage.me"><%=name %> 님</a>
-	  <a href="MemberLogout.me">로그아웃</a>
+if(email != null) { %>
+	  <a><%=email %> 님</a> | <a href="MemberLogout.me">로그아웃</a> | <a href="MemberList.me">관리자 페이지</a>
       
 <%} else {%>
-    <a href="MemberLoginForm.me">로그인</a>
-    <a href="MemberJoinForm.me">회원가입</a>
+    <a href="MemberLoginForm.me">로그인</a> | <a href="MemberJoinForm.me">회원가입</a>
 
 <%} %>
 
