@@ -9,7 +9,6 @@
 
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js">
 
-<link href="../css/member_join.css" rel="stylesheet" type="text/css">
 </script>
 <script type="text/javascript" >
 
@@ -205,6 +204,7 @@ $(document).ready(function() {
         <input type="button" value="취소" onclick="history.back()">
         
     </form>
+
 
   <input type="hidden" class="confirm">
   <input type="hidden" class="confirm">
