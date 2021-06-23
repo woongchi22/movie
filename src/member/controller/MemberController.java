@@ -33,10 +33,9 @@ public class MemberController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
 		
-		// 로그인
-		if(command.equals("/MemberLoginForm.me")) {
+		// 로그인	
+		} else if(command.equals("/MemberLoginForm.me")) { 
 			forward = new ActionForward();
 			forward.setPath("/member/member_login.jsp");
 		} else if(command.equals("/MemberLoginPro.me")) {
@@ -46,24 +45,30 @@ public class MemberController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-
-		if(command.equals("/dupEmail.me")) {
+			
+		// 이메일 중복 체크	
+		} else if(command.equals("/dupEmail.me")) {
+			action = new MemberEmailAction();
 			try {
-				action = new MemberEmailAction();
+				forward = action.excute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		// 비밀번호 찾기
+		} else if(command.equals("/ForgetPass.me")) {
+			forward = new ActionForward();
+			forward.setPath("/member/forget_pass.jsp");
+			
+		// 관리자 회원 리스트
+		} else if(command.equals("/MemberList.me")) {
+			try {
+				action = new MemberListAction();
 				forward = action.excute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		
-		
-		if(command.equals("/ForgetEmail.me")) {
-			forward = new ActionForward();
-			forward.setPath("/member/forget_email.jsp");
-		}
-		
-		
 
 
 		

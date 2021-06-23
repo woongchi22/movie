@@ -111,10 +111,47 @@ $(document).ready(function() {
  				$('.confirm').eq(1).val("Y");
 			
 			
+			}else if((lower||upper)&&(num||secial)){
+				$('#pass_msg').removeClass();
+				$('#pass_msg').addClass('중간');
+				$('#pass_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 중간");
+				$('#regPass').html('사용 가능');
+ 				$('.confirm').eq(1).val("Y");	
+			}else { // 한가지 조합으로만 8글자 입력했을 경우
+				$('#st_msg').removeClass();
+				$('#st_msg').addClass('약함');
+				$('#st_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 약함");
+				$('#regPass').html('비밀번호는 8~15자이며,\n숫자/대문자/소문자/특수문자(!,@)를 포함해야 합니다.');
+				 $('.confirm').eq(1).val("N");
 			}
+			
+		} else {
+        	$('#pass_msg').removeClass();
+        	$('#pass_msg').addClass('짧음');
+	        $('#pass_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 짧음");
+	        $('#regPass').html('비밀번호는 8~15자이며,\n숫자/대문자/소문자/특수문자(!,@)를 포함해야 합니다.');
+	        $('.confirm').eq(1).val("N");
+			if (pw.length==0) {
+					$('#pass_msg').hide();
+					$('#regPass').hide();
+	        } else {
+	        	$('#pass_msg').show();
+	        	$('#regPass').show();
+	        }
+		}
+        
+		if(/(\w)\1\1\1/.test(pw)) {
+			$('#regPass').html('같은 문자를 4번 이상 사용할 수 없습니다.');
+			 $('.confirm').eq(1).val("N");
+		}
+		if(pw.search(/\s/) != -1) {
+			$('#regPass').html('비밀번호는 공백 없이 입력해주세요.');
+			$('.confirm').eq(1).val("N");
 		}
 		
 	});
+
+	
 	
 	
 	
@@ -133,10 +170,9 @@ $(document).ready(function() {
 	}
 	
 		
-		
-		
-	
 });
+	
+	
 
 </script>
 
@@ -172,11 +208,7 @@ $(document).ready(function() {
         <input type="submit" value="가입" > 
         <input type="button" value="취소" onclick="history.back()">
         
-        
-        
-        
     </form>
  
-
 </body>
 </html>
