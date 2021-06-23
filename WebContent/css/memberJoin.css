@@ -1,0 +1,66 @@
+@charset "UTF-8";
+#pass_msg>box1{
+	border:1px solid gray;
+	background-color: gray;
+	width: 120px;
+	height: 5px;
+	display: inline-block;
+	
+}
+#pass_msg>box2{
+	border:1px solid gray;
+	background-color: gray;
+	width: 120px;
+	height: 5px;
+	display: inline-block;
+	
+}
+#pass_msg>box3{
+	border:1px solid gray;
+	background-color: gray;
+	width: 120px;
+	height: 5px;
+	display: inline-block;
+	
+}
+#pass_msg>box4{
+	border:1px solid gray;
+	background-color: gray;
+	width: 120px;
+	height: 5px;
+	display: inline-block;
+	
+}
+#pass_msg.짧음>box1{
+	border:1px solid gray;
+	background-color: gray;
+	width: 120px;
+	height: 5px;
+	display: inline-block;
+}
+#pass_msg.약함>box2{
+	border:1px solid gray;
+	background-color: yellow;
+	width: 120px;
+	height: 5px;
+	display: inline-block;
+}
+#pass_msg.짧음>box1{
+	border:1px solid gray;
+	background-color: gray;
+	width: 120px;
+	height: 5px;
+	display: inline-block;
+}
+#pass_msg.짧음>box1{
+	border:1px solid gray;
+	background-color: gray;
+	width: 120px;
+	height: 5px;
+	display: inline-block;
+}
+
+
+
+
+

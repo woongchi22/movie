@@ -204,8 +204,8 @@ $(document).ready(function() {
             <legend>패스워드</legend>
             <input type="password" id="pass" name="pass">
              <div class= check_font id="check_pass"></div>
-             <div id="regPass"></div>
              <div id= "pass_msg"></div>
+             <div id="regPass"></div>
         </fieldset>
         <fieldset>
             <legend>패스워드 확인</legend>
@@ -224,6 +224,8 @@ $(document).ready(function() {
 <input type="hidden" class="confirm">
 <input type="hidden" class="confirm">
 <input type="hidden" class="confirm">
+
+<link href="${pageContext.request.contextPath}/css/memberjoin.css" rel="stylesheet" type="text/css">
 
  
 </body>
