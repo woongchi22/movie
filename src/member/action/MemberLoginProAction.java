@@ -6,7 +6,7 @@ import javax.servlet.http.*;
 
 import action.Action;
 import member.svc.MemberLoginProService;
-import member.vo.MemberBeen;
+import member.vo.MemberBean;
 import vo.ActionForward;
 
 public class MemberLoginProAction implements Action {
@@ -17,7 +17,7 @@ public class MemberLoginProAction implements Action {
 		
 		ActionForward forward = null;
 		
-		MemberBeen mb = new MemberBeen();
+		MemberBean mb = new MemberBean();
 		mb.setEmail(request.getParameter("email"));
 		mb.setPass(request.getParameter("pass"));
 		

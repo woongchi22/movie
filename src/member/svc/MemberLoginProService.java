@@ -5,11 +5,11 @@ import static db.JdbcUtil.*;
 
 
 import member.dao.MemberDao;
-import member.vo.MemberBeen;
+import member.vo.MemberBean;
 
 public class MemberLoginProService {
 
-	public String login(MemberBeen mb) throws Exception {
+	public String login(MemberBean mb) throws Exception {
 		System.out.println("MemberLoginProService");
 		
 		Connection con = getConnection();

@@ -17,7 +17,7 @@ public class ForgetPassProAction implements Action {
 		
 		ActionForward forward = null;
 		
-		MemberBeen mb = new MemberBeen();
+		MemberBean mb = new MemberBean();
 		mb.setEmail(request.getParameter("email"));
 		mb.setName(request.getParameter("name"));
 		

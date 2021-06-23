@@ -9,8 +9,8 @@ import member.vo.*;
 
 public class MemberListService {
 
-	public ArrayList<MemberBeen> getMemberList() {
-		ArrayList<MemberBeen> mbList = null;
+	public ArrayList<MemberBean> getMemberList() {
+		ArrayList<MemberBean> mbList = null;
 		
 		Connection con = getConnection();
 		MemberDao dao = MemberDao.getInstance();
@@ -23,8 +23,8 @@ public class MemberListService {
 		return mbList;
 	}
 
-	public ArrayList<MemberBeen> getMemberList(String orderTarget, String orderType) {
-		ArrayList<MemberBeen> mbList = null;
+	public ArrayList<MemberBean> getMemberList(String orderTarget, String orderType) {
+		ArrayList<MemberBean> mbList = null;
 
 		Connection con = getConnection();
 		MemberDao dao = MemberDao.getInstance();

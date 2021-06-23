@@ -46,7 +46,7 @@ $(document).ready(function() {
 	    
 	    <%if(pass != null) {%>
 	       <b><%=name %></b> 님의 비밀번호 : <%=pass %><br> 
-	       <a href="./member/member_login.jsp">로그인 하러 가기</a>
+	       <a href="MemberLoginForm.me">로그인 하러 가기</a>
 	    <%} %><br>
 	    
 	    <input type="submit" value="찾기" id="find">

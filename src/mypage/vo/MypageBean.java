@@ -1,14 +1,12 @@
-package member.vo;
+package mypage.vo;
 
-import java.sql.*;
-
-public class MemberBeen {
+public class MypageBean {
 
 	private int idx;
 	private String email;
 	private String name;
 	private String pass;
-	private Date date;
+	
 	
 	public int getIdx() {
 		return idx;
@@ -33,12 +31,6 @@ public class MemberBeen {
 	}
 	public void setPass(String pass) {
 		this.pass = pass;
-	}
-	public Date getDate() {
-		return date;
-	}
-	public void setDate(Date date) {
-		this.date = date;
 	}
 	
 	

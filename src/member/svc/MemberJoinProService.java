@@ -7,7 +7,7 @@ import member.vo.*;
 
 public class MemberJoinProService {
 
-	public boolean insertMember(MemberBeen mb) {
+	public boolean insertMember(MemberBean mb) {
 		System.out.println("MemberJoinProService");
 		
 		boolean isInsert = false;
