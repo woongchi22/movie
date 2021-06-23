@@ -27,8 +27,8 @@ public class MemberController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("/member/member_join.jsp");
 		} else if(command.equals("/MemberJoinPro.me")) {
+			action = new MemberJoinProAction();
 			try {
-				action = new MemberJoinProAction();
 				forward = action.excute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -39,8 +39,8 @@ public class MemberController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("/member/member_login.jsp");
 		} else if(command.equals("/MemberLoginPro.me")) {
+			action = new MemberLoginProAction();
 			try {
-				action = new MemberLoginProAction();
 				forward = action.excute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -56,14 +56,21 @@ public class MemberController extends HttpServlet {
 			}
 			
 		// 비밀번호 찾기
-		} else if(command.equals("/ForgetPass.me")) {
+		} else if(command.equals("/ForgetPassForm.me")) {
 			forward = new ActionForward();
 			forward.setPath("/member/forget_pass.jsp");
+		} else if(command.equals("/ForgetPassPro.me")) {
+			action = new ForgetPassProAction();
+			try {
+				forward = action.excute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			
 		// 관리자 회원 리스트
 		} else if(command.equals("/MemberList.me")) {
+			action = new MemberListAction();
 			try {
-				action = new MemberListAction();
 				forward = action.excute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -76,8 +83,8 @@ public class MemberController extends HttpServlet {
 			
 		// 로그아웃	
 		} else if(command.equals("/MemberLogout.me")) {
+			action = new MemberLogoutAction();
 			try {
-				action = new MemberLogoutAction();
 				forward = action.excute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -88,16 +95,8 @@ public class MemberController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("/index.jsp");
 			
-		// 비밀번호 찾기	
-		} else if(command.equals("/ForgetPass.me")) {
-			try {
-				action = new ForgetPassAction();
-				forward = action.excute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 			
-		}
+		} 
 
 		
 		
