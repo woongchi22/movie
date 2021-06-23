@@ -22,7 +22,7 @@ public class MemberListAction implements Action {
 		
 		MemberListService memberListService = new MemberListService();
 		
-		ArrayList<MemberBeen> mbList = memberListService.getMemberList();
+		ArrayList<MemberBean> mbList = memberListService.getMemberList();
 		if(orderTarget == null) {
 			mbList = memberListService.getMemberList();
 		} else {

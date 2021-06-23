@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.*;
 
 import member.exception.*;
-import member.vo.MemberBeen;
+import member.vo.MemberBean;
 
 public class MemberDao {
 	private MemberDao() {};
@@ -59,7 +59,7 @@ public class MemberDao {
 
 	
 	// 회원가입
-	public int insertMember(MemberBeen mb) {
+	public int insertMember(MemberBean mb) {
 		System.out.println("dao - insertMember");
 
 		int insertCount = 0;
@@ -93,7 +93,7 @@ public class MemberDao {
 	
 	
 	//로그인
-	public String login(MemberBeen mb) throws Exception {
+	public String login(MemberBean mb) throws Exception {
 		System.out.println("MemberDao - login");
 		String name = "";
 		
@@ -130,19 +130,19 @@ public class MemberDao {
 
 
 	// 관리자 회원 리스트
-	public ArrayList<MemberBeen> selectMemberList() {
+	public ArrayList<MemberBean> selectMemberList() {
 		System.out.println("dao - selectMemberList()");
 		
-		ArrayList<MemberBeen> mbList = null;
+		ArrayList<MemberBean> mbList = null;
 		
 		try {
 			String sql = "SELECT * FROM member";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
-			mbList = new ArrayList<MemberBeen>();
+			mbList = new ArrayList<MemberBean>();
 			while(rs.next()) {
-				MemberBeen mb = new MemberBeen();
+				MemberBean mb = new MemberBean();
 				mb.setIdx(rs.getInt("idx"));
 				mb.setEmail(rs.getString("email"));
 				mb.setName(rs.getString("name"));
@@ -163,20 +163,20 @@ public class MemberDao {
 	}
 
 	// 파라미터 있을 경우
-	public ArrayList<MemberBeen> selectMemberList(String orderTarget, String orderType) {
+	public ArrayList<MemberBean> selectMemberList(String orderTarget, String orderType) {
 		System.out.println("dao - selectMemberList(파라미터)");
 		
-		ArrayList<MemberBeen> mbList = null;
+		ArrayList<MemberBean> mbList = null;
 		
 		try {
 			String sql = "SELECT * FROM member ORDER BY" + orderTarget + " " + orderType;
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
-			mbList = new ArrayList<MemberBeen>();
+			mbList = new ArrayList<MemberBean>();
 			while(rs.next()) {
 				System.out.println(rs.getInt("idx"));
-				MemberBeen mb = new MemberBeen();
+				MemberBean mb = new MemberBean();
 				mb.setIdx(rs.getInt("idx"));
 				mb.setEmail(rs.getString("email"));
 				mb.setName(rs.getString("name"));
@@ -196,6 +196,32 @@ public class MemberDao {
 		return mbList;
 	}
 	
+	//유저 정보
+	public MemberBean getUserInfo(String UserInfo){
+		System.out.println("dao - getUserInfo");
+		MemberBean mb = null;
+		System.out.println(UserInfo);
+		try {
+			String sql = "SELECT * FROM member WHERE email = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, UserInfo);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				mb.setEmail(rs.getString("email"));
+				mb.setName(rs.getString("name"));
+				mb.setPass(rs.getString("pass"));
+				
+			}
+		} catch (SQLException e) {
+			System.out.println("회원정보 가져오기 실패");
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return mb;
+	}
 	
 	
 	
