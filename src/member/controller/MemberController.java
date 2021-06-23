@@ -72,7 +72,7 @@ public class MemberController extends HttpServlet {
 		// 마이페이지
 		}else if(command.equals("/Mypage.me")) { 
 			forward = new ActionForward();
-			forward.setPath("/member/mypage.jsp");
+			forward.setPath("/mypage/mypage.jsp");
 			
 		// 로그아웃	
 		} else if(command.equals("/MemberLogout.me")) {
