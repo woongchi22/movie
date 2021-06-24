@@ -48,7 +48,7 @@ public class ForgetPassProAction implements Action {
 			
 			forward = new ActionForward();
 			forward.setRedirect(true);
-			forward.setPath("./member/forget_pass.jsp");
+			forward.setPath("./NewPassForm.me");
 		}
 		
 		return forward;

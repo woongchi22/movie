@@ -67,6 +67,18 @@ public class MemberController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+		// 새 비밀번호	
+		} else if(command.equals("/NewPassForm.me")) {
+			forward = new ActionForward();
+			forward.setPath("/member/new_pass.jsp");
+		} else if(command.equals("/NewPassPro.me")) {
+			action = new NewPassProAction();
+			try {
+				forward = action.excute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		// 관리자 회원 리스트
 		} else if(command.equals("/MemberList.me")) {
 			action = new MemberListAction();

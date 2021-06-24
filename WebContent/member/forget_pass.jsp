@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <%
 request.setCharacterEncoding("UTF-8");
-String pass = (String)session.getAttribute("pass");
-String name = (String)session.getAttribute("name");
+// String pass = (String)session.getAttribute("pass");
+// String name = (String)session.getAttribute("name");
 
 
 %>    
@@ -22,14 +22,16 @@ $(document).ready(function() {
 	$('#findPass').submit(function() {
 		if($('#email').val() == "") {
 			alert("이메일을 입력하세요");
+			$('#email').focus();
 			return false;
 		}
 		if($('#name').val() == "") {
 			alert("이름을 입력하세요");
+			$('#name').focus();
 			return false;
 		}
 	});
-	
+	   
 	
 });
 
@@ -44,10 +46,10 @@ $(document).ready(function() {
 	    이메일 : <input type="text" name="email" id="email"><br>
 	    이름 : <input type="text" name="name" id="name"><br>
 	    
-	    <%if(pass != null) {%>
-	       <b><%=name %></b> 님의 비밀번호 : <%=pass %><br> 
-	       <a href="MemberLoginForm.me">로그인 하러 가기</a>
-	    <%} %><br>
+<%-- 	    <%if(pass != null) {%> --%>
+<%-- 	       <b><%=name %></b> 님의 비밀번호 : <%=pass %><br>  --%>
+<!-- 	       <a href="MemberLoginForm.me">로그인 하러 가기</a> -->
+<%-- 	    <%} %><br> --%>
 	    
 	    <input type="submit" value="찾기" id="find">
 	    <input type="button" value="취소" onclick="history.back()">
