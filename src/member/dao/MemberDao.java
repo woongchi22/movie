@@ -5,6 +5,8 @@ import static db.JdbcUtil.close;
 import java.sql.*;
 import java.util.*;
 
+import javax.servlet.http.*;
+
 import member.exception.*;
 import member.vo.MemberBean;
 
@@ -81,6 +83,7 @@ public class MemberDao {
 			pstmt.setString(4, mb.getPass());
 			
 			insertCount = pstmt.executeUpdate();
+			System.out.println(insertCount);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -197,10 +200,10 @@ public class MemberDao {
 	}
 
 	// 비밀번호 찾기
-	public String find(MemberBean mb) throws Exception {
+	public int find(MemberBean mb) {
 		System.out.println("dao - find()");
 		
-		String pass = "";
+		int findResult = 0;
 		
 		try {
 			String sql = "SELECT * FROM member WHERE email=?";
@@ -210,14 +213,14 @@ public class MemberDao {
 			
 			if(rs.next()) {
 				if(mb.getName().equals(rs.getString("name"))) {
-					System.out.println("pass 찾기 가능");
-					pass = rs.getString("pass");
+//					System.out.println("pass 찾기 가능");
+					findResult = 1;
+//					pass = rs.getString("pass");
 					
 				} else { // 이메일-이름 불일치
-					throw new MemberLoginException("등록하신 이름이 아닙니다");
+					findResult = -1;
+//					throw new MemberLoginException("등록하신 이름이 아닙니다");
 				}
-			} else {
-				throw new MemberLoginException("등록하신 이메일이 아닙니다");
 			}
 			
 		} catch (SQLException e) {
@@ -227,9 +230,8 @@ public class MemberDao {
 			close(pstmt);
 		}
 		
-		return pass;
+		return findResult;
 	}
-
 
 	//유저 정보
 	public MemberBean getUserInfo(String UserInfo){
@@ -256,6 +258,36 @@ public class MemberDao {
 		}
 		
 		return mb;
+	}
+
+	// 비밀번호 변경
+	public int changePass(MemberBean mb, HttpSession session) {
+		System.out.println("dao - changePass()");
+
+		int changCount = 0;
+		
+		try {
+			String sql = "UPDATE member SET pass=? WHERE name=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mb.getPass());
+			pstmt.setString(2, mb.getName());
+			
+			System.out.println(mb.getPass());
+			System.out.println(mb.getName());
+			
+			
+			
+			changCount = pstmt.executeUpdate();
+			System.out.println(changCount);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("dao - changePass 오류");
+		} finally {
+			close(pstmt);
+		}
+		
+		return changCount;
 	}
 	
 

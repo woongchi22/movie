@@ -13,17 +13,25 @@
 
 $(document).ready(function() {
 	
-	// 로그인 칸 공백일 시
+	// 로그인 입력란
 	$('#login').submit(function() {
+		
 		if($('#email').val() == "") {
-			alert("이메일을 입력하세요");
-			$('#email').focus();
-			return false;
-		}
-		if($('#pass').val() == "") {
-            alert("비밀번호를 입력하세요");
+            $('#check_email').text('이메일을 입력해주세요');
+            $('.check_font').css('color', 'gray');
+            $('#email').focus();
+            return false;
+        }else{
+            $("#check_email").hide();
+        }
+		
+        if($('#pass').val() == "") {
+            $('#check_pass').text('비밀번호를 입력해주세요');
+            $('.check_font').css('color','gray');
             $('#pass').focus();
             return false;
+        }else{
+            $("#check_pass").hide();
         }
 		
 		// 로그인
@@ -68,16 +76,25 @@ $(document).ready(function() {
 
 <body>
 <jsp:include page="/inc/top.jsp"/>
-<h1>로그인</h1>
-<form action ="MemberLoginPro.me" method = "post" id="login">
-이메일 : <input type = "text" name = "email" id = "email" placeholder="이메일을 입력하세요"><br>
-비밀번호 : <input type = "password" name ="pass" id = "pass" placeholder="비밀번호를 입력하세요"><br>
-<div id="msg"></div>
-<input type = "submit" value = "로그인" id = "submit">
-<input type = "button" value = "회원가입" onclick="location.href='MemberJoinForm.me'">
-<input type = "button" value = "취소" onclick = "history.back()"><br>
-<a href = "ForgetPassForm.me">비밀번호 찾기</a>
-</form>
+    <h1>로그인</h1>
+    <form action ="MemberLoginPro.me" method = "post" id="login">
+        <fieldset>
+            <legend>이메일</legend>
+            <input type="text" name="email" id="email">
+            <div class = check_font id="check_email"></div>
+        </fieldset>
+        <fieldset>
+	        <legend>비밀번호</legend>
+	        <input type="password" name="pass" id="pass">
+	        <div class = check_font id="check_pass"></div>
+        </fieldset>
+        
+<!-- <div id="msg"></div> -->
+		<input type = "submit" value = "로그인" id = "submit">
+		<input type = "button" value = "회원가입" onclick="location.href='MemberJoinForm.me'">
+		<input type = "button" value = "취소" onclick = "location.href='Main.me'"><br>
+	    <a href = "ForgetPassForm.me">비밀번호 찾기</a>
+    </form>
 
 
 </body>

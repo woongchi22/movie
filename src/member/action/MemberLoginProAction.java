@@ -12,7 +12,7 @@ import vo.ActionForward;
 public class MemberLoginProAction implements Action {
 
 	@Override
-	public ActionForward excute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MemberLoginProAction");
 		
 		ActionForward forward = null;

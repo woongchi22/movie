@@ -29,7 +29,7 @@ public class MemberController extends HttpServlet {
 		} else if(command.equals("/MemberJoinPro.me")) {
 			action = new MemberJoinProAction();
 			try {
-				forward = action.excute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -41,7 +41,7 @@ public class MemberController extends HttpServlet {
 		} else if(command.equals("/MemberLoginPro.me")) {
 			action = new MemberLoginProAction();
 			try {
-				forward = action.excute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -50,7 +50,7 @@ public class MemberController extends HttpServlet {
 		} else if(command.equals("/dupEmail.me")) {
 			action = new MemberEmailAction();
 			try {
-				forward = action.excute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -62,7 +62,7 @@ public class MemberController extends HttpServlet {
 		} else if(command.equals("/ForgetPassPro.me")) {
 			action = new ForgetPassProAction();
 			try {
-				forward = action.excute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -74,7 +74,7 @@ public class MemberController extends HttpServlet {
 		} else if(command.equals("/NewPassPro.me")) {
 			action = new NewPassProAction();
 			try {
-				forward = action.excute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -83,7 +83,7 @@ public class MemberController extends HttpServlet {
 		} else if(command.equals("/MemberList.me")) {
 			action = new MemberListAction();
 			try {
-				forward = action.excute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -92,7 +92,7 @@ public class MemberController extends HttpServlet {
 		} else if(command.equals("/MemberLogout.me")) {
 			action = new MemberLogoutAction();
 			try {
-				forward = action.excute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -101,8 +101,6 @@ public class MemberController extends HttpServlet {
 		} else if(command.equals("/Main.me")) {
 			forward = new ActionForward();
 			forward.setPath("/index.jsp");
-			
-			
 		} 
 
 		

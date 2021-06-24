@@ -12,7 +12,7 @@ import vo.ActionForward;
 public class MypageAction implements Action {
 
 	@Override
-	public ActionForward excute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		String email = request.getParameter("email");
 		HttpSession session = request.getSession();

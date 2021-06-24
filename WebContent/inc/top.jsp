@@ -18,7 +18,7 @@ String name = (String)session.getAttribute("name");
 
         <%if(name != null) { %>
             <%if(name.equals("관리자")) { %>
-                <a href="Mypage.me">관리자 님</a> | <a href="MemberLogout.me">로그아웃</a> | <a href="MemberList.me">관리자 페이지</a>
+                <a href="Mypage.mp">관리자 님</a> | <a href="MemberLogout.me">로그아웃</a> | <a href="MemberList.me">관리자 페이지</a>
             <%} else { %>
                 <a href="Mypage.mp"><%=name %> 님</a> | <a href="MemberLogout.me">로그아웃</a>
 	        <%} %>
