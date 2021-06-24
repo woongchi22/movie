@@ -1,8 +1,9 @@
 package mypage.dao;
 
-import java.sql.*;
+import static db.JdbcUtil.close;
 
-import member.dao.*;
+import java.sql.*;
+import mypage.dao.*;
 
 public class MypageDao {
 	private MypageDao() {};
