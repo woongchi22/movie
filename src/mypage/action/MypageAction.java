@@ -12,25 +12,40 @@ import vo.ActionForward;
 public class MypageAction implements Action {
 
 	@Override
-	public ActionForward excute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("MypageAction");	
 		
-		String email = request.getParameter("email");
+		String email = (String) request.getParameter("email");
 		HttpSession session = request.getSession();
-		String name = (String) session.getAttribute("name");
+		String name = (String) request.getAttribute("name");
 		
 		MemberBean mb = new MemberBean();
 		String resultMsg = "";
 		
+		
 		MypageService mypageService = new MypageService();
-		
 		try {
-			mb = mypageService.userInfo(email);
+			mb = mypageService.userInfo(name,session);
+			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			resultMsg = e.getMessage();
 		}
+		ActionForward forward = null;
 		
-		return null;
+//		request.setAttribute("mb", mb);
+		request.setAttribute("mb", mb);
+		
+		
+	
+		session.setAttribute("name", name);
+		session.setAttribute("email", email);
+		
+		forward = new ActionForward();
+		forward.setPath("/mypage/mypage.jsp");
+		
+		
+		
+		return forward;
 	}
 
 }

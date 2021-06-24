@@ -12,7 +12,7 @@ import vo.*;
 public class ForgetPassProAction implements Action {
 
 	@Override
-	public ActionForward excute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("ForgetPassProAction");
 		
 		ActionForward forward = null;
