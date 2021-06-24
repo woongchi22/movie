@@ -1,40 +1,40 @@
 package member.action;
 
-import java.io.PrintWriter;
+import java.io.*;
 
 import javax.servlet.http.*;
 
-import action.Action;
-import member.svc.MemberLoginProService;
-import member.vo.MemberBean;
-import vo.ActionForward;
+import action.*;
+import member.svc.*;
+import member.vo.*;
+import vo.*;
 
-public class MemberLoginProAction implements Action {
+public class ForgetPassProAction implements Action {
 
 	@Override
 	public ActionForward excute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("MemberLoginProAction");
+		System.out.println("ForgetPassProAction");
 		
 		ActionForward forward = null;
 		
 		MemberBean mb = new MemberBean();
 		mb.setEmail(request.getParameter("email"));
-		mb.setPass(request.getParameter("pass"));
+		mb.setName(request.getParameter("name"));
 		
-		boolean isLogin = false;
+		String pass = "";
 		String result = "";
-		String name = "";
+		boolean isFind = false;
 		
-		MemberLoginProService memberLoginProService = new MemberLoginProService();
+		ForgetPassProService forgetPassProService = new ForgetPassProService();
+		
 		try {
-			name = memberLoginProService.login(mb);
-			isLogin = true;
+			pass = forgetPassProService.find(mb);
+			isFind = true;
 		} catch (Exception e) {
 			result = e.getMessage();
 		}
 		
-		if(!isLogin) {
-			
+		if(!isFind) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter(); 
 			out.println("<script>");
@@ -43,14 +43,12 @@ public class MemberLoginProAction implements Action {
 			out.println("</script>");
 			
 		} else {
-			
 			HttpSession session = request.getSession();
-			session.setAttribute("name", name);
+			session.setAttribute("pass", pass);
 			
 			forward = new ActionForward();
 			forward.setRedirect(true);
-			forward.setPath("./");
-			
+			forward.setPath("./member/forget_pass.jsp");
 		}
 		
 		return forward;

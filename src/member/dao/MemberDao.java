@@ -195,7 +195,42 @@ public class MemberDao {
 		
 		return mbList;
 	}
-	
+
+	// 비밀번호 찾기
+	public String find(MemberBean mb) throws Exception {
+		System.out.println("dao - find()");
+		
+		String pass = "";
+		
+		try {
+			String sql = "SELECT * FROM member WHERE email=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mb.getEmail());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				if(mb.getName().equals(rs.getString("name"))) {
+					System.out.println("pass 찾기 가능");
+					pass = rs.getString("pass");
+					
+				} else { // 이메일-이름 불일치
+					throw new MemberLoginException("등록하신 이름이 아닙니다");
+				}
+			} else {
+				throw new MemberLoginException("등록하신 이메일이 아닙니다");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return pass;
+	}
+
+
 	//유저 정보
 	public MemberBean getUserInfo(String UserInfo){
 		System.out.println("dao - getUserInfo");
@@ -222,8 +257,6 @@ public class MemberDao {
 		
 		return mb;
 	}
-	
-	
 	
 
 	
