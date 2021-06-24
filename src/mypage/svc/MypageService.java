@@ -11,7 +11,7 @@ public class MypageService {
 
 		MemberBean mb = new MemberBean();
 		
-		Connection con = getConne
+//		Connection con = getConne
 		
 		return null;
 	}
