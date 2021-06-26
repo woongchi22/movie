@@ -16,7 +16,6 @@ public class MypageAction implements Action {
 		System.out.println("MypageAction");	
 		
 		String email = (String) request.getParameter("email");
-		HttpSession session = request.getSession();
 		String name = (String) request.getAttribute("name");
 		
 		MemberBean mb = new MemberBean();
@@ -24,21 +23,13 @@ public class MypageAction implements Action {
 		
 		
 		MypageService mypageService = new MypageService();
-		try {
-			mb = mypageService.userInfo(name,session);
+			mb = mypageService.userInfo(name);
 			
-		} catch (Exception e) {
-			resultMsg = e.getMessage();
-		}
 		ActionForward forward = null;
 		
-//		request.setAttribute("mb", mb);
 		request.setAttribute("mb", mb);
 		
 		
-	
-		session.setAttribute("name", name);
-		session.setAttribute("email", email);
 		
 		forward = new ActionForward();
 		forward.setPath("/mypage/mypage.jsp");

@@ -26,7 +26,7 @@ System.out.println("mypageProAction~~~");
 		MypageService mypageService = new MypageService();
 		
 		try {
-			mb = mypageService.userInfo(email,session);
+			mb = mypageService.userInfo(email);
 			
 		} catch (Exception e) {
 			resultMsg = e.getMessage();

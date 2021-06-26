@@ -38,8 +38,14 @@ public class MemberController extends HttpServlet {
 		} else if(command.equals("/MemberLoginForm.me")) { 
 			forward = new ActionForward();
 			forward.setPath("/member/member_login.jsp");
+			
 		} else if(command.equals("/MemberLoginPro.me")) {
 			action = new MemberLoginProAction();
+			String email = request.getParameter("email");
+			String name = request.getParameter("name");
+			
+			System.out.println("email");
+			System.out.println("name");
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

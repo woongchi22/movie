@@ -73,7 +73,7 @@ public class MypageDao {
 //			
 //			return mb ;
 //		}
-	public MemberBean getUserInfo(String name,HttpSession session) {
+	public MemberBean getUserInfo(String name) {
 		System.out.println("MypageDAO - getMypageInfo 도착");
 		System.out.println(name);
 
@@ -89,7 +89,7 @@ public class MypageDao {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				System.out.println(rs.getString("email"+"rs"));
+				mb = new MemberBean();
 				mb.setIdx(rs.getInt("idx"));
 				mb.setEmail(rs.getString("email"));
 				mb.setName(rs.getString("name"));
