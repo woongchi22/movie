@@ -200,27 +200,30 @@ public class MemberDao {
 	}
 
 	// 비밀번호 찾기
-	public int find(MemberBean mb) {
+	public int find(MemberBean mb) throws Exception {
 		System.out.println("dao - find()");
 		
-		int findResult = 0;
+//		int findResult = 0;
+		int idx = 0;
 		
 		try {
-			String sql = "SELECT * FROM member WHERE email=?";
+			String sql = "SELECT pass,name,idx FROM member WHERE email=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, mb.getEmail());
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
 				if(mb.getName().equals(rs.getString("name"))) {
-//					System.out.println("pass 찾기 가능");
-					findResult = 1;
-//					pass = rs.getString("pass");
+					System.out.println("pass 찾기 가능");
+//					findResult = 1;
+					idx = rs.getInt("idx");
 					
 				} else { // 이메일-이름 불일치
-					findResult = -1;
-//					throw new MemberLoginException("등록하신 이름이 아닙니다");
+//					findResult = -1;
+					throw new MemberLoginException("등록하신 이름이 아닙니다");
 				}
+			} else {
+				throw new MemberLoginException("등록하신 이메일이 아닙니다");
 			}
 			
 		} catch (SQLException e) {
@@ -230,7 +233,7 @@ public class MemberDao {
 			close(pstmt);
 		}
 		
-		return findResult;
+		return idx;
 	}
 
 	//유저 정보
@@ -280,22 +283,51 @@ public class MemberDao {
 //	}
 //	
 	
+	// 조회
+	public MemberBean selectMb(int idx) {
+		System.out.println("dao - selectMb()");
+		
+		MemberBean mb = null;
+		
+		try {
+			String sql = "SELECT * FROM member WHERE idx=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				mb = new MemberBean();
+				mb.setIdx(rs.getInt(1));
+				mb.setEmail(rs.getString(2));
+				mb.setName(rs.getString(3));
+				mb.setPass(rs.getString(4));
+				mb.setDate(rs.getDate(5));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return mb;
+	}
+	
 	// 비밀번호 변경
-	public int changePass(MemberBean mb, HttpSession session) {
+	public int changePass(MemberBean mb) {
 		System.out.println("dao - changePass()");
 		
 		int changCount = 0;
 		
 		try {
-			String sql = "UPDATE member SET pass=? WHERE name=?";
+			String sql = "UPDATE member SET pass=? WHERE idx=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, mb.getPass());
-			pstmt.setString(2, mb.getName());
+			pstmt.setInt(2, mb.getIdx());
 			
 			System.out.println(mb.getPass());
-			System.out.println(mb.getName());
-			
-			
+			System.out.println(mb.getIdx());
 			
 			changCount = pstmt.executeUpdate();
 			System.out.println(changCount);
@@ -309,6 +341,8 @@ public class MemberDao {
 		
 		return changCount;
 	}
+
+	
 	
 	
 	

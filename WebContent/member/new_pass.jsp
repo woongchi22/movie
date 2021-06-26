@@ -1,5 +1,12 @@
+<%@page import="member.vo.MemberBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+MemberBean mb = (MemberBean)request.getAttribute("mb");
+// String name = (String)request.getParameter("name");
+int idx =  Integer.parseInt(request.getParameter("idx"));
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -126,6 +133,7 @@ $(document).ready(function() {
 <jsp:include page="/inc/top.jsp"/>
     <h2>비밀번호 변경</h2>
     <form action="NewPassPro.me" method="post" id="newPass">
+        <input type="hidden" name="idx" value=<%=idx %>>
         <fieldset>
             <legend>새 비밀번호</legend>
             <input type="password" name="pass" id="pass">
