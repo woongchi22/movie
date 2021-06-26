@@ -101,13 +101,19 @@ public class MemberController extends HttpServlet {
 		} else if(command.equals("/Main.me")) {
 			forward = new ActionForward();
 			forward.setPath("/index.jsp");
-		} 
+			
+		//회원 수정	
+		} else if(command.equals("/MemberUpdatePro.me")) {
+			
+			try {
+				action = new MemberUpdateAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 
-		
-		
-		
-	
-		
 		
 		
 		if(forward != null) {

@@ -46,6 +46,8 @@ public class MemberLoginProAction implements Action {
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("name", name);
+			session.setAttribute("email",mb.getEmail());
+			session.setAttribute("pass",mb.getPass());
 			
 			forward = new ActionForward();
 			forward.setRedirect(true);

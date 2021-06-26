@@ -15,6 +15,7 @@ import vo.*;
 @WebServlet("*.mp")
 public class MypageController extends HttpServlet {
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.setCharacterEncoding("UTF-8");
 		String command = request.getServletPath();
 		
@@ -27,10 +28,16 @@ public class MypageController extends HttpServlet {
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
+		}else if (command.equals("/MypageForm.mp")) {
+			action = new MypageProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		
