@@ -25,7 +25,7 @@ public class MypageController extends HttpServlet {
 		if(command.equals("/Mypage.mp")) {
 			action = new MypageAction();
 			try {
-				forward = action.excute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
