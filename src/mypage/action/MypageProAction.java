@@ -15,46 +15,9 @@ public class MypageProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-System.out.println("mypageProAction~~~");
+		System.out.println("mypageProAction~~~");
 		
-		HttpSession session = request.getSession();
-		String email = (String) session.getAttribute("email");
-		
-		MemberBean mb = new MemberBean();
-		String resultMsg = "";
-		
-		MypageService mypageService = new MypageService();
-		
-		try {
-			mb = mypageService.userInfo(email);
-			
-		} catch (Exception e) {
-			resultMsg = e.getMessage();
-		}
-
-		ActionForward forward = null;
-		
-		request.setAttribute("mb", mb);
-		
-		if (email == null) {
-			response.setContentType("text/html;charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>alert('" + resultMsg + "');history.back();</script>"); 
-		} else {
-			request.setAttribute("mb", mb);
-			forward = new ActionForward();
-			forward.setPath("/mypage/mypageForm.jsp");
-		
-		}
-		
-//		DupCheckAction dupcheckAction = new DupCheckAction();
-//		
-//		MemberNickAction memberNickAction = new MemberNickAction();
-//		memberBean = DupCheckService.DupCheck();
-//		boolean isDup = DupCheckService.dupCheck(nick,"nick");
-		
-		
-		return forward;
+		return null;
 	}
 
 }
