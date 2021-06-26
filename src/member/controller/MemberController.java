@@ -109,12 +109,11 @@ public class MemberController extends HttpServlet {
 				action = new MemberUpdateAction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		
-		
+
 		
 		
 		if(forward != null) {

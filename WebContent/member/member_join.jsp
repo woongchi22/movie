@@ -6,10 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-
-<script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js">
-
-</script>
+<link href="${pageContext.request.contextPath}/css/memberJoin.css" rel="stylesheet" type="text/css">
+<script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 <script type="text/javascript" >
 
 $(document).ready(function() {
@@ -79,7 +77,7 @@ $(document).ready(function() {
 		if ($('#passConfirm').val() != $('#pass').val()) {
 			$('#check_passConfirm').text('패스워드가 일치하지 않습니다');
 			 $('#check_font').css('color','gray');
-				$("#check_email").attr("disabled", true);			
+				$("#check_passConfirm").attr("disabled", true);			
 	            $('#passConfirm').focus();
 	            return false;
 		}else{
@@ -111,7 +109,7 @@ $(document).ready(function() {
 			sepcia = specialReg.test(pw);
 			
 			if(lower&&upper&&num&&special){
-				console.log("콘솔~~ ").val();
+// 				console.log("콘솔~~ ").val();
 				$('#pass_msg').removeClass();
 				$('#pass_msg').addClass('강함');
 				$('#pass_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 강함");
@@ -157,14 +155,9 @@ $(document).ready(function() {
 			$('.confirm').eq(1).val("N");
 		}
     
-  });
-
+   });
 	
 	
-	// 이메일 인증
-	
-	
-		
 });
 	
 	
@@ -179,14 +172,14 @@ $(document).ready(function() {
         <fieldset>
             <legend>이메일</legend>
             <input type="email" id="email" name="email">
-            <input type="button" value="이메일 중복체크"  id="dupEmail",>
+            <input type="button" value="이메일 중복체크"  id="dupEmail">
 <!--             <button class = "check_font" id="dupEmail" type="button">이메일 중복체크</button> -->
             <div class = check_font id="check_email"></div>
         </fieldset>
         <fieldset>
             <legend>이름</legend>
             <input type="text" id="name" name="name">
-             <div class = check_font id="check_name"></div>
+            <div class = check_font id="check_name"></div>
         </fieldset>
         <fieldset>
             <legend>패스워드</legend>
@@ -202,7 +195,7 @@ $(document).ready(function() {
         </fieldset>
         
         <input type="submit" value="가입" > 
-        <input type="button" value="취소" onclick="history.back()">
+        <input type="button" value="취소" onclick="location.href='Main.me'">
         
     </form>
 
@@ -212,7 +205,6 @@ $(document).ready(function() {
   <input type="hidden" class="confirm">
   <input type="hidden" class="confirm">
 
-  <link href="${pageContext.request.contextPath}/css/memberJoin.css" rel="stylesheet" type="text/css">
 
 
  

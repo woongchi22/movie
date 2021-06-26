@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <%
 request.setCharacterEncoding("UTF-8");
-// String pass = (String)session.getAttribute("pass");
-// String name = (String)session.getAttribute("name");
+String pass = (String)session.getAttribute("pass");
+String name = (String)session.getAttribute("name");
 
 
 %>    
@@ -18,18 +18,27 @@ request.setCharacterEncoding("UTF-8");
 
 $(document).ready(function() {
 	
-	// 칸 공백일 시
+	// 비밀번호 찾기 입력란
 	$('#findPass').submit(function() {
+		
 		if($('#email').val() == "") {
-			alert("이메일을 입력하세요");
-			$('#email').focus();
-			return false;
-		}
-		if($('#name').val() == "") {
-			alert("이름을 입력하세요");
-			$('#name').focus();
-			return false;
-		}
+			$('#check_email').text('이메일을 입력해주세요');
+            $('.check_font').css('color', 'gray');
+            $('#email').focus();
+            return false;
+        }else{
+            $("#check_email").hide();
+        }
+		
+        if($('#name').val() == "") {
+            $('#check_name').text('이름을 입력해주세요');
+            $('.check_font').css('color','gray');
+            $('#name').focus();
+            return false;
+        }else{
+            $("#check_name").hide();
+        }
+        
 	});
 	   
 	
@@ -43,8 +52,17 @@ $(document).ready(function() {
 <jsp:include page="/inc/top.jsp"/>
     <h2>비밀번호 찾기</h2>
     <form action="ForgetPassPro.me" method="post" id="findPass">
-	    이메일 : <input type="text" name="email" id="email"><br>
-	    이름 : <input type="text" name="name" id="name"><br>
+        <fieldset>
+            <legend>이메일</legend>
+            <input type="text" name="email" id="email">
+            <div class = check_font id="check_email"></div>
+        </fieldset>
+        <fieldset>
+            <legend>이름</legend>
+	        <input type="text" name="name" id="name">
+            <div class = check_font id="check_name"></div>
+        </fieldset>
+        
 	    
 <%-- 	    <%if(pass != null) {%> --%>
 <%-- 	       <b><%=name %></b> 님의 비밀번호 : <%=pass %><br>  --%>

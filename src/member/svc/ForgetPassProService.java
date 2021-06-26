@@ -10,19 +10,21 @@ import member.vo.*;
 
 public class ForgetPassProService {
 
-	public String find(MemberBean mb) throws Exception {
-		System.out.println("ForgetPassProService");
+	public int find(MemberBean mb) throws Exception {
+		System.out.println("ForgetPassProService!!");
+		
+		int findResult = 0;
 		
 		Connection con = getConnection();
 		
 		MemberDao dao = MemberDao.getInstance();
 		dao.setConnection(con);
 		
-		String pass = dao.find(mb);
+		findResult = dao.find(mb);
 		
 		close(con);
 		
-		return pass;
+		return findResult;
 	}
 
 }
