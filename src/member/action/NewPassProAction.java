@@ -19,19 +19,20 @@ public class NewPassProAction implements Action {
 		
 		boolean isChange = false;
 		
-		
-		MemberBean mb = new MemberBean();
-		mb.setPass(request.getParameter("pass"));
-//		mb.setEmail(request.getParameter("email"));
-		mb.setName(request.getParameter("name"));
-		
-		HttpSession session = request.getSession();
-		session.setAttribute("name", mb.getName());
+		int idx = Integer.parseInt(request.getParameter("idx"));
 		
 		NewPassProService newPassPrpService = new NewPassProService();
-		isChange = newPassPrpService.changPass(mb, session);
 		
-		System.out.println(mb.getName());
+		MemberBean mb = new MemberBean();
+		mb.setIdx(idx);
+		mb.setName(request.getParameter("name"));
+		mb.setPass(request.getParameter("pass"));
+		
+		isChange = newPassPrpService.changPass(mb);
+		
+		System.out.println(idx + "맞나?");
+		System.out.println(mb.getName() + "맞나?");
+		System.out.println(mb.getPass() + "비번뜨남");
 		System.out.println(isChange);
 		
 		if(!isChange) {

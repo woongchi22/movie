@@ -13,18 +13,18 @@ public class ForgetPassProService {
 	public int find(MemberBean mb) throws Exception {
 		System.out.println("ForgetPassProService!!");
 		
-		int findResult = 0;
+//		int findResult = 0;
 		
 		Connection con = getConnection();
 		
 		MemberDao dao = MemberDao.getInstance();
 		dao.setConnection(con);
 		
-		findResult = dao.find(mb);
+		int idx = dao.find(mb);
 		
 		close(con);
 		
-		return findResult;
+		return idx;
 	}
 
 }
