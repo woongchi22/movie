@@ -3,7 +3,17 @@
     pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
+<%
 
+// String ls_test = "세션에 저장된 데이터가 바로 접니다. ^O^";
+
+
+// session.setAttribute("email", email);    // "Testing"을 키로 문자열을 저장
+
+// session.setAttribute("name", name);    // "MyData"를 키로 정수를 저장
+
+
+%>
 <head>
 <meta charset="UTF-8">
 <title>Login</title>

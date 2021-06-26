@@ -12,7 +12,7 @@ import mypage.dao.MypageDao;
 
 public class MypageService {
 
-	public MemberBean userInfo(String name, HttpSession session) {
+	public MemberBean userInfo(String name) {
 		System.out.println("MypageService~~");
 
 		MemberBean mb = new MemberBean();
@@ -21,7 +21,7 @@ public class MypageService {
 		MypageDao dao = MypageDao.getInstance();
 		dao.setConnection(con);
 		
-		mb = dao.getUserInfo(name,session);
+		mb = dao.getUserInfo(name);
 		
 		System.out.println("Service - name :  " + name);
 		System.out.println("Service - dao에서 갖고 온 이메일!" + mb.getEmail());
