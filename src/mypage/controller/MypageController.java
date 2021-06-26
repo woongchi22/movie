@@ -31,13 +31,6 @@ public class MypageController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-		}else if (command.equals("/MypageForm.mp")) {
-			action = new MypageProAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 		}
 		
 		

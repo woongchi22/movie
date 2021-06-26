@@ -75,8 +75,12 @@ public class MemberController extends HttpServlet {
 			
 		// 새 비밀번호	
 		} else if(command.equals("/NewPassForm.me")) {
-			forward = new ActionForward();
-			forward.setPath("/member/new_pass.jsp");
+			action = new NewPassFromAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} else if(command.equals("/NewPassPro.me")) {
 			action = new NewPassProAction();
 			try {
@@ -119,7 +123,6 @@ public class MemberController extends HttpServlet {
 			}
 		}
 		
-
 		
 		
 		if(forward != null) {

@@ -14,7 +14,24 @@ import member.vo.*;
 
 public class NewPassProService {
 
-	public boolean changPass(MemberBean mb, HttpSession session) {
+	public MemberBean getMb(int idx) {
+		System.out.println("NewPassProService!! getMb");
+		
+		Connection con = getConnection();
+		
+		MemberDao dao = MemberDao.getInstance();
+		dao.setConnection(con);
+		
+		MemberBean mb = dao.selectMb(idx);
+		
+		close(con);
+		
+		return mb;
+		
+	}
+	
+	
+	public boolean changPass(MemberBean mb) {
 		System.out.println("NewPassProService!!");
 		
 		boolean isChange = false;
@@ -24,7 +41,7 @@ public class NewPassProService {
 		MemberDao dao = MemberDao.getInstance();
 		dao.setConnection(con);
 		
-		int changeCount = dao.changePass(mb, session);
+		int changeCount = dao.changePass(mb);
 		
 		if(changeCount > 0) {
 			commit(con);
@@ -38,5 +55,6 @@ public class NewPassProService {
 		return isChange;
 		
 	}
+
 
 }
