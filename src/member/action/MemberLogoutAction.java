@@ -10,7 +10,7 @@ import vo.*;
 public class MemberLogoutAction implements Action {
 
 	@Override
-	public ActionForward excute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MemberLogoutAction");
 		
 		ActionForward forward = null;
