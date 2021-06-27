@@ -20,7 +20,9 @@ public class NewPassProAction implements Action {
 		boolean isChange = false;
 		
 		HttpSession session = request.getSession();
-		String name = (String) session.getAttribute("name");
+		String name = (String) request.getParameter("name");
+		
+		System.out.println(name); 
 		
 		NewPassProService newPassPrpService = new NewPassProService();
 		

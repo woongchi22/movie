@@ -134,7 +134,7 @@ $(document).ready(function() {
 <jsp:include page="/inc/top.jsp"/>
     <h2>비밀번호 변경</h2>
     <form action="NewPassPro.me" method="post" id="newPass">
-        <input type="hidden" name="idx" value=<%=name %>>
+        <input type="hidden" name="name" value=<%=name %>>
         <fieldset>
             <legend>새 비밀번호</legend>
             <input type="password" name="pass" id="pass">

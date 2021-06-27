@@ -43,10 +43,12 @@ public class ForgetPassProAction implements Action {
 			out.println("</script>");
 			
 		} else {
+//			
+//			mb.setName(name);
+//			System.out.println(name+"@@@@@@@@@@@@@@@@");
+			
 			HttpSession session = request.getSession();
 			session.setAttribute("name", name);
-			System.out.println(name);
-			
 			forward = new ActionForward();
 			forward.setRedirect(true);
 			forward.setPath("./NewPassForm.me");
