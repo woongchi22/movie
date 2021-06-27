@@ -98,11 +98,6 @@ public class MemberController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-		// 메인	
-		} else if(command.equals("/Main.me")) {
-			forward = new ActionForward();
-			forward.setPath("/index.jsp");
-			
 		//회원 수정	
 		} else if(command.equals("/MemberUpdatePro.me")) {
 			

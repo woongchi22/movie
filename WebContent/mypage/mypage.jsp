@@ -162,7 +162,7 @@ $(document).ready(function(){
 		<fieldset>
 		<legend>이름</legend>
 		<input type="text" id="name" name="name" value ="<%=name%>"  >
-		<input type="button" value="닉네임 중복 체크" name="dupName" id="dupName">
+		<input type="button" value="이름 중복 체크" name="dupName" id="dupName">
 		<div id ="check_name"></div>
 		</fieldset>	
 	

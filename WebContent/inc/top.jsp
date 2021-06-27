@@ -16,8 +16,15 @@ String pass = (String)session.getAttribute("pass");
 </head>
 <body>
     <header>
-        <a href="Main.me">Main</a>
-        <%if(pass!=null) { %>
+        
+        <form action="MovieSearch.mo" id="movie_search">
+            <input type="search" name="search" placeholder="search">
+            <button type="submit">검색</button>
+        </form>
+        
+        <a href="./">Main</a>
+        
+        <%if(pass != null) { %>
             <%if(name.equals("관리자")) { %>
                 <a href="Mypage.mp"><%=name %> 님</a> | <a href="MemberLogout.me">로그아웃</a> | <a href="MemberList.me">관리자 페이지</a>
             <%} else { %>
