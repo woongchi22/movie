@@ -100,9 +100,8 @@ public class MemberController extends HttpServlet {
 			
 		//회원 수정	
 		} else if(command.equals("/MemberUpdatePro.me")) {
-			
+			action = new MemberUpdateProAction();
 			try {
-				action = new MemberUpdateProAction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
