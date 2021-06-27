@@ -18,7 +18,7 @@ String pass = (String)session.getAttribute("pass");
     <header>
         <a href="Main.me">Main</a>
 	<input type= "hidden" value ="<%= pass%>">
-        <%if(name != null&& !(request.getServletPath().equals("/member/member_login.jsp"))) { %>
+        <%if(name != null && !(request.getServletPath().equals("/member/member_login.jsp")) && !(request.getServletPath().equals("/member/new_pass.jsp"))) { %>
             <%if(name.equals("admin")) { %>
                 <a href="Mypage.mp"><%=name %> 님</a> | <a href="MemberLogout.me">로그아웃</a> | <a href="MemberList.me">관리자 페이지</a>
             <%} else { %>

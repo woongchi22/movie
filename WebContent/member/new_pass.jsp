@@ -3,8 +3,7 @@
     pageEncoding="UTF-8"%>
 <%
 MemberBean mb = (MemberBean)request.getAttribute("mb");
-// String name = (String)request.getParameter("name");
-int idx =  Integer.parseInt(request.getParameter("idx"));
+String name = (String)session.getAttribute("name");
 
 %>
 <!DOCTYPE html>
@@ -92,6 +91,7 @@ $(document).ready(function() {
                 $('#pass_msg').addClass('약함');
                 $('#pass_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 약함");
                 $('#regPass').html('비밀번호는 8~15자이며,\n숫자/대문자/소문자/특수문자(!,@)를 포함해야 합니다.');
+                $('#regPass').html('사용 불가능');
                 $('.confirm').eq(1).val("N");
             }
             
@@ -100,6 +100,7 @@ $(document).ready(function() {
             $('#pass_msg').addClass('짧음');
             $('#pass_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 짧음");
             $('#regPass').html('비밀번호는 8~15자이며,\n숫자/대문자/소문자/특수문자(!,@)를 포함해야 합니다.');
+            $('#regPass').html('사용 불가능');
             $('.confirm').eq(1).val("N");
             
             if (pw.length == 0) {
@@ -133,7 +134,7 @@ $(document).ready(function() {
 <jsp:include page="/inc/top.jsp"/>
     <h2>비밀번호 변경</h2>
     <form action="NewPassPro.me" method="post" id="newPass">
-        <input type="hidden" name="idx" value=<%=idx %>>
+        <input type="hidden" name="idx" value=<%=name %>>
         <fieldset>
             <legend>새 비밀번호</legend>
             <input type="password" name="pass" id="pass">
