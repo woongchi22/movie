@@ -3,6 +3,8 @@
 <%
 request.setCharacterEncoding("UTF-8");
 String name = (String)session.getAttribute("name");
+String pass = (String)session.getAttribute("pass");
+
 
 %>
 
@@ -15,10 +17,10 @@ String name = (String)session.getAttribute("name");
 <body>
     <header>
         <a href="Main.me">Main</a>
-
-        <%if(name != null) { %>
-            <%if(name.equals("관리자")) { %>
-                <a href="Mypage.mp">관리자 님</a> | <a href="MemberLogout.me">로그아웃</a> | <a href="MemberList.me">관리자 페이지</a>
+	<input type= "hidden" value ="<%= pass%>">
+        <%if(name != null&& !(request.getServletPath().equals("/member/member_login.jsp"))) { %>
+            <%if(name.equals("admin")) { %>
+                <a href="Mypage.mp"><%=name %> 님</a> | <a href="MemberLogout.me">로그아웃</a> | <a href="MemberList.me">관리자 페이지</a>
             <%} else { %>
                 <a href="Mypage.mp"><%=name %> 님</a> | <a href="MemberLogout.me">로그아웃</a>
 	        <%} %>

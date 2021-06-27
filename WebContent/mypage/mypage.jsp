@@ -43,7 +43,7 @@ String pass = (String) session.getAttribute("pass");
 	
 		<fieldset>
 		<legend>패스워드</legend>
-		<input type="password" id="pass" maxlength="15" value ="<%=pass%>">
+		<input type="password" id="pass" name="pass" maxlength="15" value ="<%=pass%>">
 		</fieldset>
 	
 		<input type="submit" value="회원 정보 수정">

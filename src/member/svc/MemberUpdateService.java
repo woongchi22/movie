@@ -8,25 +8,24 @@ import member.vo.MemberBean;
 public class MemberUpdateService {
 
 	public boolean memberUpdate(MemberBean mb) {
-		boolean isUpdate =false;
+		System.out.println("MemberUpdateService");
+		boolean checkResult =false;
 		
-		System.out.println("MemberUpdate");
 		Connection con = getConnection();
 		MemberDao dao = MemberDao.getInstance();
 		dao.setConnection(con);
 		
-		int updateCount = dao.updateMember(mb);
-		System.out.println("sve : " + updateCount);  //????????????????????????
+		int update = dao.updateMember(mb);
 		
-		if(updateCount>0) {
-			isUpdate = true;
+		if(update>0) {
+			checkResult = true;
 			commit(con);
 		}else {
 			rollback(con);
 		}
 		close(con);
 		
-		return isUpdate;
+		return checkResult;
 	}
 
 }

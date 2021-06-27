@@ -236,23 +236,37 @@ public class MemberDao {
 		return idx;
 	}
 
-	//유저 정보
+	//회원 정보 수정
 	public int updateMember(MemberBean mb) {
-		int updateCount=0;
+		System.out.println("dao - updateMember");
+		int update=0;
 		
 		try {
-			String sql = "UPDATE member SET name=? pass=? WHEFE=?";
+			String sql = "SELECT * from member WHERE email=?";
+			String email = mb.getEmail();
+			String name = mb.getName();
+			String pass = mb.getPass();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, mb.getName());
-			pstmt.setString(2, mb.getPass());
-			updateCount = pstmt.executeUpdate();
-		
+			pstmt.setString(1, email);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				sql = "UPDATE member SET name=?,pass=? WHERE email=? ";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, name);
+				pstmt.setString(2, pass);
+				pstmt.setString(3, email);
+				update=pstmt.executeUpdate();
+				System.out.println(update);
+			}
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("dao - Update member 오류!");
 		}
 		
-		return updateCount;
+		return update;
 	}
 
 //	//유저 정보

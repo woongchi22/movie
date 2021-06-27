@@ -73,9 +73,9 @@ public class MypageDao {
 //			
 //			return mb ;
 //		}
-	public MemberBean getUserInfo(String name) {
+	public MemberBean getUserInfo(String email) {
 		System.out.println("MypageDAO - getMypageInfo 도착");
-		System.out.println(name);
+		System.out.println(email);
 
 		MemberBean mb = new MemberBean();
 		PreparedStatement pstmt = null;
@@ -85,7 +85,7 @@ public class MypageDao {
 			String sql = "SELECT * FROM member where name=?";
 
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, name);
+			pstmt.setString(1, email);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {

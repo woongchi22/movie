@@ -16,19 +16,13 @@ public class MypageAction implements Action {
 		System.out.println("MypageAction");	
 		
 		String email = (String) request.getParameter("email");
-		String name = (String) request.getAttribute("name");
 		
 		MemberBean mb = new MemberBean();
-		String resultMsg = "";
-		
 		
 		MypageService mypageService = new MypageService();
-			mb = mypageService.userInfo(name);
+			mb = mypageService.userInfo(email);
 			
 		ActionForward forward = null;
-		
-		request.setAttribute("mb", mb);
-		
 		
 		
 		forward = new ActionForward();
