@@ -107,12 +107,24 @@ public class MemberController extends HttpServlet {
 		} else if(command.equals("/MemberUpdatePro.me")) {
 			
 			try {
-				action = new MemberUpdateAction();
+				action = new MemberUpdateProAction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		
+			//이름 중복 체크
+		}else if(command.equals("/dupName.me")) {
+			action = new MemberNameAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
+		
+		
 		
 		
 		
