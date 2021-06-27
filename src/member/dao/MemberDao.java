@@ -266,64 +266,6 @@ public class MemberDao {
 		return update;
 	}
 
-//	//유저 정보
-//	public MemberBean getUserInfo(String UserInfo){
-//		System.out.println("dao - getUserInfo");
-//		MemberBean mb = null;
-//		System.out.println(UserInfo);
-//		try {
-//			String sql = "SELECT * FROM member WHERE email = ?";
-//			pstmt = con.prepareStatement(sql);
-//			pstmt.setString(1, UserInfo);
-//			rs = pstmt.executeQuery();
-//			
-//			if(rs.next()) {
-//				mb.setEmail(rs.getString("email"));
-//				mb.setName(rs.getString("name"));
-//				mb.setPass(rs.getString("pass"));
-//				
-//			}
-//		} catch (SQLException e) {
-//			System.out.println("회원정보 가져오기 실패");
-//		}finally {
-//			close(rs);
-//			close(pstmt);
-//		}
-//		
-//		return mb;
-//	}
-//	
-	
-//	// 조회
-//	public MemberBean selectMb(int idx) {
-//		System.out.println("dao - selectMb()");
-//		
-//		MemberBean mb = null;
-//		
-//		try {
-//			String sql = "SELECT * FROM member WHERE idx=?";
-//			pstmt = con.prepareStatement(sql);
-//			pstmt.setInt(1, idx);
-//			
-//			rs = pstmt.executeQuery();
-//			
-//			if(rs.next()) {
-//				mb = new MemberBean();
-//				mb.setIdx(rs.getInt(1));
-//				mb.setEmail(rs.getString(2));
-//				mb.setName(rs.getString(3));
-//				mb.setPass(rs.getString(4));
-//				mb.setDate(rs.getDate(5));
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			close(rs);
-//			close(pstmt);
-//		}
-//		
-//		return mb;
-//	}
 	
 	// 비밀번호 변경
 	public int changePass(MemberBean mb) {
