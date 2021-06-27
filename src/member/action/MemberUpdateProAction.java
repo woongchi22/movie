@@ -12,7 +12,7 @@ import member.svc.MemberUpdateService;
 import member.vo.MemberBean;
 import vo.ActionForward;
 
-public class MemberUpdateAction implements Action {
+public class MemberUpdateProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -22,9 +22,7 @@ public class MemberUpdateAction implements Action {
 		String name = (String) request.getParameter("name");
 		String pass = (String) request.getParameter("pass");
 
-		System.out.println(email+"ssssssssssss");
-		System.out.println(name);
-		System.out.println(pass);
+		System.out.println(email);
 		
 		MemberBean mb = new MemberBean();
 		mb.setEmail(email);
@@ -32,24 +30,20 @@ public class MemberUpdateAction implements Action {
 		mb.setPass(pass);
 
 		ActionForward forward = null;
-//		boolean isUpdate = false;
 		
 		MemberUpdateService memberUpdateService = new MemberUpdateService();
 		boolean checkResult = memberUpdateService.memberUpdate(mb);
 		
 		
-		
-		
 		if(checkResult) {
 			response.setContentType("text/html;charset=UTF-8");
-			session.setAttribute("name",mb.getName());
-			session.setAttribute("email",mb.getEmail());
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('회원정보 수정 완료')");
 			out.println("</script>");
-			forward = new ActionForward();
-			forward.setRedirect(true);
+			session.setAttribute("name",mb.getName());
+			session.setAttribute("email",mb.getEmail());
+
 			forward.setPath("./");
 		} else {
 			response.setContentType("text/html;charset=UTF-8");

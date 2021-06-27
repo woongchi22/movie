@@ -10,14 +10,10 @@
 <!DOCTYPE html>
 <html>
 <%
-
 request.setCharacterEncoding("UTF-8");
 String email = (String) session.getAttribute("email");
 String name = (String) session.getAttribute("name");
 String pass = (String) session.getAttribute("pass");
-// MypageDao dao = MypageDao.getInstance();
-// MemberBean mb = dao.getUserInfo(name,session);
-
 
 %>
 <head>
@@ -26,6 +22,37 @@ String pass = (String) session.getAttribute("pass");
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	$('#dupName').click(function(){
+		var name = $('#name').val();
+		console.log(name);
+		
+		if(name==""){
+			$("#check_name").text('이름을 입력해주세요');
+			$('.check_font').css({'color':'gray','font-size':'8px'});
+			$("#check_name").attr("disabled", true);
+			return false;
+		} else {
+			$.ajax("dupName.me",{
+				data:{name:name},
+				success:function(rdata){
+					if(rdata=="이름 중복"){
+						$("#check_name").text('이미 사용중인 이름 입니다');
+						$('.confirm').eq(0).val("N");
+						
+					}
+					if(rdata=="사용가능 이름"){
+						$("#check_name").text('사용 가능한 이름 입니다');
+						$('.confirm').eq(0).val("Y");
+					}
+					$('#name').html(rdata);
+				}
+			});
+		}
+		
+	});
+	
+	
+	
 	// 패스워드 정규식 & 보안강도 표시
 	$('#pass').keyup(function(){
 		var pw = $('#pass').val();
@@ -69,7 +96,7 @@ $(document).ready(function(){
 				$('#pass_msg').addClass('약함');
 				$('#pass_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 약함");
 				$('#regPass').html('비밀번호는 8~15자이며,\n숫자/대문자/소문자/특수문자(!,@)를 포함해야 합니다.');
-				 $('.confirm').eq(1).val("N");
+				$('.confirm').eq(1).val("N");
 			}
 			
 		} else {
@@ -97,6 +124,27 @@ $(document).ready(function(){
 		}
     
    });
+	
+	$('.update_fr').submit(function(){
+		
+		if($('#pass').val()==""){
+			alert("비밀번호를 입력하세요");
+			$('#pass').focus();
+			return false;
+		}
+		if($('.confirm').eq(0).val()=="Y"==false){
+			alert("닉네임 설정에 문제가 있습니다.");
+			$('#certificationNum_email').focus();
+			return false;
+		}
+		if($('.confirm').eq(1).val()=="Y"==false){
+			alert("패스워드 설정에 문제가 있습니다.");
+			$('#pass').focus();
+			return false;
+		}
+		
+	});	
+	
 });
 
 </script>
@@ -114,12 +162,14 @@ $(document).ready(function(){
 		<fieldset>
 		<legend>이름</legend>
 		<input type="text" id="name" name="name" value ="<%=name%>"  >
+		<input type="button" value="이름 중복 체크" name="dupName" id="dupName">
+		<div id ="check_name"></div>
 		</fieldset>	
 	
 	
 		<fieldset>
 		<legend>패스워드</legend>
-		<input type="password" id="pass" name="pass" maxlength="15" value ="<%=pass%>">
+		<input type="password" id="pass" name="pass" maxlength="15" >
 		<div id ="pass_msg"></div>
 		<div id ="regPass"></div>
 		</fieldset>
@@ -127,6 +177,13 @@ $(document).ready(function(){
 		<input type="submit" value="회원 정보 수정">
 		<input type="reset" value="취소">
 	</form>
+	
+	  <input type="hidden" class="confirm">
+	  <input type="hidden" class="confirm">
+	  
+	 
 	</fieldset>
+
+
 </body>
 </html>
