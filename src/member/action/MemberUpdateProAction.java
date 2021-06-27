@@ -44,7 +44,10 @@ public class MemberUpdateProAction implements Action {
 			session.setAttribute("name",mb.getName());
 			session.setAttribute("email",mb.getEmail());
 
+			forward = new ActionForward();
+			forward.setRedirect(true);
 			forward.setPath("./");
+			
 		} else {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();

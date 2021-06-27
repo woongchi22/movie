@@ -44,6 +44,7 @@ public class MemberJoinProAction implements Action {
 			out.println("<script>alert('" + resultMsg + "');history.back();</script>");
 		} else {
 			forward = new ActionForward();
+			forward.setRedirect(true);
 			forward.setPath("./");
 		}
 		
