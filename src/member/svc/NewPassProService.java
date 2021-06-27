@@ -14,22 +14,22 @@ import member.vo.*;
 
 public class NewPassProService {
 
-	public MemberBean getMb(int idx) {
-		System.out.println("NewPassProService!! getMb");
-		
-		Connection con = getConnection();
-		
-		MemberDao dao = MemberDao.getInstance();
-		dao.setConnection(con);
-		
-		MemberBean mb = dao.selectMb(idx);
-		
-		close(con);
-		
-		return mb;
-		
-	}
-	
+//	public MemberBean getMb(int idx) {
+//		System.out.println("NewPassProService!! getMb");
+//		
+//		Connection con = getConnection();
+//		
+//		MemberDao dao = MemberDao.getInstance();
+//		dao.setConnection(con);
+//		
+//		MemberBean mb = dao.selectMb(idx);
+//		
+//		close(con);
+//		
+//		return mb;
+//		
+//	}
+//	
 	
 	public boolean changPass(MemberBean mb) {
 		System.out.println("NewPassProService!!");

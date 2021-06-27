@@ -41,11 +41,6 @@ public class MemberController extends HttpServlet {
 			
 		} else if(command.equals("/MemberLoginPro.me")) {
 			action = new MemberLoginProAction();
-			String email = request.getParameter("email");
-			String name = request.getParameter("name");
-			
-			System.out.println("email");
-			System.out.println("name");
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -75,12 +70,8 @@ public class MemberController extends HttpServlet {
 			
 		// 새 비밀번호	
 		} else if(command.equals("/NewPassForm.me")) {
-			action = new NewPassFromAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			forward = new ActionForward();
+			forward.setPath("/member/new_pass.jsp");
 		} else if(command.equals("/NewPassPro.me")) {
 			action = new NewPassProAction();
 			try {

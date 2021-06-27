@@ -19,21 +19,19 @@ public class NewPassProAction implements Action {
 		
 		boolean isChange = false;
 		
-		int idx = Integer.parseInt(request.getParameter("idx"));
+		HttpSession session = request.getSession();
+		String name = (String) session.getAttribute("name");
 		
 		NewPassProService newPassPrpService = new NewPassProService();
 		
 		MemberBean mb = new MemberBean();
-		mb.setIdx(idx);
-		mb.setName(request.getParameter("name"));
+		mb.setName(name);
 		mb.setPass(request.getParameter("pass"));
 		
 		isChange = newPassPrpService.changPass(mb);
 		
-		System.out.println(idx + "맞나?");
-		System.out.println(mb.getName() + "맞나?");
+		System.out.println(name + "맞나?");
 		System.out.println(mb.getPass() + "비번뜨남");
-		System.out.println(isChange);
 		
 		if(!isChange) {
 			response.setContentType("text/html;charset=UTF-8");
@@ -46,7 +44,7 @@ public class NewPassProAction implements Action {
 		} else {
 			forward = new ActionForward();
 			forward.setRedirect(true);
-			forward.setPath("./");
+			forward.setPath("./MemberLoginForm.me");
 		}
 		
 		return forward;
