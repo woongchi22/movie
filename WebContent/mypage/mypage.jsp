@@ -31,31 +31,32 @@ $(document).ready(function(){
 		var name = $('#name').val();
 		console.log(name);
 		
-		if(name==""){
-			$("#check_name").text('이름을 입력해주세요');
-			$('.check_font').css('color', 'gray');
-			$("#check_name").attr("disabled", true);
-			$('#name').focus();
-			return false;
-			
-		} else {
-			$.ajax("dupName.me",{
-				data:{name:name},
-				success:function(rdata){
-					if(rdata=="이름 중복"){
-						 alert("중복된 이메일 입니다.");
-						 $('#name').focus();
-						$('.confirm').eq(0).val("N");
+			if(name==""){
+				$("#check_name").text('이름을 입력해주세요');
+				$('.check_font').css('color', 'gray');
+				$("#check_name").attr("disabled", true);
+				$('#name').focus();
+				return false;
+				
+			} else {
+				$.ajax("dupName.me",{
+					data:{name:name},
+					success:function(rdata){
+						if(rdata=="이름 중복"){
+							 alert("중복된 이름 입니다.");
+							 $('#name').focus();
+							 $('.confirm').eq(0).val("N");
+							
+						}
+						if(rdata=="사용가능 이름"){
+							 alert("사용 가능한 이메일 입니다.");
+							$('.confirm').eq(0).val("Y");
+						}
 						
+						$('#name').html(rdata);
+						$('#pass').focus();
 					}
-					if(rdata=="사용가능 이름"){
-						 alert("사용 가능한 이메일 입니다.");
-						$('.confirm').eq(0).val("Y");
-					}
-					$('#name').html(rdata);
-					$('#pass').focus();
-				}
-			});
+				});
 		}
 		
 	});
@@ -109,7 +110,7 @@ $(document).ready(function(){
 				$('.confirm').eq(1).val("N");
 			}
 			
-		} else {
+		 	} else {
         	$('#pass_msg').removeClass();
         	$('#pass_msg').addClass('짧음');
 	        $('#pass_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 짧음");
@@ -124,7 +125,7 @@ $(document).ready(function(){
 	        	$('#pass_msg').show();
 	        	$('#regPass').show();
 	        }
-		}
+		    }  
         
 		if(/(\w)\1\1\1/.test(pw)) {
 			$('#regPass').html('같은 문자를 4번 이상 사용할 수 없습니다.');
@@ -143,6 +144,25 @@ $(document).ready(function(){
             $('#check_name').show();
         } else {
             $('#check_name').hide();
+        }
+            
+    });
+	
+	$('#passConfirm').keyup(function() {
+        if($('#pass').val() != $('#passConfirm').val()) {
+            $('#check_passConfirm').html('비밀번호가 일치하지 않습니다');
+            $('.check_font').css('color','red');
+            $('.confirm').eq(1).val("N");
+        } else {
+            $('#check_passConfirm').html('비밀번호가 일치합니다');
+            $('.check_font').css('color','green');
+            $('.confirm').eq(1).val("Y");
+        }
+        
+        if($('#passConfirm').val() == '') {
+//             $('#check_passConfirm').hide();
+        } else {
+            $('#check_passConfirm').show();
         }
             
     });
@@ -170,17 +190,18 @@ $(document).ready(function(){
             $("#check_pass").hide();
         }
 		
-		if($('.confirm').eq(0).val() == "N"){
-			alert("이름 설정에 문제가 있습니다.");
+		if($('.confirm').eq(0).val() =="Y"==false){
+			alert("이름 중복 체크를 해주세요.");
 			$('#name').focus();
 			return false;
 		}
 		
-		if($('.confirm').eq(1).val() == "N"){
+		if($('.confirm').eq(1).val() =="Y"==false){
 			alert("패스워드 설정에 문제가 있습니다.");
 			$('#pass').focus();
 			return false;
 		}
+		
 		
 	});	
 	
@@ -194,36 +215,40 @@ $(document).ready(function(){
 	<legend>회원 정보 수정</legend>
 	<form action="MemberUpdatePro.me" method="post" id="update_fr" class="update_fr">
 		<fieldset>
-		<legend>이메일</legend>
-		<input type ="text" id="email" name="email" value ="<%=email%>"  readonly>
+			<legend>이메일</legend>
+			<input type ="text" id="email" name="email" value ="<%=email%>"  readonly>
 		</fieldset>
 		
 		<fieldset>
-		<legend>이름</legend>
-		<input type="text" id="name" name="name" value ="<%=name%>"  >
-		<input type="button" value="이름 중복 체크" name="dupName" id="dupName">
-		<div class="check_font" id ="check_name"></div>
+			<legend>이름</legend>
+			<input type="text" id="name" name="name" value ="<%=name%>"  >
+			<input type="button" value="이름 중복 체크" name="dupName" id="dupName">
+			<div class="check_font" id ="check_name"></div>
 		</fieldset>	
 	
 	
 		<fieldset>
-		<legend>패스워드</legend>
-		<input type="password" id="pass" name="pass" maxlength="15" >
-		<div class="check_font" id="check_pass"></div>
-		<div id ="pass_msg"></div>
-		<div id ="regPass"></div>
+			<legend>패스워드</legend>
+			<input type="password" id="pass" name="pass" maxlength="15" >
+			<div class="check_font" id="check_pass"></div>
+			<div id ="pass_msg"></div>
+			<div id ="regPass"></div>
 		</fieldset>
-	
+		
+		<fieldset>
+           <legend>패스워드 확인</legend>
+           <input type="password" id="passConfirm" name="passConfirm">
+           <div class="check_font" id="check_passConfirm"></div>
+        </fieldset>
+        
 		<input type="submit" value="회원 정보 수정">
 		<input type="reset" value="취소">
 	</form>
 	
-	  <input type="hidden" class="confirm">
-	  <input type="hidden" class="confirm">
-	  
-	 
 	</fieldset>
-
+	
+ <input type="hidden" class="confirm">
+ <input type="hidden" class="confirm">
 
 </body>
 </html>
