@@ -114,7 +114,7 @@ public class MemberDao {
 					name = rs.getString("name");
 					
 		 		}else {//패스워드 불일치
-		 			throw new MemberLoginException("패스워드가 일치하지 않습니다");
+		 			throw new MemberLoginException("비밀번호가 일치하지 않습니다");
 				}
 			}else {
 				throw new MemberLoginException("없는 이메일 입니다");
@@ -217,10 +217,10 @@ public class MemberDao {
 					name = rs.getString("name");
 					
 				} else { // 이메일-이름 불일치
-					throw new MemberLoginException("등록하신 이름이 아닙니다");
+					throw new MemberLoginException("등록하신 이메일과 이름이 일치하지 않습니다");
 				}
 			} else {
-				throw new MemberLoginException("등록하신 이메일이 아닙니다");
+				throw new MemberLoginException("등록하신 이메일과 이름이 일치하지 않습니다");
 			}
 			
 		} catch (SQLException e) {

@@ -1,11 +1,12 @@
 @charset "UTF-8";
-
+ * {margin: 0; padding: 0; }
+ 
 .clear {
 	clear: both;
 } /*영역구분*/
 
 header{
-	border: solid 1px blue;
+/* 	border: solid 1px blue; */
 	position: fixed;
 	top: 0;
   	left: 0;
@@ -14,38 +15,26 @@ header{
   	padding: 10px;
   	color: white;
   	font-weight: bold;
-/*   	display: flex; */
-/*   	justify-content: space-between; */
-/*   	align-items: center; */
 	background-color: black;
-/* 	margin-bottom: 30px; */
 }
 
 body{
 	background-color: black;
 	color:white;
-	border: solid 1px red;
-	position: fixed;
-	top: 0;
-  	left: 0;
-  	right: 0;
- 	height: 50px;
-  	padding: 10px;
+/* 	border: solid 1px red; */
+  	padding: 30px;
+  	margin-top: 120px;
 }
-
-
 
 a{
 	text-decoration: none;
 }
 
-a:link,a:visited {color: #fff;}
-a:hover,a:active {color: #cacaca;}
-
+a:link, a:visited {color: #fff;}
+a:hover, a:active {color: #bfbfbf;}
 
 .mainBar{
     float: left;
-/*     clear:both; */
 /*     border: solid 1px red; */
   	padding: 10px;
 }
@@ -59,8 +48,8 @@ a:hover,a:active {color: #cacaca;}
 	float: right;
 	padding: 10px;
 }
-h2{
-	clear:both;
-	margin-top: 100px;
-	border: solid 1px green;
-}
+/* h2{ */
+/* 	clear:both; */
+/* 	margin-top: 100px; */
+/* 	border: solid 1px green; */
+/* } */

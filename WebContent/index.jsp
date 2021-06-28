@@ -13,18 +13,9 @@ String name = (String)session.getAttribute("name");
 	<jsp:include page="/inc/top.jsp"/>
 </header>
 <body>
-    <h2>메인</h2>
-    <h2>메인</h2>
-    <h2>메인</h2>
-    <h2>메인</h2>
-    <h2>메인</h2>
-    <h2>메인</h2>
-    <h2>메인</h2>
-    <h2>메인</h2>
-    <h2>메인</h2>
-    <h2>메인</h2>
-    <h2>메인</h2>
-    
+   
+ <h2>메인</h2>
+ <h2>메인</h2>
 
 </body>
 </html>

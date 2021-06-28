@@ -45,8 +45,10 @@ table {
 %>
 
 </head>
+<header>
+    <jsp:include page="/inc/top.jsp"/>
+</header>
 <body>
-<jsp:include page="/inc/top.jsp"/>
 	<section id="listForm">
 	    <h2>회원 List</h2>
 	    <table>

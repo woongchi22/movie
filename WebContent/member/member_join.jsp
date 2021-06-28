@@ -238,8 +238,10 @@ $(document).ready(function() {
 </script>
 
 </head>
+<header>
+    <jsp:include page="/inc/top.jsp"/>
+</header>
 <body>
-    <jsp:include page="/inc/top.jsp" />
     <h2>회원가입</h2>
     <form action="MemberJoinPro.me" method="post" id="join_insert">
         <fieldset>
