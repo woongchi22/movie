@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호 찾기</title>
-
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 
@@ -41,8 +41,15 @@ $(document).ready(function() {
 
 </script>
 </head>
+<link href="${pageContext.request.contextPath}/css/memberLogin.css" rel="stylesheet" type="text/css">
+
+<header>
+	<jsp:include page="/inc/top.jsp"/>
+</header>
+
 <body>
-<jsp:include page="/inc/top.jsp"/>
+	<main class="loginMain">
+		<div>
     <h2>비밀번호 찾기</h2>
     <form action="ForgetPassPro.me" method="post" id="findPass">
         <fieldset>
@@ -67,5 +74,7 @@ $(document).ready(function() {
     </form>
     
 
+		</div>	
+	</main>
 </body>
 </html>
