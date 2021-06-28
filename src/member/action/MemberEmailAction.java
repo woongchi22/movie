@@ -23,15 +23,18 @@ public class MemberEmailAction implements Action {
 		if(!checkResult) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.print("<script>");
-			out.print("alert('중복된 E-Mail입니다.')");
-			out.print("</script>");
+			out.print("이메일 중복");
+//			out.print("<script>");
+//			out.print("alert('중복된 E-Mail입니다.')");
+//			out.print("</script>");
 		}else {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.print("<script>");
-			out.print("alert('사용할 수 있는 E-Mail 입니다.')");
-			out.print("</script>");
+			out.print("사용가능 이메일");
+//			out.print("<script>");
+//			out.print("alert('사용할 수 있는 E-Mail 입니다.')");
+//			out.print("</script>");
+			System.out.println(email+"asdf");
 		}
 		
 		return null;
