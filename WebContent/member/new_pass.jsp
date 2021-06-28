@@ -12,6 +12,7 @@ String name = (String)session.getAttribute("name");
 <meta charset="UTF-8">
 <title>비밀번호 변경</title>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/memberLogin.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/memberJoin.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
@@ -116,7 +117,7 @@ $(document).ready(function() {
         
         if($('#pass').val() == "") {
             $('#check_pass').text('비밀번호를 입력해주세요');
-            $('.check_font').css('color', 'gray');
+            $('.check_font').css('color', 'red');
             $("#check_pass").attr("disabled", true);
             $('#pass').focus();
             return false;
@@ -126,7 +127,7 @@ $(document).ready(function() {
         
         if($('#pass2').val() == "") {
             $('#check_pass2').text('비밀번호를 확인해주세요');
-            $('.check_font').css('color','gray');
+            $('.check_font').css('color','red');
             $("#check_pass2").attr("disabled", true);         
             $('#pass2').focus();
             return false;
@@ -148,33 +149,35 @@ $(document).ready(function() {
 
 </script>
 </head>
-<body>
-<jsp:include page="/inc/top.jsp"/>
-    <h2>비밀번호 변경</h2>
-    <form action="NewPassPro.me" method="post" id="newPass">
-        <input type="hidden" name="name" value=<%=name %>>
-        <fieldset>
-            <legend>새 비밀번호</legend>
-            <input type="password" name="pass" id="pass" maxlength="15">
-            <div class="check_font" id="check_pass"></div>
-            <div id="pass_msg"></div>
-            <div id="regPass"></div>
-        </fieldset>
-        <fieldset>
-            <legend>새 비밀번호 확인</legend>
-	        <input type="password" name="pass2" id="pass2" maxlength="15">
-	        <div class="check_font" id="check_pass2"></div>
-        </fieldset>
-        
-        <input type="submit" value="확인" id="submit">
-        <input type="button" value="취소" onclick="location.href='MemberLoginForm.me'">
-    </form>
-    
-    <input type="hidden" class="confirm">
-    <input type="hidden" class="confirm">
-    <input type="hidden" class="confirm">
-    <input type="hidden" class="confirm">
-    
+<header>
+    <jsp:include page="/inc/top.jsp"/>
+</header>
 
+<body>
+    <div class="loginAll">
+        <div class="loginLogin">
+            <span class="loginSpan">비밀번호 변경</span>
+            <a class="loginOther" href="MemberLoginForm.me">돌아가기</a>
+        </div>
+        <form action="NewPassPro.me" method="post" id="newPass">
+        <input type="hidden" name="name" value=<%=name %>>
+            <div>
+                <input type="password" name="pass" id="pass" placeholder="새 비밀번호" class="loginEmail">
+                <div class="check_font" id="check_pass"></div>
+            </div>
+            <div>
+                <input type="password" name="pass2" id="pass2" placeholder="새 비밀번호 확인" class="loginPass">
+                <div class="check_font" id="check_pass2"></div>
+            </div>
+        
+	        <input type="submit" value="확인" id="submit" class="loginSubmit">
+        </form>
+    
+    <input type="hidden" class="confirm">
+    <input type="hidden" class="confirm">
+    <input type="hidden" class="confirm">
+    <input type="hidden" class="confirm">
+    
+    </div>
 </body>
 </html>

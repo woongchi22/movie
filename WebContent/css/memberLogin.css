@@ -5,6 +5,7 @@
 } /*영역구분*/
 
 main{
+	border: solid 1px green;
 	background-color: black;
 	color:white;
  	height: 650px;
@@ -30,58 +31,95 @@ form{
 /* 	background-attachment: fixed; */
 }
 .loginAll{
-	display: flex;
-    flex-direction: column;
-    justify-content: center;
+/* 	display: flex; */
+/*     flex-direction: column; */
+/*     justify-content: center; */
+/*     position: absolute; */
+/*     left: 30%; */
+/*     top: 30%; */
     width: 40%;
-    height: 70%;
+    height: 50%;
     background-color: rgba( 130, 130, 130, 0.4 );
-    margin-top: 30px;
+    margin: 0 auto;
     border-radius: 10px;
+/*     text-align: center; */
 }
 .loginLogin{
 	display: flex;
-    margin: 14px;
+    margin: 15px;
+    padding-top: 80px;
+    
 }
 .loginSpan{
-    border: solid 1px green;
 	flex: 1 1 0%;
     font-size: 18px;
     font-weight: 700;
     letter-spacing: -1px;
     color: white;
 }
-.loginPass{
+.loginOther{
 	color: #fff;
     font-size: 12px;
-    font-weight: 400;
-    -webkit-letter-spacing: -0.4px;
-    -moz-letter-spacing: -0.4px;
-    -ms-letter-spacing: -0.4px;
     letter-spacing: -0.4px;
     padding: 4px 0 0;
     opacity: 0.5;
+/*     border: solid 1px green; */
 }
 .loginEmail{
 	position: relative;
-    width: 100%;
+    width: 90%;
 	font-size: 16px;
-    -webkit-letter-spacing: -0.5px;
-    -moz-letter-spacing: -0.5px;
-    -ms-letter-spacing: -0.5px;
     letter-spacing: -0.5px;
-    line-height: normal;
     border-color: rgba(154,151,161,0.2);
     height: 20px;
     padding: 10px;
-/*     border-radius: 10px; */
+    margin: 10px;
+    border-radius: 5px;
+    
 }
-.loginSubmit{
-	width: 50%;
+.loginPass{
+    position: relative;
+    width: 90%;
+    font-size: 16px;
+    letter-spacing: -0.5px;
+    border-color: rgba(154,151,161,0.2);
+    height: 20px;
     padding: 10px;
-    border-radius: 20px;
-    margin: 16px 0 0;
+    margin: 10px;
+    border-radius: 5px;
+    
 }
 .check_font{
-	background-color: white;
+    margin: 0 0 0 10px;
 }
+.loginSubmit{
+	width: 40%;
+    padding: 10px;
+    border-radius: 30px;
+    margin: 40px 0 50px 120px;
+    background-color: red;
+    border: none;
+    color:#fff;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    cursor: pointer;
+}
+.loginSubmit:hover {
+	background-color: #fe3d3d;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
