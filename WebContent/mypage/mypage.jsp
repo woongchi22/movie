@@ -43,12 +43,13 @@ $(document).ready(function(){
 				data:{name:name},
 				success:function(rdata){
 					if(rdata=="이름 중복"){
-// 						$("#check_name").text('이미 사용중인 이름 입니다');
+						 alert("중복된 이메일 입니다.");
+						 $('#name').focus();
 						$('.confirm').eq(0).val("N");
 						
 					}
 					if(rdata=="사용가능 이름"){
-// 						$("#check_name").text('사용 가능한 이름 입니다');
+						 alert("사용 가능한 이메일 입니다.");
 						$('.confirm').eq(0).val("Y");
 					}
 					$('#name').html(rdata);
