@@ -26,15 +26,18 @@ public class MemberNameAction implements Action {
 		if(!checkResult) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.print("<script>");
-			out.print("alert('이미 사용중인 이름입니다.')");
-			out.print("</script>");
+			out.print("이름 중복");
+//			out.print("<script>");
+//			out.print("alert('이미 사용중인 이름입니다.')");
+			
+//			out.print("</script>");
 		}else {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.print("<script>");
-			out.print("alert('사용할 수 있는 이름입니다.')");
-			out.print("</script>");
+			out.print("사용가능 이름");
+//			out.print("<script>");
+//			out.print("alert('사용할 수 있는 이름입니다.')");
+//			out.print("</script>");
 		}
 		
 		

@@ -6,17 +6,122 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-<link href="${pageContext.request.contextPath}/css/memberJoin.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/memberJoin.css"
+    rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
-<script type="text/javascript" >
+<script type="text/javascript">
 
 $(document).ready(function() {
-	
-	// 패스워드 정규식 & 보안강도 표시
+   
+
+    
+    
+    //회원가입 이메일 중복 확인
+     $('#dupEmail').click(function(){
+         var email = $('#email').val();
+         console.log("성공");
+
+         if(email==""){
+        	 $('#check_email').text('이메일을 입력해주세요.');
+             $('.check_font').css('color', 'gray');
+             $("#check_email").attr("disabled", true);           
+             return false;
+         } else {
+        	 
+             $.ajax("dupEmail.me",{
+                 data:{email:email},
+                 success:function(rdata){
+                     if(rdata=="이메일 중복"){
+                         $('.confirm').eq(0).val("N");
+                         alert("중복된 이메일 입니다.");
+                     } 
+                     if(rdata=="사용가능 이메일") {
+                         $('.confirm').eq(0).val("Y");
+                         alert("사용 가능한 이메일입니다 .");
+                     }
+                     $('#email').html(rdata);
+                 }
+             });
+         }
+     });
+    
+     //회원가입 이름 중복 확인
+     $('#dupName').click(function(){
+         var name = $('#name').val();
+         console.log("이름 성공");
+
+         if(name == ""){
+             $('#check_name').text('이름을 입력해주세요.');
+             $('.check_font').css('color', 'gray');
+             $("#check_name").attr("disabled", true);           
+             return false;
+         } else {
+             $.ajax("dupName.me",{
+                 data:{name:name},
+                 success:function(rdata){
+                	 if(rdata == "이름 중복"){
+                         $('.confirm').eq(2).val("N");
+                         alert("중복된 이름 입니다.");
+                     } 
+                     if(rdata=="사용가능 이름") {
+                         $('.confirm').eq(2).val("Y");
+                         alert("사용 가능한 이름 입니다.");
+                     }
+                     
+                     $('#name').html(rdata);
+                 }
+             });
+         }
+     });
+     
+     
+     // 회원가입 입력란
+     $('#join_insert').submit(function() {
+    	 if($('.confirm').eq(0).val()=="Y"==false){
+             alert("이메일 중복체크를 해주세요");
+             return false;
+         }
+         
+         if($('.confirm').eq(2).val()=="Y"==false){
+             alert("이름 중복체크를 해주세요");
+             return false;
+         }
+         
+         
+        if($('#pass').val() == "") {
+           $('#check_pass').text('패스워드를 입력해주세요');
+           $('.check_font').css('color','gray','size','7px');
+           $("#check_pass").attr("disabled", true);         
+           $('#pass').focus();
+           return false;
+         }else{
+            $("#check_pass").hide();
+         }
+        
+        if($('#passConfirm').val() == "") {
+           $('#check_passConfirm').text('패스워드를 확인해주세요');
+           $('.check_font').css('color','gray');
+           $("#check_passConfirm").attr("disabled", true);         
+           $('#passConfirm').focus();
+           return false;
+         }
+        
+        if($('.confirm').eq(1).val()=="Y"==false){
+            alert("패스워드 설정에 문제가 있습니다.");
+            $('#pass').focus();
+            return false;
+      }
+        
+     });
+     
+     
+    
+    
+   // 패스워드 정규식 & 보안강도 표시
     $('#pass').keyup(function(){
-    	
-    	$('#check_pass').html('');
-    	
+       
+       $('#check_pass').html('');
+       
         var pw = $('#pass').val();
         
         var lengthReg = /(?=.{8,15})/; // 8~15자리
@@ -87,7 +192,7 @@ $(document).ready(function() {
         }
     
     });
-	
+   
     $('#passConfirm').keyup(function() {
         if($('#pass').val() != $('#passConfirm').val()) {
             $('#check_passConfirm').html('비밀번호가 일치하지 않습니다');
@@ -98,7 +203,7 @@ $(document).ready(function() {
         }
         
         if($('#passConfirm').val() == '') {
-            $('#check_passConfirm').hide();
+//             $('#check_passConfirm').hide();
         } else {
             $('#check_passConfirm').show();
         }
@@ -120,170 +225,62 @@ $(document).ready(function() {
             $('#check_name').hide();
         }
     });
-	
-	
-	// 회원가입 입력란
-	$('#join_insert').submit(function() {
-		
-		if($('#email').val() == "") {
-			$('#check_email').text('이메일을 입력해주세요');
-			$('.check_font').css('color', 'gray');
-            $('#email').focus();
-            return false;
-	    }else{
-	    	$("#check_email").hide();
-	    }
-		
-		if($('#name').val() == "") {
-			$('#check_name').text('이름을 입력해주세요');
-			$('.check_font').css('color','gray');
-			$('#name').focus();
-			return false;
-		}else{
-	    	$("#check_name").hide();
-	    }
-		
-		if($('#pass').val() == "") {
-			$('#check_pass').text('패스워드를 입력해주세요');
-			$('.check_font').css('color','gray','size','7px');
-			$("#check_pass").attr("disabled", true);			
-            $('#pass').focus();
-            return false;
-	    }else{
-	    	$("#check_pass").hide();
-	    }
-		
-		if($('#passConfirm').val() == "") {
-            $('#check_passConfirm').text('패스워드를 확인해주세요');
-            $('.check_font').css('color','gray');
-			$("#check_passConfirm").attr("disabled", true);			
-            $('#passConfirm').focus();
-            return false;
-        }
-		
-		if($('#passConfirm').val() != $('#pass').val()) {
-// 			$('#check_passConfirm').text('패스워드가 일치하지 않습니다');
-// 			$('#check_font').css('color','gray');
-// 		    $("#check_passConfirm").attr("disabled", true);			
-	        $('#passConfirm').focus();
-	        return false;
-		}
-// 		}else{
-// 	    	$("#check_passConfirm").hide();
-// 	    }
-		
-		if($('.confirm').eq(1).val() == "N"){
-            alert("패스워드 설정에 문제가 있습니다.");
-            $('#pass').focus();
-            return false;
-        }
-	});
-	
-	
-	//회원가입 이메일 중복 확인
-    $('#dupEmail').click(function(){
-        var email = $('#email').val();
-        console.log("성공");
-
-        if(email==""){
-//             $('#check_email').text('이메일을 입력해주세요');
-//             $('.check_font').css({'color':'gray','font-size':'8px'});
-            $("#check_email").attr("disabled", true);           
-            return false;
-        } else {
-            $.ajax("dupEmail.me",{
-                data:{email:email},
-                success:function(rdata){
-                    if(rdata=="이메일 중복"){
-                        $('.confirm').eq(0).val("N");
-                    } 
-                    if(rdata=="사용가능 이메일") {
-                        $('.confirm').eq(0).val("Y");
-                    }
-                    $('#email').html(rdata);
-                }
-            });
-        }
-    });
-	
-    //회원가입 이름 중복 확인
-    $('#dupName').click(function(){
-        var name = $('#name').val();
-        console.log("이름 성공");
-
-        if(name == ""){
-//             $('#check_email').text('이메일을 입력해주세요');
-//             $('.check_font').css({'color':'gray','font-size':'8px'});
-            $("#check_name").attr("disabled", true);           
-            return false;
-        } else {
-            $.ajax("dupName.me",{
-                data:{name:name},
-                success:function(rdata){
-                    if(rdata == "이름 중복"){
-                        $('.confirm').eq(0).val("N");
-                    } 
-                    if(rdata=="이름 사용가능") {
-                        $('.confirm').eq(0).val("Y");
-                    }
-                    $('#name').html(rdata);
-                }
-            });
-        }
-    });
+   
+  
+   
     
     
-	
+   
 });
-	
-	
+   
+   
 
 </script>
 
 </head>
 <body>
-<jsp:include page="/inc/top.jsp"/>
+    <jsp:include page="/inc/top.jsp" />
     <h2>회원가입</h2>
     <form action="MemberJoinPro.me" method="post" id="join_insert">
         <fieldset>
             <legend>이메일</legend>
-            <input type="email" id="email" name="email">
-            <input type="button" value="이메일 중복체크"  id="dupEmail">
-<!--             <button class = "check_font" id="dupEmail" type="button">이메일 중복체크</button> -->
+            <input type="email" id="email" name="email"> <button
+                type="button" id="dupEmail"> 이메일 중복체크 </button>
+            <!--             <button class = "check_font" id="dupEmail" type="button">이메일 중복체크</button> -->
             <div class="check_font" id="check_email"></div>
         </fieldset>
         <fieldset>
             <legend>이름</legend>
-            <input type="text" id="name" name="name">
-            <input type="button" value="이름 중복체크"  id="dupName">
+            <input type="text" id="name" name="name"> <button
+                type="button" id="dupName"> 이름 중복 체크 </button>
             <div class="check_font" id="check_name"></div>
         </fieldset>
         <fieldset>
             <legend>패스워드</legend>
             <input type="password" id="pass" name="pass">
-             <div class="check_font" id="check_pass"></div>
-             <div id= "pass_msg"></div>
-             <div id="regPass"></div>
+            <div class="check_font" id="check_pass"></div>
+            <div id="pass_msg"></div>
+            <div id="regPass"></div>
         </fieldset>
         <fieldset>
             <legend>패스워드 확인</legend>
             <input type="password" id="passConfirm" name="passConfirm">
-             <div class="check_font" id="check_passConfirm"></div>
+            <div class="check_font" id="check_passConfirm"></div>
         </fieldset>
-        
-        <input type="submit" value="가입" > 
-        <input type="button" value="취소" onclick="location.href='./'">
-        
+
+        <input type="submit" value="가입"> <input type="button"
+            value="취소" onclick="location.href='./'">
+
     </form>
 
 
-  <input type="hidden" class="confirm">
-  <input type="hidden" class="confirm">
-  <input type="hidden" class="confirm">
-  <input type="hidden" class="confirm">
+    <input type="hidden" class="confirm">
+    <input type="hidden" class="confirm">
+    <input type="hidden" class="confirm">
+<!--    <input type="hidden" class="confirm"> -->
 
 
 
- 
+
 </body>
 </html>
