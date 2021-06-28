@@ -17,7 +17,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Login</title>
-
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/memberLogin.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 
@@ -44,30 +45,6 @@ $(document).ready(function() {
             $("#check_pass").hide();
         }
 		
-		// 로그인
-// 		var action = $('#login').attr('action');
-// 		var form_data = {
-// 				email: $('#email').val(),
-// 				pass: $('#pass').val()
-// 		};
-		
-// 		$.ajax({
-// 			type: "post",
-// 			url: action,
-// 			data: form_data,
-// 			success: function(response) {
-// 				if(response == 'success') {
-// 					$('#msg').html("로그인 성공");
-// // 					$('#login').slideUp('slow');
-// 				} else {
-// 					$('#msg').html("이메일 또는 비밀번호가 잘못되었습니다");
-// 				}
-// 			}
-// 		});
-// 		return false;
-
-
-		
 	});
 
 	
@@ -75,36 +52,40 @@ $(document).ready(function() {
 
 
 
-
-
-
-
-
-
 </script>
 </head>
+<header>
+	<jsp:include page="/inc/top.jsp"/>
+</header>
 
 <body>
-<jsp:include page="/inc/top.jsp"/>
-    <h1>로그인</h1>
-    <form action ="MemberLoginPro.me" method = "post" id="login">
-        <fieldset>
-            <legend>이메일</legend>
-            <input type="text" name="email" id="email">
-            <div class = check_font id="check_email"></div>
-        </fieldset>
-        <fieldset>
-	        <legend>비밀번호</legend>
-	        <input type="password" name="pass" id="pass">
-	        <div class = check_font id="check_pass"></div>
-        </fieldset>
-        
-<!-- <div id="msg"></div> -->
-		<input type = "submit" value = "로그인" id = "submit">
-		<input type = "button" value = "회원가입" onclick="location.href='MemberJoinForm.me'">
-		<input type = "button" value = "취소" onclick = "location.href='./'"><br>
-	    <a href = "ForgetPassForm.me">비밀번호 찾기</a>
-    </form>
+	<main class="loginMain">
+		<div class="loginAll">
+			<div class="loginLogin">
+		   	 	<span class="loginSpan">로그인</span>
+			    <a class="loginPass" href="ForgetPassForm.me">비밀번호 찾기 |</a> 
+			    <a class="loginPass" href="MemberJoinForm.me">| 회원가입</a>
+			</div>
+		    <form action ="MemberLoginPro.me" method = "post" id="login">
+			    <div>
+		            <input type="text" name="email" id="email" placeholder="이메일(xxx@xxx.xxx)" class="loginEmail" style="border-radius: 5px 5px 0 0">
+		            <div class = check_font id="check_email"></div>
+			    </div>
+			    <div>
+			        <input type="password" name="pass" id="pass" placeholder="비밀번호" class="loginEmail" style="border-radius: 0 0 5px 5px">
+			        <div class = check_font id="check_pass"></div>
+			    </div>
+		        
+				<div>
+					<input type = "submit" value = "로그인" id = "submit" class="loginSubmit">
+<!-- 					<input type = "button" value = "회원가입" onclick="location.href='MemberJoinForm.me'"> -->
+<!-- 					<input type = "button" value = "취소" onclick = "location.href='./'"><br> -->
+				</div>
+		    </form>
+	
+	
+		</div>
+	</main>
 
 
 </body>

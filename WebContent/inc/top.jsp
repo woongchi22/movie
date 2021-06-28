@@ -8,34 +8,30 @@ String pass = (String)session.getAttribute("pass");
 
 %>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>What top</title>
-</head>
-<body>
-    <header>
-        
-        <form action="MovieSearch.mo" id="movie_search">
-            <input type="search" name="search" placeholder="search">
-            <button type="submit">검색</button>
-        </form>
-        
-        <a href="./">Main</a>
-        
-        <%if(pass != null) { %>
-            <%if(name.equals("관리자")) { %>
-                <a href="Mypage.mp"><%=name %> 님</a> | <a href="MemberLogout.me">로그아웃</a> | <a href="MemberList.me">관리자 페이지</a>
-            <%} else { %>
-                <a href="Mypage.mp"><%=name %> 님</a> | <a href="MemberLogout.me">로그아웃</a>
-	        <%} %>
-        <%} else {%>
-            <a href="MemberLoginForm.me">로그인</a> | <a href="MemberJoinForm.me">회원가입</a>
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 
-        <%} %>
-        
-    </header>
-
-</body>
-</html>
+<header>
+	<nav>
+		<span class="mainBar">
+		  	<a href="./">Main</a>
+		</span>
+		<span class="loginBar">
+		    <%if(pass != null) { %>
+		        <%if(name.equals("관리자")) { %>
+		            <a href="Mypage.mp"><%=name %> 님</a> | <a href="MemberLogout.me">로그아웃</a> | <a href="MemberList.me">관리자 페이지</a>
+		        <%} else { %>
+		            <a href="Mypage.mp"><%=name %> 님</a> | <a href="MemberLogout.me">로그아웃</a>
+		     <%} %>
+		    <%} else {%>
+		        <a href="MemberLoginForm.me">로그인</a> | <a href="MemberJoinForm.me">회원가입</a>
+		
+		    <%} %>
+		</span>
+		<span class="searchBar">
+		    <form action="MovieSearch.mo" id="movie_search">
+		        <input type="search" name="search" placeholder="search">
+		        <button type="submit">검색</button>
+		    </form>
+		</span>
+	</nav>
+</header>
