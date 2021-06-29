@@ -47,31 +47,32 @@ $(document).ready(function() {
             if(lower && upper && num && special){
                 $('#pass_msg').removeClass();
                 $('#pass_msg').addClass('강함');
-                $('#pass_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 강함");
+                $('#pass_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div><div id='box5'>강함</div>");
                 $('#regPass').html('사용 가능');
                 $('.confirm').eq(1).val("Y");
             
             } else if ((lower || upper) && (num || secial)){
                 $('#pass_msg').removeClass();
                 $('#pass_msg').addClass('중간');
-                $('#pass_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 중간");
+                $('#pass_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div><div id='box5'>중간</div>");
                 $('#regPass').html('사용 가능');
                 $('.confirm').eq(1).val("Y");   
 
             } else { // 한가지 조합으로만 8글자 입력했을 경우
                 $('#pass_msg').removeClass();
                 $('#pass_msg').addClass('약함');
-                $('#pass_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 약함");
-                $('#regPass').html('비밀번호는 8~15자이며,\n숫자/영어[대문자 or 소문자 or 특수문자(!,@)]를 포함해야 합니다.');
-                $('.msg').css({"color":"red","font-size":"12px"});
+                $('#pass_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div><div id='box5'>약함</div>");
+                $('#regPass').html('비밀번호는 숫자와 영어[대문자or소문자or특수문자(!,@)]를 포함한 8~15자 입니다');
+//                 $('.msg').css({"color":"red","font-size":"12px"});
                 $('.confirm').eq(1).val("N");
             }
             
         } else {
             $('#pass_msg').removeClass();
             $('#pass_msg').addClass('짧음');
-            $('#pass_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 짧음");
-            $('#regPass').html('비밀번호는 8~15자이며,\n숫자/영어[대문자 or 소문자 or 특수문자(!,@)]를 포함해야 합니다.');
+            $('#pass_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div><div id='box5'>짧음</div>");
+            $('#regPass').html('비밀번호는 숫자와 영어[대문자or소문자or특수문자(!,@)]를 포함한 8~15자 입니다');
+//             $('.msg').css({"color":"red","font-size":"12px"});
             $('.confirm').eq(1).val("N");
             
             if (pw.length == 0) {
@@ -163,13 +164,13 @@ $(document).ready(function() {
         <form action="NewPassPro.me" method="post" id="newPass">
         <input type="hidden" name="name" value=<%=name %>>
             <div>
-                <input type="password" name="pass" id="pass" placeholder="새 비밀번호" class="loginEmail">
+                <input type="password" name="pass" id="pass" maxlength="15" placeholder="새 비밀번호" class="loginEmail">
                 <div class="check_font" id="check_pass"></div>
                 <div id="pass_msg"></div>
                 <div id="regPass" class="msg"></div>
             </div>
             <div>
-                <input type="password" name="pass2" id="pass2" placeholder="새 비밀번호 확인" class="loginPass">
+                <input type="password" name="pass2" id="pass2" maxlength="15" placeholder="새 비밀번호 확인" class="loginPass">
                 <div class="check_font" id="check_pass2"></div>
             </div>
         

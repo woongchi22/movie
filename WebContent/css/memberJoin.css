@@ -1,220 +1,218 @@
 @charset "UTF-8";
  * {margin: 0; padding: 0; }
 
-.msg{
-/* 	font-size: 12px; */
-/*     color: #fff; */
-}
-/* #reg_pass{ */
-/* 	margin: 10px; */
-/* 	font-size: 12px; */
-/* 	color: #fff; */
-/* } */
 
 #pass_msg>#box1{
 	border:1px solid gray;
 	background-color: gray;
-	width: 80px;
+	width: 100px;
 	height: 5px;
 	display: inline-block;
-	margin: 10px;
+	margin: 20px 0 10px 10px;
 }
 #pass_msg>#box2{
 	border:1px solid gray;
 	background-color: gray;
-	width: 80px;
+	width: 100px;
 	height: 5px;
 	display: inline-block;
-	margin: 10px;
+	margin: 10px 0 10px 5px;
 }
 #pass_msg>#box3{
 	border:1px solid gray;
 	background-color: gray;
-	width: 80px;
+	width: 100px;
 	height: 5px;
 	display: inline-block;
-	margin: 10px;
+	margin: 10px 0 10px 5px;
 }
 #pass_msg>#box4{
 	border:1px solid gray;
 	background-color: gray;
-	width: 80px;
+	width: 100px;
 	height: 5px;
 	display: inline-block;
-	margin: 10px;
+	margin: 10px 5px 10px 5px;
 }
-
-
+#pass_msg>#box5{
+    display: inline-block;
+    position: absolute;
+    margin: 5px;
+}
 
 #pass_msg.짧음>#box1{
 	border:1px solid red;
 	background-color: red;
-	width: 80px;
+	width: 100px;
 	height: 5px;
 	display: inline-block;
-	margin: 10px;
+	margin: 10px 0 10px 10px;
 }
 #pass_msg.짧음>#box2{
     border:1px solid gray;
     background-color: gray;
-    width: 80px;
+    width: 100px;
     height: 5px;
     display: inline-block;
-    margin: 10px;
+    margin: 10px 0 10px 5px;
 
 }
 #pass_msg.짧음>#box3{
     border:1px solid gray;
     background-color: gray;
-    width: 80px;
+    width: 100px;
     height: 5px;
     display: inline-block;
-    margin: 10px;
+    margin: 10px 0 10px 5px;
 }
 #pass_msg.짧음>#box4{
     border:1px solid gray;
     background-color: gray;
-    width: 80px;
+    width: 100px;
     height: 5px;
     display: inline-block;
-    margin: 10px;
+    margin: 10px 5px 10px 5px;
 }
 
 #pass_msg.약함>#box1{
 	border:1px solid red;
 	background-color: red;
-	width: 80px;
+	width: 100px;
 	height: 5px;
 	display: inline-block;
-	margin: 10px;
+	margin: 10px 0 10px 10px;
 }
 #pass_msg.약함>#box2{
     border:1px solid yellow;
     background-color: yellow;
-    width: 80px;
+    width: 100px;
     height: 5px;
     display: inline-block;
-    margin: 10px;
+    margin: 10px 0 10px 5px;
 }
 #pass_msg.약함>#box3{
     border:1px solid gray;
     background-color: gray;
-    width: 80px;
+    width: 100px;
     height: 5px;
     display: inline-block;
-    margin: 10px;
+    margin: 10px 0 10px 5px;
 }
 #pass_msg.약함>#box4{
     border:1px solid gray;
     background-color: gray;
-    width: 80px;
+    width: 100px;
     height: 5px;
     display: inline-block;
-    margin: 10px;
+    margin: 10px 5px 10px 5px;
 }
 
 #pass_msg.중간>#box1{
     border:1px solid red;
     background-color: red;
-    width: 80px;
+    width: 100px;
     height: 5px;
     display: inline-block;
-    margin: 10px;
+    margin: 10px 0 10px 10px;
 }
 #pass_msg.중간>#box2{
     border:1px solid yellow;
     background-color: yellow;
-    width: 80px;
+    width: 100px;
     height: 5px;
     display: inline-block;
-    margin: 10px;
+    margin: 10px 0 10px 5px;
 }
 #pass_msg.중간>#box3{
     border:1px solid orange;
     background-color: orange;
-    width: 80px;
+    width: 100px;
     height: 5px;
     display: inline-block;
-    margin: 10px;
+    margin: 10px 0 10px 5px;
 }
 #pass_msg.중간>#box4{
     border:1px solid gray;
     background-color: gray;
-    width: 80px;
+    width: 100px;
     height: 5px;
     display: inline-block;
-    margin: 10px;
+    margin: 10px 5px 10px 5px;
 }
 
 #pass_msg.강함>#box1{
     border:1px solid red;
     background-color: red;
-    width: 80px;
+    width: 100px;
     height: 5px;
     display: inline-block;
-    margin: 10px;
+    margin: 10px 0 10px 10px;
 }
 #pass_msg.강함>#box2{
     border:1px solid yellow;
     background-color: yellow;
-    width: 80px;
+    width: 100px;
     height: 5px;
     display: inline-block;
-    margin: 10px;
+    margin: 10px 0 10px 5px;
 }
 #pass_msg.강함>#box3{
     border:1px solid orange;
     background-color: orange;
-    width: 80px;
+    width: 100px;
     height: 5px;
     display: inline-block;
-    margin: 10px;
+    margin: 10px 0 10px 5px;
 }
 #pass_msg.강함>#box4{
     border:1px solid green;
     background-color: green;
-    width: 80px;
+    width: 100px;
     height: 5px;
     display: inline-block;
-    margin: 10px;
+    margin: 10px 5px 10px 5px;
 }
 
  #pass_msg.짧음{ 
- color: red; 
+    color: red; 
+    font-size: 12px;
  } 
  #pass_msg.약함{ 
- color: yellow; 
+    color: yellow; 
+    font-size: 12px;
  } 
  #pass_msg.중간{ 
- color: orange; 
+    color: orange; 
+    font-size: 12px;
  } 
  #pass_msg.강함{ 
- color: green; 
+    color: green; 
+    font-size: 12px;
  }
 
 
 .joinAll{
-    width: 450px;
-    height: 600px;
+    width: 480px;
+    height: 650px;
     background-color: rgba( 130, 130, 130, 0.4 );
     margin: 0 auto;
     border-radius: 10px;
 }
 .joinEmail{
     position: relative;
-    width: 400px;
+    width: 430px;
     font-size: 16px;
     letter-spacing: -0.5px;
     border-color: rgba(154,151,161,0.2);
     height: 20px;
     padding: 10px;
     margin: 10px;
-    border-radius: 5px;
+    border-radius: 5px; 
     
 }
 .joinPass{
     position: relative;
-    width: 400px;
+    width: 430px;
     font-size: 16px;
     letter-spacing: -0.5px;
     border-color: rgba(154,151,161,0.2);
@@ -222,11 +220,28 @@
     padding: 10px;
     margin: 10px;
     border-radius: 5px;
-    
 }
 
+.msg{
+    font-size: 12px;
+    color: #c0c0c0;
+    margin: 0 0 10px 10px;
+}
 
-
+.joinCheck{
+    width: 110px;
+    padding: 5px;
+    border-radius: 20px;
+    margin: 0 0 10px 340px;
+    background-color: red;
+    border: none;
+    color:#fff;
+    letter-spacing: -1px;
+    cursor: pointer;
+}
+.joinCheck:hover {
+    background-color: #fe3d3d;
+}
 
 
 
