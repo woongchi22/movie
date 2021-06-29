@@ -63,6 +63,7 @@ $(document).ready(function() {
                 $('#pass_msg').addClass('약함');
                 $('#pass_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 약함");
                 $('#regPass').html('비밀번호는 8~15자이며,\n숫자/영어[대문자 or 소문자 or 특수문자(!,@)]를 포함해야 합니다.');
+                $('.msg').css({"color":"red","font-size":"12px"});
                 $('.confirm').eq(1).val("N");
             }
             
@@ -164,6 +165,8 @@ $(document).ready(function() {
             <div>
                 <input type="password" name="pass" id="pass" placeholder="새 비밀번호" class="loginEmail">
                 <div class="check_font" id="check_pass"></div>
+                <div id="pass_msg"></div>
+                <div id="regPass" class="msg"></div>
             </div>
             <div>
                 <input type="password" name="pass2" id="pass2" placeholder="새 비밀번호 확인" class="loginPass">
@@ -173,11 +176,12 @@ $(document).ready(function() {
 	        <input type="submit" value="확인" id="submit" class="loginSubmit">
         </form>
     
-    <input type="hidden" class="confirm">
-    <input type="hidden" class="confirm">
-    <input type="hidden" class="confirm">
-    <input type="hidden" class="confirm">
+	    <input type="hidden" class="confirm">
+	    <input type="hidden" class="confirm">
+	    <input type="hidden" class="confirm">
+	    <input type="hidden" class="confirm">
     
     </div>
+    
 </body>
 </html>

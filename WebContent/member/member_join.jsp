@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/memberLogin.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/memberJoin.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
@@ -242,47 +243,45 @@ $(document).ready(function() {
 <header>
     <jsp:include page="/inc/top.jsp"/>
 </header>
+
 <body>
-    <h2>회원가입</h2>
-    <form action="MemberJoinPro.me" method="post" id="join_insert">
-        <fieldset>
-            <legend>이메일</legend>
-            <input type="email" id="email" name="email"> <button
-                type="button" id="dupEmail"> 이메일 중복체크 </button>
-            <!--             <button class = "check_font" id="dupEmail" type="button">이메일 중복체크</button> -->
-            <div class="check_font" id="check_email"></div>
-        </fieldset>
-        <fieldset>
-            <legend>이름</legend>
-            <input type="text" id="name" name="name"> <button
-                type="button" id="dupName"> 이름 중복 체크 </button>
-            <div class="check_font" id="check_name"></div>
-        </fieldset>
-        <fieldset>
-            <legend>패스워드</legend>
-            <input type="password" id="pass" name="pass">
-            <div class="check_font" id="check_pass"></div>
-            <div id="pass_msg"></div>
-            <div id="regPass"></div>
-        </fieldset>
-        <fieldset>
-            <legend>패스워드 확인</legend>
-            <input type="password" id="passConfirm" name="passConfirm">
-            <div class="check_font" id="check_passConfirm"></div>
-        </fieldset>
+    <div class="joinAll">
+        <div class="loginLogin">
+	        <span class="loginSpan">회원가입</span>
+	        <a class="loginOther" href="./">돌아가기</a>
+	    </div>
+        <form action="MemberJoinPro.me" method="post" id="join_insert">
+            <div>
+                <input type="email" name="email" id="email" placeholder="이메일(xxx@xxx.xxx)" class="joinEmail">
+                <div class="check_font" id="check_email"></div>
+	             <button type="button" id="dupEmail"> 이메일 중복체크 </button>
+	            <!--             <button class = "check_font" id="dupEmail" type="button">이메일 중복체크</button> -->
+            </div>
+            <div>
+                <input type="text" name="name" id="name" placeholder="이름" class="joinEmail">
+                <div class="check_font" id="check_name"></div>
+	            <button type="button" id="dupName"> 이름 중복 체크 </button>
+            </div>
+	        <div>
+                <input type="password" name="pass" id="pass" placeholder="비밀번호" class="joinPass">
+                <div class="check_font" id="check_pass"></div>
+                <div id="pass_msg"></div>
+                <div id="regPass" class="msg"></div>
+            </div>
+	        <div>
+                <input type="password" name="passConfirm" id="passConfirm" placeholder="비밀번호 확인" class="joinPass">
+                <div class="check_font" id="check_passConfirm"></div>
+            </div>
 
-        <input type="submit" value="가입"> <input type="button"
-            value="취소" onclick="location.href='./'">
+	        <input type="submit" value="가입" class="loginSubmit">
 
-    </form>
+        </form>
 
+	    <input type="hidden" class="confirm">
+	    <input type="hidden" class="confirm">
+	    <input type="hidden" class="confirm">
 
-    <input type="hidden" class="confirm">
-    <input type="hidden" class="confirm">
-    <input type="hidden" class="confirm">
-
-
-
+    </div>
 
 </body>
 </html>
