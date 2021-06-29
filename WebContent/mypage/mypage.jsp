@@ -32,21 +32,26 @@ $(document).ready(function(){
 		var name = $('#name').val();
 		console.log(name);
 		
-		if(name==""){
-			$("#check_name").text('이름을 입력해주세요');
-			$('.check_font').css('color', 'gray');
-			$("#check_name").attr("disabled", true);
-			$('#name').focus();
-			return false;
-			
-		} else {
-			$.ajax("dupName.me",{
-				data:{name:name},
-				success:function(rdata){
-					if(rdata=="이름 중복"){
-						 alert("중복된 이름 입니다.");
-						 $('#name').focus();
-						 $('.confirm').eq(0).val("N");
+				$("#check_name").text('이름을 입력해주세요');
+				$('.check_font').css('color', 'gray');
+				$("#check_name").attr("disabled", true);
+				$('#name').focus();
+				return false;
+				
+			}else {
+				$.ajax("dupName.me",{
+					data:{name:name},
+					success:function(rdata){
+						if(rdata=="이름 중복"){
+							 alert("중복된 이름 입니다.");
+							 $('#name').focus();
+							 $('.confirm').eq(0).val("N");
+							
+						}
+						if(rdata=="사용가능 이름"){
+							 alert("사용 가능한 이름 입니다.");
+							$('.confirm').eq(0).val("Y");
+						}
 						
 					}
 					if(rdata=="사용가능 이름"){
@@ -117,12 +122,12 @@ $(document).ready(function(){
 	        $('#pass_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div><div id='box5'>짧음</div>");
             $('#regPass').html('비밀번호는 숫자와 영어[대문자or소문자or특수문자(!,@)]를 포함한 8~15자 입니다');
             $('.confirm').eq(1).val("N");
-	        
+		 	}
 			if (pw.length==0) {
 				$('#pass_msg').hide();
 				$('#regPass').hide();
 				
-	        } else {
+	        }else {
 	        	$('#pass_msg').show();
 	        	$('#regPass').show();
 	        }
@@ -130,7 +135,7 @@ $(document).ready(function(){
         
 		if(/(\w)\1\1\1/.test(pw)) {
 			$('#regPass').html('같은 문자를 4번 이상 사용할 수 없습니다.');
-			 $('.confirm').eq(1).val("N");
+			$('.confirm').eq(1).val("N");
 		}
 		
 		if(pw.search(/\s/) != -1) {
@@ -143,7 +148,7 @@ $(document).ready(function(){
 	$('#name').keyup(function() {
         if($('#name').val() == '') {
             $('#check_name').show();
-        } else {
+        }else {
             $('#check_name').hide();
         }
             
@@ -153,16 +158,14 @@ $(document).ready(function(){
         if($('#pass').val() != $('#passConfirm').val()) {
             $('#check_passConfirm').html('비밀번호가 일치하지 않습니다');
             $('.check_font').css('color','red');
-            $('.confirm').eq(1).val("N");
-        } else {
+        }else {
             $('#check_passConfirm').html('비밀번호가 일치합니다');
             $('.check_font').css('color','green');
-            $('.confirm').eq(1).val("Y");
         }
         
         if($('#passConfirm').val() == '') {
-//             $('#check_passConfirm').hide();
-        } else {
+            $('#check_passConfirm').hide();
+        }else {
             $('#check_passConfirm').show();
         }
             
@@ -180,7 +183,6 @@ $(document).ready(function(){
         } else {
             $("#check_name").hide();
         }
-		
 		if($('#pass').val()==""){
 			$('#check_pass').text('비밀번호를 입력해주세요');
             $('.check_font').css('color', 'gray');
@@ -190,19 +192,21 @@ $(document).ready(function(){
         } else {
             $("#check_pass").hide();
         }
-		
 		if($('.confirm').eq(0).val() =="Y"==false){
 			alert("이름 중복 체크를 해주세요.");
 			$('#name').focus();
 			return false;
 		}
-		
 		if($('.confirm').eq(1).val() =="Y"==false){
 			alert("패스워드 설정에 문제가 있습니다.");
 			$('#pass').focus();
 			return false;
 		}
-		
+		if($('#pass').val() != $('#passConfirm').val()) {
+       	 	$('#check_passConfirm').text('비밀번호를 확인해주세요');
+            $('#check_passConfirm').focus();
+            return false;
+        }
 		
 	});	
 	
