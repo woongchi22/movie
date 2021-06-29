@@ -14,7 +14,7 @@
 
 $(document).ready(function() {
    
-    //회원가입 이메일 중복 확인
+     //회원가입 이메일 중복 확인
      $('#dupEmail').click(function(){
          var email = $('#email').val();
       // 정규식 판별 변수
@@ -24,7 +24,7 @@ $(document).ready(function() {
 
          if(email==""){
         	 $('#check_email').text('이메일을 입력해주세요.');
-             $('.check_font').css('color', 'gray');
+             $('.check_font').css('color', 'red');
 //              $("#check_email").attr("disabled", true);           
              return false;
           // 정규식에 위배되는 경우
@@ -57,7 +57,7 @@ $(document).ready(function() {
 
          if(name == ""){
              $('#check_name').text('이름을 입력해주세요.');
-             $('.check_font').css('color', 'gray');
+             $('.check_font').css('color', 'red');
 //              $("#check_name").attr("disabled", true);           
              return false;
          } else {
@@ -91,21 +91,46 @@ $(document).ready(function() {
              alert("이름 중복체크를 해주세요");
              return false;
          }
-         if($('.confirm').eq(1).val()=="Y"==false){
-             alert("패스워드 설정에 문제가 있습니다.");
+         if($('#pass').val() == "") {
+             $('#check_pass').text('비밀번호를 입력해주세요');
+             $('.check_font').css('color', 'red');
+             $("#check_pass").attr("disabled", true);
+             $('#pass').focus();
+             return false;
+         } else {
+             $("#check_pass").hide();
+         }
+         
+         if($('#passConfirm').val() == "") {
+             $('#check_passConfirm').text('비밀번호를 확인해주세요');
+             $('.check_font').css('color','red');
+             $("#check_passConfirm").attr("disabled", true);         
+             $('#passConfirm').focus();
+             return false;
+         }
+         
+         if($('#pass').val() != $('#pass2').val()) {
+             $('#passConfirm').focus();
+             return false;
+         }
+          
+         if($('.confirm').eq(1).val() == "Y" == false){
+             alert("비밀번호 설정에 문제가 있습니다.");
              $('#pass').focus();
              return false;
          }
          
+         
      });
- 	// 이메일 체크
+     
+ 	 // 이메일 체크
      $( function(){
  		$( '#email' ).on("blur keyup", function() {
  			$(this).val( $(this).val().replace( /[^0-9a-zA-Z-_\\@.]/g, '' ) );
  		});
- 	})
+ 	 })
     
- 	// 비밀번호 확인
+ 	 // 비밀번호 확인
      $('#passConfirm').keyup(function() {
     	 
          if($('#pass').val() == $('#passConfirm').val()) {
@@ -116,11 +141,13 @@ $(document).ready(function() {
              $('#check_passConfirm').html('비밀번호가 일치하지 않습니다');
              $('.check_font').css('color','red');
              $('.confirm').eq(1).val("N");
-         }if($('#passConfirm').val() == "") {
-          $('#check_passConfirm').html('패스워드를 확인해주세요');
-          $('#passConfirm').focus();
-          $('.confirm').eq(1).val("N");
          }
+         
+//          if($('#passConfirm').val() == "") {
+//           $('#check_passConfirm').html('패스워드를 확인해주세요');
+//           $('#passConfirm').focus();
+//           $('.confirm').eq(1).val("N");
+//          }
           
          if($('#passConfirm').val() == '') {
              $('#check_passConfirm').hide();
@@ -130,26 +157,26 @@ $(document).ready(function() {
              
      });
      
-     $('#email').keyup(function() {
-         if($('#email').val() == '') {
-             $('#check_email').show();
-         } else {
-             $('#check_email').hide();
-         }
-     });
+//      $('#email').keyup(function() {
+//          if($('#email').val() == '') {
+//              $('#check_email').show();
+//          } else {
+//              $('#check_email').hide();
+//          }
+//      });
      
-     $('#name').keyup(function() {
-         if($('#name').val() == '') {
-             $('#check_name').show();
-         } else {
-             $('#check_name').hide();
-         }
-     });
+//      $('#name').keyup(function() {
+//          if($('#name').val() == '') {
+//              $('#check_name').show();
+//          } else {
+//              $('#check_name').hide();
+//          }
+//      });
      
      
     
     
-   // 패스워드 정규식 & 보안강도 표시
+    // 패스워드 정규식 & 보안강도 표시
     $('#pass').keyup(function(){
        
        $('#check_pass').html('');
@@ -178,58 +205,85 @@ $(document).ready(function() {
             if(lower&&upper&&num&&special){
                 $('#pass_msg').removeClass();
                 $('#pass_msg').addClass('강함');
-                $('#pass_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 강함");
+                $('#pass_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div><div id='box5'>강함</div>");
                 $('#regPass').html('사용 가능');
                 $('.confirm').eq(1).val("Y");
             
             }else if((lower||upper)&&(num||secial)){
                 $('#pass_msg').removeClass();
                 $('#pass_msg').addClass('중간');
-                $('#pass_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 중간");
+                $('#pass_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div><div id='box5'>중간</div>");
                 $('#regPass').html('사용 가능');
                 $('.confirm').eq(1).val("Y");   
                 
             }else { // 한가지 조합으로만 8글자 입력했을 경우
                 $('#pass_msg').removeClass();
                 $('#pass_msg').addClass('약함');
-                $('#pass_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 약함");
-                $('#regPass').html('비밀번호는 8~15자이며,\n숫자/대문자/소문자/특수문자(!,@)를 포함해야 합니다.');
-                 $('.confirm').eq(1).val("N");
+                $('#pass_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div><div id='box5'>약함</div>");
+                $('#regPass').html('비밀번호는 숫자와 영어[대문자or소문자or특수문자(!,@)]를 포함한 8~15자 입니다');
+                $('.confirm').eq(1).val("N");
             }
             
-	        }else {
-	            $('#pass_msg').removeClass();
-	            $('#pass_msg').addClass('짧음');
-	            $('#pass_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 짧음");
-	            $('#regPass').html('비밀번호는 8~15자이며,\n숫자/대문자/소문자/특수문자(!,@)를 포함해야 합니다.');
-	            $('.confirm').eq(1).val("N");
-	            
-	            if (pw.length==0) {
-	                $('#pass_msg').hide();
-	                $('#regPass').hide();
-	                
-	            } else {
-	                $('#pass_msg').show();
-	                $('#regPass').show();
-	            }
-	        }
+        }else {
+            $('#pass_msg').removeClass();
+            $('#pass_msg').addClass('짧음');
+            $('#pass_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div><div id='box5'>짧음</div>");
+            $('#regPass').html('비밀번호는 숫자와 영어[대문자or소문자or특수문자(!,@)]를 포함한 8~15자 입니다');
+            $('.confirm').eq(1).val("N");
+            
+            if (pw.length==0) {
+                $('#pass_msg').hide();
+                $('#regPass').hide();
+                
+            } else {
+                $('#pass_msg').show();
+                $('#regPass').show();
+            }
+        }
 	        
-	        if(/(\w)\1\1\1/.test(pw)) {
-	            $('#regPass').html('같은 문자를 4번 이상 사용할 수 없습니다.');
-	             $('.confirm').eq(1).val("N");
-	        }
-	        if(pw.search(/\s/) != -1) {
-	            $('#regPass').html('비밀번호는 공백 없이 입력해주세요.');
-	            $('.confirm').eq(1).val("N");
-	        }
+        if(/(\w)\1\1\1/.test(pw)) {
+            $('#regPass').html('같은 문자를 4번 이상 사용할 수 없습니다.');
+             $('.confirm').eq(1).val("N");
+        }
+        if(pw.search(/\s/) != -1) {
+            $('#regPass').html('비밀번호는 공백 없이 입력해주세요.');
+            $('.confirm').eq(1).val("N");
+        }
 	    
     });
-   
-  /// 이메일 체크
-	
-   
-  
-   
+    
+    
+    $('#email').keyup(function() {
+        if($('#email').val() == '') {
+            $('#check_email').show();
+        } else {
+            $('#check_email').hide();
+        }
+    });
+    
+    $('#name').keyup(function() {
+        if($('#name').val() == '') {
+            $('#check_name').show();
+        } else {
+            $('#check_name').hide();
+        }
+    });
+    
+    $('#pass').keyup(function() {
+        if($('#pass').val() == '') {
+            $('#check_pass').show();
+        } else {
+            $('#check_pass').hide();
+        }
+    });
+    
+//     $('#passConfirm').keyup(function() {
+//         if($('#passConfirm').val() == '') {
+//             $('#check_passConfirm').show();
+//         } else {
+//             $('#check_passConfirm').hide();
+//         }
+//     });
     
     
    
@@ -254,22 +308,22 @@ $(document).ready(function() {
             <div>
                 <input type="email" name="email" id="email" placeholder="이메일(xxx@xxx.xxx)" class="joinEmail">
                 <div class="check_font" id="check_email"></div>
-	             <button type="button" id="dupEmail"> 이메일 중복체크 </button>
+	            <button type="button" id="dupEmail" class="joinCheck"> 이메일 중복체크 </button>
 	            <!--             <button class = "check_font" id="dupEmail" type="button">이메일 중복체크</button> -->
             </div>
             <div>
                 <input type="text" name="name" id="name" placeholder="이름" class="joinEmail">
                 <div class="check_font" id="check_name"></div>
-	            <button type="button" id="dupName"> 이름 중복 체크 </button>
+	            <button type="button" id="dupName" class="joinCheck"> 이름 중복 체크 </button>
             </div>
 	        <div>
-                <input type="password" name="pass" id="pass" placeholder="비밀번호" class="joinPass">
+                <input type="password" name="pass" id="pass" maxlength="15" placeholder="비밀번호" class="joinPass">
                 <div class="check_font" id="check_pass"></div>
                 <div id="pass_msg"></div>
                 <div id="regPass" class="msg"></div>
             </div>
 	        <div>
-                <input type="password" name="passConfirm" id="passConfirm" placeholder="비밀번호 확인" class="joinPass">
+                <input type="password" name="passConfirm" id="passConfirm" maxlength="15" placeholder="비밀번호 확인" class="joinPass">
                 <div class="check_font" id="check_passConfirm"></div>
             </div>
 

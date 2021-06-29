@@ -87,7 +87,7 @@ $(document).ready(function() {
 	            <div class="check_font" id="check_email"></div>
 		    </div>
 		    <div>
-		        <input type="password" name="pass" id="pass" placeholder="비밀번호" class="loginPass">
+		        <input type="password" name="pass" id="pass" maxlength="15" placeholder="비밀번호" class="loginPass">
 		        <div class="check_font" id="check_pass"></div>
 		    </div>
 			<div>
