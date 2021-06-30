@@ -28,10 +28,9 @@ String pass = (String) session.getAttribute("pass");
 $(document).ready(function(){
 	
 	$('#dupName').click(function(){
-		
 		var name = $('#name').val();
 		console.log(name);
-		
+		if(name==""){
 				$("#check_name").text('이름을 입력해주세요');
 				$('.check_font').css('color', 'gray');
 				$("#check_name").attr("disabled", true);
@@ -53,10 +52,10 @@ $(document).ready(function(){
 							$('.confirm').eq(0).val("Y");
 						}
 						
-					}
 					if(rdata=="사용가능 이름"){
 						 alert("사용 가능한 이름 입니다.");
 						$('.confirm').eq(0).val("Y");
+					}
 					}
 					
 					$('#name').html(rdata);
@@ -172,7 +171,7 @@ $(document).ready(function(){
     });
 	
 	// 입력란
-	$('.update_fr').submit(function(){
+	$('#update_fr').submit(function(){
 		
 		if($('#name').val()==""){
             $('#check_name').text('이름을 입력해주세요');
@@ -180,7 +179,7 @@ $(document).ready(function(){
             $("#check_name").attr("disabled", true);
             $('#name').focus();
             return false;
-        } else {
+        }else {
             $("#check_name").hide();
         }
 		if($('#pass').val()==""){
@@ -189,7 +188,7 @@ $(document).ready(function(){
             $("#check_pass").attr("disabled", true);
             $('#pass').focus();
             return false;
-        } else {
+        }else {
             $("#check_pass").hide();
         }
 		if($('.confirm').eq(0).val() =="Y"==false){
