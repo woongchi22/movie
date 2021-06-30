@@ -27,11 +27,11 @@ String pass = (String)session.getAttribute("pass");
 		
 		    <%} %>
 		</span>
-		<span class="searchBar">
-		    <form action="MovieSearch.mo" id="movie_search">
-		        <input type="search" name="search" placeholder="search">
-		        <button type="submit">검색</button>
-		    </form>
-		</span>
+	    <form action="MovieSearch.mo" id="movie_search">
+			<span class="searchBar">
+	       	 	<input type="search" name="search" placeholder="search">
+	        	<button type="submit">검색</button>
+			</span>
+	    </form>
 	</nav>
 </header>
