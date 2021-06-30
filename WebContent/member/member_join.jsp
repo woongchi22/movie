@@ -244,13 +244,10 @@ $(document).ready(function() {
              return false;
          }
          
-         
      });
      
-    
    
 });
-   
    
 
 </script>

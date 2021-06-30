@@ -172,6 +172,7 @@ $(document).ready(function(){
             
     });
 	
+	
 	// 입력란
 	$('.update_fr').submit(function(){
 		
