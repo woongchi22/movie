@@ -56,7 +56,6 @@ $(document).ready(function(){
          }
      });
 	
-    
     // 패스워드 정규식 & 보안강도 표시
     $('#pass').keyup(function(){
         
@@ -181,18 +180,18 @@ $(document).ready(function(){
             $("#check_passConfirm").attr("disabled", true);         
             $('#passConfirm').focus();
             return false;
-        }
+    }
 		
 		if($('#pass').val() != $('#passConfirm').val()) {
             $('#passConfirm').focus();
             return false;
-        }
+    }
          
-        if($('.confirm').eq(1).val() == "N"){
-            alert("비밀번호 설정에 문제가 있습니다.");
-            $('#pass').focus();
-            return false;
-        }
+    if($('.confirm').eq(1).val() == "N"){
+        alert("비밀번호 설정에 문제가 있습니다.");
+        $('#pass').focus();
+        return false;
+    }
 		
 	});	
 	

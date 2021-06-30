@@ -25,7 +25,6 @@ $(document).ready(function() {
          if(email==""){
         	 $('#check_email').text('이메일을 입력해주세요.');
              $('.check_font').css('color', 'red');
-//              $("#check_email").attr("disabled", true);           
              return false;
           // 정규식에 위배되는 경우
          }else if(!checkResult){
@@ -58,7 +57,6 @@ $(document).ready(function() {
          if(name == ""){
              $('#check_name').text('이름을 입력해주세요.');
              $('.check_font').css('color', 'red');
-//              $("#check_name").attr("disabled", true);           
              return false;
          }else {
              $.ajax("dupName.me",{
@@ -177,7 +175,6 @@ $(document).ready(function() {
              $('#check_passConfirm').html('비밀번호가 일치하지 않습니다');
              $('.check_font').css('color','red');
          }
-          
          if($('#passConfirm').val() == '') {
              $('#check_passConfirm').hide();
          }else {
