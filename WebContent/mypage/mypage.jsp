@@ -34,7 +34,7 @@ $(document).ready(function(){
 		
 			if(name==""){
 				$("#check_name").text('이름을 입력해주세요');
-				$('.check_font').css('color', 'gray');
+				$('.check_font').css('color', 'red');
 				$("#check_name").attr("disabled", true);
 				$('#name').focus();
 				return false;
