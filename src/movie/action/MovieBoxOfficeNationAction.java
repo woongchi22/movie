@@ -9,17 +9,23 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import action.Action;
+import api.BoxofficeApi;
 import api.kmdbApi;
 import vo.ActionForward;
 
 public class MovieBoxOfficeNationAction implements Action {
 
+
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		System.out.println("MovieBoxOfficeNationAction!!!!!");
+
 		String movieNm = request.getParameter("title");
 		String openDt = request.getParameter("openDt");
 		kmdbApi ba = new kmdbApi();
 		String getBox = ba.getBoxoffice(openDt,movieNm);
+		
 		
 		JsonParser jsonParser = new JsonParser();
 		JsonObject jsonObject = (JsonObject) jsonParser.parse(getBox);

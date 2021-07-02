@@ -45,7 +45,6 @@ public class MovieController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
 		}
 		if(command.equals("/BoxOfficeNation.mo")) {
 			action = new MovieBoxOfficeNationAction();
