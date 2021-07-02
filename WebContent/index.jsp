@@ -13,9 +13,15 @@ String name = (String)session.getAttribute("name");
 	<jsp:include page="/inc/top.jsp"/>
 </header>
 <body>
-   
- <h2>메인</h2>
- <h2>메인</h2>
+	<section id="main">
+		<div class="content">
+			<jsp:include page="/recommand/movie_ranking.jsp"/>
+		</div>
+		<div class="content">
+			<jsp:include page="/recommand/movie_recommand_byChart.jsp"/>
+		</div>
+
+	</section>
 
 </body>
 </html>
