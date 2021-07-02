@@ -38,6 +38,34 @@ public class MovieController extends HttpServlet {
 			}
 		}
 		
+		if(command.equals("/BoxOffice.mo")) {
+			action = new MovieBoxOfficeAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		if(command.equals("/BoxOfficeNation.mo")) {
+			action = new MovieBoxOfficeNationAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(command.equals("/MovieGetChart.mo")) {
+			action = new getMovieByChartAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
 	
 	
 		if(forward != null) {
