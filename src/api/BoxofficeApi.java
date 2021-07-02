@@ -11,7 +11,7 @@ import java.net.URLEncoder;
 public class BoxofficeApi {
 
 	public String getBoxOffice(String targetDt) throws IOException {
-		System.out.println("getBoxOffice");
+		System.out.println("BoxofficeApi-getBoxOffice!!!!!!!!!!!!!!");
 		System.out.println(targetDt);
 		String serviceKey = "4d549b0bc63467abbc7ffe4a1169333a";
 		

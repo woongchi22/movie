@@ -10,10 +10,10 @@ import java.net.URLEncoder;
 public class kmdbApi {
 
 	public String getBoxoffice(String openDt, String movieNm) throws IOException {
-		System.out.println("getBoxOffice");
+		System.out.println("kmdbApi-getBoxOffice");
 		
 		StringBuilder urlBuilder = new StringBuilder(
-				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?collection=kmdb_new&listCount=100&ServiceKey=605841J368J95E2I93M1");
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?collection=kmdb_new&listCount=100&ServiceKey=319276GM630XRTRNIWN8");
 		/* URL */
 		urlBuilder.append("&" + URLEncoder.encode("releaseDts", "UTF-8") + "=" + URLEncoder.encode(openDt, "UTF-8")); /* Service Key */
 		urlBuilder.append(
