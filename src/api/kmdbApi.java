@@ -64,6 +64,12 @@ public class kmdbApi {
 		} else {
 			rd = new BufferedReader(new InputStreamReader(con.getErrorStream())); 
 		}
+		
+		StringBuilder sb = new StringBuilder();
+		String line;
+		while ((line = rd.readLine()) != null) {
+			sb.append(line + "\n");
+		}
     
 		rd.close(); 
 		con.disconnect(); 
@@ -73,14 +79,12 @@ public class kmdbApi {
 		
 	}
 	
-	
-
 		
-public String getBoxoffice(String openDt, String movieNm) throws IOException {
+	public String getBoxoffice(String openDt, String movieNm) throws IOException {
 		System.out.println("getBoxOffice");
 		
 		StringBuilder urlBuilder = new StringBuilder(
-				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?collection=kmdb_new&listCount=100&ServiceKey=605841J368J95E2I93M1");
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?collection=kmdb_new&listCount=100&ServiceKey=319276GM630XRTRNIWN8");
 		/* URL */
 		urlBuilder.append("&" + URLEncoder.encode("releaseDts", "UTF-8") + "=" + URLEncoder.encode(openDt, "UTF-8")); /* Service Key */
 		urlBuilder.append(
@@ -100,17 +104,19 @@ public String getBoxoffice(String openDt, String movieNm) throws IOException {
 			rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
 		}
   
-  	StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder();
 		String line;
 		while ((line = rd.readLine()) != null) {
 			sb.append(line + "\n");
 		}
   
-    rd.close();
+		rd.close();
 		conn.disconnect();
 
 		return sb.toString();
 	}
+	
+	
 
 
 }
