@@ -62,7 +62,6 @@ $(document).ready(function(){
 			    		 console.log(openDt);
 			    		 console.log(titleNoSpace);
 	
-						
 						result = getNation(openDt,titleNoSpace);
 						result = result.split("|");
 						
@@ -100,9 +99,10 @@ $(document).ready(function(){
     				$.each(data.Data, function(idx,item) {
     					$.each(item.Result, function(idx2,item2) {
     						var image = item2.posters.split("|");
-//     						console.log(image + "발제");
+    						console.log(image);
     						
     						result = image[0] +"|"+item2.nation + "|"+item2.movieSeq; 
+    						console.log(result);
 //    						result = image[0] +"|"+item2.nation + "|"+item2.movieSeq +"|"+item2.movieId +"|"+item2.rating[0].ratingGrade; 
     						
     					});
