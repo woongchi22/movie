@@ -4,7 +4,8 @@ import java.io.*;
 import java.net.*;
 
 public class kmdbApi {
-  public String getBoxoffice(String openDt, String movieNm) throws IOException {
+	
+	public String getBoxoffice(String openDt, String movieNm) throws IOException {
 		System.out.println("kmdbApi-getBoxOffice");
 //		StringBuilder urlBuilder = new StringBuilder(
 //				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?collection=kmdb_new2&listCount=100&ServiceKey=319276GM630XRTRNIWN8");
@@ -55,7 +56,7 @@ public class kmdbApi {
 		
 //		/*URL*/ 
 		StringBuilder urlBuilder = new StringBuilder(
-				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=50title=" + title + "&ServiceKey=319276GM630XRTRNIWN8");
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&title=" + title + "&ServiceKey=319276GM630XRTRNIWN8");
 //		StringBuilder urlBuilder = new StringBuilder("http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&nation=대한민국");
 
 		URL url = new URL(urlBuilder.toString());
@@ -89,7 +90,7 @@ public class kmdbApi {
 		System.out.println("kmdb - getMovieDetail");
 		
 		StringBuilder urlBuilder = new StringBuilder(
-				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=50&ServiceKey=319276GM630XRTRNIWN8");
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&ServiceKey=319276GM630XRTRNIWN8");
 		
 		urlBuilder.append("&" + URLEncoder.encode("title","UTF-8") + "=" + URLEncoder.encode(query,"UTF-8"));
 		urlBuilder.append("&" + URLEncoder.encode("movieSeq","UTF-8") + "=" + movieSeq);
