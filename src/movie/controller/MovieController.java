@@ -29,8 +29,28 @@ public class MovieController extends HttpServlet {
 		if(command.equals("/MovieSearch.mo")) {
 			forward = new ActionForward();
 			forward.setPath("/movie/movie_search.jsp");
+			
+		// 영화 검색	
 		} else if(command.equals("/MovieSearchPro.mo")) {
 			action = new MovieSearchProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		// 감독 검색	
+		} else if(command.equals("/DirectorSearchPro.mo")) {
+			action = new DirectorSearchProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		// 배우 검색	
+		} else if(command.equals("/ActorSearchPro.mo")) {
+			action = new ActorSearchProAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
