@@ -25,7 +25,7 @@ public class MovieController extends HttpServlet {
 		System.out.println(command);
 		
 		
-		
+		// 검색 버튼 
 		if(command.equals("/MovieSearch.mo")) {
 			forward = new ActionForward();
 			forward.setPath("/movie/movie_search.jsp");
