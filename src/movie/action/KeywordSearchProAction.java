@@ -10,20 +10,20 @@ import action.*;
 import api.*;
 import vo.*;
 
-public class ActorSearchProAction implements Action {
+public class KeywordSearchProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("ActorSearchProAction!!");
+		System.out.println("KeywordSearchProAction!!");
 		
 		response.setCharacterEncoding("UTF-8");
-		String actor = request.getParameter("query");
+		String keyword = request.getParameter("query");
 		
 		kmdbApi movie = new kmdbApi();
 		String json = null;
 		
-		if(actor != null) {
-			json = movie.getActor(actor);
+		if(keyword != null) {
+			json = movie.getKeyword(keyword);
 		}
 
 		JsonParser jsonParser = new JsonParser();
