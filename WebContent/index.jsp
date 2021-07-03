@@ -18,7 +18,7 @@ String name = (String)session.getAttribute("name");
 			<jsp:include page="/recommand/movie_ranking.jsp"/>
 		</div>
 		<div class="content">
-			<jsp:include page="/recommand/movie_recommand_byChart.jsp"/>
+<%-- 			<jsp:include page="/recommand/movie_recommand_byChart.jsp"/> --%>
 		</div>
 
 	</section>

@@ -4,7 +4,8 @@ import java.io.*;
 import java.net.*;
 
 public class kmdbApi {
-  public String getBoxoffice(String openDt, String movieNm) throws IOException {
+	
+	public String getBoxoffice(String openDt, String movieNm) throws IOException {
 		System.out.println("kmdbApi-getBoxOffice");
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?collection=kmdb_new&listCount=100&ServiceKey=605841J368J95E2I93M1");
@@ -15,7 +16,7 @@ public class kmdbApi {
 //		urlBuilder
 //				.append("&" + URLEncoder.encode("val002", "UTF-8") + "=" + URLEncoder.encode("01", "UTF-8")); /* 상영 월 */
 		URL url = new URL(urlBuilder.toString());
-System.out.println(url);
+		System.out.println(url);
 		
 		System.out.println("==========");
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();

@@ -80,7 +80,7 @@ $(document).ready(function() {
                     
                     result = getNation(openDt,titleNoSpace);
                     result = result.split("|");	 
-                    
+//                     console.log(result[0]);
                     
                  		// 디자인 맞춤때문에 코드 수정 - 낙원 : 1019 [S]
 								$('.boxOffice').append("<div class=boxOfficeMovie>"+
@@ -95,40 +95,40 @@ $(document).ready(function() {
          	  
                 
              });
-            $('.boxOffice').slick({
-         	   dots: false,
-                infinite: false,
-                arrows: true,
-                variableWidth:true,
-                speed: 300,
-                slidesToShow: 4,
-                slidesToScroll: 3,
-         	   responsive: [
-         	     {
-         	       breakpoint: 1024,
-         	       settings: {
-         	         slidesToShow: 3,
-         	         slidesToScroll: 3,
-         	         infinite: false,
-         	         dots: false
-         	       }
-         	     },
-         	     {
-         	       breakpoint: 600,
-         	       settings: {
-         	         slidesToShow: 2,
-         	         slidesToScroll: 2
-         	       }
-         	     },
-         	     {
-         	       breakpoint: 480,
-         	       settings: {
-         	         slidesToShow: 1,
-         	         slidesToScroll: 1
-         	       }
-         	     }
-         	   ]
-         	 });
+//             $('.boxOffice').slick({
+//          	   dots: false,
+//                 infinite: false,
+//                 arrows: true,
+//                 variableWidth:true,
+//                 speed: 300,
+//                 slidesToShow: 4,
+//                 slidesToScroll: 3,
+//          	   responsive: [
+//          	     {
+//          	       breakpoint: 1024,
+//          	       settings: {
+//          	         slidesToShow: 3,
+//          	         slidesToScroll: 3,
+//          	         infinite: false,
+//          	         dots: false
+//          	       }
+//          	     },
+//          	     {
+//          	       breakpoint: 600,
+//          	       settings: {
+//          	         slidesToShow: 2,
+//          	         slidesToScroll: 2
+//          	       }
+//          	     },
+//          	     {
+//          	       breakpoint: 480,
+//          	       settings: {
+//          	         slidesToShow: 1,
+//          	         slidesToScroll: 1
+//          	       }
+//          	     }
+//          	   ]
+//          	 });
             
          }
     });
@@ -139,6 +139,9 @@ $(document).ready(function() {
 
 </script>
 </head>
+<header>
+    <jsp:include page="/inc/top.jsp"/>
+</header>
 <body>
    <div class="boxOfficeMovie">
    	 <div class="boxOffice"></div>

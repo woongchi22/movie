@@ -6,14 +6,17 @@ String query = request.getParameter("query");
 String name = (String)session.getAttribute("name");
 
 
-
 %>
 
 <html>
 <head>
 <meta charset="UTF-8">
-<title>영화 검색</title>
+<title>[<%=query %>] 검색 결과</title>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/slick.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css">
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -53,27 +56,30 @@ $(document).ready(function() {
 	                
 	                var rating = item2.ratings.rating[0].ratingGrade;
 // 	                console.log(rating)
+// 					console.log(image[0]);
 					
 	                if(nation == "대한민국") {
 	                	
+	                	// 한국 영화 검색
 	                	for(var num = 0; num < item2.actors.actor.length; num++) {
 	                		actors = actors + item2.actors.actor[num].actorNm + ", ";
 	                	}
 	                	
 	                	if(image[0]) {
-	                		$('#koreaList').append('<div id=koreaMovie>' + '<a href=MovieDetailSearch.mo?movieId=' + item2.movieId + '&movieSeq=' + item2.movieSeq + '&query=' + title +
-	                				'&image=' + image[0] + '><div id=poster style="background-image: url(' + image[0] + '),url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
+	                		$('#koreaList').append('<div id=koreaMovie><a href=MovieDetailSearch.mo?movieId=' + item2.movieId + '&movieSeq=' + item2.movieSeq + '&query=' + title +
+	                				'&image=' + image[0] + '><div class=poster style="background-image: url(' + image[0] + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
 	                				'<div id=title>' + title4 + '</div></div>');
 	                	}
 	                	
                 	} else {
                 		
+                		// 해외 영화 검색
                 		for(var num = 0; num < item2.actors.actor.length; num++) {
                 			actors = actors + item2.actors.actor[num].actorNm + ", ";
                 		}
                 		
                 		if(image[0]) {
-                			$('#foreignList').append('<div id=foreignMovie>' + '<a href=MovieDetailSearch.mo?movieId=' + item2.movieId + '&movieSeq=' + item2.movieSeq + '&query=' + title +
+                			$('#foreignList').append('<div id=foreignMovie><a href=MovieDetailSearch.mo?movieId=' + item2.movieId + '&movieSeq=' + item2.movieSeq + '&query=' + title +
                                     '&image=' + image[0] + '><div class=poster style="background-image: url(' + image[0] + '),url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
                                     '<div id=title>' + title4 + '</div></div>');
                 		}
@@ -83,38 +89,43 @@ $(document).ready(function() {
                 
 			});
 				
-				
-// 			$('#koreaMovie').slick({
-//                 dots: false,
-//                 infinite: false,
-//                 arrows: true,
-//                 variableWidth:true,
-//                 speed: 300,
-//                 slidesToShow: 4,
-//                 slidesToScroll: 3,
-//                 responsive: [{
-//                     breakpoint: 1024,
-//                     settings: {
-//                     	slidesToShow: 3,
-//                         slidesToScroll: 3,
-//                         infinite: true,
-//                         dots: true
-//                     }
-//                  }, {
-//                     breakpoint: 600,
-//                     settings: {
-//                         slidesToShow: 2,
-//                         slidesToScroll: 2
-//                     }
-//                  }, {
-//                     breakpoint: 480,
-//                     settings: {
-//                         slidesToShow: 1,
-//                         slidesToScroll: 1
-//                     }
-//                  }]
-			
-//             }); // slick(koreaMovie)끝
+			$('#koreaList').slick({
+				  dots: true,
+				  infinite: false,
+				  speed: 300,
+				  slidesToShow: 4,
+				  slidesToScroll: 4,
+				  responsive: [
+				    {
+				      breakpoint: 1024,
+				      settings: {
+				        slidesToShow: 3,
+				        slidesToScroll: 3,
+				        infinite: true,
+				        dots: true
+				      }
+				    },
+				    {
+				      breakpoint: 600,
+				      settings: {
+				        slidesToShow: 2,
+				        slidesToScroll: 2
+				      }
+				    },
+				    {
+				      breakpoint: 480,
+				      settings: {
+				        slidesToShow: 1,
+				        slidesToScroll: 1
+				      }
+				    }
+				    // You can unslick at a given breakpoint now by adding:
+				    // settings: "unslick"
+				    // instead of a settings object
+				  ]
+				});
+	                		
+	                		
             
 //             $('#foreignMovie').slick({
 //                 dots: false,
@@ -171,10 +182,10 @@ $(document).ready(function() {
     <section>
         <input type="hidden" id="query" name="query" value="<%=query %>">
         
-	    <h2>국내 영화</h2>
+	    <h2>한국 영화</h2>
 	    <section id="koreaList"></section>
 	    
-	    <h2>국외 영화</h2>
+	    <h2>해외 영화</h2>
 	    <section id="foreignList"></section>
 	    
 	    <h2>감독 검색 결과</h2>
