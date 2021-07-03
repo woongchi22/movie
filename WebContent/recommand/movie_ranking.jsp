@@ -1,19 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+String name = (String)session.getAttribute("name");
+
+%>
+
 <!DOCTYPE html>
 <html>
-<script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 <head>
-<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 
 <meta charset="UTF-8">
-<%String nick = (String)session.getAttribute("nick"); %>
 <title></title>
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
+<script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
+
+
 $(document).ready(function() {
 	
 	var result;
-	
 	// 하루 전 날짜 구하기
     var d = new Date();
     var yy = d.getFullYear();
@@ -58,7 +63,6 @@ $(document).ready(function() {
                     
                     result = getNation(openDt,titleNoSpace);
                     result = result.split("|");	 
-//                     console.log(result[0]);
                     
                  		// 디자인 맞춤때문에 코드 수정 - 낙원 : 1019 [S]
 								$('.boxOffice').append("<div class=boxOfficeMovie>"+
@@ -139,8 +143,11 @@ $(document).ready(function() {
 }); // ready() 끝
 
 
+
+
 </script>
-</head>
+</head>
+
 <header>
     <jsp:include page="/inc/top.jsp"/>
 </header>

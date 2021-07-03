@@ -21,7 +21,7 @@ public class MovieBoxOfficeAction implements Action {
 
 		
 		String targetDt = request.getParameter("targetDt");
-		
+		System.out.println(targetDt+"aaaaaaaaa");
 		BoxofficeApi ba = new BoxofficeApi();
 		String getBox = ba.getBoxOffice(targetDt);
 			
