@@ -14,6 +14,7 @@ String name = (String)session.getAttribute("name");
 <title>[<%=query %>] 검색 결과</title>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/slick.css" rel="stylesheet" type="text/css">
+<%-- <link href="${pageContext.request.contextPath}/css/slick-theme.css" rel="stylesheet" type="text/css"> --%>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css">
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>

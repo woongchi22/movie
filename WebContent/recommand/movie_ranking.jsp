@@ -11,32 +11,10 @@
 <title></title>
 <script type="text/javascript">
 $(document).ready(function() {
-	var result;
-    function getNation(openDt,title){
- 	   $.ajax("BoxOfficeNation.mo",{
-            method: "get",
-            dataType: "json",
-            async: false, // ajax 방식일때 리턴값만 비동기로 바꿔주는 부분
-            data : {
-         	   openDt:openDt,
-         	   title:title
-         	   	},
-            success: function(data) { 
-                $.each(data.Data, function(idx, item) {
-             	  $.each(item.Result,function(idx2,item2){
-             		  var image = item2.posters.split("|");
-             		  result = image[0] +"|"+item2.nation + "|"+item2.movieSeq;
-//              		  result = image[0] +"|"+item2.nation + "|"+item2.movieSeq +"|"+item2.movieId +"|"+item2.rating[0].ratingGrade; // 밑에 영화포스터 링크(a 태그)안에 movieId,ratingGrade 포함해야해서 추가함 - 낙원
-             	  });
-                });
-                
-            }
-   	  });
- 	   return result;
- 	   
-    }
 	
- // 하루 전 날짜 구하기
+	var result;
+	
+	// 하루 전 날짜 구하기
     var d = new Date();
     var yy = d.getFullYear();
     var mm = d.getMonth() + 1; // 리턴값: (0~11) +1 => 1월~12월
@@ -133,12 +111,36 @@ $(document).ready(function() {
          }
     });
     
+    function getNation(openDt,title){
+        $.ajax("BoxOfficeNation.mo",{
+             method: "get",
+             dataType: "json",
+             async: false, // ajax 방식일때 리턴값만 비동기로 바꿔주는 부분
+             data : {
+                openDt:openDt,
+                title:title
+                 },
+             success: function(data) { 
+                 $.each(data.Data, function(idx, item) {
+                   $.each(item.Result,function(idx2,item2){
+                       var image = item2.posters.split("|");
+                       result = image[0] +"|"+item2.nation + "|"+item2.movieSeq;
+//                         result = image[0] +"|"+item2.nation + "|"+item2.movieSeq +"|"+item2.movieId +"|"+item2.rating[0].ratingGrade; // 밑에 영화포스터 링크(a 태그)안에 movieId,ratingGrade 포함해야해서 추가함 - 낙원
+                   });
+                 });
+                 
+             }
+       }); 
+        return result;
+        
+     }
+    
     
 }); // ready() 끝
 
 
 </script>
-</head>
+</head>
 <header>
     <jsp:include page="/inc/top.jsp"/>
 </header>
