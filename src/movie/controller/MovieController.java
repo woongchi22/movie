@@ -56,7 +56,16 @@ public class MovieController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+			
+		// 키워드 검색	
+		} else if(command.equals("/KeywordSearchPro.mo")) {
+			action = new KeywordSearchProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} 
 		
 		if(command.equals("/BoxOffice.mo")) {
 			action = new MovieBoxOfficeAction();

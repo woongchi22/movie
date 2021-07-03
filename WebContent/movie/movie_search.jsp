@@ -12,13 +12,13 @@ String name = (String)session.getAttribute("name");
 <head>
 <meta charset="UTF-8">
 <title>[<%=query %>] 검색 결과</title>
+<link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/css/slick.css" rel="stylesheet" type="text/css">
-<%-- <link href="${pageContext.request.contextPath}/css/slick-theme.css" rel="stylesheet" type="text/css"> --%>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css">
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="slick/slick.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	
@@ -89,44 +89,77 @@ $(document).ready(function() {
 				});
                 
 			});
-				
-			$('#koreaList').slick({
-				  dots: true,
-				  infinite: false,
-				  speed: 300,
-				  slidesToShow: 4,
-				  slidesToScroll: 4,
-				  responsive: [
-				    {
-				      breakpoint: 1024,
-				      settings: {
-				        slidesToShow: 3,
-				        slidesToScroll: 3,
-				        infinite: true,
-				        dots: true
-				      }
-				    },
-				    {
-				      breakpoint: 600,
-				      settings: {
-				        slidesToShow: 2,
-				        slidesToScroll: 2
-				      }
-				    },
-				    {
-				      breakpoint: 480,
-				      settings: {
-				        slidesToShow: 1,
-				        slidesToScroll: 1
-				      }
-				    }
-				    // You can unslick at a given breakpoint now by adding:
-				    // settings: "unslick"
-				    // instead of a settings object
-				  ]
-			
-				});
+	        
+		    $('#koreaList').slick({
+               dots: false,
+               infinite: false,
+               arrows: true,
+               variableWidth:true,
+               speed: 300,
+               slidesToShow: 4,
+               slidesToScroll: 3,
+               responsive: [
+                 {
+                   breakpoint: 1024,
+                   settings: {
+                     slidesToShow: 3,
+                     slidesToScroll: 3,
+                     infinite: false,
+                     dots: false
+                   }
+                 },
+                 {
+                   breakpoint: 600,
+                   settings: {
+                     slidesToShow: 2,
+                     slidesToScroll: 2
+                   }
+                 },
+                 {
+                   breakpoint: 480,
+                   settings: {
+                     slidesToShow: 1,
+                     slidesToScroll: 1
+                   }
+                 }
+               ]
+            }); // koreaList - slilck 끝 
             
+            $('#foreignList').slick({
+                dots: false,
+                infinite: false,
+                arrows: true,
+                variableWidth:true,
+                speed: 300,
+                slidesToShow: 4,
+                slidesToScroll: 3,
+                responsive: [
+                  {
+                    breakpoint: 1024,
+                    settings: {
+                      slidesToShow: 3,
+                      slidesToScroll: 3,
+                      infinite: false,
+                      dots: false
+                    }
+                  },
+                  {
+                    breakpoint: 600,
+                    settings: {
+                      slidesToShow: 2,
+                      slidesToScroll: 2
+                    }
+                  },
+                  {
+                    breakpoint: 480,
+                    settings: {
+                      slidesToShow: 1,
+                      slidesToScroll: 1
+                    }
+                  }
+                ]
+             }); // foreignList - slilck 끝 
+	                		
 		} // ajax: success 끝
 		
 	}); // ajax 끝
@@ -164,12 +197,197 @@ $(document).ready(function() {
                                 '<div id=title>' + title4 + '</div></div>');
                     }
                         
-                    
                 });
                 
             });
                 
+            $('#directorList').slick({
+                dots: false,
+                infinite: false,
+                arrows: true,
+                variableWidth:true,
+                speed: 300,
+                slidesToShow: 4,
+                slidesToScroll: 3,
+                responsive: [
+                  {
+                    breakpoint: 1024,
+                    settings: {
+                      slidesToShow: 3,
+                      slidesToScroll: 3,
+                      infinite: false,
+                      dots: false
+                    }
+                  },
+                  {
+                    breakpoint: 600,
+                    settings: {
+                      slidesToShow: 2,
+                      slidesToScroll: 2
+                    }
+                  },
+                  {
+                    breakpoint: 480,
+                    settings: {
+                      slidesToShow: 1,
+                      slidesToScroll: 1
+                    }
+                  }
+                ]
+             }); // directorList - slilck 끝     
+                
+        } // ajax: success 끝
+        
+    }); // ajax 끝
+    
+    
+    // 배우 검색
+    $.ajax('ActorSearchPro.mo', {
+        method:"post",
+        dataType:"json",
+        data:{query:query},
+        success: function(data) {
+            console.log(query);
             
+            $.each(data.Data, function(idx, item) {
+                
+                $.each(item.Result, function(idx, item2) {
+                    
+                    var title1 = item2.title
+                    var titleNoSpace = title1.replace(/ /g, ''); // 타이틀 공백제거
+                    var title2 = titleNoSpace.replace(/!HS/g,'') // 검색어는 !HS , !HE 로 둘러 싸여있어서 제거해줌
+                    var title3 = title2.replace(/!HE/g,'')
+                    var title4 = title3.trim(); // 양쪽끝에 공백을 제거해줌
+                    var title = encodeURIComponent(title4);
+                    
+                    var actors = "";
+                    var image = item2.posters.split("|"); // 포스터 데이터는 '|' 로 구분되어있어서 스플릿 처리함 ( 여러개 있음 )
+                    
+                    for(var num = 0; num < item2.actors.actor.length; num++) {
+                        actors = actors + item2.actors.actor[num].actorNm + ", ";
+                    }
+                    
+                    if(image[0]) {
+                        $('#actorList').append('<div id=actorMovie><a href=MovieDetailSearch.mo?movieId=' + item2.movieId + '&movieSeq=' + item2.movieSeq + '&query=' + title +
+                                '&image=' + image[0] + '><div class=poster style="background-image: url(' + image[0] + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
+                                '<div id=title>' + title4 + '</div></div>');
+                    }
+                        
+                });
+                
+            });
+                
+            $('#actorList').slick({
+                dots: false,
+                infinite: false,
+                arrows: true,
+                variableWidth:true,
+                speed: 300,
+                slidesToShow: 4,
+                slidesToScroll: 3,
+                responsive: [
+                  {
+                    breakpoint: 1024,
+                    settings: {
+                      slidesToShow: 3,
+                      slidesToScroll: 3,
+                      infinite: false,
+                      dots: false
+                    }
+                  },
+                  {
+                    breakpoint: 600,
+                    settings: {
+                      slidesToShow: 2,
+                      slidesToScroll: 2
+                    }
+                  },
+                  {
+                    breakpoint: 480,
+                    settings: {
+                      slidesToShow: 1,
+                      slidesToScroll: 1
+                    }
+                  }
+                ]
+             }); // actorList - slilck 끝     
+                
+        } // ajax: success 끝
+        
+    }); // ajax 끝
+    
+    
+    // 키워드 검색
+    $.ajax('KeywordSearchPro.mo', {
+        method:"post",
+        dataType:"json",
+        data:{query:query},
+        success: function(data) {
+            console.log(query);
+            
+            $.each(data.Data, function(idx, item) {
+                
+                $.each(item.Result, function(idx, item2) {
+                    
+                    var title1 = item2.title
+                    var titleNoSpace = title1.replace(/ /g, ''); // 타이틀 공백제거
+                    var title2 = titleNoSpace.replace(/!HS/g,'') // 검색어는 !HS , !HE 로 둘러 싸여있어서 제거해줌
+                    var title3 = title2.replace(/!HE/g,'')
+                    var title4 = title3.trim(); // 양쪽끝에 공백을 제거해줌
+                    var title = encodeURIComponent(title4);
+                    
+                    var actors = "";
+                    var image = item2.posters.split("|"); // 포스터 데이터는 '|' 로 구분되어있어서 스플릿 처리함 ( 여러개 있음 )
+                    
+                    for(var num = 0; num < item2.actors.actor.length; num++) {
+                        actors = actors + item2.actors.actor[num].actorNm + ", ";
+                    }
+                    
+                    if(image[0]) {
+                        $('#actorList').append('<div id=keywordMovie><a href=MovieDetailSearch.mo?movieId=' + item2.movieId + '&movieSeq=' + item2.movieSeq + '&query=' + title +
+                                '&image=' + image[0] + '><div class=poster style="background-image: url(' + image[0] + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
+                                '<div id=title>' + title4 + '</div></div>');
+                    }
+                        
+                });
+                
+            });
+                
+            $('#keywordList').slick({
+                dots: false,
+                infinite: false,
+                arrows: true,
+                variableWidth:true,
+                speed: 300,
+                slidesToShow: 4,
+                slidesToScroll: 3,
+                responsive: [
+                  {
+                    breakpoint: 1024,
+                    settings: {
+                      slidesToShow: 3,
+                      slidesToScroll: 3,
+                      infinite: false,
+                      dots: false
+                    }
+                  },
+                  {
+                    breakpoint: 600,
+                    settings: {
+                      slidesToShow: 2,
+                      slidesToScroll: 2
+                    }
+                  },
+                  {
+                    breakpoint: 480,
+                    settings: {
+                      slidesToShow: 1,
+                      slidesToScroll: 1
+                    }
+                  }
+                ]
+             }); // keywordList - slilck 끝     
+                
         } // ajax: success 끝
         
     }); // ajax 끝
@@ -205,9 +423,6 @@ $(document).ready(function() {
 	    <h2>배우</h2>
         <section id="actorList"></section>
     
-        <h2>장르</h2>
-        <section id="genreList"></section>
-        
         <h2>키워드</h2>
         <section id="keywordList"></section>
         

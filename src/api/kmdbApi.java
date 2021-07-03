@@ -131,10 +131,8 @@ public class kmdbApi {
 	public String getDirector(String director) throws IOException {
 		System.out.println("kmdb - getDirector");
 		
-//		/*URL*/ 
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&director=" + director + "&ServiceKey=319276GM630XRTRNIWN8");
-//		StringBuilder urlBuilder = new StringBuilder("http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&nation=대한민국");
 
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -161,6 +159,73 @@ public class kmdbApi {
 		
 		return sb.toString();
 		
+	}
+
+	// 배우 검색
+	public String getActor(String actor) throws IOException {
+		System.out.println("kmdb - getActor");
+		
+		StringBuilder urlBuilder = new StringBuilder(
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&actor=" + actor + "&ServiceKey=319276GM630XRTRNIWN8");
+
+		URL url = new URL(urlBuilder.toString());
+		HttpURLConnection con = (HttpURLConnection) url.openConnection();
+		con.setRequestMethod("GET");
+		con.setRequestProperty("Content-type", "application/json");
+		System.out.println("Response code: " + con.getResponseCode());
+		
+		BufferedReader rd;
+		if(con.getResponseCode() >= 200 && con.getResponseCode() <=300) {
+			rd = new BufferedReader(new InputStreamReader(con.getInputStream()));
+		} else {
+			rd = new BufferedReader(new InputStreamReader(con.getErrorStream())); 
+		}
+		
+		StringBuilder sb = new StringBuilder();
+		String line;
+		while ((line = rd.readLine()) != null) {
+			sb.append(line + "\n");
+		}
+		
+		rd.close(); 
+		con.disconnect(); 
+		System.out.println(sb.toString());
+		
+		return sb.toString();
+		
+	}
+
+	// 키워드 검색
+	public String getKeyword(String keyword) throws IOException {
+		System.out.println("kmdb - getKeyword");
+		
+		StringBuilder urlBuilder = new StringBuilder(
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&keyword=" + keyword + "&ServiceKey=319276GM630XRTRNIWN8");
+
+		URL url = new URL(urlBuilder.toString());
+		HttpURLConnection con = (HttpURLConnection) url.openConnection();
+		con.setRequestMethod("GET");
+		con.setRequestProperty("Content-type", "application/json");
+		System.out.println("Response code: " + con.getResponseCode());
+		
+		BufferedReader rd;
+		if(con.getResponseCode() >= 200 && con.getResponseCode() <=300) {
+			rd = new BufferedReader(new InputStreamReader(con.getInputStream()));
+		} else {
+			rd = new BufferedReader(new InputStreamReader(con.getErrorStream())); 
+		}
+		
+		StringBuilder sb = new StringBuilder();
+		String line;
+		while ((line = rd.readLine()) != null) {
+			sb.append(line + "\n");
+		}
+		
+		rd.close(); 
+		con.disconnect(); 
+		System.out.println(sb.toString());
+		
+		return sb.toString();
 	}
 	
 }
