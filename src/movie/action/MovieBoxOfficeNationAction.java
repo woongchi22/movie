@@ -9,7 +9,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import action.Action;
-import api.BoxofficeApi;
 import api.kmdbApi;
 import vo.ActionForward;
 
@@ -25,8 +24,6 @@ public class MovieBoxOfficeNationAction implements Action {
 		String openDt = request.getParameter("openDt");
 		kmdbApi ba = new kmdbApi();
 		String getBox = ba.getBoxoffice(openDt,movieNm);
-		
-		
 		JsonParser jsonParser = new JsonParser();
 		JsonObject jsonObject = (JsonObject) jsonParser.parse(getBox);
 
