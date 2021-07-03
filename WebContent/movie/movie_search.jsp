@@ -128,37 +128,41 @@ $(document).ready(function() {
 	                		
 	                		
             
-//             $('#foreignMovie').slick({
-//                 dots: false,
-//                 infinite: false,
-//                 arrows: true,
-//                 variableWidth:true,
-//                 speed: 300,
-//                 slidesToShow: 4,
-//                 slidesToScroll: 3,
-//                 responsive: [{
-//                     breakpoint: 1024,
-//                     settings: {
-//                         slidesToShow: 3,
-//                         slidesToScroll: 3,
-//                         infinite: true,
-//                         dots: true
-//                     }
-//                  }, {
-//                     breakpoint: 600,
-//                     settings: {
-//                         slidesToShow: 2,
-//                         slidesToScroll: 2
-//                     }
-//                  }, {
-//                     breakpoint: 480,
-//                     settings: {
-//                         slidesToShow: 1,
-//                         slidesToScroll: 1
-//                     }
-//                  }]
-            
-//             }); // slick(foreignMovie)끝
+            $('#foreignList').slick({
+            dots: true,
+            infinite: false,
+            speed: 300,
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            responsive: [
+              {
+                breakpoint: 1024,
+                settings: {
+                  slidesToShow: 3,
+                  slidesToScroll: 3,
+                  infinite: true,
+                  dots: true
+                }
+              },
+              {
+                breakpoint: 600,
+                settings: {
+                  slidesToShow: 2,
+                  slidesToScroll: 2
+                }
+              },
+              {
+                breakpoint: 480,
+                settings: {
+                  slidesToShow: 1,
+                  slidesToScroll: 1
+                }
+              }
+              // You can unslick at a given breakpoint now by adding:
+              // settings: "unslick"
+              // instead of a settings object
+            ]
+          });
             
 		} // ajax: success 끝
 		
@@ -186,12 +190,21 @@ $(document).ready(function() {
 	    <h2>한국 영화</h2>
 	    <section id="koreaList"></section>
 	    
-	    <h2>해외 영화</h2>
+	    <h2>외국 영화</h2>
 	    <section id="foreignList"></section>
 	    
-	    <h2>감독 검색 결과</h2>
+	    <h2>감독</h2>
 	    <section id="directorList"></section>
+	    
+	    <h2>배우</h2>
+        <section id="directorList"></section>
     
+        <h2>장르</h2>
+        <section id="directorList"></section>
+        
+        <h2>키워드</h2>
+        <section id="directorList"></section>
+        
     </section>
     
 
