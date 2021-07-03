@@ -9,7 +9,7 @@ public class MovieBean {
 	private String movieTitle;
 	private int movieSeq;
 	private String movieGrade;
-	private String nick;
+	private String name;
 	private String director;
 	private String nation;
 	private String openDt;
@@ -40,11 +40,11 @@ public class MovieBean {
 		this.nation = nation;
 	}
 
-	public String getNick() {
-		return nick;
+	public String getname() {
+		return name;
 	}
-	public void setNick(String nick) {
-		this.nick = nick;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getMovieGrade() {
 		return movieGrade;
