@@ -50,6 +50,9 @@ $(document).ready(function() {
 	                  
 	                var image = item2.posters.split("|"); // 포스터 데이터는 '|' 로 구분되어있어서 스플릿 처리함 ( 여러개 있음 )
 	                var nation = item2.nation
+	                
+	                var rating = item2.ratings.rating[0].ratingGrade;
+// 	                console.log(rating)
 					
 	                if(nation == "대한민국") {
 	                	
@@ -60,8 +63,6 @@ $(document).ready(function() {
 	                	if(image[0]) {
 	                		$('#koreaList').append('<div id=koreaMovie>' + '<a href=MovieDetailSearch.mo?movieId=' + item2.movieId + '&movieSeq=' + item2.movieSeq + '&query=' + title +
 	                				'&image=' + image[0] + '><div id=poster style="background-image: url(' + image[0] + '),url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
-	                				'<div id=nation>' + item2.nation + '</div>' + 
-	                				'<div id=rating>' + item2.rating[0].rationGrade + '</div>' +
 	                				'<div id=title>' + title4 + '</div></div>');
 	                	}
 	                	
@@ -74,8 +75,6 @@ $(document).ready(function() {
                 		if(image[0]) {
                 			$('#foreignList').append('<div id=foreignMovie>' + '<a href=MovieDetailSearch.mo?movieId=' + item2.movieId + '&movieSeq=' + item2.movieSeq + '&query=' + title +
                                     '&image=' + image[0] + '><div class=poster style="background-image: url(' + image[0] + '),url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
-                                    '<div id=nation>' + item2.nation + '</div>' + 
-                                    '<div id=rating>' + item2.rating[0].rationGrade + '</div>' +
                                     '<div id=title>' + title4 + '</div></div>');
                 		}
                 	}
