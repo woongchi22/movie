@@ -55,8 +55,9 @@ a:hover, a:active {color: #bfbfbf;}
 /* 	margin-top: 100px; */
 /* 	border: solid 1px green; */
 /* } */
-
 .poster{width:250px;height:350px;background-size:100%;margin-right:20px;margin-top:20px;margin-left:10px;background-repeat:no-repeat;}
+
+/* .poster{width:250px;height:350px;background-size:100%;margin-right:20px;margin-top:20px;margin-left:10px;background-repeat:no-repeat;} */
 /* .boxOfficePoster{width:250px;height:350px;background-size:100%;margin-right:20px;margin-top:20px;margin-left:10px;background-repeat:no-repeat;} */
 /* .content{border:1px solid black;margin:20px auto;padding:20px 0px;background-color: rgba(240,255,255,0.1);border-radius: 10px 10px 10px 10px;} */
 /* .slick-track{background-color: #000000;border-radius: 10px 10px;} */

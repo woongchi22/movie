@@ -10,9 +10,13 @@ public class kmdbApi {
 //				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?collection=kmdb_new2&listCount=100&ServiceKey=319276GM630XRTRNIWN8");
 		
 		StringBuilder urlBuilder = new StringBuilder(
-				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&title=" + movieNm + "&ServiceKey=319276GM630XRTRNIWN8");
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&title="
+						+ movieNm + "&repRlsDate=" + openDt + "&ServiceKey=319276GM630XRTRNIWN8");
+		
+		
+		
 		/* URL */
-		urlBuilder.append("&" + URLEncoder.encode("releaseDts", "UTF-8") + "=" + URLEncoder.encode(openDt, "UTF-8")); // 개봉일
+//		urlBuilder.append("&" + URLEncoder.encode("releaseDts", "UTF-8") + "=" + URLEncoder.encode(openDt, "UTF-8")); // 개봉일
 //		urlBuilder.append("&" + URLEncoder.encode("title", "UTF-8") + "=" + URLEncoder.encode(movieNm, "UTF-8")); // 영화명
 //		urlBuilder.append("&" + URLEncoder.encode("val002", "UTF-8") + "=" + URLEncoder.encode("01", "UTF-8")); /* 상영 월 */
 		
