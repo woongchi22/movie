@@ -2,22 +2,20 @@
     pageEncoding="UTF-8"%>
 <%
 String name = (String)session.getAttribute("name");
-
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta charset="UTF-8">
 <title></title>
+<link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>				
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
-
-
 $(document).ready(function() {
-	
+
 	var result;
 	// 하루 전 날짜 구하기
     var d = new Date();
@@ -36,12 +34,12 @@ $(document).ready(function() {
 			mm = mm-1;
 		}
 		
-		 if(mm < 10){
+		if(mm < 10){
           mm = "0" + mm; 
-       }
-       if(dd < 10){
+        }
+        if(dd < 10){
           dd = "0" + dd;
-       }
+        }
 		
     var today = yy + "" + mm + "" + dd; // 박스오피스에서 정해준 날짜 형식(yyyymmdd)으로 변환
     $.ajax({
@@ -51,12 +49,12 @@ $(document).ready(function() {
          dataType: "json",
          data: {
          	targetDt:today,
-         },
+          	},
          success: function(data) {
          	$('.boxOfficeMovie').prepend('<h1>박스오피스</h1>');
             $.each(data, function(idx, item) {
          	   $.each(item.weeklyBoxOfficeList, function(idx2,item2){
-         		   var title = item2.movieNm;
+         		    var title = item2.movieNm;
                     var titleNoSpace = title.replace(/ /g, '');
                     var openDt = item2.openDt.replace(/-/g,'');
                     var num =0;
@@ -64,53 +62,51 @@ $(document).ready(function() {
                     result = getNation(openDt,titleNoSpace);
                     result = result.split("|");	 
                     
-                 		// 디자인 맞춤때문에 코드 수정 - 낙원 : 1019 [S]
-								$('.boxOffice').append("<div class=boxOfficeMovie>"+
-                   			'<a class=boxOfficePoster><div class=poster style="background-image:url('+result[0]+'),url(${pageContext.request.contextPath}/img/noImage.gif);"></div></a>'+
-                   			 '<div class=nation>'+result[1]+'</div>'+
-                   			 '<div class=title>'+item2.movieNm+'</div></div>');   
-                    
-                    			$('.boxOfficePoster').eq(idx2).attr('href','MovieDetailPro.mo?movieSeq='+result[2]+'&query='+titleNoSpace);
-                    		// 디자인 맞춤때문에 코드 수정 - 낙원 : 1019 [E]
+					$('.boxOffice').append("<div class=boxOfficeMovie>"+
+          			 '<a class=boxOfficePoster><div class=poster style="background-image:url('+result[0]+'),url(${pageContext.request.contextPath}/img/noImage.gif);"></div></a>'+
+          			 '<div class=title>'+item2.movieNm+'</div></div>');   
+           
+           			$('.boxOfficePoster').eq(idx2).attr('href','MovieDetailPro.mo?movieSeq='+result[2]+'&query='+titleNoSpace);
                     
          	   });
          	  
                 
-             });
-//             $('.boxOffice').slick({
-//          	   dots: false,
-//                 infinite: false,
-//                 arrows: true,
-//                 variableWidth:true,
-//                 speed: 300,
-//                 slidesToShow: 4,
-//                 slidesToScroll: 3,
-//          	   responsive: [
-//          	     {
-//          	       breakpoint: 1024,
-//          	       settings: {
-//          	         slidesToShow: 3,
-//          	         slidesToScroll: 3,
-//          	         infinite: false,
-//          	         dots: false
-//          	       }
-//          	     },
-//          	     {
-//          	       breakpoint: 600,
-//          	       settings: {
-//          	         slidesToShow: 2,
-//          	         slidesToScroll: 2
-//          	       }
-//          	     },
-//          	     {
-//          	       breakpoint: 480,
-//          	       settings: {
-//          	         slidesToShow: 1,
-//          	         slidesToScroll: 1
-//          	       }
-//          	     }
-//          	   ]
-//          	 });
+            });
+            
+            $('.boxOffice').slick({
+         	   dots: false,
+                infinite: false,
+                arrows: true,
+                variableWidth:true,
+                speed: 300,
+                slidesToShow: 4,
+                slidesToScroll: 3,
+         	   responsive: [
+         	     {
+         	       breakpoint: 1024,
+         	       settings: {
+         	         slidesToShow: 3,
+         	         slidesToScroll: 3,
+         	         infinite: false,
+         	         dots: false
+         	       }
+         	     },
+         	     {
+         	       breakpoint: 600,
+         	       settings: {
+         	         slidesToShow: 2,
+         	         slidesToScroll: 2
+         	       }
+         	     },
+         	     {
+         	       breakpoint: 480,
+         	       settings: {
+         	         slidesToShow: 1,
+         	         slidesToScroll: 1
+         	       }
+         	     }
+         	   ]
+         	 });
             
          }
     });
@@ -140,10 +136,7 @@ $(document).ready(function() {
      }
     
     
-}); // ready() 끝
-
-
-
+}); 
 
 </script>
 </head>
@@ -155,5 +148,10 @@ $(document).ready(function() {
    <div class="boxOfficeMovie">
    	 <div class="boxOffice"></div>
    </div>
+ 
+  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script type="text/javascript" src="slick/slick.min.js"></script>	
+ 
 </body>
 </html>
