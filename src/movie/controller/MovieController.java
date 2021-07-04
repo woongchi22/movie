@@ -39,6 +39,15 @@ public class MovieController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+		// 영화 검색(한국,외국)	
+		} else if(command.equals("/SearchMoviePro.mo")) {
+			action = new SearchMovieProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		// 감독 검색	
 		} else if(command.equals("/DirectorSearchPro.mo")) {
 			action = new DirectorSearchProAction();
@@ -65,35 +74,24 @@ public class MovieController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} 
-		
-		if(command.equals("/BoxOffice.mo")) {
+			
+		// 박스오피스	
+		} else if(command.equals("/BoxOffice.mo")) {
 			action = new MovieBoxOfficeAction();
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		if(command.equals("/BoxOfficeNation.mo")) {
+			
+		} else if(command.equals("/BoxOfficeNation.mo")) {
 			action = new MovieBoxOfficeNationAction();
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		
-//		if(command.equals("/MovieGetChart.mo")) {
-//			action = new getMovieByChartAction();
-//			try {
-//				action.execute(request, response);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
-		
-		if(command.equals("/MovieDetailPro.mo")) {
+		} else if(command.equals("/MovieDetailPro.mo")) {
 			action = new MovieDetailProAction();
 			try {
 				forward = action.execute(request, response);
@@ -103,6 +101,14 @@ public class MovieController extends HttpServlet {
 		}
 		
 		
+//		if(command.equals("/MovieGetChart.mo")) {
+//			action = new getMovieByChartAction();
+//			try {
+//				action.execute(request, response);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
 	
 	
 		if(forward != null) {
