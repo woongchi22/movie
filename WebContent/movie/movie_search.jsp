@@ -420,8 +420,8 @@ $(document).ready(function() {
 	    <h2>배우</h2>
         <section id="actorList"></section>
     
-        <h2>키워드</h2>
-        <section id="keywordList"></section>
+<!--         <h2>키워드</h2> -->
+<!--         <section id="keywordList"></section> -->
         
     </section>
     
