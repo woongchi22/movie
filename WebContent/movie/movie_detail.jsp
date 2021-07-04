@@ -83,7 +83,7 @@ $(document).ready(function() {
 					
 					$('.title_top').append('<div class=title_top>'+title4+'</div>');
 					$('.posters').append('<div class=poster style="background-image:url('+poster[0]+'),url(${pageContext.request.contextPath}/img/noImage.gif);"></div>');
-					$('.info').append('<dt>ㅁㅁ</dt><div class=runtime>'+rating+' '+runtime+'분</div><div class=plot>'+plot+'</div><dt>감독</dt><div class=directors>'+directors+'</div><dt>출연</dt><div class=actors>'
+					$('.info').append('<dt>ㅁㅁ</dt><div class=runtime>'+rating+' '+runtime+'분</div><div class=plot style="margin-bottom:7px;">'+plot+'</div><dt>감독</dt><div class=directors>'+directors+'</div><dt>출연</dt><div class=actors>'
 							+actors+'</div><dt>개요</dt><div class=summaryInfo>'+genre+' | '+nation+' | '+openDt+'</div><dt>배급</dt><div class=company>'+company+'</div>');
 							
 					
@@ -101,7 +101,44 @@ $(document).ready(function() {
 				});	
 			});
 				
-				
+			$('.stills').slick({
+			   	   dots: false,
+			          infinite: false,
+			          arrows: true,
+			          variableWidth:true,
+			          speed: 300,
+			          slidesToShow: 4,
+			          slidesToScroll: 3,
+			   	   responsive: [
+			   	     {
+			   	       breakpoint: 1024,
+			   	       settings: {
+			   	         slidesToShow: 3,
+			   	         slidesToScroll: 3,
+			   	         infinite: false,
+			   	         dots: false
+			   	       }
+			   	     },
+			   	     {
+			   	       breakpoint: 600,
+			   	       settings: {
+			   	         slidesToShow: 2,
+			   	         slidesToScroll: 2
+			   	       }
+			   	     },
+			   	     {
+			   	       breakpoint: 480,
+			   	       settings: {
+			   	         slidesToShow: 1,
+			   	         slidesToScroll: 1
+			   	       }
+			   	     }
+			   	   ]
+			   	 });	
+			
+			
+			
+			
 			
 		}
 	});	
@@ -125,56 +162,17 @@ $(document).ready(function() {
 
 <div class="title_top"></div>
 <div class="posters" ></div>
-<div class= "info"></div>
-<div class="slick_stills">
+<div class= "info">
+
+</div>
 <div class="stills" ></div>
 
 </div>
 
-<script type="text/javascript">
-$(document).ready(function() {
-	$('.stills').slick({
-	   	   dots: false,
-	          infinite: false,
-	          arrows: true,
-	          variableWidth:true,
-	          speed: 300,
-	          slidesToShow: 4,
-	          slidesToScroll: 3,
-	   	   responsive: [
-	   	     {
-	   	       breakpoint: 1024,
-	   	       settings: {
-	   	         slidesToShow: 3,
-	   	         slidesToScroll: 3,
-	   	         infinite: false,
-	   	         dots: false
-	   	       }
-	   	     },
-	   	     {
-	   	       breakpoint: 600,
-	   	       settings: {
-	   	         slidesToShow: 2,
-	   	         slidesToScroll: 2
-	   	       }
-	   	     },
-	   	     {
-	   	       breakpoint: 480,
-	   	       settings: {
-	   	         slidesToShow: 1,
-	   	         slidesToScroll: 1
-	   	       }
-	   	     }
-	   	   ]
-	   	 });
-});
 
-
-</script>
 
   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   <script type="text/javascript" src="slick/slick.min.js"></script>	
-  </div>
 </body>
 </html>
