@@ -64,7 +64,13 @@ a:hover, a:active {color: #bfbfbf;}
 	background-repeat:no-repeat;
 }
 
-
+.stillCut{
+	width:207px;
+	height:138px;
+	background-size:100%;
+	margin:10px;
+	background-repeat:no-repeat;
+}
 .boxOfficePoster{
 	width:250px;
 	height:350px;
@@ -84,4 +90,30 @@ a:hover, a:active {color: #bfbfbf;}
 .slick-track{
 	background-color: #000000;
 	border-radius: 10px 10px;
+}
+dt{
+	float: left;
+	margin-right: 10px;
+}
+.info{
+	line-height: 130%;
+	margin-top: 30px;
+	width: 450x;
+	height: 100%;
+/* 	float: left; */
+/* border:1px solid red; */
+
+}
+.title_top{
+	font-size: 40px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+.posters{
+	float: left;
+}
+.wrap{
+	width: 80%;
+	margin-right: auto;
+	margin-left: auto;
 }
