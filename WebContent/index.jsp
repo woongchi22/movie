@@ -6,7 +6,7 @@ String name = (String)session.getAttribute("name");
 %>
 <html>
 <head>
-<title>Main</title>
+<title>WhatFlix</title>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 </head>
 <header>
