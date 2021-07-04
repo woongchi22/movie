@@ -241,7 +241,7 @@ $(document).ready(function() {
     }); // ajax 끝
     
     
-    // 배우 검색
+     // 배우 검색
     $.ajax('ActorSearchPro.mo', {
         method:"post",
         dataType:"json",
@@ -344,7 +344,7 @@ $(document).ready(function() {
                     }
                     
                     if(image[0]) {
-                        $('#actorList').append('<div id=keywordMovie><a href=MovieDetailSearch.mo?movieId=' + item2.movieId + '&movieSeq=' + item2.movieSeq + '&query=' + title +
+                        $('#keywordList').append('<div id=keywordMovie><a href=MovieDetailSearch.mo?movieId=' + item2.movieId + '&movieSeq=' + item2.movieSeq + '&query=' + title +
                                 '&image=' + image[0] + '><div class=poster style="background-image: url(' + image[0] + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
                                 '<div id=title>' + title4 + '</div></div>');
                     }
@@ -391,9 +391,6 @@ $(document).ready(function() {
         } // ajax: success 끝
         
     }); // ajax 끝
-	
-	
-	
 	
 }); // document 끝
 
