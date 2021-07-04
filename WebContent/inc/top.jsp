@@ -13,7 +13,7 @@ String pass = (String)session.getAttribute("pass");
 <header>
 	<nav>
 		<span class="mainBar">
-		  	<a href="./">Main</a>
+		  	<a href="./" ><img src="img/logo.png" width="85px" height="50px"></a>
 		</span>
 		<span class="loginBar">
 		    <%if(pass != null) { %>

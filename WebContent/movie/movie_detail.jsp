@@ -52,17 +52,14 @@ $(document).ready(function() {
 	                var company = item2.company;
 					var poster = item2.posters.split("|");
 					for(var num=0; num < item2.actors.actor.length; num++){
-						actor = actor + item2.actors.actor[num].actorNm+ " ";
+						actor = actor + item2.actors.actor[num].actorNm+ ", ";
 					}
 					for(var num=0; num < item2.directors.director.length; num++){
 						director = director + item2.directors.director[num].directorNm+ " ";
 					}
 					
-					var actorT = actor.trim();
-					var actors = actorT.replace(/ /g, ', ');					
-					var directT = director.trim();
-					var directors = directT.replace(/ /g, ', ');
-					
+					var actors = actor.replace(/,\s*$/, '');
+					var directors = director.replace(/,\s*$/, '');
 					
 					$('.info').append('<div class=poster style="background-image:url('+poster[0]+'),url(${pageContext.request.contextPath}/img/noImage.gif);"></div><div class=title>'
 							+ title4 +'</div><div class=rating>'+rating+'</div><div class=runtime>'
