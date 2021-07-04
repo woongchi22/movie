@@ -49,13 +49,12 @@ a:hover, a:active {color: #bfbfbf;}
 /* 	border: solid 1px blue; */
 	float: right;
 	padding: 10px;
+	margin: 10px;
 }
 
-/* h2{ */
-/* 	clear:both; */
-/* 	margin-top: 100px; */
-/* 	border: solid 1px green; */
-/* } */
+h2{
+	margin: 10px;
+}
 .poster{
 	width:250px;
 	height:350px;
@@ -79,9 +78,32 @@ a:hover, a:active {color: #bfbfbf;}
 	margin:20px auto;
 	padding:20px 0px;
 	background-color: rgba(240,255,255,0.1);
-	border-radius: 10px 10px 10px 10px;
+	border-radius: 10px;
 }
 .slick-track{
 	background-color: #000000;
 	border-radius: 10px 10px;
+}
+
+.searchBtn{
+    width: 40px;
+    height: 35px;
+    border-radius: 10px;
+    background-color: red;
+    border: none;
+    color:#fff;
+    cursor: pointer;
+    margin: 4px 0 0 0;
+    font-weight: bold;
+    float: right;
+}
+.searchIn{
+    position: relative;
+    font-size: 16px;
+    border-color: rgba(154,151,161,0.2);
+    height: 30px;
+    padding: 15px;
+    border-radius: 10px;
+    float: left;
+    margin: 5px;
 }

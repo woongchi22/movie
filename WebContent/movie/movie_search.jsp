@@ -27,7 +27,7 @@ $(document).ready(function() {
 	query = query.replace(/ /g,'');
 	
 	// 영화 검색(한국, 외국)
-	$.ajax('MovieSearchPro.mo', {
+	$.ajax('SearchMoviePro.mo', {
 		method:"post",
 		dataType:"json",
 		data:{query:query},
@@ -42,46 +42,32 @@ $(document).ready(function() {
 					
 					var title1 = item2.title
 					var titleNoSpace = title1.replace(/ /g, ''); // 타이틀 공백제거
-					var title2 = titleNoSpace.replace(/!HS/g,'') // 검색어는 !HS , !HE 로 둘러 싸여있어서 제거해줌
+					var title2 = titleNoSpace.replace(/!HS/g,''); // 검색어는 !HS , !HE 로 둘러 싸여있어서 제거해줌
 	                var title3 = title2.replace(/!HE/g,'')
 	                var title4 = title3.trim(); // 양쪽끝에 공백을 제거해줌
 	                var title = encodeURIComponent(title4);
 	                
-// 	                var actor = item2.actors.actor;
-// 	                console.log(actor);
-	                
-	                var actors = "";
-	                  
-	                var image = item2.posters.split("|"); // 포스터 데이터는 '|' 로 구분되어있어서 스플릿 처리함 ( 여러개 있음 )
 	                var nation = item2.nation
+	                var posters = item2.posters.split("|"); // 포스터 데이터는 '|' 로 구분되어있어서 스플릿 처리함 ( 여러개 있음 )
 	                
-	                var rating = item2.ratings.rating[0].ratingGrade;
-// 	                console.log(rating)
-// 					console.log(image[0]);
+	                var poster = posters[0]
+// 	                console.log(poster);
 					
+	                // 한국 영화 검색
 	                if(nation == "대한민국") {
 	                	
-	                	// 한국 영화 검색
-	                	for(var num = 0; num < item2.actors.actor.length; num++) {
-	                		actors = actors + item2.actors.actor[num].actorNm + ", ";
-	                	}
-	                	
-	                	if(image[0]) {
-	                		$('#koreaList').append('<div id=koreaMovie><a href=MovieDetailSearch.mo?movieId=' + item2.movieId + '&movieSeq=' + item2.movieSeq + '&query=' + title +
-	                				'&image=' + image[0] + '><div class=poster style="background-image: url(' + image[0] + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
+	                	if(poster) {
+	                		$('#koreaList').append('<div id=koreaMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query=' + title +
+	                				'><div class=poster style="background-image: url(' + poster + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
 	                				'<div id=title>' + title4 + '</div></div>');
 	                	}
-	                	
+	                
+	                // 해외 영화 검색	
                 	} else {
                 		
-                		// 해외 영화 검색
-                		for(var num = 0; num < item2.actors.actor.length; num++) {
-                			actors = actors + item2.actors.actor[num].actorNm + ", ";
-                		}
-                		
-                		if(image[0]) {
-                			$('#foreignList').append('<div id=foreignMovie><a href=MovieDetailSearch.mo?movieId=' + item2.movieId + '&movieSeq=' + item2.movieSeq + '&query=' + title +
-                                    '&image=' + image[0] + '><div class=poster style="background-image: url(' + image[0] + '),url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
+                		if(poster) {
+                			$('#foreignList').append('<div id=foreignMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query=' + title +
+                                    '><div class=poster style="background-image: url(' + poster + '),url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
                                     '<div id=title>' + title4 + '</div></div>');
                 		}
                 	}
@@ -184,16 +170,11 @@ $(document).ready(function() {
                     var title4 = title3.trim(); // 양쪽끝에 공백을 제거해줌
                     var title = encodeURIComponent(title4);
                     
-                    var actors = "";
-                    var image = item2.posters.split("|"); // 포스터 데이터는 '|' 로 구분되어있어서 스플릿 처리함 ( 여러개 있음 )
+                    var poster = item2.posters.split("|"); // 포스터 데이터는 '|' 로 구분되어있어서 스플릿 처리함 ( 여러개 있음 )
                     
-                    for(var num = 0; num < item2.actors.actor.length; num++) {
-                        actors = actors + item2.actors.actor[num].actorNm + ", ";
-                    }
-                    
-                    if(image[0]) {
-                        $('#directorList').append('<div id=directorMovie><a href=MovieDetailSearch.mo?movieId=' + item2.movieId + '&movieSeq=' + item2.movieSeq + '&query=' + title +
-                                '&image=' + image[0] + '><div class=poster style="background-image: url(' + image[0] + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
+                    if(poster[0]) {
+                    	$('#directorList').append('<div id=directorMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query=' + title +
+                                '><div class=poster style="background-image: url(' + poster[0] + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
                                 '<div id=title>' + title4 + '</div></div>');
                     }
                         
@@ -260,16 +241,11 @@ $(document).ready(function() {
                     var title4 = title3.trim(); // 양쪽끝에 공백을 제거해줌
                     var title = encodeURIComponent(title4);
                     
-                    var actors = "";
-                    var image = item2.posters.split("|"); // 포스터 데이터는 '|' 로 구분되어있어서 스플릿 처리함 ( 여러개 있음 )
+                    var poster = item2.posters.split("|"); // 포스터 데이터는 '|' 로 구분되어있어서 스플릿 처리함 ( 여러개 있음 )
                     
-                    for(var num = 0; num < item2.actors.actor.length; num++) {
-                        actors = actors + item2.actors.actor[num].actorNm + ", ";
-                    }
-                    
-                    if(image[0]) {
-                        $('#actorList').append('<div id=actorMovie><a href=MovieDetailSearch.mo?movieId=' + item2.movieId + '&movieSeq=' + item2.movieSeq + '&query=' + title +
-                                '&image=' + image[0] + '><div class=poster style="background-image: url(' + image[0] + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
+                    if(poster[0]) {
+                        $('#actorList').append('<div id=actorMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query=' + title +
+                                '><div class=poster style="background-image: url(' + poster[0] + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
                                 '<div id=title>' + title4 + '</div></div>');
                     }
                         
@@ -336,16 +312,11 @@ $(document).ready(function() {
                     var title4 = title3.trim(); // 양쪽끝에 공백을 제거해줌
                     var title = encodeURIComponent(title4);
                     
-                    var actors = "";
-                    var image = item2.posters.split("|"); // 포스터 데이터는 '|' 로 구분되어있어서 스플릿 처리함 ( 여러개 있음 )
+                    var poster = item2.posters.split("|"); // 포스터 데이터는 '|' 로 구분되어있어서 스플릿 처리함 ( 여러개 있음 )
                     
-                    for(var num = 0; num < item2.actors.actor.length; num++) {
-                        actors = actors + item2.actors.actor[num].actorNm + ", ";
-                    }
-                    
-                    if(image[0]) {
-                        $('#keywordList').append('<div id=keywordMovie><a href=MovieDetailSearch.mo?movieId=' + item2.movieId + '&movieSeq=' + item2.movieSeq + '&query=' + title +
-                                '&image=' + image[0] + '><div class=poster style="background-image: url(' + image[0] + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
+                    if(poster[0]) {
+                        $('#keywordList').append('<div id=keywordMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query=' + title +
+                                '><div class=poster style="background-image: url(' + poster[0] + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
                                 '<div id=title>' + title4 + '</div></div>');
                     }
                         
@@ -406,27 +377,36 @@ $(document).ready(function() {
 
 <body>
     <section>
-        <input type="hidden" id="query" name="query" value="<%=query %>">
+        <div class="content">
+		    <h2>한국 영화</h2>
+		    <div id="koreaList"></div>
+        </div>
         
-	    <h2>한국 영화</h2>
-	    <section id="koreaList"></section>
-	    
-	    <h2>외국 영화</h2>
-	    <section id="foreignList"></section>
-	    
-	    <h2>감독</h2>
-	    <section id="directorList"></section>
-	    
-	    <h2>배우</h2>
-        <section id="actorList"></section>
-    
-<!--         <h2>키워드</h2> -->
-<!--         <section id="keywordList"></section> -->
+        <div class="content">
+            <h2>외국 영화</h2>
+            <div id="foreignList"></div>
+        </div>
         
+        <div class="content">
+            <h2>감독</h2>
+            <div id="directorList"></div>
+        </div>
+        
+        <div class="content">
+            <h2>배우</h2>
+            <div id="actorList"></div>
+        </div>
+        
+        <div class="content">
+            <h2>키워드</h2>
+            <div id="keywordList"></div>
+        </div>
+	    
     </section>
     
 
 
+        <input type="hidden" id="query" name="query" value="<%=query %>">
 
 </body>
 </html>

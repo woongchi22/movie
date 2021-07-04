@@ -9,7 +9,6 @@ String pass = (String)session.getAttribute("pass");
 %>
 
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
-
 <header>
 	<nav>
 		<span class="mainBar">
@@ -29,8 +28,8 @@ String pass = (String)session.getAttribute("pass");
 		</span>
 	    <form action="MovieSearch.mo" id="movie_search">
 			<span class="searchBar">
-			        <input type="search" name="query" placeholder="search">
-			        <button type="submit">검색</button>
+			        <input class="searchIn" type="search" name="query" placeholder="Search...">
+			        <button class="searchBtn" type="submit"><img src="img/search.png" width="20px" height="20px"></button>
 			</span>
 	    </form>
 	</nav>
