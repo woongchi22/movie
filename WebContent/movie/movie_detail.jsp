@@ -13,6 +13,8 @@
 	String director=request.getParameter("director");
 %>
 <title>[WhatFilx] <%=query %></title>
+<link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>	
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 
@@ -48,9 +50,15 @@ $(document).ready(function() {
 	                var actor = "";
 	                var genre = item2.genre;
 	                var nation = item2.nation;
-	                var openDt = item2.ratings.rating[0].ratingDate;
+	                var openDt = item2.ratings.rating[0].ratingDate.substr(0,4);
 	                var company = item2.company;
 					var poster = item2.posters.split("|");
+					var stills = item2.stlls.split("|");
+					
+					
+					console.log(stills);
+					console.log(openDt);
+					
 					for(var num=0; num < item2.actors.actor.length; num++){
 						actor = actor + item2.actors.actor[num].actorNm+ ", ";
 					}
@@ -58,16 +66,37 @@ $(document).ready(function() {
 						director = director + item2.directors.director[num].directorNm+ " ";
 					}
 					
+					for(var i in stills){
+						console.log(stills[i]);
+						
+						if (stills[i]) {
+		                     $('.stills').append('<div class=stillCut style="background-image: url(' + stills[i] + ');"></div>')
+		                     //                           $('.posters').append('<div class=stillCut><img style="height:150px;" src='+stills[i]+' onerror=this.src=../../../Movie/img/noImage.gif></div>')
+		                 } else {
+		                     $('.stills').append('<div class=stillCut style="background-image: url(${pageContext.request.contextPath}/img/noImage.gif;")></div>')
+		                 }
+							
+				}
+					
 					var actors = actor.replace(/,\s*$/, '');
 					var directors = director.replace(/,\s*$/, '');
 					
-					$('.info').append('<div class=poster style="background-image:url('+poster[0]+'),url(${pageContext.request.contextPath}/img/noImage.gif);"></div><div class=title>'
-							+ title4 +'</div><div class=rating>'+rating+'</div><div class=runtime>'
-							+runtime+'분</div><div class=plot>'+plot+'</div><div class=directors>'+directors+'</div><div class=actors>'
-							+actors+'</div><div class=genre>'+genre+'</div><div class=nation>'+nation+'</div><div class=openDt>'
-							+openDt+'</div><div class=company>'+company+'</div>');
+					$('.title_top').append('<div class=title_top>'+title4+'</div>');
+					$('.posters').append('<div class=poster style="background-image:url('+poster[0]+'),url(${pageContext.request.contextPath}/img/noImage.gif);"></div>');
+					$('.info').append('<dt>ㅁㅁ</dt><div class=runtime>'+rating+' '+runtime+'분</div><div class=plot>'+plot+'</div><dt>감독</dt><div class=directors>'+directors+'</div><dt>출연</dt><div class=actors>'
+							+actors+'</div><dt>개요</dt><div class=summaryInfo>'+genre+' | '+nation+' | '+openDt+'</div><dt>배급</dt><div class=company>'+company+'</div>');
 							
 					
+// 					$('.info').append('<div class=poster style="background-image:url('+poster[0]+'),url(${pageContext.request.contextPath}/img/noImage.gif);"></div><div class=title>'
+// 							+ title4 +'</div><dt >ㅁㅁ</dt><div class=runtime>'+rating+' '+runtime+'분</div><div class=plot>'+plot+'</div><dt>감독</dt><div class=directors>'+directors+'</div><dt>출연 </dt><div class=actors>'
+// 							+actors+'</div><dt>개요</dt><div class=summaryInfo>'+genre+' | '+nation+' | '+openDt+'</div><dt>배급</dt><div class=company>'+company+'</div>');
+					
+// 					$('.info').append('<div class=poster style="background-image:url('+poster[0]+'),url(${pageContext.request.contextPath}/img/noImage.gif);"></div><div class=title>'
+// 							+ title4 +'</div><dt >개요</dt><div class=summaryInfo>'+rating+'</div><dt>상영시간</dt><div class=runtime>'
+// 							+runtime+'분</div><dt>줄거리</dt><div class=plot>'+plot+'</div><dt>감독</dt><div class=directors>'+directors+'</div><dt>출연 </dt><div class=actors>'
+// 							+actors+'</div><dt>장르</dt><div class=genre>'+genre+'</div><dt>국가</dt><div class=nation>'+nation+'</div><dt>개봉</dt><div class=openDt>'
+// 							+openDt+'</div><dt>배급사</dt><div class=company>'+company+'</div>');
+							
 					
 				});	
 			});
@@ -76,6 +105,9 @@ $(document).ready(function() {
 			
 		}
 	});	
+	
+	
+	 
 });
 
 
@@ -85,12 +117,64 @@ $(document).ready(function() {
 	<jsp:include page="/inc/top.jsp"/>
 </header>
 <body>
+
 <input type ="hidden" id="query" name="query" value="<%=query %>">
 <input type ="hidden" id="movieSeq" name="movieSeq" value="<%=movieSeq %>">
 
+<div class="wrap">
 
-<div class = "info">
+<div class="title_top"></div>
+<div class="posters" ></div>
+<div class= "info"></div>
+<div class="slick_stills">
+<div class="stills" ></div>
 
 </div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$('.stills').slick({
+	   	   dots: false,
+	          infinite: false,
+	          arrows: true,
+	          variableWidth:true,
+	          speed: 300,
+	          slidesToShow: 4,
+	          slidesToScroll: 3,
+	   	   responsive: [
+	   	     {
+	   	       breakpoint: 1024,
+	   	       settings: {
+	   	         slidesToShow: 3,
+	   	         slidesToScroll: 3,
+	   	         infinite: false,
+	   	         dots: false
+	   	       }
+	   	     },
+	   	     {
+	   	       breakpoint: 600,
+	   	       settings: {
+	   	         slidesToShow: 2,
+	   	         slidesToScroll: 2
+	   	       }
+	   	     },
+	   	     {
+	   	       breakpoint: 480,
+	   	       settings: {
+	   	         slidesToShow: 1,
+	   	         slidesToScroll: 1
+	   	       }
+	   	     }
+	   	   ]
+	   	 });
+});
+
+
+</script>
+
+  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script type="text/javascript" src="slick/slick.min.js"></script>	
+  </div>
 </body>
 </html>
