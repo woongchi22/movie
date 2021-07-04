@@ -75,14 +75,14 @@ public class MovieController extends HttpServlet {
 			}
 		}
 		
-		if(command.equals("/MovieGetChart.mo")) {
-			action = new getMovieByChartAction();
-			try {
-				action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+//		if(command.equals("/MovieGetChart.mo")) {
+//			action = new getMovieByChartAction();
+//			try {
+//				action.execute(request, response);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
 		
 		if(command.equals("/MovieDetailPro.mo")) {
 			action = new MovieDetailProAction();
