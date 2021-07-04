@@ -59,7 +59,7 @@ $(document).ready(function() {
 	                	if(poster) {
 	                		$('#koreaList').append('<div id=koreaMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query=' + title +
 	                				'><div class=poster style="background-image: url(' + poster + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
-	                				'<div id=title>' + title4 + '</div></div>');
+	                				'<div class=title>' + title4 + '</div></div>');
 	                	}
 	                
 	                // 해외 영화 검색	
@@ -68,7 +68,7 @@ $(document).ready(function() {
                 		if(poster) {
                 			$('#foreignList').append('<div id=foreignMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query=' + title +
                                     '><div class=poster style="background-image: url(' + poster + '),url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
-                                    '<div id=title>' + title4 + '</div></div>');
+                                    '<div class=title>' + title4 + '</div></div>');
                 		}
                 	}
 					
@@ -175,7 +175,7 @@ $(document).ready(function() {
                     if(poster[0]) {
                     	$('#directorList').append('<div id=directorMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query=' + title +
                                 '><div class=poster style="background-image: url(' + poster[0] + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
-                                '<div id=title>' + title4 + '</div></div>');
+                                '<div class=title>' + title4 + '</div></div>');
                     }
                         
                 });
@@ -246,7 +246,7 @@ $(document).ready(function() {
                     if(poster[0]) {
                         $('#actorList').append('<div id=actorMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query=' + title +
                                 '><div class=poster style="background-image: url(' + poster[0] + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
-                                '<div id=title>' + title4 + '</div></div>');
+                                '<div class=title>' + title4 + '</div></div>');
                     }
                         
                 });
@@ -317,7 +317,7 @@ $(document).ready(function() {
                     if(poster[0]) {
                         $('#keywordList').append('<div id=keywordMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query=' + title +
                                 '><div class=poster style="background-image: url(' + poster[0] + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
-                                '<div id=title>' + title4 + '</div></div>');
+                                '<div class=title>' + title4 + '</div></div>');
                     }
                         
                 });

@@ -51,7 +51,7 @@ $(document).ready(function() {
          	targetDt:today,
           	},
          success: function(data) {
-         	$('.boxOfficeMovie').prepend('<h1>박스오피스</h1>');
+         	$('.boxOfficeMovie').prepend('<h2>박스오피스</h2>');
             $.each(data, function(idx, item) {
          	   $.each(item.weeklyBoxOfficeList, function(idx2,item2){
          		    var title = item2.movieNm;

@@ -29,7 +29,7 @@ String pass = (String)session.getAttribute("pass");
 	    <form action="MovieSearch.mo" id="movie_search">
 			<span class="searchBar">
 			        <input class="searchIn" type="search" name="query" placeholder="Search...">
-			        <button class="searchBtn" type="submit"><img src="img/search.png" width="20px" height="20px"></button>
+			        <button class="searchBtn" type="submit"><img src="img/search.png" width="15px" height="15px"></button>
 			</span>
 	    </form>
 	</nav>
