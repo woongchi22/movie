@@ -86,14 +86,14 @@ public class kmdbApi {
 		
 	}
 
-	public String getMovieDetail(String query, String movieSeq) throws IOException {
+	public String getMovieDetail(String query, int movieSeq) throws IOException {
 		System.out.println("kmdb - getMovieDetail");
 		
 		StringBuilder urlBuilder = new StringBuilder(
-				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&ServiceKey=319276GM630XRTRNIWN8");
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&title="+query+"&movieSeq="+movieSeq+"&ServiceKey=319276GM630XRTRNIWN8");
 		
-		urlBuilder.append("&" + URLEncoder.encode("title","UTF-8") + "=" + URLEncoder.encode(query,"UTF-8"));
-		urlBuilder.append("&" + URLEncoder.encode("movieSeq","UTF-8") + "=" + movieSeq);
+//		urlBuilder.append("&" + URLEncoder.encode("title","UTF-8") + "=" + URLEncoder.encode(query,"UTF-8"));
+//		urlBuilder.append("&" + URLEncoder.encode("movieSeq","UTF-8") + "=" + movieSeq);
 		
 //		/*상영년도*/ 
 //		urlBuilder.append("&" + URLEncoder.encode("val001","UTF-8") + "=" + URLEncoder.encode("2018", "UTF-8")); 

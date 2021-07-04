@@ -18,19 +18,19 @@ public class MovieSearchProAction implements Action {
 		System.out.println("MovieSearchProAction");
 		
 		response.setCharacterEncoding("UTF-8");
-		String movieSeq = request.getParameter("movieSeq");
+		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 		String query = request.getParameter("query");
 		
 		kmdbApi movie = new kmdbApi();
 		String json = null;
 		
-		if(query != null && movieSeq == null) {
+		if(query != null && movieSeq == 0) {
 			json = movie.getMovie(query);
 			
-		} else if(query != null && movieSeq != null) {
-			while(movieSeq.length() != 5) {
-				movieSeq = "0" + movieSeq;
-			}
+		} else if(query != null && movieSeq != 0) {
+//			while(movieSeq.length() != 5) {
+//				movieSeq = "0" + movieSeq;
+//			}
 			json = movie.getMovieDetail(query, movieSeq);
 		}
 		
