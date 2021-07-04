@@ -120,10 +120,11 @@ dt{
 }
 .info{
 	line-height: 130%;
-	margin-top: 30px;
+	margin-top:10%;
 	width: 450x;
 	height: 100%;
-/* 	float: left; */
+/* 	float: none; */
+	margin-bottom: 10%;
 /* border:1px solid red; */
 
 }
@@ -136,9 +137,10 @@ dt{
 	float: left;
 }
 .wrap{
-	width: 80%;
+	width: 1000px;
 	margin-right: auto;
 	margin-left: auto;
+	margin-bottom: 10%;
 }
 .title{
 	margin: 10px;
