@@ -6,18 +6,23 @@
 <meta charset="UTF-8">
 
 <%
-	String name = (String)session.getAttribute("name"); 
-	String movieSeq = (String)request.getParameter("movieSeq");
-	String query = request.getParameter("query");
-	String poster = (String)request.getParameter("image");
-	String director=request.getParameter("director");
+String name = (String)session.getAttribute("name"); 
+String pass = (String)session.getAttribute("pass");
+String movieSeq = (String)request.getParameter("movieSeq");
+String query = request.getParameter("query");
+String poster = (String)request.getParameter("image");
+String director=request.getParameter("director");
+
+
 %>
 <title>[WhatFilx] <%=query %></title>
 <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
 <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>	
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
-
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="slick/slick.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	var query = $('#query').val();
@@ -137,12 +142,16 @@ $(document).ready(function() {
 			   	   ]
 			   	 });	
 			
-			
-			
-			
-			
 		}
 	});	
+	
+	
+	// 찜 버튼
+	function dibsClick() {
+		
+		
+		
+	}
 	
 	
 	 
@@ -160,21 +169,18 @@ $(document).ready(function() {
 <input type ="hidden" id="movieSeq" name="movieSeq" value="<%=movieSeq %>">
 
 <div class="wrap">
-
-<div class="title_top"></div>
-<div class="star"></div>
-<div class="posters" ></div>
-<div class= "info">
-
+	<div class="title_top"></div>
+	<%if(pass != null) { %>
+	   <div class="dibs"><button class="dibsBtn" onclick="dibsClick()"><img src="img/check.png" width="20px" height="20px">&nbsp;찜</button></div>
+	<%} %>   
+	<div class="star"></div>
+	<div class="posters" ></div>
+	<div class= "info"></div>
+    <div class="stills" ></div>
 </div>
-<div class="stills" ></div>
-
-</div>
 
 
 
-  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-  <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-  <script type="text/javascript" src="slick/slick.min.js"></script>	
+	
 </body>
 </html>
