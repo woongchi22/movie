@@ -7,12 +7,13 @@ public class kmdbApi {
 	
 	public String getBoxoffice(String openDt, String movieNm) throws IOException {
 		System.out.println("kmdbApi-getBoxOffice");
-//		StringBuilder urlBuilder = new StringBuilder(
-//				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?collection=kmdb_new2&listCount=100&ServiceKey=319276GM630XRTRNIWN8");
+		
+		System.out.println(movieNm);
+		System.out.println(openDt);
 		
 		StringBuilder urlBuilder = new StringBuilder(
-				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&title="
-						+ movieNm + "&repRlsDate=" + openDt + "&ServiceKey=319276GM630XRTRNIWN8");
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&releaseDts="
+						+ openDt + "&title=" + movieNm + "&ServiceKey=319276GM630XRTRNIWN8");
 		
 		
 		
@@ -22,7 +23,6 @@ public class kmdbApi {
 //		urlBuilder.append("&" + URLEncoder.encode("val002", "UTF-8") + "=" + URLEncoder.encode("01", "UTF-8")); /* 상영 월 */
 		
 		URL url = new URL(urlBuilder.toString());
-		System.out.println(url);
 		
 		System.out.println("==========");
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
