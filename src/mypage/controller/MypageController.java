@@ -23,20 +23,21 @@ public class MypageController extends HttpServlet {
 		ActionForward forward = null;
 		System.out.println(command);
 		
-//		if(command.equals("/Mypage.mp")) {
-//			action = new MypageAction();
-//			try {
-//				forward = action.execute(request, response);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//			
-//		}
 		
+		// 마이페이지
 		if(command.equals("/Mypage.mp")) {
 			forward = new ActionForward();
 			forward.setPath("/mypage/mypage.jsp");
+			
+		// 찜	
+		} else if(command.equals("/Dibs.mp")) {
+			forward = new ActionForward();
+			forward.setPath("/mypage/dibs.jsp");
 		}
+		
+		
+		
+		
 		
 	
 	

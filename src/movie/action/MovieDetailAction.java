@@ -11,11 +11,11 @@ import api.*;
 import vo.*;
 
 
-public class MovieSearchProAction implements Action {
+public class MovieDetailAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("MovieSearchProAction");
+		System.out.println("MovieDetailAction");
 		
 		response.setCharacterEncoding("UTF-8");
 		String movieSeq = request.getParameter("movieSeq");
