@@ -52,6 +52,12 @@ a:hover, a:active {color: #bfbfbf;}
 	padding: 10px;
 	margin: 10px;
 }
+.dibsBar{
+/*  border: solid 1px blue; */
+    float: right;
+    padding: 10px;
+    margin: 10px;
+}
 
 h2{
 	margin: 10px;

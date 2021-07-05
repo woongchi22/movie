@@ -17,14 +17,20 @@ String pass = (String)session.getAttribute("pass");
 		<span class="loginBar">
 		    <%if(pass != null) { %>
 		        <%if(name.equals("관리자")) { %>
-		            <a href="Mypage.mp"><%=name %> 님</a> | <a href="MemberLogout.me">로그아웃</a> | <a href="MemberList.me">관리자 페이지</a>
+		            <a href="Mypage.mp"><%=name %>님</a> | <a href="MemberLogout.me">로그아웃</a> | <a href="MemberList.me">관리자 페이지</a>
 		        <%} else { %>
-		            <a href="Mypage.mp"><%=name %> 님</a> | <a href="MemberLogout.me">로그아웃</a>
-		     <%} %>
+		            <a href="Dibs.mp">찜</a>
+		            <a href="Mypage.mp"><%=name %>님</a> | <a href="MemberLogout.me">로그아웃</a>
+		        <%} %>
 		    <%} else {%>
 		        <a href="MemberLoginForm.me">로그인</a> | <a href="MemberJoinForm.me">회원가입</a>
 		
 		    <%} %>
+		</span>
+		<span class="dibsBar">
+		  <%if(pass != null) { %>
+		      <a href="Dibs.mp"><img src="img/check.png" width="15px" height="15px">&nbsp;찜</a>
+		  <%} %>
 		</span>
 	    <form action="MovieSearch.mo" id="movie_search">
 			<span class="searchBar">
