@@ -61,9 +61,6 @@ $(document).ready(function() {
 					var stills = item2.stlls.split("|");
 					
 					
-					console.log(stills);
-					console.log(openDt);
-					
 					for(var num=0; num < item2.actors.actor.length; num++){
 						actor = actor + item2.actors.actor[num].actorNm+ ", ";
 					}
@@ -77,9 +74,7 @@ $(document).ready(function() {
 						if (stills[i]) {
 		                     $('.stills').append('<div class=stillCut style="background-image: url(' + stills[i] + ');"></div>')
 		                     //                           $('.posters').append('<div class=stillCut><img style="height:150px;" src='+stills[i]+' onerror=this.src=../../../Movie/img/noImage.gif></div>')
-		                 } else {
-// 		                     $('.stills').append('<div class=stillCut style="background-image: url(${pageContext.request.contextPath}/img/noImage.gif;")></div>')
-		                 }
+		                 } 
 							
 				}
 					
@@ -152,7 +147,6 @@ $(document).ready(function() {
 		
 		
 	}
-	
 	
 	 
 });

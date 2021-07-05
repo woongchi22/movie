@@ -59,9 +59,14 @@ $(document).ready(function() {
                     var openDt = item2.openDt.replace(/-/g,'');
                     var num =0;
                     
+                    console.log("박스+++++++++++++++");
+                    console.log(item2);
+                    
                     result = getNation(openDt,titleNoSpace);
                     result = result.split("|");	 
                     
+                    console.log("갤과");
+                    console.log(result);
 					$('.boxOffice').append("<div class=boxOfficeMovie>"+
           			 '<a class=boxOfficePoster><div class=poster style="background-image:url('+result[0]+'),url(${pageContext.request.contextPath}/img/noImage.gif);"></div></a>'+
           			 '<div class=title>'+item2.movieNm+'</div></div>');   
@@ -123,6 +128,9 @@ $(document).ready(function() {
              success: function(data) { 
                  $.each(data.Data, function(idx, item) {
                    $.each(item.Result,function(idx2,item2){
+                	   console.log("띠용");
+                	   console.log(item2);
+                	   
                        var image = item2.posters.split("|");
                        result = image[0] +"|"+item2.nation + "|"+item2.movieSeq;
 //                         result = image[0] +"|"+item2.nation + "|"+item2.movieSeq +"|"+item2.movieId +"|"+item2.rating[0].ratingGrade; // 밑에 영화포스터 링크(a 태그)안에 movieId,ratingGrade 포함해야해서 추가함 - 낙원
