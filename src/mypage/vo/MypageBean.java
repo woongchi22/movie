@@ -3,7 +3,6 @@ package mypage.vo;
 public class MypageBean {
 
 	private int idx;
-	private String email;
 	private String name;
 	private String pass;
 	
@@ -13,12 +12,6 @@ public class MypageBean {
 	}
 	public void setIdx(int idx) {
 		this.idx = idx;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
 	}
 	public String getName() {
 		return name;
