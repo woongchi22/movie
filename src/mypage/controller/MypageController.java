@@ -29,10 +29,19 @@ public class MypageController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("/mypage/mypage.jsp");
 			
-		// 찜	
+		// 찜꽁	
 		} else if(command.equals("/Dibs.mp")) {
 			forward = new ActionForward();
 			forward.setPath("/mypage/dibs.jsp");
+			
+		} else if(command.equals("/DibsPro.mp")) {
+			action = new DibsProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 		
 		
