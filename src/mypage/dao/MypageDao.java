@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import member.vo.MemberBean;
 import mypage.dao.*;
+import mypage.vo.*;
 
 public class MypageDao {
 	
@@ -30,6 +31,9 @@ public class MypageDao {
 	public void setConnection(Connection con) {
 		this.con = con;
 	}
+	
+	PreparedStatement pstmt;
+	ResultSet rs;
 //	
 //	PreparedStatement pstmt = null;
 //	ResultSet rs = null;
@@ -107,6 +111,44 @@ public class MypageDao {
 
 		return mb;
 
+	}
+
+	public int dibs(DibsBean db) {
+		System.out.println("mypage dao - dibs()");
+		
+		int insertCount = 0;
+		
+		try {
+			String sql = "SELECT * FROM dibs WHERE name=? and mpvieSeq=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, db.getName());
+			pstmt.setInt(2, db.getMovieSeq());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+//				maxNum = rs.getInt(1) + 1;
+			}
+			
+			sql = "INSERT INTO dibs VALUES(?,?,?,?,?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, db.getIdx());
+			pstmt.setString(2, db.getName());
+			pstmt.setInt(3, db.getMovieSeq());
+			pstmt.setString(4, db.getTitle());
+			pstmt.setString(5, db.getPoster());
+			pstmt.setString(6, db.getDibs());
+			
+			insertCount = pstmt.executeUpdate();
+					
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return insertCount;
+		 
 	}
 
 	

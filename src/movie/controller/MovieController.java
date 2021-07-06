@@ -94,13 +94,14 @@ public class MovieController extends HttpServlet {
 			}
 			
 		} else if(command.equals("/MovieDetail.mo")) {
-					action = new MovieDetailAction();
-					try {
-						forward = action.execute(request, response);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-		}
+			action = new MovieDetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+					
+		} 
 					
 		
 		

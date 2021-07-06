@@ -27,6 +27,7 @@ String director=request.getParameter("director");
 $(document).ready(function() {
 	var query = $('#query').val();
 	var movieSeq = $('#movieSeq').val();
+	var name = $('#name').val();
 	
 	$.ajax("MovieDetail.mo",{
 		method:"post",
@@ -69,7 +70,7 @@ $(document).ready(function() {
 					}
 					
 					for(var i in stills){
-						console.log(stills[i]);
+// 						console.log(stills[i]);
 						
 						if (stills[i]) {
 		                     $('.stills').append('<div class=stillCut style="background-image: url(' + stills[i] + ');"></div>')
@@ -141,13 +142,61 @@ $(document).ready(function() {
 	});	
 	
 	
-	// 찜 버튼
-	$('.dibsBtn').click(function() {
-		
-		$(this).toggleClass("done");
-		
-		
-	});
+	// 찜꽁
+	$.ajax("MovieDetail.mo", {
+		method: "post",
+		dataType: "json",
+		data: {
+			movieSeq:movieSeq,
+			query:query
+		},
+		success: function(data) {
+			
+			$.each(data.Data, function(idx, item) {
+				$.each(item.Result, function(idx, item2) {
+
+                    var title1 = item2.title
+                    var titleNoSpace = title1.replace(/ /g, ''); // 타이틀 공백제거
+                    var title2 = titleNoSpace.replace(/!HS/g,'') // 검색어는 !HS , !HE 로 둘러 싸여있어서 제거해줌
+                    var title3 = title2.replace(/!HE/g,'')
+                    var title4 = title3.trim(); // 양쪽끝에 공백을 제거해줌
+                    var title = encodeURIComponent(title4);
+                    
+                    var poster = item2.posters.split("|");
+                    
+				    $('.dibsBtn').click(function() {
+                        var dibs = $('#dibs').val();
+				    	$.ajax({
+				    		url: "DibsPro.mp",
+				    		type: "post",
+				    		data: {
+				    			name:name,
+				    			movieSeq:movieSeq,
+				    			query:query,
+				    			poster:poster[0],
+				    			dibs:dibs
+				    		},
+				    		success: function(data) {
+				    			$('.dibsBtn').addClass('done');
+				    			
+				    			
+							} // success2
+				    	
+				    	}); // ajax2
+				        
+				    }); // dibs 버튼 클릭
+					
+				}); //each2
+				
+				
+			}); // each
+			
+		} // success
+    
+	}); // ajax
+	
+	
+	
 	 
 });
 
@@ -161,12 +210,17 @@ $(document).ready(function() {
 
 <input type ="hidden" id="query" name="query" value="<%=query %>">
 <input type ="hidden" id="movieSeq" name="movieSeq" value="<%=movieSeq %>">
+<input type="hidden" id="name" name="name" value="<%=name %>">
+<input type="hidden" id="dibs" name="dibs" value="Y">
+
 
 <div class="wrap">
 	<div class="title_top"></div>
-	<%if(pass != null) { %>
-	   <div class="dibs"><button class="dibsBtn"><img class="dibsBtnImg" src="img/check.png" width="20px" height="20px">&nbsp;찜</button></div>
-	<%} %>   
+		<%if(pass != null) { %>
+		   <div class="dibs"><button class="dibsBtn" value="<%=movieSeq %>"><img class="dibsBtnImg" src="img/check.png" width="20px" height="20px">&nbsp;찜</button></div>
+		<%} else {%>   
+		      <div class="dibsLogin"><a href="MemberLoginForm.me">로그인</a>하시고 별점을 남겨주세요</div>
+		<%} %>
 	<div class="star"></div>
 	<div class="posters" ></div>
 	<div class= "info"></div>
