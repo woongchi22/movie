@@ -28,7 +28,7 @@ String pass = (String)session.getAttribute("pass");
 		</span>
 		<span class="dibsBar">
 		  <%if(pass != null) { %>
-		      <a href="Dibs.mp"><%=name %> 's <img src="img/check.png" width="15px" height="15px">&nbsp;찜</a>
+		      <a href="DibsList.mp"><%=name %> 's <img src="img/check.png" width="15px" height="15px">&nbsp;찜꽁</a>
 		  <%} %>
 		</span>
 	    <form action="MovieSearch.mo" id="movie_search">
