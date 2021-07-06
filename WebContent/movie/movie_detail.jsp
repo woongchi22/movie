@@ -40,7 +40,7 @@ $(document).ready(function() {
 			$.each(data.Data, function(idx,item) {
 				$.each(item.Result, function(idx2,item2) {
 					console.log("왔다");
-					console.log(item2);
+// 					console.log(item2);
 					
 					var title1 = item2.title
 					var titleNoSpace = title1.replace(/ /g, ''); // 타이틀 공백제거
@@ -141,8 +141,28 @@ $(document).ready(function() {
 		}
 	});	
 	
-	
 	// 찜꽁
+    $.ajax('Dibs.mp', {
+        data: {
+            movieSeq:movieSeq
+        },
+        success: function(data) {
+        	console.log('데이터' + data);
+        	
+            if(data == 'Y') {
+                $('.dibsBtn').addClass('done');
+                $('.dibsBtnImg').attr("src", "img/check2.png");
+                
+            } else {
+                $('.dibsBtn').removeClass('done');
+                $('.dibsBtnImg').attr("src", "img/check.png");
+            }
+        }
+        
+    });
+	
+	
+	// 찜꽁 등록,삭제
 	$.ajax("MovieDetail.mo", {
 		method: "post",
 		dataType: "json",
@@ -166,7 +186,8 @@ $(document).ready(function() {
                     
 				    $('.dibsBtn').click(function() {
                         var dibs = $('#dibs').val();
-				    	$.ajax({
+				    	
+                        $.ajax({
 				    		url: "DibsPro.mp",
 				    		type: "post",
 				    		data: {
@@ -176,24 +197,31 @@ $(document).ready(function() {
 				    			poster:poster[0],
 				    			dibs:dibs
 				    		},
+				    		async: false,
 				    		success: function(data) {
-				    			$('.dibsBtn').addClass('done');
+				    			console.log("오나염");
+				    			console.log(data);
+				    			if($('.dibsBtn').hasClass('done') == true) {
+				    				$('.dibsBtn').removeClass('done')
+				    				$('.dibsBtnImg').attr("src", "img/check.png");
+				    			} else {
+				    			    $('.dibsBtn').addClass('done');
+				    			    $('.dibsBtnImg').attr("src", "img/check2.png");
+				    			}
 				    			
-				    			
-							} // success2
+							} 
 				    	
-				    	}); // ajax2
+				    	}); // ajax - DibsPro
 				        
 				    }); // dibs 버튼 클릭
-					
+				    
 				}); //each2
-				
 				
 			}); // each
 			
 		} // success
     
-	}); // ajax
+	}); // ajax - MovieDetail
 	
 	
 	
@@ -217,7 +245,7 @@ $(document).ready(function() {
 <div class="wrap">
 	<div class="title_top"></div>
 		<%if(pass != null) { %>
-		   <div class="dibs"><button class="dibsBtn" value="<%=movieSeq %>"><img class="dibsBtnImg" src="img/check.png" width="20px" height="20px">&nbsp;찜</button></div>
+		   <div class="dibs"><button class="dibsBtn" value="<%=movieSeq %>"><img class="dibsBtnImg" src="img/check.png" width="20px" height="20px">&nbsp;찜꽁</button></div>
 		<%} else {%>   
 		      <div class="dibsLogin"><a href="MemberLoginForm.me">로그인</a>하시고 별점을 남겨주세요</div>
 		<%} %>

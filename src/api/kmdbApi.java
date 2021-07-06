@@ -14,9 +14,6 @@ public class kmdbApi {
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&releaseDts="
 						+ openDt + "&title=" + movieNm + "&ServiceKey=319276GM630XRTRNIWN8");
-		
-		
-		
 		/* URL */
 //		urlBuilder.append("&" + URLEncoder.encode("releaseDts", "UTF-8") + "=" + URLEncoder.encode(openDt, "UTF-8")); // 개봉일
 //		urlBuilder.append("&" + URLEncoder.encode("title", "UTF-8") + "=" + URLEncoder.encode(movieNm, "UTF-8")); // 영화명
@@ -50,41 +47,6 @@ public class kmdbApi {
 		return sb.toString();
 	}
   
-	// 영화 검색
-//	public String getMovie(String query) throws IOException { 
-//		System.out.println("kmdb - getMovie");
-//		
-////		/*URL*/ 
-//		StringBuilder urlBuilder = new StringBuilder(
-//				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&title=" + query + "&ServiceKey=319276GM630XRTRNIWN8");
-////		StringBuilder urlBuilder = new StringBuilder("http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&nation=대한민국");
-//
-//		URL url = new URL(urlBuilder.toString());
-//		HttpURLConnection con = (HttpURLConnection) url.openConnection();
-//		con.setRequestMethod("GET");
-//		con.setRequestProperty("Content-type", "application/json");
-//		System.out.println("Response code: " + con.getResponseCode());
-//		
-//		BufferedReader rd;
-//		if(con.getResponseCode() >= 200 && con.getResponseCode() <=300) {
-//			rd = new BufferedReader(new InputStreamReader(con.getInputStream()));
-//		} else {
-//			rd = new BufferedReader(new InputStreamReader(con.getErrorStream())); 
-//		}
-//		
-//		StringBuilder sb = new StringBuilder();
-//		String line;
-//		while ((line = rd.readLine()) != null) {
-//			sb.append(line + "\n");
-//		}
-//		
-//		rd.close(); 
-//		con.disconnect(); 
-//		System.out.println(sb.toString());
-//		
-//		return sb.toString();
-//		
-//	}
 
 	// 영화 상세보기
 	public String getMovieDetail(String query, String movieSeq) throws IOException {
@@ -92,14 +54,6 @@ public class kmdbApi {
 		
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&title="+query+"&movieSeq="+movieSeq+"&ServiceKey=319276GM630XRTRNIWN8");
-		
-//		urlBuilder.append("&" + URLEncoder.encode("title","UTF-8") + "=" + URLEncoder.encode(query,"UTF-8"));
-//		urlBuilder.append("&" + URLEncoder.encode("movieSeq","UTF-8") + "=" + movieSeq);
-		
-//		/*상영년도*/ 
-//		urlBuilder.append("&" + URLEncoder.encode("val001","UTF-8") + "=" + URLEncoder.encode("2018", "UTF-8")); 
-//		/*상영 월*/ 
-//		urlBuilder.append("&" + URLEncoder.encode("val002","UTF-8") + "=" + URLEncoder.encode("01", "UTF-8"));
 
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -128,6 +82,7 @@ public class kmdbApi {
 		
 	}
 	
+	// 제목 검색(한국, 외국)
 	public String getTitle(String title) throws IOException {
 		System.out.println("kmdb - getTitle");
 		
