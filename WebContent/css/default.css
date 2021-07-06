@@ -208,3 +208,22 @@ dt{
 	margin-top: 30px;
 	margin-bottom: 10px;
 }
+
+.posterDibs{
+    width:250px;
+    height:350px;
+    background-size:100%;
+    margin:10px;
+    background-repeat:no-repeat;
+    float: left;
+}
+.titleDibs{
+    margin: 0 10px;
+    float: left;
+}
+.dibsMovie{
+	width: 260px;
+	height: 410px;
+	float: left;
+	
+}

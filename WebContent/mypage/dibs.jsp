@@ -24,10 +24,12 @@ String name = (String) session.getAttribute("name");
     <h2><%=name %>님이 찜한 영화</h2>
     
     <% for(DibsBean db : dbList) { %>
-        <div class="poster"><a href="MovieDetailPro.mo?movieSeq=<%=db.getMovieSeq() %>&query=<%=db.getTitle() %>" 
-            style="background-image: url('<%=db.getPoster() %>'), url(${pageContext.request.contextPath}/img/noImage.gif);"></a></div>
-        <div class="title"><%=db.getTitle() %></div>
-    	
+        <div class="dibsMovie">
+            <a href="MovieDetailPro.mo?movieSeq=<%=db.getMovieSeq() %>&query=<%=db.getTitle() %>">
+                <div class="posterDibs" style="background-image: url('<%=db.getPoster() %>'), url(${pageContext.request.contextPath}/img/noImage.gif);"></div>
+            </a>
+            <div class="titleDibs"><%=db.getTitle() %></div>
+        </div>
     <%} %>
     
 

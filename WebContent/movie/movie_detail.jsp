@@ -128,16 +128,8 @@ $(document).ready(function() {
 			   	     }
 			   	   ]
 			   	 }); //slick
-		
-			
-			
-			
-			
-			
+			   	 
 		} //success
-		
-		
-		
 		
 	});	
 	
