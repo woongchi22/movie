@@ -160,6 +160,20 @@ dt{
 .dibsBtn:link, .dibsBtn:visited {color: #fff;}
 .dibsBtn:hover, .dibsBtn:active {color: #bfbfbf;}
 
+
+.dibsBtn.done{
+    width: 65px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: red;
+    border: solid white;
+    color: black;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+/*     float: right; */
+}
+
 .star{
     font-size: 20px;
     margin: 20px;
