@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 멤버 List</title>
+<title>관리자 페이지</title>
 <style type="text/css">
 td{
     border : 1px solid black;

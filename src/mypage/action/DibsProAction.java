@@ -15,7 +15,9 @@ public class DibsProAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("DibsProAction!!!!");
 		
-		String name = request.getParameter("name");
+		HttpSession session = request.getSession();
+		String name = (String) session.getAttribute("name");
+		
 		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 		String title = request.getParameter("query");
 		String poster = request.getParameter("poster");
@@ -38,16 +40,14 @@ public class DibsProAction implements Action {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.print("N");
-			out.println("<script>");
-			out.println("alert('찜꽁 실패');");
-			out.println("history.back();");
-			out.println("</script>");
+			out.flush();
+			
 		} else {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.print("Y");
+			out.flush();
 		}
-		
 		
 		return null;
 	}

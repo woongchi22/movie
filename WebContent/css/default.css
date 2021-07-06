@@ -155,7 +155,7 @@ dt{
 .dibsLogin>a:hover, .dibsLogin>a:active {color: #fe6969;}
 
 .dibsBtn{
-    width: 65px;
+    width: 80px;
     height: 40px;
     border-radius: 10px;
     background-color: black;
@@ -164,14 +164,13 @@ dt{
     cursor: pointer;
     font-weight: bold;
     font-size: 18px;
-/*     float: right; */
+    letter-spacing: -1px;
 }
 .dibsBtn:link, .dibsBtn:visited {color: #fff;}
 .dibsBtn:hover, .dibsBtn:active {color: #bfbfbf;}
 
-
 .dibsBtn.done{
-    width: 65px;
+    width: 80px;
     height: 40px;
     border-radius: 10px;
     background-color: red;
@@ -180,8 +179,10 @@ dt{
     cursor: pointer;
     font-weight: bold;
     font-size: 18px;
-/*     float: right; */
+    letter-spacing: -1px;
 }
+.dibsBtn.done:link, .dibsBtn.done:visited {color: #fff;}
+.dibsBtn.done:hover, .dibsBtn.done:active {color: #575757;}
 
 .star{
     font-size: 20px;

@@ -31,8 +31,12 @@ public class MypageController extends HttpServlet {
 			
 		// 찜꽁	
 		} else if(command.equals("/Dibs.mp")) {
-			forward = new ActionForward();
-			forward.setPath("/mypage/dibs.jsp");
+			action = new DibsAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			
 		} else if(command.equals("/DibsPro.mp")) {
 			action = new DibsProAction();
@@ -41,8 +45,18 @@ public class MypageController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		
+		// 찜꽁 list	
+		} else if(command.equals("/DibsList.mp")) {
+			action = new DibsListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			
-		}
+		} 
+		
 		
 		
 		

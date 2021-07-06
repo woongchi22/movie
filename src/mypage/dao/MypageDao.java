@@ -34,49 +34,9 @@ public class MypageDao {
 	
 	PreparedStatement pstmt;
 	ResultSet rs;
-//	
-//	PreparedStatement pstmt = null;
-//	ResultSet rs = null;
 	
-	// 내 정보 조회
-//	//유저 정보
-//		public MemberBean getUserInfo(String name){
-//			System.out.println("dao - getUserInfo~~~~");
-//			System.out.println("@@@@@"+name+"@@@@@@@");
-//			
-//			
-//			PreparedStatement pstmt = null;
-//			ResultSet rs = null;
-//			
-//			MemberBean mb = new MemberBean();
-//			try {
-//				String sql = "SELECT * FROM member where name=?";
-//				
-//				pstmt = con.prepareStatement(sql);
-//				pstmt.setString(1, name);
-//				rs = pstmt.executeQuery();
-//				
-//				if(rs.next()) {
-//					System.out.println(rs.getString("email"));
-//					System.out.println(rs.getString("name"));
-//					
-//					mb.setIdx(rs.getInt("idx"));
-//					mb.setEmail(rs.getString("email"));
-//					mb.setName(rs.getString("name"));
-//					mb.setPass(rs.getString("pass"));
-//					mb.setDate(rs.getDate("date"));
-//					System.out.println(mb.getEmail());
-//				}
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//				System.out.println("회원정보 가져오기 실패");
-//			}finally {
-//				close(rs);
-//				close(pstmt);
-//			}
-//			
-//			return mb ;
-//		}
+	
+	
 	public MemberBean getUserInfo(String email) {
 		System.out.println("MypageDAO - getMypageInfo 도착");
 		System.out.println(email);
@@ -113,33 +73,39 @@ public class MypageDao {
 
 	}
 
+	// 찜뽕 등록,삭제
 	public int dibs(DibsBean db) {
 		System.out.println("mypage dao - dibs()");
 		
 		int insertCount = 0;
 		
 		try {
-			String sql = "SELECT * FROM dibs WHERE name=? and mpvieSeq=?";
+			String sql = "SELECT * FROM dibs WHERE name=? and movieSeq=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, db.getName());
 			pstmt.setInt(2, db.getMovieSeq());
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-//				maxNum = rs.getInt(1) + 1;
+				sql = "DELETE FROM dibs WHERE name=? and movieSeq=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, db.getName());
+				pstmt.setInt(2, db.getMovieSeq());
+				
+				insertCount = pstmt.executeUpdate();
+				
+			} else {
+				sql = "INSERT INTO dibs VALUES(?,?,?,?,?,'Y')";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, db.getIdx());
+				pstmt.setString(2, db.getName());
+				pstmt.setInt(3, db.getMovieSeq());
+				pstmt.setString(4, db.getTitle());
+				pstmt.setString(5, db.getPoster());
+				
+				insertCount = pstmt.executeUpdate();
 			}
 			
-			sql = "INSERT INTO dibs VALUES(?,?,?,?,?,?)";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, db.getIdx());
-			pstmt.setString(2, db.getName());
-			pstmt.setInt(3, db.getMovieSeq());
-			pstmt.setString(4, db.getTitle());
-			pstmt.setString(5, db.getPoster());
-			pstmt.setString(6, db.getDibs());
-			
-			insertCount = pstmt.executeUpdate();
-					
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -149,6 +115,75 @@ public class MypageDao {
 		
 		return insertCount;
 		 
+	}
+
+	// 찜뽕 리스트 조회
+	public ArrayList<DibsBean> selectDibsList(String name) {
+		System.out.println("mypage dao - selectDibsList()");
+		
+		ArrayList<DibsBean> dbList = null;
+		
+		try {
+			String sql = "SELECT * FROM dibs WHERE name=? and dibs='Y'";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			rs = pstmt.executeQuery();
+			
+			dbList = new ArrayList<DibsBean>();
+			while(rs.next()) {
+				DibsBean db = new DibsBean();
+				db.setIdx(rs.getInt(1));
+				db.setName(rs.getString(2));
+				db.setMovieSeq(rs.getInt(3));
+				db.setTitle(rs.getString(4));
+				db.setPoster(rs.getString(5));
+				db.setDibs(rs.getString(6));
+				
+				dbList.add(db);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return dbList;
+	}
+
+	// 찜뽕 조회
+	public DibsBean selectDibs(String name, int movieSeq) {
+		System.out.println("mypage dao - selectDibs()");
+		
+		DibsBean db = null;
+		
+		try {
+			String sql = "SELECT * FROM dibs WHERE name=? and movieSeq=? and dibs='Y'";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setInt(2, movieSeq);
+			rs = pstmt.executeQuery();
+			
+			db = new DibsBean();
+
+			if (rs.next()) {
+				DibsBean db2 = new DibsBean();
+				db2.setDibs(rs.getString("dibs"));
+				db2.setPoster(rs.getString("poster"));
+				
+			} else {
+				return null;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return db;
 	}
 
 	
