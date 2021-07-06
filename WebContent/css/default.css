@@ -126,7 +126,7 @@ dt{
 }
 .info{
 	line-height: 130%;
-	margin-top:10%;
+	margin-top:9%;
 	width: 450x;
 	height: 100%;
 /* 	float: none; */
@@ -203,3 +203,7 @@ dt{
 	text-align: center;
 }
 
+.directorP{
+	margin-top: 30px;
+	margin-bottom: 10px;
+}
