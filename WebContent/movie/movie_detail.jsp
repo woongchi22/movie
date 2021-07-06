@@ -147,12 +147,12 @@ $(document).ready(function() {
 	
 	
 	// 찜 버튼
-	function dibsClick() {
+	$('.dibsBtn').click(function() {
+		
+		$(this).toggleClass("done");
 		
 		
-		
-	}
-	
+	});
 	
 	 
 });
@@ -171,7 +171,7 @@ $(document).ready(function() {
 <div class="wrap">
 	<div class="title_top"></div>
 	<%if(pass != null) { %>
-	   <div class="dibs"><button class="dibsBtn" onclick="dibsClick()"><img src="img/check.png" width="20px" height="20px">&nbsp;찜</button></div>
+	   <div class="dibs"><button class="dibsBtn"><img class="dibsBtnImg" src="img/check.png" width="20px" height="20px">&nbsp;찜</button></div>
 	<%} %>   
 	<div class="star"></div>
 	<div class="posters" ></div>
