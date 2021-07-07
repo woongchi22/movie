@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+
+.review_star{
+	margin:0;
+	margin-left: 80px;
+	margin-top:75px;
+	float: left;
+	
+}
+.rev-star{
+ 	width: 35px;
+	height: 35px;
+	background-image:url("../img/star1.png");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	display: inline-block;
+	background-color: black;
+	border: 0;
+	outline: 0;
+	float: left;
+ }  
