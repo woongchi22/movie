@@ -100,19 +100,23 @@ public class MovieController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-					
-		} 
+		
+		// 평가하기
+		} else if(command.equals("/GradeMovie.mo")) {
+			forward = new ActionForward();
+			forward.setPath("/movie/movie_grade.jsp");
+			
+		} else if(command.equals("/MovieGradeRandom.mo")) {
+			action = new MovieGradeRandomAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 					
 		
 		
-//		if(command.equals("/MovieGetChart.mo")) {
-//			action = new getMovieByChartAction();
-//			try {
-//				action.execute(request, response);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
 		
 		
 		

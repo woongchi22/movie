@@ -33,6 +33,8 @@ table {
         background: red;
         width: 800px; 
         text-align: center;
+        height: 30px;
+        font-weight: bold;
     }
     
     h2 {
@@ -54,10 +56,10 @@ table {
 	    <table>
 	        <tr id="tr_top">
 	            <td width="250">idx</td>
-	            <td width="400">email</td>
-	            <td width="250">name</td>
-	            <td width="250">pass</td>
-	            <td width="300">date</td>
+	            <td width="400">이메일</td>
+	            <td width="250">이름</td>
+	            <td width="250">비밀번호</td>
+	            <td width="300">가입 날짜</td>
 	        </tr>
 	        <%
 	        	for(MemberBean mb : mbList) {

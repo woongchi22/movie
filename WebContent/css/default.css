@@ -18,18 +18,19 @@ header{
   	color: white;
   	font-weight: bold;
 	background-color: black;
+	z-index: 999;
 }
 
 body{
 	background-color: black;
 	color:white;
-/* 	border: solid 1px red; */
-  	padding: 30px;
+   	padding: 30px;
   	margin-top: 120px;
 }
 
 a{
 	text-decoration: none;
+	font-weight: bold;
 }
 
 a:link, a:visited {color: #fff;}
@@ -40,6 +41,11 @@ a:hover, a:active {color: #bfbfbf;}
 /*     border: solid 1px red; */
   	padding: 10px;
 }
+.gradeBar{
+    float: left;
+    padding: 10px;
+    margin: 15px 0 0 30px;
+}
 .searchBar{
 /* 	border: solid 1px yellow; */
 	float: right;
@@ -47,13 +53,11 @@ a:hover, a:active {color: #bfbfbf;}
 	margin: 3px;
 }
 .loginBar{
-/* 	border: solid 1px blue; */
 	float: right;
 	padding: 10px;
 	margin: 10px;
 }
 .dibsBar{
-/*  border: solid 1px blue; */
     float: right;
     padding: 10px;
     margin: 10px;
@@ -81,16 +85,16 @@ h2{
 	width:250px;
 	height:350px;
 	background-size:100%;
-	margin-right:20px;
-	margin-top:20px;
-	margin-left:10px;
+/* 	margin-right:20px; */
+/* 	margin-top:20px; */
+/* 	margin-left:10px; */
 	background-repeat:no-repeat;
 }
 .content{
 	border:1px solid black;
 	margin:20px auto;
 	padding:20px 0px;
-	background-color: rgba(240,255,255,0.1);
+/* 	background-color: rgba(240,255,255,0.1); */
 	border-radius: 10px;
 }
 .slick-track{
@@ -227,3 +231,28 @@ dt{
 	float: left;
 	
 }
+#gradeMovie{
+    width: 260px;
+    height: 410px;
+    float: left;
+    
+}
+.gradePoster{
+    width:250px;
+    height:350px;
+    background-size:100%;
+    margin:10px;
+    background-repeat:no-repeat;
+    float: left;
+}
+.gradeTitle{
+    margin: 0 10px;
+    float: left;
+}
+.otherMovie{
+    margin: 15px 0 20px 10px;
+    font-size: 18px;
+    padding: 5px;
+}
+.otherMovie>a:link, .otherMovie>a:visited {color: red;}
+.otherMovie>a:hover, .otherMovie>a:active {color: #fe6969;}

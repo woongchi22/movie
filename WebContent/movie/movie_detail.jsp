@@ -240,7 +240,7 @@ $(document).ready(function() {
 		            			+'<div class=poster style="background-image:url('+image[0]+'),url(${pageContext.request.contextPath}/img/noImage.gif);"></div></a>'+
 		            	'<div class=title>'+title+'</div></div>');
 		            }
-		            $('.directorP').text(directorNm + "감독의 다른 영화들");
+		            $('.directorP').text(directorNm + " 감독의 다른 영화들");
 
 						
 						

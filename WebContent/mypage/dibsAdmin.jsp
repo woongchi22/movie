@@ -39,7 +39,9 @@ table {
     #tr_top {
         background: red;
         width: 800px; 
+        height: 30px;
         text-align: center;
+        font-weight: bold;
     }
     
     h2 {
@@ -53,22 +55,22 @@ table {
 </header>
 <body>
     <section id="listForm">
-        <h2>회원 찜꽁 List</h2>
+        <h2>영화 찜꽁 List</h2>
         <table>
             <tr id="tr_top">
                 <td width="250">idx</td>
-                <td width="250">name</td>
-                <td width="250">movieSeq</td>
-                <td width="400">title</td>
+                <td width="250">영화 No</td>
+                <td width="400">영화 제목</td>
+                <td width="250">이름</td>
             </tr>
             <%
                 for(DibsBean db : dbList) {
             %>
                 <tr>
                     <td align="center"><%= db.getIdx() %></td>
-                    <td align="center"><%= db.getName() %></td>
                     <td align="center"><%= db.getMovieSeq() %></td>
                     <td align="center"><%= db.getTitle() %></td>
+                    <td align="center"><%= db.getName() %></td>
                 </tr>
             <%}%>
         </table>

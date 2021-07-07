@@ -193,7 +193,7 @@ public class MypageDao {
 		ArrayList<DibsBean> dbList = null;
 		
 		try {
-			String sql = "SELECT * FROM dibs ORDER BY name";
+			String sql = "SELECT * FROM dibs ORDER BY title, movieSeq, name";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			

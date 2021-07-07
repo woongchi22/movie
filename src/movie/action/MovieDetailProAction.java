@@ -17,13 +17,13 @@ public class MovieDetailProAction implements Action {
 		request.setCharacterEncoding("UTF-8");
 		String query = request.getParameter("query");
 		int  movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
-		String json = null;
 		System.out.println(query+movieSeq);
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
 		forward.setPath("/movie/movie_detail.jsp");
-	      return forward;
+	    return forward;
+	    
 	}
 
 }

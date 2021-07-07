@@ -53,7 +53,8 @@ public class kmdbApi {
 		System.out.println("kmdb - getMovieDetail");
 		
 		StringBuilder urlBuilder = new StringBuilder(
-				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&title="+query+"&movieSeq="+movieSeq+"&ServiceKey=319276GM630XRTRNIWN8");
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&title="
+						+query+"&movieSeq="+movieSeq+"&ServiceKey=319276GM630XRTRNIWN8");
 
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -87,7 +88,8 @@ public class kmdbApi {
 		System.out.println("kmdb - getTitle");
 		
 		StringBuilder urlBuilder = new StringBuilder(
-				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&title=" + title + "&ServiceKey=319276GM630XRTRNIWN8");
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&title="
+						+ title + "&ServiceKey=319276GM630XRTRNIWN8");
 
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -121,7 +123,8 @@ public class kmdbApi {
 		System.out.println("kmdb - getDirector");
 		
 		StringBuilder urlBuilder = new StringBuilder(
-				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&director=" + director + "&ServiceKey=319276GM630XRTRNIWN8");
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&director="
+						+ director + "&ServiceKey=319276GM630XRTRNIWN8");
 
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -155,7 +158,8 @@ public class kmdbApi {
 		System.out.println("kmdb - getActor");
 		
 		StringBuilder urlBuilder = new StringBuilder(
-				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&actor=" + actor + "&ServiceKey=319276GM630XRTRNIWN8");
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&actor="
+						+ actor + "&ServiceKey=319276GM630XRTRNIWN8");
 
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -189,7 +193,8 @@ public class kmdbApi {
 		System.out.println("kmdb - getKeyword");
 		
 		StringBuilder urlBuilder = new StringBuilder(
-				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&keyword=" + keyword + "&ServiceKey=319276GM630XRTRNIWN8");
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&keyword="
+						+ keyword + "&ServiceKey=319276GM630XRTRNIWN8");
 
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -215,6 +220,41 @@ public class kmdbApi {
 		System.out.println(sb.toString());
 		
 		return sb.toString();
+	}
+
+	// 평가할 영화 랜덤 가져오기
+	public String getMovieGrade(int startCount) throws IOException {
+		System.out.println("kmdb - getMovieGrade()");
+		
+		StringBuilder urlBuilder = new StringBuilder(
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&startCount="
+						+ startCount + "&ServiceKey=319276GM630XRTRNIWN8");
+
+		URL url = new URL(urlBuilder.toString());
+		HttpURLConnection con = (HttpURLConnection) url.openConnection();
+		con.setRequestMethod("GET");
+		con.setRequestProperty("Content-type", "application/json");
+		System.out.println("Response code: " + con.getResponseCode());
+		
+		BufferedReader rd;
+		if(con.getResponseCode() >= 200 && con.getResponseCode() <=300) {
+			rd = new BufferedReader(new InputStreamReader(con.getInputStream()));
+		} else {
+			rd = new BufferedReader(new InputStreamReader(con.getErrorStream())); 
+		}
+		
+		StringBuilder sb = new StringBuilder();
+		String line;
+		while ((line = rd.readLine()) != null) {
+			sb.append(line + "\n");
+		}
+		
+		rd.close(); 
+		con.disconnect(); 
+		System.out.println(sb.toString());
+		
+		return sb.toString();
+		
 	}
 
 	
