@@ -129,14 +129,14 @@ dt{
 	margin-right: 10px;
 }
 .info{
-	line-height: 130%;
-	margin-top:9%;
-	width: 450x;
-	height: 100%;
+	line-height: 140%;
+	margin: 30px 10px 80px 10px;
+/* 	width: 450x; */
+/* 	height: 100%; */
 /* 	float: none; */
-	margin-bottom: 10%;
+/* 	margin-bottom: 10%; */
 /* border:1px solid red; */
-    sclear: both;
+/*     clear: both; */
 }
 .title_top{
 	font-size: 40px;
@@ -144,7 +144,7 @@ dt{
 	float: left;
 }
 .dibs{
-    margin: 63px 0 0 50px;
+    margin: 63px 0 0 20px;
     float: left;
     font-weight: bold;
     padding: 5px;
@@ -195,7 +195,13 @@ dt{
 }
 .posters{
 	float: left;
-	sclear: both;
+	clear: both;
+	margin: 0 15px 10px 10px;
+}
+.stills{
+/* 	float: left; */
+/* 	clear: both; */
+/* 	margin: 10px 20px 0px 30px; */
 }
 .wrap{
 	width: 1000px;

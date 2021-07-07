@@ -129,7 +129,231 @@ $(document).ready(function() {
 			   	   ]
 			   	 }); //slick
 			   	 
+		
+		
+		//별점
+		
+		function starClick(param,grade,image) {
+			$.ajax("SetGrade.mo", {
+				method:"post",
+				async: false,
+				dataType:{
+					data:param,
+					name:name,
+					grade:grade,
+					image:image
+				},
+				success: function(data) {
+					console.log(data);
+					location.reload();
+					
+				
+					
+				} //star success
+			}); //ajax
+		}
+			   	 
+		 if (nick != 'null') {
+             $.ajax("MovieDetail.mo", {
+                 method: "get",
+                 dataType: "json",
+                 async: false,
+                 data: {
+                     movieSeq: movieSeq,
+                     query: query,
+                     keyword: keyword
+                 },
+                 success: function(data) {
+                     var grade = 0;
+                     $.each(data.Data, function(idx, item) {
+                         var i = 1;
+                         var l = 1;
+
+                         $.each(item.Result, function(idx, item2) {
+
+                             var num = 0;
+                             var image = item2.posters.split("|");
+                             var title = item2.title;
+                             var titleNoSpace = title.replace(/ /g, '');
+                             var title2 = titleNoSpace.replace(/!HS/g, '');
+                             var title3 = title2.replace(/!HE/g, '');
+                             var title5 = title3.trim();
+
+                             // 10개의 라벨에 각기 다른 값을 부여하기위한 반복문
+                             for (var o = 1; o < 11; o++) {
+                                 $('.c' + o).eq(idx).attr("id", "p" + i++);
+                             }
+                             // 10개의 라벨에 각기 다른 값을 부여하기위한 반복문
+                             for (var o = 1; o < 11; o++) {
+                                 $('.l' + o).eq(idx).attr("for", "p" + l++);
+                             }
+
+                             var getGrade = $('#getGrade').val()
+                             switch (getGrade) {
+
+                                 case "0.5":
+                                     $('.l1').focus();
+                                     $('#isGrade').show();
+                                     break;
+                                 case "1":
+                                     $('.l2').focus();
+                                     $('#isGrade').show();
+                                     break;
+                                 case "1.5":
+                                     $('.l3').focus();
+                                     $('#isGrade').show();
+                                     break;
+                                 case "2":
+                                     $('.l4').focus();
+                                     $('#isGrade').show();
+                                     break;
+                                 case "2.5":
+                                     $('.l5').focus();
+                                     $('#isGrade').show();
+                                     break;
+                                 case "3":
+                                     $('.l6').focus();
+                                     $('#isGrade').show();
+                                     break;
+                                 case "3.5":
+                                     $('.l7').focus();
+                                     $('#isGrade').show();
+                                     break;
+                                 case "4":
+                                     $('.l8').focus();
+                                     $('#isGrade').show();
+                                     break;
+                                 case "4.5":
+                                     $('.l9').focus();
+                                     $('#isGrade').show();
+                                     break;
+                                 case "5":
+                                     $('.l10').focus();
+                                     $('#isGrade').show();
+                                     break;
+
+                             }
+
+
+
+                             var nation = item2.nation.split(",");
+                             $('.c1').eq(idx).val(item2.director[0].directorNm + "/" + nation[0] + "/" + title5 + "/" + item2.movieSeq + "/" + item2.runtime + "/" + item2.genre + "/" + item2.prodYear);
+                             var image = image[0];
+                             var garde = 0;
+                             var movieSeq = ""
+                             $('.c1').eq(idx).click(function() {
+                                 var grade = 1;
+                                 var data = $('.c1').eq(idx).val();
+                                 starClick(data, grade, image);
+
+                             });
+
+                             $('.c2').eq(idx).click(function() {
+                                 var grade = 2;
+                                 var data = $('.c1').eq(idx).val();
+                                 starClick(data, grade, image);
+
+                             });
+                             $('.c3').eq(idx).click(function() {
+                                 var grade = 3;
+                                 var data = $('.c1').eq(idx).val();
+                                 starClick(data, grade, image);
+
+                             });
+
+                             $('.c4').eq(idx).click(function() {
+                                 var grade = 4;
+                                 var data = $('.c1').eq(idx).val();
+                                 starClick(data, grade, image);
+                             });
+
+                             $('.c5').eq(idx).click(function() {
+                                 var grade = 5;
+                                 var data = $('.c1').eq(idx).val();
+                                 starClick(data, grade, image);
+                             });
+
+                             $('.c6').eq(idx).click(function() {
+                                 var grade = 6;
+                                 var data = $('.c1').eq(idx).val();
+                                 starClick(data, grade, image);
+
+                             });
+                             $('.c7').eq(idx).click(function() {
+                                 var grade = 7;
+                                 var data = $('.c1').eq(idx).val();
+                                 starClick(data, grade, image);
+                             });
+                             $('.c8').eq(idx).click(function() {
+                                 var grade = 8;
+                                 var data = $('.c1').eq(idx).val();
+                                 starClick(data, grade, image);
+                             });
+                             $('.c9').eq(idx).click(function() {
+                                 var grade = 9;
+                                 var data = $('.c1').eq(idx).val();
+                                 starClick(data, grade, image);
+                             });
+                             $('.c10').eq(idx).click(function() {
+                                 var grade = 10;
+                                 var data = $('.c1').eq(idx).val();
+                                 starClick(data, grade, image);
+
+                             });
+
+
+                         }); //each문 끝남
+                     });
+                 }
+             })
+         } else {
+             $('.l1').click(function() {
+                 selectBtn();
+             })
+
+             $('.l2').click(function() {
+                 selectBtn();
+             })
+
+             $('.l3').click(function() {
+                 selectBtn();
+             })
+
+             $('.l4').click(function() {
+                 selectBtn();
+             })
+
+             $('.l5').click(function() {
+                 selectBtn();
+             })
+
+             $('.l6').click(function() {
+                 selectBtn();
+             })
+
+             $('.l7').click(function() {
+                 selectBtn();
+             })
+
+             $('.l8').click(function() {
+                 selectBtn();
+             })
+
+             $('.l9').click(function() {
+                 selectBtn();
+             })
+
+             $('.l10').click(function() {
+                 selectBtn();
+             })
+         }
+			   	 
+		
 		} //success
+		
+		
+		
+		
 		
 	});	
 	
@@ -287,6 +511,10 @@ $(document).ready(function() {
 		}
 	});
 	
+
+	
+	
+	
 	
 	
 	
@@ -310,27 +538,32 @@ $(document).ready(function() {
 <div class="wrap">
 	<div class="title_top"></div>
 		<%if(pass != null) { %>
-		   <div class="dibs"><button class="dibsBtn" value="<%=movieSeq %>"><img class="dibsBtnImg" src="img/check.png" width="20px" height="20px">&nbsp;찜꽁</button></div>
+			<div class="review-star">
+			<div class="review_star">
+				<input type="button" name="star" id="star1" value="1" class="rev-star" title="1점">
+				<label for="star1"></label>
+				<input type="button" name="star" id="star2" value="2" class="rev-star" title="2점">
+				<label for="star2"></label>
+				<input type="button" name="star" id="star3" value="3" class="rev-star" title="3점">
+				<label for="star3"></label>
+				<input type="button" name="star" id="star4" value="4" class="rev-star" title="4점">
+				<label for="star4"></label>
+				<input type="button" name="star" id="star5" value="5" class="rev-star" title="5점">
+				<label for="star5"></label>
+			
+			
+			
+			
+			</div>
+			</div>
+			
+			
+		    <div class="dibs"><button class="dibsBtn" value="<%=movieSeq %>"><img class="dibsBtnImg" src="img/check.png" width="20px" height="20px">&nbsp;찜꽁</button></div>
 		<%} else {%>   
 		      <div class="dibsLogin"><a href="MemberLoginForm.me">로그인</a>하시고 별점을 남겨주세요</div>
 		<%} %>
 	<div class="star"></div>
 	<div class="posters" ></div>
-	<div style="width:250px;margin:0 auto;">
-<!-- 	 <span class='star-input'> -->
-<!-- 	       <span class='input'> -->
-<!-- 	    <input type="button" class="c1" ><label style= "width: 10px; z-index: 10;" class="l1">1</label> -->
-<!-- 	    <input type="button" class="c2" ><label style= "width: 20px; z-index: 9;" class="l2">2</label> -->
-<!-- 	    <input type="button" class="c3" ><label style= "width: 30px; z-index: 8;" class="l3">3</label> -->
-<!-- 	    <input type="button" class="c4" ><label style= "width: 40px; z-index: 7;" class="l4">4</label> -->
-<!-- 	    <input type="button" class="c5" ><label style= "width: 50px; z-index: 6;" class="l5">5</label> -->
-<!-- 	    <input type="button" class="c6" ><label style= "width: 60px; z-index: 5;" class="l6">6</label> -->
-<!-- 	    <input type="button" class="c7" ><label style= "width: 70px; z-index: 4;" class="l7">7</label> -->
-<!-- 	    <input type="button" class="c8" ><label style= "width: 80px; z-index: 3;" class="l8" >8</label> -->
-<!-- 	    <input type="button" class="c9" ><label style= "width: 90px; z-index: 2;" class="l9">9</label> -->
-<!-- 	    <input type="button" class="c10"><label style= "width: 100px; z-index: 1;" class="l10">10</label> -->
-<!-- 	    </span></span> -->
-	    </div>
 	<div class="info"></div>
     <div class="stills" ></div>
     <div class="directorP"> </div>
