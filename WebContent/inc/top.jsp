@@ -17,7 +17,7 @@ String pass = (String)session.getAttribute("pass");
 		<span class="loginBar">
 		    <%if(pass != null) { %>
 		        <%if(name.equals("관리자")) { %>
-		            <a href="Mypage.mp"><%=name %>님</a> | <a href="MemberLogout.me">로그아웃</a> | <a href="MemberList.me">관리자 페이지</a>
+		            <a href="MemberLogout.me">로그아웃</a> | <a href="DibsAdmin.mp">찜꽁 관리</a> | <a href="MemberList.me">회원 관리</a>
 		        <%} else { %>
 		            <a href="Mypage.mp"><%=name %>님</a> | <a href="MemberLogout.me">로그아웃</a>
 		        <%} %>
@@ -28,7 +28,11 @@ String pass = (String)session.getAttribute("pass");
 		</span>
 		<span class="dibsBar">
 		  <%if(pass != null) { %>
-		      <a href="DibsList.mp"><%=name %> 's <img src="img/check.png" width="15px" height="15px">&nbsp;찜꽁</a>
+		      <%if(name.equals("관리자")) {%>
+		          <a>관리자</a>
+		      <%} else { %>
+		          <a href="DibsList.mp"><%=name %> 's <img src="img/check.png" width="15px" height="15px">&nbsp;찜꽁</a>
+		      <%} %>
 		  <%} %>
 		</span>
 	    <form action="MovieSearch.mo" id="movie_search">
