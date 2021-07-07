@@ -14,6 +14,11 @@ String pass = (String)session.getAttribute("pass");
 		<span class="mainBar">
 		  	<a href="./" ><img src="img/logo.png" width="85px" height="50px"></a>
 		</span>
+		<span class="gradeBar">
+		  <%if(pass != null) { %>
+		      <a href="GradeMovie.mo">평가하기</a>
+		  <%} %>    
+		</span>
 		<span class="loginBar">
 		    <%if(pass != null) { %>
 		        <%if(name.equals("관리자")) { %>
