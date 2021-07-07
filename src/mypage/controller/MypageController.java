@@ -55,6 +55,15 @@ public class MypageController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+		// 찜꽁 관리자 페이지	
+		} else if(command.equals("/DibsAdmin.mp")) {
+			action = new DibsAdminAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		} 
 		
 		

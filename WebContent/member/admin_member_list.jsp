@@ -30,7 +30,7 @@ table {
     }
 
     #tr_top {
-        background: orange;
+        background: red;
         width: 800px; 
         text-align: center;
     }

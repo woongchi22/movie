@@ -29,5 +29,23 @@ public class DibsListService {
 		return dbList;
 	}
 
+	// admin 전용
+	public ArrayList<DibsBean> getDibsList() {
+		System.out.println("DibsListService - admin");
+		
+		ArrayList<DibsBean> dbList = null;
+		
+		Connection con = getConnection();
+		MypageDao dao = MypageDao.getInstance();
+		dao.setConnection(con);
+		
+		dbList = dao.selectDibsList();
+		
+		close(con);
+		
+		return dbList;
+		
+	}
+
 
 }

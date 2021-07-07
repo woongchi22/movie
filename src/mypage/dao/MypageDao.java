@@ -186,6 +186,40 @@ public class MypageDao {
 		return db;
 	}
 
+	// admin 전용
+	public ArrayList<DibsBean> selectDibsList() {
+		System.out.println("mypage dao - admin - selectDibs()");
+		
+		ArrayList<DibsBean> dbList = null;
+		
+		try {
+			String sql = "SELECT * FROM dibs ORDER BY name";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			dbList = new ArrayList<DibsBean>();
+
+			while(rs.next()) {
+				DibsBean db = new DibsBean();
+				db.setIdx(rs.getInt(1));
+				db.setName(rs.getString(2));
+				db.setMovieSeq(rs.getInt(3));
+				db.setTitle(rs.getString(4));
+				db.setPoster(rs.getString(5));
+				db.setDibs(rs.getString(6));
+				
+				dbList.add(db);
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return dbList;
+	}
+
 	
 	
 	
