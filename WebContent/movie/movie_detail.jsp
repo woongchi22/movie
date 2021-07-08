@@ -191,118 +191,109 @@ $(document).ready(function() {
                          switch (getGrade) {
 
                              case "0.5":
-                                 $('.l1').focus();
-                                 $('#isGrade').show();
-                                 break;
-                                 
-                             case "1":
-                                 $('.l2').focus();
-                                 $('#isGrade').show();
-                                 break;
-                                 
-                             case "1.5":
-                                 $('.l3').focus();
-                                 $('#isGrade').show();
-                                 break;
-                                 
-                             case "2":
-                                 $('.l4').focus();
-                                 $('#isGrade').show();
-                                 break;
-                                 
-                             case "2.5":
-                                 $('.l5').focus();
-                                 $('#isGrade').show();
-                                 break;
-                             case "3":
-                                 $('.l6').focus();
-                                 $('#isGrade').show();
-                                 break;
-                                 
-                             case "3.5":
-                                 $('.l7').focus();
-                                 $('#isGrade').show();
-                                 break;
-                                 
-                             case "4":
-                                 $('.l8').focus();
-                                 $('#isGrade').show();
-                                 break;
-                                 
-                             case "4.5":
-                                 $('.l9').focus();
-                                 $('#isGrade').show();
-                                 break;
-                                 
-                             case "5":
-                                 $('.l10').focus();
-                                 $('#isGrade').show();
-                                 break;
+                                     $('.star1').focus();
+                                     $('#isGrade').show();
+                                     break;
+                                 case "1":
+                                     $('.star2').focus();
+                                     $('#isGrade').show();
+                                     break;
+                                 case "1.5":
+                                     $('.star3').focus();
+                                     $('#isGrade').show();
+                                     break;
+                                 case "2":
+                                     $('.star4').focus();
+                                     $('#isGrade').show();
+                                     break;
+                                 case "2.5":
+                                     $('.star5').focus();
+                                     $('#isGrade').show();
+                                     break;
+                                 case "3":
+                                     $('.star6').focus();
+                                     $('#isGrade').show();
+                                     break;
+                                 case "3.5":
+                                     $('.star7').focus();
+                                     $('#isGrade').show();
+                                     break;
+                                 case "4":
+                                     $('.star8').focus();
+                                     $('#isGrade').show();
+                                     break;
+                                 case "4.5":
+                                     $('.star9').focus();
+                                     $('#isGrade').show();
+                                     break;
+                                 case "5":
+                                     $('.star10').focus();
+                                     $('#isGrade').show();
+                                     break;
                          } // switch문
 
                          var nation = item2.nation.split(",");
-                         $('.c1').eq(idx).val(item2.director[0].directorNm + "/" + nation[0] + "/" + title5 + "/" + item2.movieSeq + "/" + item2.runtime + "/" + item2.genre + "/" + item2.prodYear);
-                         var image = image[0];
-                         var garde = 0;
-                         var movieSeq = ""
-                         $('.c1').eq(idx).click(function() {
-                             var grade = 1;
-                             var data = $('.c1').eq(idx).val();
-                             starClick(data, grade, image);
-                         });
+                         $('.rev-star1').eq(idx).val(item2.director[0].directorNm + "/" + nation[0] + "/" + title5 + "/" + item2.movieSeq + "/" + item2.runtime + "/" + item2.genre + "/" + item2.prodYear);
+                             var image = image[0];
+                             var garde = 0;
+                             var movieSeq = ""
+                             $('.rev-star1').eq(idx).click(function() {
+                                 var grade = 1;
+                                 var data = $('.rev-star1').eq(idx).val();
+                                 starClick(data, grade, image);
 
-                         $('.c2').eq(idx).click(function() {
-                             var grade = 2;
-                             var data = $('.c1').eq(idx).val();
-                             starClick(data, grade, image);
-                         });
-                         
-                         $('.c3').eq(idx).click(function() {
-                             var grade = 3;
-                             var data = $('.c1').eq(idx).val();
-                             starClick(data, grade, image);
-                         });
+                             });
 
-                         $('.c4').eq(idx).click(function() {
-                             var grade = 4;
-                             var data = $('.c1').eq(idx).val();
-                             starClick(data, grade, image);
-                         });
+                             $('.rev-star2').eq(idx).click(function() {
+                                 var grade = 2;
+                                 var data = $('.rev-star1').eq(idx).val();
+                                 starClick(data, grade, image);
 
-                         $('.c5').eq(idx).click(function() {
-                             var grade = 5;
-                             var data = $('.c1').eq(idx).val();
-                             starClick(data, grade, image);
-                         });
+                             });
+                             $('.rev-star3').eq(idx).click(function() {
+                                 var grade = 3;
+                                 var data = $('.rev-star1').eq(idx).val();
+                                 starClick(data, grade, image);
 
-                         $('.c6').eq(idx).click(function() {
-                             var grade = 6;
-                             var data = $('.c1').eq(idx).val();
-                             starClick(data, grade, image);
-                         });
-                         
-                         $('.c7').eq(idx).click(function() {
-                             var grade = 7;
-                             var data = $('.c1').eq(idx).val();
-                             starClick(data, grade, image);
-                         });
-                         
-                         $('.c8').eq(idx).click(function() {
-                             var grade = 8;
-                             var data = $('.c1').eq(idx).val();
-                             starClick(data, grade, image);
-                         });
-                         
-                         $('.c9').eq(idx).click(function() {
-                             var grade = 9;
-                             var data = $('.c1').eq(idx).val();
-                             starClick(data, grade, image);
-                         });
-                         
-                         $('.c10').eq(idx).click(function() {
-                             var grade = 10;
-                             var data = $('.c1').eq(idx).val();
-                             starClick(data, grade, image);
+                             });
+
+                             $('.rev-star4').eq(idx).click(function() {
+                                 var grade = 4;
+                                 var data = $('.rev-star1').eq(idx).val();
+                                 starClick(data, grade, image);
+                             });
+
+                             $('.rev-star5').eq(idx).click(function() {
+                                 var grade = 5;
+                                 var data = $('.rev-star1').eq(idx).val();
+                                 starClick(data, grade, image);
+                             });
+
+                             $('.rev-star6').eq(idx).click(function() {
+                                 var grade = 6;
+                                 var data = $('.rev-star1').eq(idx).val();
+                                 starClick(data, grade, image);
+
+                             });
+                             $('.rev-star7').eq(idx).click(function() {
+                                 var grade = 7;
+                                 var data = $('.rev-star1').eq(idx).val();
+                                 starClick(data, grade, image);
+                             });
+                             $('.rev-star8').eq(idx).click(function() {
+                                 var grade = 8;
+                                 var data = $('.rev-star1').eq(idx).val();
+                                 starClick(data, grade, image);
+                             });
+                             $('.rev-star9').eq(idx).click(function() {
+                                 var grade = 9;
+                                 var data = $('.rev-star1').eq(idx).val();
+                                 starClick(data, grade, image);
+                             });
+                             $('.rev-star10').eq(idx).click(function() {
+                                 var grade = 10;
+                                 var data = $('.rev-star1').eq(idx).val();
+                                 starClick(data, grade, image);
 
                          });
 
@@ -312,45 +303,45 @@ $(document).ready(function() {
          }); // ajax
          
     } else {
-        $('.l1').click(function() {
-            selectBtn();
-        });
+        $('.star1').click(function() {
+                 selectBtn();
+             })
 
-        $('.l2').click(function() {
-            selectBtn();
-        });
+             $('.star2').click(function() {
+                 selectBtn();
+             })
 
-        $('.l3').click(function() {
-            selectBtn();
-        });
+             $('.star3').click(function() {
+                 selectBtn();
+             })
 
-        $('.l4').click(function() {
-            selectBtn();
-        });
+             $('.star4').click(function() {
+                 selectBtn();
+             })
 
-        $('.l5').click(function() {
-            selectBtn();
-        });
+             $('.star5').click(function() {
+                 selectBtn();
+             })
 
-        $('.l6').click(function() {
-            selectBtn();
-        });
+             $('.star6').click(function() {
+                 selectBtn();
+             })
 
-        $('.l7').click(function() {
-            selectBtn();
-        });
+             $('.star7').click(function() {
+                 selectBtn();
+             })
 
-        $('.l8').click(function() {
-            selectBtn();
-        });
+             $('.star8').click(function() {
+                 selectBtn();
+             })
 
-        $('.l9').click(function() {
-            selectBtn();
-        });
+             $('.star9').click(function() {
+                 selectBtn();
+             })
 
-        $('.l10').click(function() {
-            selectBtn();
-        });
+             $('.star10').click(function() {
+                 selectBtn();
+             })
     } // else
 		   	 
 	
