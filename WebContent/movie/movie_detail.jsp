@@ -132,6 +132,160 @@ $(document).ready(function() {
 			   	 
 	}); 
 	
+	// 찜꽁
+    $.ajax('Dibs.mp', {
+        data: {
+            movieSeq:movieSeq
+        },
+        success: function(data) {
+            console.log('데이터' + data);
+            
+            if(data == 'Y') {
+                $('.dibsBtn').addClass('done');
+                $('.dibsBtnImg').attr("src", "img/check2.png");
+                
+            } else {
+                $('.dibsBtn').removeClass('done');
+                $('.dibsBtnImg').attr("src", "img/check.png");
+            }
+        }
+        
+    });
+    
+    
+    // 찜꽁 등록,삭제
+    $.ajax("MovieDetail.mo", {
+        method: "post",
+        dataType: "json",
+        data: {
+            movieSeq:movieSeq,
+            query:query
+        },
+        success: function(data) {
+            
+            $.each(data.Data, function(idx, item) {
+                $.each(item.Result, function(idx, item2) {
+
+                    var title1 = item2.title
+                    var titleNoSpace = title1.replace(/ /g, ''); // 타이틀 공백제거
+                    var title2 = titleNoSpace.replace(/!HS/g,'') // 검색어는 !HS , !HE 로 둘러 싸여있어서 제거해줌
+                    var title3 = title2.replace(/!HE/g,'')
+                    var title4 = title3.trim(); // 양쪽끝에 공백을 제거해줌
+                    var title = encodeURIComponent(title4);
+                    
+                    var poster = item2.posters.split("|");
+                    
+                    $('.dibsBtn').click(function() {
+                        var dibs = $('#dibs').val();
+                        
+                        $.ajax({
+                            url: "DibsPro.mp",
+                            type: "post",
+                            data: {
+                                name:name,
+                                movieSeq:movieSeq,
+                                query:query,
+                                poster:poster[0],
+                                dibs:dibs
+                            },
+                            async: false,
+                            success: function(data) {
+                                console.log("오나염");
+                                console.log(data);
+                                if($('.dibsBtn').hasClass('done') == true) {
+                                    $('.dibsBtn').removeClass('done')
+                                    $('.dibsBtnImg').attr("src", "img/check.png");
+                                } else {
+                                    $('.dibsBtn').addClass('done');
+                                    $('.dibsBtnImg').attr("src", "img/check2.png");
+                                }
+                                
+                            } 
+                        
+                        }); // ajax - DibsPro
+                        
+                    }); // dibs 버튼 클릭
+                    
+                }); //each2
+                
+            }); // each
+            
+        } // success
+    
+    }); // ajax - MovieDetail
+    
+    //감독 다른 영화
+    $.ajax('DirectorSearchPro.mo',{
+        method:"post",
+        dataType:"json",
+        async: false,
+        data:{query:directorNm},
+        success: function(data) {
+            $.each(data.Data, function(idx,item) {
+                var count = item.Count;
+                $.each(item.Result, function(idx, item2) {
+                    
+                    var title = item2.title
+                    var titleNoSpace = title.replace(/ /g, '');
+                    var title2 = titleNoSpace.replace(/!HS/g, '')
+                    var title3 = title2.replace(/!HE/g, '')
+                    var title5 = title3.trim();
+                    var title6 = encodeURIComponent(title5);
+                    var image = item2.posters.split("|");
+                 console.log(title6);
+                    
+                    if(image[0]){
+                        $('.directorMovie').append('<div class="directorsMovie"><a href=MovieDetailPro.mo?movieSeq='+item2.movieSeq+'&query='+title6+'>'
+                                +'<div class=poster style="background-image:url('+image[0]+'),url(${pageContext.request.contextPath}/img/noImage.gif);"></div></a>'+
+                        '<div class=title>'+title+'</div></div>');
+                    }
+                    $('.directorP').text(directorNm + " 감독의 다른 영화들");
+
+                        
+                        
+                });
+            });
+        
+
+            $('.directorMovie').slick({
+                   dots: false,
+                      infinite: false,
+                      arrows: true,
+                      variableWidth:true,
+                      speed: 300,
+                      slidesToShow: 4,
+                      slidesToScroll: 3,
+                   responsive: [
+                     {
+                       breakpoint: 1024,
+                       settings: {
+                         slidesToShow: 3,
+                         slidesToScroll: 3,
+                         infinite: false,
+                         dots: false
+                       }
+                     },
+                     {
+                       breakpoint: 600,
+                       settings: {
+                         slidesToShow: 2,
+                         slidesToScroll: 2
+                       }
+                     },
+                     {
+                       breakpoint: 480,
+                       settings: {
+                         slidesToShow: 1,
+                         slidesToScroll: 1
+                       }
+                     }
+                   ]
+                 });    
+            
+        
+        }
+    });
+	
 	
 	//별점
 	function starClick(param,grade,image) {
@@ -232,7 +386,7 @@ $(document).ready(function() {
                                      break;
                          } // switch문
 
-                         var nation = item2.nation.split(",");
+//                          var nation = item2.nation.split(",");
                          $('.rev-star1').eq(idx).val(item2.director[0].directorNm + "/" + nation[0] + "/" + title5 + "/" + item2.movieSeq + "/" + item2.runtime + "/" + item2.genre + "/" + item2.prodYear);
                              var image = image[0];
                              var garde = 0;
@@ -275,21 +429,25 @@ $(document).ready(function() {
                                  starClick(data, grade, image);
 
                              });
+                             
                              $('.rev-star7').eq(idx).click(function() {
                                  var grade = 7;
                                  var data = $('.rev-star1').eq(idx).val();
                                  starClick(data, grade, image);
                              });
+                             
                              $('.rev-star8').eq(idx).click(function() {
                                  var grade = 8;
                                  var data = $('.rev-star1').eq(idx).val();
                                  starClick(data, grade, image);
                              });
+                             
                              $('.rev-star9').eq(idx).click(function() {
                                  var grade = 9;
                                  var data = $('.rev-star1').eq(idx).val();
                                  starClick(data, grade, image);
                              });
+                             
                              $('.rev-star10').eq(idx).click(function() {
                                  var grade = 10;
                                  var data = $('.rev-star1').eq(idx).val();
@@ -304,200 +462,49 @@ $(document).ready(function() {
          
     } else {
         $('.star1').click(function() {
-                 selectBtn();
-             })
+            selectBtn();
+        });
 
-             $('.star2').click(function() {
-                 selectBtn();
-             })
+        $('.star2').click(function() {
+            selectBtn();
+        });
 
-             $('.star3').click(function() {
-                 selectBtn();
-             })
+        $('.star3').click(function() {
+            selectBtn();
+        });
 
-             $('.star4').click(function() {
-                 selectBtn();
-             })
+        $('.star4').click(function() {
+            selectBtn();
+        });
 
-             $('.star5').click(function() {
-                 selectBtn();
-             })
+        $('.star5').click(function() {
+            selectBtn();
+        });
 
-             $('.star6').click(function() {
-                 selectBtn();
-             })
+        $('.star6').click(function() {
+            selectBtn();
+        });
 
-             $('.star7').click(function() {
-                 selectBtn();
-             })
+        $('.star7').click(function() {
+            selectBtn();
+        });
 
-             $('.star8').click(function() {
-                 selectBtn();
-             })
+        $('.star8').click(function() {
+            selectBtn();
+        });
 
-             $('.star9').click(function() {
-                 selectBtn();
-             })
+        $('.star9').click(function() {
+            selectBtn();
+        });
 
-             $('.star10').click(function() {
-                 selectBtn();
-             })
+        $('.star10').click(function() {
+            selectBtn();
+        });
+        
     } // else
 		   	 
 	
-	// 찜꽁
-    $.ajax('Dibs.mp', {
-        data: {
-            movieSeq:movieSeq
-        },
-        success: function(data) {
-        	console.log('데이터' + data);
-        	
-            if(data == 'Y') {
-                $('.dibsBtn').addClass('done');
-                $('.dibsBtnImg').attr("src", "img/check2.png");
-                
-            } else {
-                $('.dibsBtn').removeClass('done');
-                $('.dibsBtnImg').attr("src", "img/check.png");
-            }
-        }
-        
-    });
-	
-	
-	// 찜꽁 등록,삭제
-	$.ajax("MovieDetail.mo", {
-		method: "post",
-		dataType: "json",
-		data: {
-			movieSeq:movieSeq,
-			query:query
-		},
-		success: function(data) {
-			
-			$.each(data.Data, function(idx, item) {
-				$.each(item.Result, function(idx, item2) {
 
-                    var title1 = item2.title
-                    var titleNoSpace = title1.replace(/ /g, ''); // 타이틀 공백제거
-                    var title2 = titleNoSpace.replace(/!HS/g,'') // 검색어는 !HS , !HE 로 둘러 싸여있어서 제거해줌
-                    var title3 = title2.replace(/!HE/g,'')
-                    var title4 = title3.trim(); // 양쪽끝에 공백을 제거해줌
-                    var title = encodeURIComponent(title4);
-                    
-                    var poster = item2.posters.split("|");
-                    
-				    $('.dibsBtn').click(function() {
-                        var dibs = $('#dibs').val();
-				    	
-                        $.ajax({
-				    		url: "DibsPro.mp",
-				    		type: "post",
-				    		data: {
-				    			name:name,
-				    			movieSeq:movieSeq,
-				    			query:query,
-				    			poster:poster[0],
-				    			dibs:dibs
-				    		},
-				    		async: false,
-				    		success: function(data) {
-				    			console.log("오나염");
-				    			console.log(data);
-				    			if($('.dibsBtn').hasClass('done') == true) {
-				    				$('.dibsBtn').removeClass('done')
-				    				$('.dibsBtnImg').attr("src", "img/check.png");
-				    			} else {
-				    			    $('.dibsBtn').addClass('done');
-				    			    $('.dibsBtnImg').attr("src", "img/check2.png");
-				    			}
-				    			
-							} 
-				    	
-				    	}); // ajax - DibsPro
-				        
-				    }); // dibs 버튼 클릭
-				    
-				}); //each2
-				
-			}); // each
-			
-		} // success
-    
-	}); // ajax - MovieDetail
-	
-	//감독 다른 영화
-	$.ajax('DirectorSearchPro.mo',{
-		method:"post",
-		dataType:"json",
-		async: false,
-		data:{query:directorNm},
-		success: function(data) {
-			$.each(data.Data, function(idx,item) {
-				var count = item.Count;
-				$.each(item.Result, function(idx, item2) {
-					
-					var title = item2.title
-					var titleNoSpace = title.replace(/ /g, '');
-					var title2 = titleNoSpace.replace(/!HS/g, '')
-		            var title3 = title2.replace(/!HE/g, '')
-		            var title5 = title3.trim();
-		            var title6 = encodeURIComponent(title5);
-		            var image = item2.posters.split("|");
-		         console.log(title6);
-		            
-		            if(image[0]){
-		            	$('.directorMovie').append('<div class="directorsMovie"><a href=MovieDetailPro.mo?movieSeq='+item2.movieSeq+'&query='+title6+'>'
-		            			+'<div class=poster style="background-image:url('+image[0]+'),url(${pageContext.request.contextPath}/img/noImage.gif);"></div></a>'+
-		            	'<div class=title>'+title+'</div></div>');
-		            }
-		            $('.directorP').text(directorNm + " 감독의 다른 영화들");
-
-						
-						
-				});
-			});
-		
-
-			$('.directorMovie').slick({
-			   	   dots: false,
-			          infinite: false,
-			          arrows: true,
-			          variableWidth:true,
-			          speed: 300,
-			          slidesToShow: 4,
-			          slidesToScroll: 3,
-			   	   responsive: [
-			   	     {
-			   	       breakpoint: 1024,
-			   	       settings: {
-			   	         slidesToShow: 3,
-			   	         slidesToScroll: 3,
-			   	         infinite: false,
-			   	         dots: false
-			   	       }
-			   	     },
-			   	     {
-			   	       breakpoint: 600,
-			   	       settings: {
-			   	         slidesToShow: 2,
-			   	         slidesToScroll: 2
-			   	       }
-			   	     },
-			   	     {
-			   	       breakpoint: 480,
-			   	       settings: {
-			   	         slidesToShow: 1,
-			   	         slidesToScroll: 1
-			   	       }
-			   	     }
-			   	   ]
-			   	 });	
-			
-		
-		}
-	});
 	
 
 	
