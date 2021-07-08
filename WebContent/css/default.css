@@ -262,3 +262,9 @@ dt{
 }
 .otherMovie>a:link, .otherMovie>a:visited {color: red;}
 .otherMovie>a:hover, .otherMovie>a:active {color: #fe6969;}
+textarea{
+	resize: none; 
+	width:100%; 
+	height:100px;
+	
+}

@@ -190,8 +190,7 @@ $(document).ready(function() {
                             },
                             async: false,
                             success: function(data) {
-                                console.log("오나염");
-                                console.log(data);
+                            	
                                 if($('.dibsBtn').hasClass('done') == true) {
                                     $('.dibsBtn').removeClass('done')
                                     $('.dibsBtnImg').attr("src", "img/check.png");
@@ -232,7 +231,6 @@ $(document).ready(function() {
                     var title5 = title3.trim();
                     var title6 = encodeURIComponent(title5);
                     var image = item2.posters.split("|");
-                 console.log(title6);
                     
                     if(image[0]){
                         $('.directorMovie').append('<div class="directorsMovie"><a href=MovieDetailPro.mo?movieSeq='+item2.movieSeq+'&query='+title6+'>'
@@ -287,221 +285,224 @@ $(document).ready(function() {
     });
 	
 	
-	//별점
-	function starClick(param,grade,image) {
-		$.ajax("SetGrade.mo", {
-			method:"post",
-			async: false,
-			dataType:{
-				data:param,
-				name:name,
-				grade:grade,
-				image:image
-			},
-			success: function(data) {
-				console.log(data);
-				location.reload();
+// 	//별점
+// 	function starClick(param,grade,image) {
+// 		$.ajax("SetGrade.mo", {
+// 			method:"post",
+// 			async: false,
+// 			dataType:{
+// 				data:param,
+// 				name:name,
+// 				grade:grade,
+// 				image:image
+// 			},
+// 			success: function(data) {
+// 				console.log(data);
+// 				location.reload();
 				
-			} //star success
-		}); //ajax
-	}
+// 			} //star success
+// 		}); //ajax
+// 	}
 			   	 
-	if (name != 'null') {
-         $.ajax("MovieDetail.mo", {
-             method: "get",
-             dataType: "json",
-             async: false,
-             data: {
-                 movieSeq: movieSeq,
-                 query: query
-             },
-             success: function(data) {
-                 var grade = 0;
-                 $.each(data.Data, function(idx, item) {
-                     var i = 1;
-                     var l = 1;
+// 	if (name != 'null') {
+//          $.ajax("MovieDetail.mo", {
+//              method: "get",
+//              dataType: "json",
+//              async: false,
+//              data: {
+//                  movieSeq: movieSeq,
+//                  query: query
+//              },
+//              success: function(data) {
+//             	 console.log("성공");
 
-                     $.each(item.Result, function(idx, item2) {
+//             	 console.log(data);
+//                  var grade = 0;
+//                  $.each(data.Data, function(idx, item) {
+//                      var i = 1;
+//                      var l = 1;
 
-                         var num = 0;
-                         var image = item2.posters.split("|");
-                         var title = item2.title;
-                         var titleNoSpace = title.replace(/ /g, '');
-                         var title2 = titleNoSpace.replace(/!HS/g, '');
-                         var title3 = title2.replace(/!HE/g, '');
-                         var title5 = title3.trim();
+//                      $.each(item.Result, function(idx, item2) {
 
-                         // 10개의 라벨에 각기 다른 값을 부여하기위한 반복문
-                         for (var o = 1; o < 11; o++) {
-                             $('.c' + o).eq(idx).attr("id", "p" + i++);
-                         }
-                         // 10개의 라벨에 각기 다른 값을 부여하기위한 반복문
-                         for (var o = 1; o < 11; o++) {
-                             $('.l' + o).eq(idx).attr("for", "p" + l++);
-                         }
+//                          var num = 0;
+//                          var image = item2.posters.split("|");
+//                          var title = item2.title;
+//                          var titleNoSpace = title.replace(/ /g, '');
+//                          var title2 = titleNoSpace.replace(/!HS/g, '');
+//                          var title3 = title2.replace(/!HE/g, '');
+//                          var title5 = title3.trim();
 
-                         var getGrade = $('#getGrade').val();
+//                          // 10개의 라벨에 각기 다른 값을 부여하기위한 반복문
+//                          for (var o = 1; o < 11; o++) {
+//                              $('.rev-star' + o).eq(idx).attr("id", "p" + i++);
+//                          }
+//                          // 10개의 라벨에 각기 다른 값을 부여하기위한 반복문
+//                          for (var o = 1; o < 11; o++) {
+//                              $('.star' + o).eq(idx).attr("for", "p" + l++);
+//                          }
+
+//                          var getGrade = $('#getGrade').val();
                          
-                         switch (getGrade) {
+//                          switch (getGrade) {
 
-                             case "0.5":
-                                     $('.star1').focus();
-                                     $('#isGrade').show();
-                                     break;
-                                 case "1":
-                                     $('.star2').focus();
-                                     $('#isGrade').show();
-                                     break;
-                                 case "1.5":
-                                     $('.star3').focus();
-                                     $('#isGrade').show();
-                                     break;
-                                 case "2":
-                                     $('.star4').focus();
-                                     $('#isGrade').show();
-                                     break;
-                                 case "2.5":
-                                     $('.star5').focus();
-                                     $('#isGrade').show();
-                                     break;
-                                 case "3":
-                                     $('.star6').focus();
-                                     $('#isGrade').show();
-                                     break;
-                                 case "3.5":
-                                     $('.star7').focus();
-                                     $('#isGrade').show();
-                                     break;
-                                 case "4":
-                                     $('.star8').focus();
-                                     $('#isGrade').show();
-                                     break;
-                                 case "4.5":
-                                     $('.star9').focus();
-                                     $('#isGrade').show();
-                                     break;
-                                 case "5":
-                                     $('.star10').focus();
-                                     $('#isGrade').show();
-                                     break;
-                         } // switch문
+//                              case "0.5":
+//                                      $('.star1').focus();
+//                                      $('#isGrade').show();
+//                                      break;
+//                                  case "1":
+//                                      $('.star2').focus();
+//                                      $('#isGrade').show();
+//                                      break;
+//                                  case "1.5":
+//                                      $('.star3').focus();
+//                                      $('#isGrade').show();
+//                                      break;
+//                                  case "2":
+//                                      $('.star4').focus();
+//                                      $('#isGrade').show();
+//                                      break;
+//                                  case "2.5":
+//                                      $('.star5').focus();
+//                                      $('#isGrade').show();
+//                                      break;
+//                                  case "3":
+//                                      $('.star6').focus();
+//                                      $('#isGrade').show();
+//                                      break;
+//                                  case "3.5":
+//                                      $('.star7').focus();
+//                                      $('#isGrade').show();
+//                                      break;
+//                                  case "4":
+//                                      $('.star8').focus();
+//                                      $('#isGrade').show();
+//                                      break;
+//                                  case "4.5":
+//                                      $('.star9').focus();
+//                                      $('#isGrade').show();
+//                                      break;
+//                                  case "5":
+//                                      $('.star10').focus();
+//                                      $('#isGrade').show();
+//                                      break;
+//                          } // switch문
 
-//                          var nation = item2.nation.split(",");
-                         $('.rev-star1').eq(idx).val(item2.director[0].directorNm + "/" + nation[0] + "/" + title5 + "/" + item2.movieSeq + "/" + item2.runtime + "/" + item2.genre + "/" + item2.prodYear);
-                             var image = image[0];
-                             var garde = 0;
-                             var movieSeq = ""
-                             $('.rev-star1').eq(idx).click(function() {
-                                 var grade = 1;
-                                 var data = $('.rev-star1').eq(idx).val();
-                                 starClick(data, grade, image);
+// //                          var nation = item2.nation.split(",");
+//                          $('.rev-star1').eq(idx).val(item2.director[0].directorNm + "/" + title5 + "/" + item2.movieSeq + "/" + item2.runtime + "/" + item2.genre + "/" + item2.prodYear);
+//                              var image = image[0];
+//                              var garde = 0;
+//                              var movieSeq = ""
+//                              $('.rev-star1').eq(idx).click(function() {
+//                                  var grade = 1;
+//                                  var data = $('.rev-star1').eq(idx).val();
+//                                  starClick(data, grade, image);
 
-                             });
+//                              });
 
-                             $('.rev-star2').eq(idx).click(function() {
-                                 var grade = 2;
-                                 var data = $('.rev-star1').eq(idx).val();
-                                 starClick(data, grade, image);
+//                              $('.rev-star2').eq(idx).click(function() {
+//                                  var grade = 2;
+//                                  var data = $('.rev-star1').eq(idx).val();
+//                                  starClick(data, grade, image);
 
-                             });
-                             $('.rev-star3').eq(idx).click(function() {
-                                 var grade = 3;
-                                 var data = $('.rev-star1').eq(idx).val();
-                                 starClick(data, grade, image);
+//                              });
+//                              $('.rev-star3').eq(idx).click(function() {
+//                                  var grade = 3;
+//                                  var data = $('.rev-star1').eq(idx).val();
+//                                  starClick(data, grade, image);
 
-                             });
+//                              });
 
-                             $('.rev-star4').eq(idx).click(function() {
-                                 var grade = 4;
-                                 var data = $('.rev-star1').eq(idx).val();
-                                 starClick(data, grade, image);
-                             });
+//                              $('.rev-star4').eq(idx).click(function() {
+//                                  var grade = 4;
+//                                  var data = $('.rev-star1').eq(idx).val();
+//                                  starClick(data, grade, image);
+//                              });
 
-                             $('.rev-star5').eq(idx).click(function() {
-                                 var grade = 5;
-                                 var data = $('.rev-star1').eq(idx).val();
-                                 starClick(data, grade, image);
-                             });
+//                              $('.rev-star5').eq(idx).click(function() {
+//                                  var grade = 5;
+//                                  var data = $('.rev-star1').eq(idx).val();
+//                                  starClick(data, grade, image);
+//                              });
 
-                             $('.rev-star6').eq(idx).click(function() {
-                                 var grade = 6;
-                                 var data = $('.rev-star1').eq(idx).val();
-                                 starClick(data, grade, image);
+//                              $('.rev-star6').eq(idx).click(function() {
+//                                  var grade = 6;
+//                                  var data = $('.rev-star1').eq(idx).val();
+//                                  starClick(data, grade, image);
 
-                             });
+//                              });
                              
-                             $('.rev-star7').eq(idx).click(function() {
-                                 var grade = 7;
-                                 var data = $('.rev-star1').eq(idx).val();
-                                 starClick(data, grade, image);
-                             });
+//                              $('.rev-star7').eq(idx).click(function() {
+//                                  var grade = 7;
+//                                  var data = $('.rev-star1').eq(idx).val();
+//                                  starClick(data, grade, image);
+//                              });
                              
-                             $('.rev-star8').eq(idx).click(function() {
-                                 var grade = 8;
-                                 var data = $('.rev-star1').eq(idx).val();
-                                 starClick(data, grade, image);
-                             });
+//                              $('.rev-star8').eq(idx).click(function() {
+//                                  var grade = 8;
+//                                  var data = $('.rev-star1').eq(idx).val();
+//                                  starClick(data, grade, image);
+//                              });
                              
-                             $('.rev-star9').eq(idx).click(function() {
-                                 var grade = 9;
-                                 var data = $('.rev-star1').eq(idx).val();
-                                 starClick(data, grade, image);
-                             });
+//                              $('.rev-star9').eq(idx).click(function() {
+//                                  var grade = 9;
+//                                  var data = $('.rev-star1').eq(idx).val();
+//                                  starClick(data, grade, image);
+//                              });
                              
-                             $('.rev-star10').eq(idx).click(function() {
-                                 var grade = 10;
-                                 var data = $('.rev-star1').eq(idx).val();
-                                 starClick(data, grade, image);
+//                              $('.rev-star10').eq(idx).click(function() {
+//                                  var grade = 10;
+//                                  var data = $('.rev-star1').eq(idx).val();
+//                                  starClick(data, grade, image);
 
-                         });
+//                          });
 
-                     }); //each문 끝남
-                 }); // each문 
-             } // success
-         }); // ajax
+//                      }); //each문 끝남
+//                  }); // each문 
+//              } // success
+//          }); // ajax
          
-    } else {
-        $('.star1').click(function() {
-            selectBtn();
-        });
+//     } else {
+//         $('.star1').click(function() {
+//             selectBtn();
+//         });
 
-        $('.star2').click(function() {
-            selectBtn();
-        });
+//         $('.star2').click(function() {
+//             selectBtn();
+//         });
 
-        $('.star3').click(function() {
-            selectBtn();
-        });
+//         $('.star3').click(function() {
+//             selectBtn();
+//         });
 
-        $('.star4').click(function() {
-            selectBtn();
-        });
+//         $('.star4').click(function() {
+//             selectBtn();
+//         });
 
-        $('.star5').click(function() {
-            selectBtn();
-        });
+//         $('.star5').click(function() {
+//             selectBtn();
+//         });
 
-        $('.star6').click(function() {
-            selectBtn();
-        });
+//         $('.star6').click(function() {
+//             selectBtn();
+//         });
 
-        $('.star7').click(function() {
-            selectBtn();
-        });
+//         $('.star7').click(function() {
+//             selectBtn();
+//         });
 
-        $('.star8').click(function() {
-            selectBtn();
-        });
+//         $('.star8').click(function() {
+//             selectBtn();
+//         });
 
-        $('.star9').click(function() {
-            selectBtn();
-        });
+//         $('.star9').click(function() {
+//             selectBtn();
+//         });
 
-        $('.star10').click(function() {
-            selectBtn();
-        });
+//         $('.star10').click(function() {
+//             selectBtn();
+//         });
         
-    } // else
+//     } // else
 		   	 
 	
 
@@ -529,7 +530,7 @@ $(document).ready(function() {
 <input type="hidden" id="name" name="name" value="<%=name %>">
 <input type="hidden" id="dibs" name="dibs" value="Y">
 
-
+<div class="review"><a href="BoardReview.bo?movieSeq=<%=movieSeq %>&query=<%=query %>" >리뷰</a></div>
 <div class="wrap">
 	<div class="title_top"></div>
 		<%if(pass != null) { %>
@@ -552,11 +553,11 @@ $(document).ready(function() {
 			</div>
 			</div>
 			
-			
 		    <div class="dibs"><button class="dibsBtn" value="<%=movieSeq %>"><img class="dibsBtnImg" src="img/check.png" width="20px" height="20px">&nbsp;찜꽁</button></div>
 		<%} else {%>   
 		      <div class="dibsLogin"><a href="MemberLoginForm.me">로그인</a>하시고 별점을 남겨주세요</div>
 		<%} %>
+			
 	<div class="star"></div>
 	<div class="posters" ></div>
 	<div class="info"></div>
