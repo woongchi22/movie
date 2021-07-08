@@ -153,7 +153,12 @@ $(document).ready(function() {
 			}); //ajax
 		}
 			   	 
-		 if (nick != 'null') {
+		 
+		
+		} //success
+		
+	});	
+		 if (name != 'null') {
              $.ajax("MovieDetail.mo", {
                  method: "get",
                  dataType: "json",
@@ -161,10 +166,11 @@ $(document).ready(function() {
                  data: {
                      movieSeq: movieSeq,
                      query: query,
-                     keyword: keyword
+//                      keyword: keyword
                  },
                  success: function(data) {
                      var grade = 0;
+                     console.log(data);
                      $.each(data.Data, function(idx, item) {
                          var i = 1;
                          var l = 1;
@@ -181,54 +187,54 @@ $(document).ready(function() {
 
                              // 10개의 라벨에 각기 다른 값을 부여하기위한 반복문
                              for (var o = 1; o < 11; o++) {
-                                 $('.c' + o).eq(idx).attr("id", "p" + i++);
+                                 $('.rev-star' + o).eq(idx).attr("id", "p" + i++);
                              }
                              // 10개의 라벨에 각기 다른 값을 부여하기위한 반복문
                              for (var o = 1; o < 11; o++) {
-                                 $('.l' + o).eq(idx).attr("for", "p" + l++);
+                                 $('.star' + o).eq(idx).attr("for", "p" + l++);
                              }
 
                              var getGrade = $('#getGrade').val()
                              switch (getGrade) {
 
                                  case "0.5":
-                                     $('.l1').focus();
+                                     $('.star1').focus();
                                      $('#isGrade').show();
                                      break;
                                  case "1":
-                                     $('.l2').focus();
+                                     $('.star2').focus();
                                      $('#isGrade').show();
                                      break;
                                  case "1.5":
-                                     $('.l3').focus();
+                                     $('.star3').focus();
                                      $('#isGrade').show();
                                      break;
                                  case "2":
-                                     $('.l4').focus();
+                                     $('.star4').focus();
                                      $('#isGrade').show();
                                      break;
                                  case "2.5":
-                                     $('.l5').focus();
+                                     $('.star5').focus();
                                      $('#isGrade').show();
                                      break;
                                  case "3":
-                                     $('.l6').focus();
+                                     $('.star6').focus();
                                      $('#isGrade').show();
                                      break;
                                  case "3.5":
-                                     $('.l7').focus();
+                                     $('.star7').focus();
                                      $('#isGrade').show();
                                      break;
                                  case "4":
-                                     $('.l8').focus();
+                                     $('.star8').focus();
                                      $('#isGrade').show();
                                      break;
                                  case "4.5":
-                                     $('.l9').focus();
+                                     $('.star9').focus();
                                      $('#isGrade').show();
                                      break;
                                  case "5":
-                                     $('.l10').focus();
+                                     $('.star10').focus();
                                      $('#isGrade').show();
                                      break;
 
@@ -236,67 +242,67 @@ $(document).ready(function() {
 
 
 
-                             var nation = item2.nation.split(",");
-                             $('.c1').eq(idx).val(item2.director[0].directorNm + "/" + nation[0] + "/" + title5 + "/" + item2.movieSeq + "/" + item2.runtime + "/" + item2.genre + "/" + item2.prodYear);
+//                              var nation = item2.nation.split(",");
+                             $('.rev-star1').eq(idx).val(item2.director[0].directorNm + "/" + nation[0] + "/" + title5 + "/" + item2.movieSeq + "/" + item2.runtime + "/" + item2.genre + "/" + item2.prodYear);
                              var image = image[0];
                              var garde = 0;
                              var movieSeq = ""
-                             $('.c1').eq(idx).click(function() {
+                             $('.rev-star1').eq(idx).click(function() {
                                  var grade = 1;
-                                 var data = $('.c1').eq(idx).val();
+                                 var data = $('.rev-star1').eq(idx).val();
                                  starClick(data, grade, image);
 
                              });
 
-                             $('.c2').eq(idx).click(function() {
+                             $('.rev-star2').eq(idx).click(function() {
                                  var grade = 2;
-                                 var data = $('.c1').eq(idx).val();
+                                 var data = $('.rev-star1').eq(idx).val();
                                  starClick(data, grade, image);
 
                              });
-                             $('.c3').eq(idx).click(function() {
+                             $('.rev-star3').eq(idx).click(function() {
                                  var grade = 3;
-                                 var data = $('.c1').eq(idx).val();
+                                 var data = $('.rev-star1').eq(idx).val();
                                  starClick(data, grade, image);
 
                              });
 
-                             $('.c4').eq(idx).click(function() {
+                             $('.rev-star4').eq(idx).click(function() {
                                  var grade = 4;
-                                 var data = $('.c1').eq(idx).val();
+                                 var data = $('.rev-star1').eq(idx).val();
                                  starClick(data, grade, image);
                              });
 
-                             $('.c5').eq(idx).click(function() {
+                             $('.rev-star5').eq(idx).click(function() {
                                  var grade = 5;
-                                 var data = $('.c1').eq(idx).val();
+                                 var data = $('.rev-star1').eq(idx).val();
                                  starClick(data, grade, image);
                              });
 
-                             $('.c6').eq(idx).click(function() {
+                             $('.rev-star6').eq(idx).click(function() {
                                  var grade = 6;
-                                 var data = $('.c1').eq(idx).val();
+                                 var data = $('.rev-star1').eq(idx).val();
                                  starClick(data, grade, image);
 
                              });
-                             $('.c7').eq(idx).click(function() {
+                             $('.rev-star7').eq(idx).click(function() {
                                  var grade = 7;
-                                 var data = $('.c1').eq(idx).val();
+                                 var data = $('.rev-star1').eq(idx).val();
                                  starClick(data, grade, image);
                              });
-                             $('.c8').eq(idx).click(function() {
+                             $('.rev-star8').eq(idx).click(function() {
                                  var grade = 8;
-                                 var data = $('.c1').eq(idx).val();
+                                 var data = $('.rev-star1').eq(idx).val();
                                  starClick(data, grade, image);
                              });
-                             $('.c9').eq(idx).click(function() {
+                             $('.rev-star9').eq(idx).click(function() {
                                  var grade = 9;
-                                 var data = $('.c1').eq(idx).val();
+                                 var data = $('.rev-star1').eq(idx).val();
                                  starClick(data, grade, image);
                              });
-                             $('.c10').eq(idx).click(function() {
+                             $('.rev-star10').eq(idx).click(function() {
                                  var grade = 10;
-                                 var data = $('.c1').eq(idx).val();
+                                 var data = $('.rev-star1').eq(idx).val();
                                  starClick(data, grade, image);
 
                              });
@@ -307,55 +313,50 @@ $(document).ready(function() {
                  }
              })
          } else {
-             $('.l1').click(function() {
+             $('.star1').click(function() {
                  selectBtn();
              })
 
-             $('.l2').click(function() {
+             $('.star2').click(function() {
                  selectBtn();
              })
 
-             $('.l3').click(function() {
+             $('.star3').click(function() {
                  selectBtn();
              })
 
-             $('.l4').click(function() {
+             $('.star4').click(function() {
                  selectBtn();
              })
 
-             $('.l5').click(function() {
+             $('.star5').click(function() {
                  selectBtn();
              })
 
-             $('.l6').click(function() {
+             $('.star6').click(function() {
                  selectBtn();
              })
 
-             $('.l7').click(function() {
+             $('.star7').click(function() {
                  selectBtn();
              })
 
-             $('.l8').click(function() {
+             $('.star8').click(function() {
                  selectBtn();
              })
 
-             $('.l9').click(function() {
+             $('.star9').click(function() {
                  selectBtn();
              })
 
-             $('.l10').click(function() {
+             $('.star10').click(function() {
                  selectBtn();
              })
          }
-			   	 
-		
-		} //success
+			   
 		
 		
 		
-		
-		
-	});	
 	
 	// 찜꽁
     $.ajax('Dibs.mp', {
