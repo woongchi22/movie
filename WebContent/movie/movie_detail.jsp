@@ -41,6 +41,7 @@ $(document).ready(function() {
 			movieSeq:movieSeq
 		},
 		success: function(data){
+			
 			$.each(data.Data, function(idx,item) {
 				$.each(item.Result, function(idx2,item2) {
 					var title1 = item2.title
@@ -77,7 +78,7 @@ $(document).ready(function() {
 		                     //                           $('.posters').append('<div class=stillCut><img style="height:150px;" src='+stills[i]+' onerror=this.src=../../../Movie/img/noImage.gif></div>')
 		                 } 
 							
-				}
+					}
 					
 					var actors = actor.replace(/,\s*$/, '');
 					var directors = director.replace(/,\s*$/, '');
@@ -88,11 +89,9 @@ $(document).ready(function() {
 					$('.posters').append('<div class=poster style="background-image:url('+poster[0]+'),url(${pageContext.request.contextPath}/img/noImage.gif);"></div>');
 					$('.info').append('<div class=plot style="margin-bottom:7px;">'+plot+'</div><dt>감독</dt><div class=directors>'+directors+'</div><dt>출연</dt><div class=actors>'
 							+actors+'</div><dt>개요</dt><div class=summaryInfo>'+genre+' &nbsp;|&nbsp; '+nation+' &nbsp;|&nbsp; '+openDt+'</div><dt>배급</dt><div class=company>'+company+'</div>');
-							
-					
-					
-				});	
-			});
+				
+				});	// each
+			}); // each
 				
 			$('.stills').slick({
 			   	   dots: false,
@@ -126,78 +125,72 @@ $(document).ready(function() {
 			   	         slidesToScroll: 1
 			   	       }
 			   	     }
-			   	   ]
-			   	 }); //slick
-			   	 
-		
-		
-		//별점
-		
-		function starClick(param,grade,image) {
-			$.ajax("SetGrade.mo", {
-				method:"post",
-				async: false,
-				dataType:{
-					data:param,
-					name:name,
-					grade:grade,
-					image:image
-				},
-				success: function(data) {
-					console.log(data);
-					location.reload();
-					
-				
-					
-				} //star success
-			}); //ajax
+			   	  ]
+			 }); //slick
+			 
 		}
 			   	 
-		 
-		
-		} //success
-		
-	});	
-		 if (name != 'null') {
-             $.ajax("MovieDetail.mo", {
-                 method: "get",
-                 dataType: "json",
-                 async: false,
-                 data: {
-                     movieSeq: movieSeq,
-                     query: query,
-//                      keyword: keyword
-                 },
-                 success: function(data) {
-                     var grade = 0;
-                     console.log(data);
-                     $.each(data.Data, function(idx, item) {
-                         var i = 1;
-                         var l = 1;
+	}); 
+	
+	
+	//별점
+	function starClick(param,grade,image) {
+		$.ajax("SetGrade.mo", {
+			method:"post",
+			async: false,
+			dataType:{
+				data:param,
+				name:name,
+				grade:grade,
+				image:image
+			},
+			success: function(data) {
+				console.log(data);
+				location.reload();
+				
+			} //star success
+		}); //ajax
+	}
+			   	 
+	if (name != 'null') {
+         $.ajax("MovieDetail.mo", {
+             method: "get",
+             dataType: "json",
+             async: false,
+             data: {
+                 movieSeq: movieSeq,
+                 query: query
+             },
+             success: function(data) {
+                 var grade = 0;
+                 $.each(data.Data, function(idx, item) {
+                     var i = 1;
+                     var l = 1;
 
-                         $.each(item.Result, function(idx, item2) {
+                     $.each(item.Result, function(idx, item2) {
 
-                             var num = 0;
-                             var image = item2.posters.split("|");
-                             var title = item2.title;
-                             var titleNoSpace = title.replace(/ /g, '');
-                             var title2 = titleNoSpace.replace(/!HS/g, '');
-                             var title3 = title2.replace(/!HE/g, '');
-                             var title5 = title3.trim();
+                         var num = 0;
+                         var image = item2.posters.split("|");
+                         var title = item2.title;
+                         var titleNoSpace = title.replace(/ /g, '');
+                         var title2 = titleNoSpace.replace(/!HS/g, '');
+                         var title3 = title2.replace(/!HE/g, '');
+                         var title5 = title3.trim();
 
-                             // 10개의 라벨에 각기 다른 값을 부여하기위한 반복문
-                             for (var o = 1; o < 11; o++) {
-                                 $('.rev-star' + o).eq(idx).attr("id", "p" + i++);
-                             }
-                             // 10개의 라벨에 각기 다른 값을 부여하기위한 반복문
-                             for (var o = 1; o < 11; o++) {
-                                 $('.star' + o).eq(idx).attr("for", "p" + l++);
-                             }
+                         // 10개의 라벨에 각기 다른 값을 부여하기위한 반복문
+                         for (var o = 1; o < 11; o++) {
+                             $('.c' + o).eq(idx).attr("id", "p" + i++);
+                         }
+                         // 10개의 라벨에 각기 다른 값을 부여하기위한 반복문
+                         for (var o = 1; o < 11; o++) {
+                             $('.l' + o).eq(idx).attr("for", "p" + l++);
+                         }
 
-                             var getGrade = $('#getGrade').val()
-                             switch (getGrade) {
+                         var getGrade = $('#getGrade').val();
+                         
+                         switch (getGrade) {
 
-                                 case "0.5":
+                             case "0.5":
                                      $('.star1').focus();
                                      $('#isGrade').show();
                                      break;
@@ -237,13 +230,10 @@ $(document).ready(function() {
                                      $('.star10').focus();
                                      $('#isGrade').show();
                                      break;
+                         } // switch문
 
-                             }
-
-
-
-//                              var nation = item2.nation.split(",");
-                             $('.rev-star1').eq(idx).val(item2.director[0].directorNm + "/" + nation[0] + "/" + title5 + "/" + item2.movieSeq + "/" + item2.runtime + "/" + item2.genre + "/" + item2.prodYear);
+                         var nation = item2.nation.split(",");
+                         $('.rev-star1').eq(idx).val(item2.director[0].directorNm + "/" + nation[0] + "/" + title5 + "/" + item2.movieSeq + "/" + item2.runtime + "/" + item2.genre + "/" + item2.prodYear);
                              var image = image[0];
                              var garde = 0;
                              var movieSeq = ""
@@ -305,15 +295,15 @@ $(document).ready(function() {
                                  var data = $('.rev-star1').eq(idx).val();
                                  starClick(data, grade, image);
 
-                             });
+                         });
 
-
-                         }); //each문 끝남
-                     });
-                 }
-             })
-         } else {
-             $('.star1').click(function() {
+                     }); //each문 끝남
+                 }); // each문 
+             } // success
+         }); // ajax
+         
+    } else {
+        $('.star1').click(function() {
                  selectBtn();
              })
 
@@ -352,11 +342,8 @@ $(document).ready(function() {
              $('.star10').click(function() {
                  selectBtn();
              })
-         }
-			   
-		
-		
-		
+    } // else
+		   	 
 	
 	// 찜꽁
     $.ajax('Dibs.mp', {
@@ -520,7 +507,7 @@ $(document).ready(function() {
 	
 	
 	 
-});
+}); // document
 
 
 </script>
