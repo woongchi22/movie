@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import movie.vo.MovieBean;
 
 public class MovieDao {
-private MovieDao() {};
 	
 	private static MovieDao instance;
+	private MovieDao() {};
 
 	public static MovieDao getInstance() {
 		if(instance == null) {
@@ -27,34 +27,41 @@ private MovieDao() {};
 	
 	PreparedStatement pstmt;
 	ResultSet rs;
-
 	
 	
-	
-	public int movieSearch() {
+	// 별점 등록
+	public int gradeInsert(MovieBean mb) {
+		System.out.println("mDao - gradeInsert()");
 		
+		int insertCount = 0;
 		
-		return 0;
-	}
-
-
-
-
-	public ArrayList<MovieBean> getMovieByChart() {
-		
-		System.out.println("dao-chart");
-		ArrayList<MovieBean> list = new ArrayList<MovieBean>();
-		String sql = "SELECT movieseq,title,sum(count),poster, count from chart where date >= date_sub(now(),interval 1 DAY) group by title order by sum(count) desc limit 0,10";
 		try {
+			String sql = "SELECT grade FROM grade WHERE name=? and movieSeq=?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mb.getName());
+			pstmt.setInt(2, mb.getMovieSeq());
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()) {
-				MovieBean mb = new MovieBean();
-				mb.setMovieSeq(rs.getInt("movieseq"));
-				mb.setMovieTitle(rs.getString("title"));
-				mb.setMoviePoster(rs.getString("poster"));
-				list.add(mb);
+			if(rs.next()) {
+				sql = "UPDATE grade SET grade=? WHERE name=? and movieSeq=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, mb.getGrade());
+				pstmt.setString(2, mb.getName());
+				pstmt.setInt(3, mb.getMovieSeq());
+				
+				insertCount = -1;
+				
+				pstmt.executeUpdate();
+
+			} else {
+				sql = "INSERT INTO grade VALUES(idx,?,?,?,?)";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, mb.getName());
+				pstmt.setInt(2, mb.getMovieSeq());
+				pstmt.setString(3, mb.getTitle());
+				pstmt.setInt(4, mb.getGrade());
+				
+				insertCount = pstmt.executeUpdate();
 			}
 			
 		} catch (SQLException e) {
@@ -63,7 +70,8 @@ private MovieDao() {};
 			close(rs);
 			close(pstmt);
 		}
-		return list;
+		
+		return insertCount;
 	}
 
 }
