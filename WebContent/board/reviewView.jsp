@@ -7,11 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <%
-ArrayList<ReviewBean> reviewList = (ArrayList<ReviewBean>) request.getAttribute("reviewBean");
+ArrayList<ReviewBean> reviewList = (ArrayList<ReviewBean>)request.getAttribute("reviewList");
+
 String query = request.getParameter("query"); 
 int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
-
 String name = (String)session.getAttribute("name");
+
 
 %>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
@@ -25,62 +26,30 @@ $(document).ready(function() {
 	console.log(query);	
 	console.log(movieSeq);	
 	console.log(name);	
-
 	
-// 	$("#submitBt").on("click", function() {
-// 		var review = $('#rev_content').val();
+	$('#submitBt').click(function() {
+	var review = $('#rev_content').val();
 		
-// 		console.log(review);
-// 		console.log(movieSeq);
-// 		console.log(query);
-		
-		
-// 		$.ajax("BoardReviewWrite.bo", {
-// 			method:"get",
-// 			dataType:"json",
-// 			data:{
-// 				movieSeq:movieSeq,
-// 				name:name,
-// 				review:review,
-// 				query:query
-// 			},
-// 			success: function(data) {
-// 				console.log("이거");
-// 				console.log(data);
-				
-// //                 $('#review1').append('<div class=title><a href=MovieDetailPro.mo?movieId' + item2.movieId + '&movieSeq=' +
-
-				
-				
-// 			}//success
-			
 	
-// 		});//ajax
-// 	})//click
-
 	
-	$.ajax("BoardReviewList.bo", {
+	$.ajax("BoardReviewWrite.bo", {
 		method:"post",
-		dataType:"json",
 		async: false,
 		data:{
+			query:query,
 			movieSeq:movieSeq,
-			query:query
+			review:review
 		},
 		success: function(data) {
-			console.log(" 성겅");
+			console.log("성겅");
 			console.log(data);
-			
-			
-			
-			
-		},
-		error:function(){   //데이터 주고받기가 실패했을 경우 실행할 결과
-			alert('실패');
+            location.reload();
+
 		}
+		
+	}); //ajax
+	}); //click
 
-
-	});//list	
 	
 });//ready
 
@@ -95,7 +64,7 @@ $(document).ready(function() {
 	<h2><%=query %> 리뷰</h2>
 		<input type="button"  value="돌아가기" onclick="history.back();">
 
-		<div id = "review"></div>
+		
 		
 			<% if(name!=null){%>
 <!-- 		<form action = "BoardReviewWrite.bo"  method="post" id="review_write" > -->
@@ -107,14 +76,22 @@ $(document).ready(function() {
 		<% }else{%>
 		<textarea name = "content" id = "rev_content" readonly="readonly" class="rev_content">댓글쓰기 권한이 없습니다. 로그인이 필요합니다</textarea>
 		<%} %>
+		
+		<%for(int i = 0; i < reviewList.size(); i++) {%>
+		<div>
+		<div>이름 : <%=reviewList.get(i).getName() %></div>
+		<div><%=reviewList.get(i).getdDate()%></div>
+		<div><%=reviewList.get(i).getContent() %></div>
+		
+		</div>
+		<%} %>
+		
 		<input type="hidden" id="name" name="name" value="<%=name%>">
 		<input type="hidden" id="movieSeq" name="movieSeq" value="<%=movieSeq%>">
 		<input type="hidden" id="query" name="query" value="<%=query%>">
+	
 		
-		
-		
-		
-		
+	
 		
 		
 </body>

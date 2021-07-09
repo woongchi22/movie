@@ -1,7 +1,6 @@
 package board.vo;
 
-import java.sql.Date;
-
+import java.util.*;
 public class ReviewBean {
 	private int idx;
 	private String name;
@@ -10,7 +9,7 @@ public class ReviewBean {
 	private String title;
 	private String content;
 	private int like_count;
-	private Date data;
+	private Date date;
 	public int getIdx() {
 		return idx;
 	}
@@ -53,11 +52,11 @@ public class ReviewBean {
 	public void setLike_count(int like_count) {
 		this.like_count = like_count;
 	}
-	public Date getData() {
-		return data;
+	public Date getdDate() {
+		return date;
 	}
-	public void setData(Date data) {
-		this.data = data;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	
 	
