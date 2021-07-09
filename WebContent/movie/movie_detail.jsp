@@ -12,6 +12,7 @@ String movieSeq = (String)request.getParameter("movieSeq");
 String query = request.getParameter("query");
 String poster = (String)request.getParameter("image");
 String director = request.getParameter("director");
+// String grade = request.getParameter("grade");
 
 %>
 <title>[WhatFilx] <%=query %></title>
@@ -30,6 +31,7 @@ $(document).ready(function() {
 	var movieSeq = $('#movieSeq').val();
 	var name = $('#name').val();
 	var directorNm = null;
+	var grade = $('#grade').val();
 	
 	$.ajax("MovieDetail.mo",{
 		method:"post",
@@ -283,8 +285,34 @@ $(document).ready(function() {
             
         }
     });
-	
     
+    
+    // 별점 조회
+    $.ajax('Star.mo', {
+        data: {
+            movieSeq:movieSeq
+        },
+        success: function(data) {
+            console.log('데이터' + data);
+            
+            if(data == '1'){
+                $('#star1').attr("src", "img/star2.png");
+            }
+            
+//          if(data == 'Y') {
+//              $('.dibsBtn').addClass('done');
+//              $('.dibsBtnImg').attr("src", "img/check2.png");
+                
+//          } else {
+//              $('.dibsBtn').removeClass('done');
+//              $('.dibsBtnImg').attr("src", "img/check.png");
+//          }
+            
+            
+        }
+        
+    });
+	
     // 별점
     function starClick(grade) {
 		$.ajax("GradeStar.mo", {
@@ -298,34 +326,16 @@ $(document).ready(function() {
 			success: function(data) {
 				console.log("데이터뭐야" + data);
 				
-				$('.starRev a').click(function() {
-                        $(this).parent().children('a').removeClass('on');
-                        $(this).addClass('on').prevAll('a').addClass('on');
-                        return false;
-                });
 				
-				switch (data) {
-                case "1":
-                    $('#showGrade').append('<div class=showG>1점</div>');
-                    break;
-                    
-                case "2":
-                    $('#showGrade').append('<div class=showG>2점</div>');
-                    break;  
-                    
-                case "3":
-                    $('#showGrade').append('<div class=showG>3점</div>');
-                    break;  
-                    
-                case "4":
-                    $('#showGrade').append('<div class=showG>4점</div>');
-                    break; 
-                    
-                case "5":
-                    $('#showGrade').append('<div class=showG>5점</div>');
-                    break;    
-
-                }
+					if(typeof(Storage) != 0) {
+				        console.log("이프문 오나염");
+				        localStorage.setItem("getStar", data+"점");
+				        document.getElementById("showGrade").innerHTML = localStorage.getItem("getStar");
+				        
+				    } else {
+				        console.log("엘스문으로 오나염");
+				        document.getElementById("showGrade").innerHTML = "0점";
+				    }   
 				
 			}
 		});
@@ -353,6 +363,7 @@ $(document).ready(function() {
                     var title3 = title2.replace(/!HE/g,'')
                     var title4 = title3.trim(); // 양쪽끝에 공백을 제거해줌
                     var title = encodeURIComponent(title4);
+                    
                     
                     // 별점 클릭 시
                     $('.starRev a').click(function() {
@@ -395,10 +406,7 @@ $(document).ready(function() {
         } // success
     
     }); // ajax - MovieDetail
-		   	 
-	
-	
-	
+    
 	
 	 
 }); // document
@@ -417,6 +425,8 @@ $(document).ready(function() {
 <input type ="hidden" id="director" name="director" value="<%=director %>">
 <input type="hidden" id="name" name="name" value="<%=name %>">
 <input type="hidden" id="dibs" name="dibs" value="Y">
+<%-- <input type="hidden" id="grade" name=grade value="<%=grade %>"> --%>
+
 
 <div class="review"><a href="BoardReview.bo?movieSeq=<%=movieSeq %>&query=<%=query %>" >리뷰</a></div>
 <div class="wrap">

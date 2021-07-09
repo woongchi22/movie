@@ -122,6 +122,15 @@ public class MovieController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
+		// 별점 조회	
+		} else if(command.equals("/Star.mo")) {
+			action = new StarAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 					
 		

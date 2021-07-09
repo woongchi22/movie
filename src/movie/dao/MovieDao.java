@@ -74,6 +74,39 @@ public class MovieDao {
 		return insertCount;
 	}
 
+	public MovieBean selecStar(String name, int movieSeq, int grade) {
+		System.out.println("mDao - selecStar()");
+		
+		MovieBean mb = null;
+		
+		try {
+			String sql = "SELECT * FROM grade WHERE name=? and movieSeq=? and grade=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setInt(2, movieSeq);
+			pstmt.setInt(3, grade);
+			rs = pstmt.executeQuery();
+			
+//			mb.getGrade();
+			
+//			if (rs.next()) {
+//				MovieBean mb2 = new MovieBean();
+//				mb2.setGrade(rs.getInt("grade"));
+//				
+//			} else {
+//				return null;
+//			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return mb;
+	}
+
 }
 
 
