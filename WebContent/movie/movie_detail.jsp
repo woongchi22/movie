@@ -421,7 +421,7 @@ $(document).ready(function() {
 <div class="review"><a href="BoardReview.bo?movieSeq=<%=movieSeq %>&query=<%=query %>" >리뷰</a></div>
 <div class="wrap">
 	<div class="title_top"></div>
-<%-- 		<%if(pass != null) { %> --%>
+		<%if(pass != null) { %>
 		  <div class="starRev">
 		       <a class="starR" id="star1"></a>
 		       <a class="starR" id="star2"></a>
@@ -448,9 +448,9 @@ $(document).ready(function() {
 			
 			
 		  <div class="dibs"><button class="dibsBtn" value="<%=movieSeq %>"><img class="dibsBtnImg" src="img/check.png" width="20px" height="20px">&nbsp;찜꽁</button></div>
-<%-- 		<%} else {%>    --%>
-<!-- 		  <div class="dibsLogin"><a href="MemberLoginForm.me">로그인</a>하시고 별점을 남겨주세요</div> -->
-<%-- 		<%} %> --%>
+		<%} else {%>   
+		  <div class="dibsLogin"><a href="MemberLoginForm.me">로그인</a>하시고 별점을 남겨주세요</div>
+		<%} %>
 	
 		<div class="starEvr"></div>
 		<div class="posters" ></div>
