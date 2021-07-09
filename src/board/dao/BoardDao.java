@@ -29,46 +29,14 @@ public class BoardDao {
 	PreparedStatement pstmt;
 	ResultSet rs;
 
-	public ArrayList<ReviewBean> getReview(ReviewBean rb) {
-		System.out.println("dao-getReview");
-		ArrayList<ReviewBean> list = null;
-		
-		String sql = "select * from review where movieSeq=? ORDER BY idx DESC ";
-		try {
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1,rb.getMovieSeq());
-			rs = pstmt.executeQuery();
-			list = new ArrayList<ReviewBean>();
-			while(rs.next()) {
-				ReviewBean rb2 = new ReviewBean();
-				rb2.setIdx(rs.getInt("idx"));
-				rb2.setName(rs.getString("name"));
-				rb2.setMovieSeq(rs.getInt("movieSeq"));
-				rb2.setTitle(rs.getString("title"));
-				rb2.setContent(rs.getString("content"));
-				rb2.setGrade(rs.getInt("grade"));
-				rb2.setLike_count(rs.getInt("like_count"));
-				
-				list.add(rb2);
-			}
-		} catch (SQLException e) {
-			System.out.println("BoardDAO - selectReviewListCount 에러 : " + e.getMessage());
 
-		} finally {
-			close(rs);
-			close(pstmt);
-		}
-		
-		
-		return list;
-	}
 
 	public int reviewWrite(ReviewBean rb) {
 		System.out.println("dao-reviewWrite");
 		int insertCount = 0;
 //		ArrayList<ReviewBean> reviewList = new ArrayList<ReviewBean>();
 		
-		String sql ="INSERT INTO review VALUES(idx,?,null,?,?,?,null,now())";
+		String sql ="INSERT INTO review VALUES(idx,?,0,?,?,?,0,now())";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, rb.getName());
@@ -86,6 +54,44 @@ public class BoardDao {
 		}
 		
 		return insertCount;
+	}
+
+	public ArrayList<ReviewBean> getReview(int movieSeq) {
+		System.out.println("dao-getReview");
+		ArrayList<ReviewBean> reviewList = null;
+		
+		try {
+			String sql = "SELECT * FROM review where movieSeq=? ORDER BY idx DESC ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, movieSeq);
+			rs = pstmt.executeQuery();
+			
+			reviewList = new ArrayList<ReviewBean>();
+			
+			while(rs.next()) {
+				ReviewBean review = new ReviewBean();
+				review.setContent(rs.getString("content"));
+				review.setGrade(rs.getInt("grade"));
+				review.setLike_count(rs.getInt("like_count"));
+				review.setMovieSeq(rs.getInt("movieSeq"));
+				review.setName(rs.getString("name"));
+				review.setTitle(rs.getString("title"));
+				review.setDate(rs.getDate("date"));
+				
+				reviewList.add(review);
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("ReviewdDao - getReview 에러");
+		} finally {
+			// PreparedStatement, ResultSet 객체 반환
+			close(rs); // JdbcUtil.close(rs)
+			close(pstmt); // JdbcUtil.close(rs)
+		}
+		
+		return reviewList;
 	}
 	
 	
