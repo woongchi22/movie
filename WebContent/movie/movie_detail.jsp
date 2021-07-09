@@ -418,7 +418,7 @@ $(document).ready(function() {
 <input type="hidden" id="name" name="name" value="<%=name %>">
 <input type="hidden" id="dibs" name="dibs" value="Y">
 
-
+<div class="review"><a href="BoardReview.bo?movieSeq=<%=movieSeq %>&query=<%=query %>" >리뷰</a></div>
 <div class="wrap">
 	<div class="title_top"></div>
 <%-- 		<%if(pass != null) { %> --%>
