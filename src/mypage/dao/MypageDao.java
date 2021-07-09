@@ -95,13 +95,12 @@ public class MypageDao {
 				insertCount = pstmt.executeUpdate();
 				
 			} else {
-				sql = "INSERT INTO dibs VALUES(?,?,?,?,?,'Y')";
+				sql = "INSERT INTO dibs VALUES(idx,?,?,?,?,'Y')";
 				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, db.getIdx());
-				pstmt.setString(2, db.getName());
-				pstmt.setInt(3, db.getMovieSeq());
-				pstmt.setString(4, db.getTitle());
-				pstmt.setString(5, db.getPoster());
+				pstmt.setString(1, db.getName());
+				pstmt.setInt(2, db.getMovieSeq());
+				pstmt.setString(3, db.getTitle());
+				pstmt.setString(4, db.getPoster());
 				
 				insertCount = pstmt.executeUpdate();
 			}
@@ -170,7 +169,7 @@ public class MypageDao {
 			if (rs.next()) {
 				DibsBean db2 = new DibsBean();
 				db2.setDibs(rs.getString("dibs"));
-				db2.setPoster(rs.getString("poster"));
+//				db2.setPoster(rs.getString("poster"));
 				
 			} else {
 				return null;
