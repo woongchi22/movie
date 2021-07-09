@@ -49,6 +49,8 @@ public class BoardReviewWriteAction implements Action {
 		}else { 
 			request.setAttribute("reviewBean", reviewBean);
 			
+			
+			
 			forward = new ActionForward();
 			forward.setRedirect(true); 
 			forward.setPath("BoardReviewList.bo"); 
