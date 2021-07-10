@@ -48,8 +48,10 @@ public class BoardReviewWriteAction implements Action {
 			out.println("</script>"); 
 		}else { 
 			request.setAttribute("reviewBean", reviewBean);
-			
-			
+			reviewBean.setContent("review");
+			reviewBean.setMovieSeq(movieSeq);
+			reviewBean.setTitle("title");
+			reviewBean.setName("name");
 			
 			forward = new ActionForward();
 			forward.setRedirect(true); 
