@@ -268,3 +268,18 @@ textarea{
 	height:100px;
 	
 }
+.textA{
+	margin-bottom: 20px;
+}
+.re{
+	color:#c0c0c0;
+	font-size: 10px;
+	margin-bottom: 20px;
+}
+
+.button{
+	float: right;
+	color: gray;
+	border-radius: 7px;
+	padding: 5px;
+}

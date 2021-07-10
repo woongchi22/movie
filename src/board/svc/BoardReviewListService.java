@@ -24,13 +24,15 @@ public class BoardReviewListService {
 		return reviewList;
 	}
 
-	public boolean ReviewWrite(ReviewBean reviewBean) {
-		
+	public boolean reviewWrite(ReviewBean reviewBean) {
+		System.out.println("BoardReviewListService-reviewWrite");
 		Connection con = getConnection();
 		BoardDao bdao = BoardDao.getInstance();
 		bdao.setConnection(con);
 		boolean isWriteSuccess = false;
-
+		System.out.println(reviewBean.getContent());
+		
+		
 		
 		int insertCount = bdao.reviewWrite(reviewBean);
 		
@@ -42,6 +44,21 @@ public class BoardReviewListService {
 		}
 		
 		return isWriteSuccess;
+	}
+
+	public ReviewBean getReview(int idx, int movieSeq) {
+System.out.println("BoardReviewListService - getReview");
+		
+		Connection con = getConnection();
+		BoardDao bdao = BoardDao.getInstance();
+		bdao.setConnection(con);
+		
+		ReviewBean reviewBean = bdao.getReviewDetail(idx, movieSeq);
+		
+		close(con);
+		
+		return reviewBean;
+		
 	}
 
 }
