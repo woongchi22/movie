@@ -23,16 +23,22 @@ public class StarAction implements Action {
 		int grade = Integer.parseInt(request.getParameter("grade"));
 		System.out.println(movieSeq + name + grade);
 		
-//		StarService starService = new StarService();
-//		MovieBean mb = starService.selectStar(name, movieSeq, grade);
+		MovieBean mb = new MovieBean();
+		mb.setName(name);
+		mb.setMovieSeq(movieSeq);
+		mb.setTitle(request.getParameter("title"));
+		mb.setGrade(grade);
 		
-		request.setAttribute("grade", grade);
-		System.out.println("grade : " + grade);
+		GradeStarService gradeStarService = new GradeStarService();
+		int movieGrade = gradeStarService.selectStar(mb);
+		
+		request.setAttribute("grade", movieGrade);
+		System.out.println("grade : " + movieGrade);
 		
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
 		
-			switch (grade) {
+			switch (movieGrade) {
 			case 1:
 				out.print("1");
 				break;

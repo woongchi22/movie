@@ -167,9 +167,6 @@ public class MypageDao {
 			db = new DibsBean();
 
 			if (rs.next()) {
-				DibsBean db2 = new DibsBean();
-				db2.setDibs(rs.getString("dibs"));
-//				db2.setPoster(rs.getString("poster"));
 				
 			} else {
 				return null;

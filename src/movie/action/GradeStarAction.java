@@ -31,16 +31,18 @@ public class GradeStarAction implements Action {
 		mb.setGrade(grade);
 		
 		GradeStarService gradeStarService = new GradeStarService();
-		boolean isInsert = gradeStarService.gradeStar(mb);
+		gradeStarService.gradeStar(mb);
 		
-		request.setAttribute("grade", grade);
-		System.out.println(title + grade);
+//		int movieGrade = gradeStarService.selectStar(mb);
+		
+		request.setAttribute("grade", mb.getGrade());
 		
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
-		out.print(grade);
+		out.print(mb.getGrade());
 		
 		return forward;
+		
 	}
 
 }
