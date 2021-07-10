@@ -38,4 +38,26 @@ public class GradeStarService {
 		
 	}
 
+	public int selectStar(MovieBean mb) {
+		System.out.println("GradeStarService - selectGrade()");
+		
+		int movieGrade = 0;
+		
+		Connection con = getConnection();
+		MovieDao dao = MovieDao.getInstance();
+		dao.setConnection(con);
+		
+		movieGrade = dao.selectStar(mb);
+		
+		if(movieGrade > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+			
+		}
+		close(con);
+		
+		return movieGrade;
+	}
+
 }

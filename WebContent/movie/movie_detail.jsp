@@ -1,3 +1,4 @@
+<%@page import="movie.vo.MovieBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,7 +13,6 @@ String movieSeq = (String)request.getParameter("movieSeq");
 String query = request.getParameter("query");
 String poster = (String)request.getParameter("image");
 String director = request.getParameter("director");
-// String grade = request.getParameter("grade");
 
 %>
 <title>[WhatFilx] <%=query %></title>
@@ -31,7 +31,6 @@ $(document).ready(function() {
 	var movieSeq = $('#movieSeq').val();
 	var name = $('#name').val();
 	var directorNm = null;
-	var grade = $('#grade').val();
 	
 	$.ajax("MovieDetail.mo",{
 		method:"post",
@@ -287,31 +286,7 @@ $(document).ready(function() {
     });
     
     
-    // 별점 조회
-    $.ajax('Star.mo', {
-        data: {
-            movieSeq:movieSeq
-        },
-        success: function(data) {
-            console.log('데이터' + data);
-            
-            if(data == '1'){
-                $('#star1').attr("src", "img/star2.png");
-            }
-            
-//          if(data == 'Y') {
-//              $('.dibsBtn').addClass('done');
-//              $('.dibsBtnImg').attr("src", "img/check2.png");
-                
-//          } else {
-//              $('.dibsBtn').removeClass('done');
-//              $('.dibsBtnImg').attr("src", "img/check.png");
-//          }
-            
-            
-        }
-        
-    });
+    
 	
     // 별점
     function starClick(grade) {
@@ -341,8 +316,12 @@ $(document).ready(function() {
 		});
 	}
 	
+    
+    
+    
 	// 별점
 	var grade = 0;
+	
     $.ajax("MovieDetail.mo", {
         method: "post",
         dataType: "json",
@@ -407,7 +386,24 @@ $(document).ready(function() {
     
     }); // ajax - MovieDetail
     
-	
+    // 별점 조회
+    $.ajax('Star.mo', {
+        data: {
+            movieSeq:movieSeq,
+            grade:grade
+        },
+        success: function(data) {
+            console.log('데이터' + data);
+            
+            if(data == '1'){
+                $('#star1').attr("src", "img/star2.png");
+            }
+            
+            
+            
+        }
+        
+    });
 	 
 }); // document
 
@@ -420,12 +416,13 @@ $(document).ready(function() {
 	<jsp:include page="/inc/top.jsp"/>
 </header>
 <body>
+
 <input type ="hidden" id="query" name="query" value="<%=query %>">
 <input type ="hidden" id="movieSeq" name="movieSeq" value="<%=movieSeq %>">
 <input type ="hidden" id="director" name="director" value="<%=director %>">
 <input type="hidden" id="name" name="name" value="<%=name %>">
 <input type="hidden" id="dibs" name="dibs" value="Y">
-<%-- <input type="hidden" id="grade" name=grade value="<%=grade %>"> --%>
+<!-- <input type="hidden" id="grade" name=grade value="0"> -->
 
 
 <div class="review"><a href="BoardReviewList.bo?movieSeq=<%=movieSeq %>&query=<%=query %>" >리뷰</a></div>
