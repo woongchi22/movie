@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import board.action.BoardReplyAction;
+import board.action.BoardReplyWriteAction;
 import board.action.BoardReviewListAction;
 import board.action.BoardReviewWriteAction;
 import vo.ActionForward;
@@ -34,8 +36,33 @@ public class BoardController extends HttpServlet {
 				e.printStackTrace();
 			}
     	}
-    	
+    	if(command.equals("/BoardReviewWrite.bo")) {
+        	action = new BoardReviewWriteAction();
+        	try {
+    			forward = action.execute(request, response);
+    		} catch (Exception e) {
+    			e.printStackTrace();
+    		}
+        }
     
+    	  if(command.equals("/BoardReply.bo")) {
+    	action = new BoardReplyAction();
+    	try {
+			forward = action.execute(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    }
+    	  if(command.equals("/BoardReplyWrite.bo")) {
+    		  action = new BoardReplyWriteAction();
+    		  try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+    	  }
+    	
+    	
     if(forward !=null ) {
     	if(forward.isRedirect()){
     		response.sendRedirect(forward.getPath());
@@ -44,14 +71,9 @@ public class BoardController extends HttpServlet {
     		dispatcher.forward(request, response);
     	}
     }
-    if(command.equals("/BoardReviewWrite.bo")) {
-    	action = new BoardReviewWriteAction();
-    	try {
-			forward = action.execute(request, response);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-    }
+    
+  
+    
     
     }
     

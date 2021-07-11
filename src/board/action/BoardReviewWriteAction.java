@@ -28,15 +28,17 @@ public class BoardReviewWriteAction implements Action {
 		String name = (String) session.getAttribute("name");
 		
 		ReviewBean reviewBean = new ReviewBean();
-		reviewBean.setContent("review");
+		reviewBean.setContent(review);
 		reviewBean.setMovieSeq(movieSeq);
-		reviewBean.setTitle("title");
-		reviewBean.setName("name");
+		reviewBean.setTitle(title);
+		reviewBean.setName(name);
 		
 		System.out.println(review+title+name+movieSeq);
+		System.out.println("======================");
+		System.out.println(reviewBean.getContent());
 		
-		BoardReviewListService boardReviewWriteService = new BoardReviewListService();
-		boolean isSuccess = boardReviewWriteService.ReviewWrite(reviewBean);
+		BoardReviewListService boardReviewListService = new BoardReviewListService();
+		boolean isSuccess = boardReviewListService.reviewWrite(reviewBean);
 		
 		
 		if(!isSuccess) {

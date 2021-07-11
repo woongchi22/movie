@@ -12,7 +12,7 @@ ArrayList<ReviewBean> reviewList = (ArrayList<ReviewBean>)request.getAttribute("
 String query = request.getParameter("query"); 
 int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 String name = (String)session.getAttribute("name");
-
+// int idx = Integer.parseInt(request.getParameter("idx"));
 
 %>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
@@ -27,11 +27,11 @@ $(document).ready(function() {
 	console.log(movieSeq);	
 	console.log(name);	
 	
-	$('#submitBt').click(function() {
+	$('#submitBtn').click(function() {
 	var review = $('#rev_content').val();
 		
 	
-	
+	//리뷰 쓰기
 	$.ajax("BoardReviewWrite.bo", {
 		method:"post",
 		async: false,
@@ -41,15 +41,14 @@ $(document).ready(function() {
 			review:review
 		},
 		success: function(data) {
-			console.log("성겅");
-			console.log(data);
             location.reload();
 
 		}
 		
 	}); //ajax
 	}); //click
-
+	
+	
 	
 });//ready
 
@@ -62,29 +61,44 @@ $(document).ready(function() {
 </header>
 <body>
 	<h2><%=query %> 리뷰</h2>
-		<input type="button"  value="돌아가기" onclick="history.back();">
+		<input type="button" value="돌아가기" class = "button" onclick="history.back();">
 
 		
 		
 			<% if(name!=null){%>
-<!-- 		<form action = "BoardReviewWrite.bo"  method="post" id="review_write" > -->
-
-		<textarea id = "rev_content" class="rev_content"></textarea>
-		<div id = "review1"></div>
-		<input type="button" style="float:right;" value="등록" id = "submitBt">
-<!-- 		</form> -->
-		<% }else{%>
-		<textarea name = "content" id = "rev_content" readonly="readonly" class="rev_content">댓글쓰기 권한이 없습니다. 로그인이 필요합니다</textarea>
-		<%} %>
+				<div class="textA">
+				<textarea id = "rev_content" class="rev_content"></textarea>
+				<input type="button"  value="등록" id = "submitBtn" class="button">
+				</div>
+			<% }else{%>
+			<div class="textA">
+				<textarea name = "content" id = "rev_content" readonly="readonly" class="rev_content">댓글쓰기 권한이 없습니다. 로그인이 필요합니다</textarea>
+			</div>
+			<%} %>
 		
-		<%for(int i = 0; i < reviewList.size(); i++) {%>
-		<div>
-		<div>이름 : <%=reviewList.get(i).getName() %></div>
-		<div><%=reviewList.get(i).getdDate()%></div>
-		<div><%=reviewList.get(i).getContent() %></div>
+			<%for(ReviewBean rb : reviewList) {%>
+				<div>
+				<div><%=rb.getContent() %></div>
+				<div class="re"> <%=rb.getName() %>| <%=rb.getdDate()%></div>
+				<a href="BoardReply.bo?movieSeq=<%=rb.getMovieSeq()%>&idx=<%=rb.getIdx()%>">
+				<input type="button"  value="답댓글" id = "ReviewReply" class="button" ></a>
+				 <input type="button" value="수정" id="updateReply_<%=rb.getIdx() %>" class="button">
+            	 <input type="button" value="삭제" id="deleteReply_<%=rb.getIdx() %>" class="button">
+          
+          <script type="text/javascript">
+					$('#updateReply_<%=rb.getIdx() %>').click(function() {
+			                    	  
+			                    	  
+			                      }
+						
+					});
+				
+				</script>
+          
+				<%} %>
+				</div>
 		
-		</div>
-		<%} %>
+				
 		
 		<input type="hidden" id="name" name="name" value="<%=name%>">
 		<input type="hidden" id="movieSeq" name="movieSeq" value="<%=movieSeq%>">
