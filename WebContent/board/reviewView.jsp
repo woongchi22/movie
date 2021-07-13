@@ -6,19 +6,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
 <%
 ArrayList<ReviewBean> reviewList = (ArrayList<ReviewBean>)request.getAttribute("reviewList");
 
 String query = request.getParameter("query"); 
 int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
-String name = (String)session.getAttribute("name");
-// int idx = Integer.parseInt(request.getParameter("idx"));
+String name = (String)session.getAttribute("name"); 
+String reviewUpdate = (String) request.getParameter("reviewUpdate");
 
 %>
 
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery-ui.js"></script>
@@ -54,14 +55,19 @@ String name = (String)session.getAttribute("name");
 				<div><%=rb.getContent() %></div>
 				<div class="re"> <%=rb.getName() %>| <%=rb.getdDate()%><%=rb.getIdx() %></div>
 				<a href="BoardReply.bo?movieSeq=<%=rb.getMovieSeq()%>&idx=<%=rb.getIdx()%>">
-				<input type="button"  value="답댓글" id="ReviewReply" class="button" ></a>
-				 <input type="button" value="수정" id="updateReply_<%=rb.getIdx() %>" class="button">
-            	 <input type="button" value="삭제" id="deleteReply_<%=rb.getIdx() %>" class="button">
+				<input type="button"  value="답댓글" id="ReviewReply_<%=rb.getIdx() %>" class="button" ></a>
+				 <input type="button" value="수정" id="updateReview_<%=rb.getIdx() %>" class="button">
+            	 <input type="button" value="삭제" id="deleteReview_<%=rb.getIdx() %>" class="button">
           		
-          		<div id="update-message" title="댓글 수정" style="display:none">
-			    <textarea id="replyUpdate" name="replyUpdate" cols="30" rows="5"></textarea>
-			     댓글을 수정해주세요.
+          		<div id="update-message_<%=rb.getIdx() %>" title="리뷰 수정" style="display:none">
+			    <textarea id="reviewUpdate_<%=rb.getIdx() %>" name="reviewUpdate" cols="30" rows="5"></textarea>
+			     리뷰를 수정해주세요.
 				</div>		
+				
+				<div id = "delete-message_<%=rb.getIdx() %>" title="리뷰 삭제" style="display:none">
+				리뷰를 삭제하시겠습니까?
+				</div>
+				
 				
  <script type="text/javascript">
 $(document).ready(function() {
@@ -69,39 +75,75 @@ $(document).ready(function() {
 	var movieSeq = $('#movieSeq').val();
 	var name = $('#name').val();
 	var idx = <%=rb.getIdx() %>;
-
-	console.log(query);	
-	console.log(movieSeq);	
-	console.log(name);	
-	console.log(idx);	
-
-	$('#updateReply_<%=rb.getIdx() %>').click(function() {
-		 $('#update-message').dialog({
+	var review = $('#reviewUpdate_<%=rb.getIdx() %>').val();
+	
+	
+	
+	$('#deleteReview_<%=rb.getIdx() %>').click(function() {
+		 $('#delete-message_<%=rb.getIdx() %>').dialog({
 			 modal: true,
+			 async : false,
+           buttons: {
+               "확인": function() {
+                   
+                   idx = $('#idx').val();
+                   console.log(idx);
+                   
+                   $.ajax({
+                  	 url: "BoardReviewDelete.bo?idx=<%=rb.getIdx()%>",
+                  	 method: "get",
+                       data: {
+                           idx:idx,
+                       },		 
+                  			 
+                       success: function(data) {
+                           location.reload();
+                       },error:function(request,status,error){
+                      	    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
+
+                   })
+                   
+                   $(this).dialog('close');
+                },//수정
+                "취소": function() {
+                    $(this).dialog('close');
+                }
+           }
+		 });
+	});
+	
+
+	$('#updateReview_<%=rb.getIdx() %>').click(function() {
+		 $('#update-message_<%=rb.getIdx() %>').dialog({
+			 modal: true,
+			 async : false,
              buttons: {
                  "수정": function() {
                      
                      name = $('#name').val()
                      movieSeq = $("#movieSeq").val();
                      idx = $('#idx').val();
-                     reply = $('#replyUpdate').val();
+                     review = $('#reviewUpdate_<%=rb.getIdx() %>').val();
+                     console.log('수정된리뷰'+review);
+                     console.log('이름'+name);
                      
                      $.ajax({
-                    	 url: "BoardReviewUpdate.bo?idx=<%=rb.getIdx() %>",
+                    	 url: "BoardReviewUpdate.bo?idx=<%=rb.getIdx()%>",
                     	 method: "get",
                          data: {
                              idx:idx,
                              movieSeq:movieSeq,
                              name:name,
-                             reply:reply
+                             review:review
                          },		 
                     			 
                          success: function(data) {
-                        	 console.log(data);
-                        	 $('#replyShow').append(reply);
+                        	 console.log(review);
                              location.reload();
-                         }
-                     });
+                         },error:function(request,status,error){
+                        	    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
+
+                     })
                      
                      $(this).dialog('close');
                   },//수정
@@ -114,92 +156,26 @@ $(document).ready(function() {
 	
 	
 	
-// 	//리뷰 리스트
-// 	function getReview(){
-// 		$.ajax({
-// 			url:"BoardReviewList.bo",
-// 			type:"post",
-// 			dataType:"json",
-// 			daga:{
-// 				query:query,
-// 	 			movieSeq:movieSeq
-// 			},
-// 			success: function(json) {
-// 				console.log("승공");
-// 				console.log(json);
-// 				json = json.replace(/\n/gi,"\\r\\n"); 
-				
-// 				var obj = JSON.parse(json);
-// 				var reviewList = obj.reviewList;
-				
-// 				for (var i = 0; i < reviewList.length; i++) {
-// 					for (var j = 0; j < reviewList[i].length; j++) {
-// 	                    var review = reviewList[i][j];
-// 	                    if(j === 0){
-// 	                    	$('#replyList').append('<div>'+review.name+'</div>'+'<div>'+review.content+'</div>');
-// // 	     					output += "<i class='fa fa-user'></i>&nbsp;&nbsp;" + review.name + "&nbsp;&nbsp;";
-// 	                    }else if(j === 1){
-// 	                    	$('#replyList').append('<div>'+review.name+'</div>'+'<div>'+review.content+'</div>');
-// // 	     					output += "&nbsp;&nbsp;<i class='fa fa-calendar'></i>&nbsp;&nbsp;" + review.date;
-// 	                    }else if(j === 2){
-// 	                    	$('#replyList').append('<div>'+review.name+'</div>'+'<div>'+review.content+'</div>');
-// // 	     					output += "<pre>" + review.content + "</pre></div>";
-// 	                    }
-				
-				
-// 				};
-// 			};
+	$('#submitBtn').off("click").click(function() {
+	 review = $('#rev_content').val();
+		//리뷰 쓰기
+		$.ajax("BoardReviewWrite.bo", {
+			method:"post",
+			async : false,
+			datatype:"param",
+			data:{
+				query:query,
+				movieSeq:movieSeq,
+				review:review
+			},
+			success: function(data) {
+			}
 			
-// 			$("#replyList").html(output); // replyList 영역에 output 출력
-//              	$(".reply_count").html(i);
-// 			}
-// 		});//ajax
-		
-// 	};
-	
-	
-	
-	
-// 	$.ajax("BoardReviewList.bo", {
-// 		method:"post",
-// // 		dataType:"json",
-// 		async:false,
-// 		data:{
-// 			query:query,
-// 			movieSeq:movieSeq
-// 		},
-// 		success: function(data) {
-// 			console.log("성");
-
-// 			console.log(data);
-// 		}
-		
-// 	}); //ajax
-	
-	
-	$('#submitBtn').click(function() {
-	var review = $('#rev_content').val();
-		
-	
-	//리뷰 쓰기
-	$.ajax("BoardReviewWrite.bo", {
-		method:"post",
-		datatype:"param",
-		async: false,
-		data:{
-			query:query,
-			movieSeq:movieSeq,
-			review:review
-		},
-		success: function(data) {
-            location.reload();
-
-		}
-		
-	}); //ajax
+		}); //ajax
 	}); //click
 	
 	
+
 	
 });//ready
  
@@ -214,8 +190,6 @@ $(document).ready(function() {
 		<input type="hidden" id="name" name="name" value="<%=name%>">
 		<input type="hidden" id="movieSeq" name="movieSeq" value="<%=movieSeq%>">
 		<input type="hidden" id="query" name="query" value="<%=query%>">
-	
-		
 	
 		
 		

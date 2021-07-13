@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import board.action.BoardReplyAction;
 import board.action.BoardReplyWriteAction;
+import board.action.BoardReviewDeleteAction;
 import board.action.BoardReviewListAction;
 import board.action.BoardReviewUpdateAction;
 import board.action.BoardReviewWriteAction;
@@ -70,6 +71,14 @@ public class BoardController extends HttpServlet {
 				e.printStackTrace();
 			}
     	  }
+    	  if (command.equals("/BoardReviewDelete.bo")) {
+			action = new BoardReviewDeleteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
     	
     	
     if(forward !=null ) {
