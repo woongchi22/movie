@@ -13,6 +13,7 @@ import action.Action;
 import board.action.BoardReplyAction;
 import board.action.BoardReplyWriteAction;
 import board.action.BoardReviewListAction;
+import board.action.BoardReviewUpdateAction;
 import board.action.BoardReviewWriteAction;
 import vo.ActionForward;
 
@@ -55,6 +56,14 @@ public class BoardController extends HttpServlet {
     }
     	  if(command.equals("/BoardReplyWrite.bo")) {
     		  action = new BoardReplyWriteAction();
+    		  try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+    	  }
+    	  if(command.equals("/BoardReviewUpdate.bo")) {
+    		  action = new BoardReviewUpdateAction();
     		  try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

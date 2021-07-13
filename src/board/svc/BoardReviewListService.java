@@ -20,7 +20,6 @@ public class BoardReviewListService {
 		bdao.setConnection(con);
 		
 		reviewList = bdao.getReview(movieSeq);
-				
 		return reviewList;
 	}
 
@@ -47,7 +46,7 @@ public class BoardReviewListService {
 	}
 
 	public ReviewBean getReview(int idx, int movieSeq) {
-System.out.println("BoardReviewListService - getReview");
+		System.out.println("BoardReviewListService - getReview");
 		
 		Connection con = getConnection();
 		BoardDao bdao = BoardDao.getInstance();
@@ -59,6 +58,26 @@ System.out.println("BoardReviewListService - getReview");
 		
 		return reviewBean;
 		
+	}
+
+	public boolean isUpdate(ReviewBean reviewBean) {
+		System.out.println("BoardReviewListService - isUpdate");
+		boolean isUpdate =false;
+		
+		Connection con = getConnection();
+		BoardDao bdao = BoardDao.getInstance();
+		bdao.setConnection(con);
+		int insertCount = bdao.updateReview(reviewBean);
+		
+		if(insertCount>0) {
+			isUpdate = true;
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		close(con);
+		
+		return isUpdate;
 	}
 
 }

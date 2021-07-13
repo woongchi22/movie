@@ -81,7 +81,7 @@ public class BoardDao {
 				review.setDate(rs.getDate("date"));
 				
 				reviewList.add(review);
-				
+//				System.out.println(reviewList);
 			}
 			
 		} catch (SQLException e) {
@@ -192,6 +192,30 @@ public class BoardDao {
 		}
 		
 		return replyList;
+	}
+
+	public int updateReview(ReviewBean reviewBean) {
+		System.out.println("BoardDAO-updateReview");
+		int insertCount = 0;
+
+		try {
+
+			String sql = "update review set content = ? where name =? and movieSeq = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, reviewBean.getContent());
+			pstmt.setString(2, reviewBean.getName());
+			pstmt.setInt(3, reviewBean.getMovieSeq());
+
+			insertCount = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return insertCount;
 	}
 	
 	
