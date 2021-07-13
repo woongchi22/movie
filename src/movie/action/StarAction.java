@@ -38,27 +38,27 @@ public class StarAction implements Action {
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
 		
-			switch (movieGrade) {
-			case 1:
-				out.print("1");
-				break;
-	
-			case 2:
-				out.print("2");
-				break;
-				
-			case 3:
-				out.print("3");
-				break;
-				
-			case 4:
-				out.print("4");
-				break;
-				
-			case 5:
-				out.print("5");
-				break;
-			}
+		switch (movieGrade) {
+		case 1:
+			out.print("1");
+			break;
+
+		case 2:
+			out.print("2");
+			break;
+			
+		case 3:
+			out.print("3");
+			break;
+			
+		case 4:
+			out.print("4");
+			break;
+			
+		case 5:
+			out.print("5");
+			break;
+		}
 		
 		return forward;
 	}

@@ -100,6 +100,29 @@ public class MovieDao {
 		return movieGrade;
 	}
 
+	// 별점 삭제
+	public int deleteStar(String name, int movieSeq) {
+		System.out.println("mDao - deleteStar()");
+		
+		int deleteCount = 0;
+		
+		try {
+			String sql = "DELETE FROM grade WHERE name=? and movieSeq=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setInt(2, movieSeq);
+			deleteCount = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return deleteCount;
+	}
+
 }
 
 
