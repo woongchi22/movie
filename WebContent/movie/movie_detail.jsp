@@ -19,11 +19,20 @@ String director = request.getParameter("director");
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/movie.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
-<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+<%-- slick --%>
+<!-- <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
+<!-- <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> -->
 <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
 <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>	
 <script type="text/javascript" src="slick/slick.min.js"></script>
+
+<%-- modal --%>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="${pageContext.request.contextPath}/js/jquery-ui.js"></script>
+<%-- <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script> --%>
+  
+  
 <script type="text/javascript">
 $(document).ready(function() {
 	
@@ -139,7 +148,7 @@ $(document).ready(function() {
             movieSeq:movieSeq
         },
         success: function(data) {
-            console.log('데이터' + data);
+            console.log('데이터 y/n' + data);
             
             if(data == 'Y') {
                 $('.dibsBtn').addClass('done');
@@ -284,8 +293,7 @@ $(document).ready(function() {
     });
     
     
-	
-    // 별점
+    // 별점 클릭 시 함수
     function starClick(grade) {
 		$.ajax("GradeStar.mo", {
 			method: 'post',
@@ -298,20 +306,21 @@ $(document).ready(function() {
 			success: function(data) {
 				console.log("데이터뭐야" + data);
 				
-				
 					if(typeof(Storage) != 0) {
 				        localStorage.setItem("getStar", data+"점");
 				        document.getElementById("showGrade").innerHTML = localStorage.getItem("getStar");
 				        
+				        if($('#cancelStar').css("display") == "none") {
+				        	jQuery('#cancelStar').show(); 
+				        } 
+				        
 				    } else {
-				        document.getElementById("showGrade").innerHTML = "0점";
-				    }   
-				
+				        document.getElementById("showGrade").innerHTML = "별점을 남겨주세요";
+				    }
 			}
 		});
 	}
 	
-    
 	// 별점
 	var grade = 0;
     $.ajax("MovieDetail.mo", {
@@ -336,12 +345,14 @@ $(document).ready(function() {
                     var title = encodeURIComponent(title4);
                     
                     
-                    // 별점 클릭 시
+                    // 별점 클릭하면 별 채워짐
                     $('.starRev a').click(function() {
                         $(this).parent().children('a').removeClass('on');
                         $(this).addClass('on').prevAll('a').addClass('on');
                         return false;
-                    }); // click
+                    });
+                    
+                    $('#showGrade').html('별점을 남겨주세요');
                     
                     $('#star1').click(function() {
                         var grade = 1;
@@ -367,15 +378,51 @@ $(document).ready(function() {
                         var grade = 5;
                         starClick(grade);
                     });
-	                    
                     
                 }); //each2
                 
             }); // each
             
         } // success
-    
+        
     }); // ajax - MovieDetail
+    
+ // 별점 삭제
+    function dialogStar() {
+        
+        $('#diStar').dialog({
+            title: "별점",
+            modal: true,
+            buttons: {
+                "확인": function() {
+                    $.ajax('DeleteStar.mo', {
+                        data: {
+                            name:name,
+                            query:query,
+                            movieSeq:movieSeq
+                        },
+                        success: function(data) {
+                            $('#star5').removeClass('on').prevAll('a').removeClass('on');
+                            $('#showGrade').html('별점을 남겨주세요');
+                            $('#cancelStar').css("display", "none");
+                        }
+                    });
+                    
+                    $(this).dialog('close');
+                    
+                },
+                "취소": function() {
+                    $(this).dialog('close');
+                }
+            }
+        });
+        
+    }
+    
+    // 별점 취소 클릭
+    $('#cancelBtn').on("click", function() {
+        dialogStar();
+    });
     
     // 별점 조회
     $.ajax('Star.mo', {
@@ -386,38 +433,44 @@ $(document).ready(function() {
         success: function(data) {
             console.log('데이터' + data);
             
+            if(data == '0'){
+                $('#showGrade').html('별점을 남겨주세요');
+            }
             if(data == '1'){
-            	$('#star1').addClass('on');
+            	$('#star1').addClass('on').prevAll('a').addClass('on');
                 $('#showGrade').html('1점');
+                $('#cancelStar').css("display", "");
             }
             if(data == '2'){
-            	$('#star1').addClass('on');
-                $('#star2').addClass('on');
+            	$('#star2').addClass('on').prevAll('a').addClass('on');
                 $('#showGrade').html('2점');
+                $('#cancelStar').css("display", "");
             }   
             if(data == '3'){
-            	$('#star1').addClass('on');
-                $('#star2').addClass('on');
-                $('#star3').addClass('on');
+                $('#star3').addClass('on').prevAll('a').addClass('on');
                 $('#showGrade').html('3점');
+                $('#cancelStar').css("display", "");
             }   
             if(data == '4'){
-            	$('#star1').addClass('on');
-                $('#star2').addClass('on');
-                $('#star3').addClass('on');
-                $('#star4').addClass('on');
+                $('#star4').addClass('on').prevAll('a').addClass('on');
                 $('#showGrade').html('4점');
+                $('#cancelStar').css("display", "");
             }   
             if(data == '5'){
-            	$('#star1').addClass('on');
-            	$('#star2').addClass('on');
-            	$('#star3').addClass('on');
-            	$('#star4').addClass('on');
-            	$('#star5').addClass('on');
+            	$('#star5').addClass('on').prevAll('a').addClass('on');
             	$('#showGrade').html('5점');
-            }   
+            	$('#cancelStar').css("display", "");
+            }
+            
         }
     });
+    
+    
+    
+
+    
+    
+    
 }); // document
 
 
@@ -449,6 +502,13 @@ $(document).ready(function() {
 		       <a class="starR" id="star5"></a>
           </div>
           <div id="showGrade"></div>
+          
+          
+          <div id="cancelStar" style='display:none'>
+            <input id="cancelBtn" type="button" value="취소">
+          <div id="diStar" style='display:none'>별점을 삭제하시겠습니까?</div>
+          </div>
+          
 		  <div class="dibs">
 		      <button class="dibsBtn" value="<%=movieSeq %>"><img class="dibsBtnImg" src="img/check.png" width="20px" height="20px">&nbsp;찜꽁</button>
 		  </div>

@@ -114,7 +114,7 @@ public class MovieController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-		// 별점	
+		// 별점	등록, 수정
 		} else if(command.equals("/GradeStar.mo")) {
 			action = new GradeStarAction();
 			try {
@@ -131,7 +131,16 @@ public class MovieController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+			
+		// 별점 삭제	
+		} else if(command.equals("/DeleteStar.mo")) {
+			action = new DeleteStarAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} 
 					
 		
 		
