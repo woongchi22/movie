@@ -286,7 +286,6 @@ $(document).ready(function() {
     });
     
     
-    
 	
     // 별점
     function starClick(grade) {
@@ -303,12 +302,10 @@ $(document).ready(function() {
 				
 				
 					if(typeof(Storage) != 0) {
-				        console.log("이프문 오나염");
 				        localStorage.setItem("getStar", data+"점");
 				        document.getElementById("showGrade").innerHTML = localStorage.getItem("getStar");
 				        
 				    } else {
-				        console.log("엘스문으로 오나염");
 				        document.getElementById("showGrade").innerHTML = "0점";
 				    }   
 				
@@ -317,11 +314,8 @@ $(document).ready(function() {
 	}
 	
     
-    
-    
 	// 별점
 	var grade = 0;
-	
     $.ajax("MovieDetail.mo", {
         method: "post",
         dataType: "json",
@@ -351,28 +345,36 @@ $(document).ready(function() {
                         return false;
                     }); // click
                     
-                    
+                    21
                     $('#star1').click(function() {
+                        $('.starImg1').attr("src", "img/star2.png");
                         var grade = 1;
                         starClick(grade);
                     });
                     
                     $('#star2').click(function() {
-                        var grade = 2;
+                    	$('.starImg1').attr("src", "img/star2.png");
+                        $('.starImg2').attr("src", "img/star2.png");
+                        var grade = 2; 
                         starClick(grade);
                     });
                     
                     $('#star3').click(function() {
+                    	$('.starImg1').attr("src", "img/star2.png");
+                        $('.starImg2').attr("src", "img/star2.png");
+                        $('.starImg3').attr("src", "img/star2.png");
                         var grade = 3;
                         starClick(grade);
                     });
                     
                     $('#star4').click(function() {
+                        $('.starImg4').attr("src", "img/star2.png");
                         var grade = 4;
                         starClick(grade);
                     });
                     
                     $('#star5').click(function() {
+                        $('.starImg5').attr("src", "img/star2.png");
                         var grade = 5;
                         starClick(grade);
                     });
@@ -396,9 +398,26 @@ $(document).ready(function() {
             console.log('데이터' + data);
             
             if(data == '1'){
-                $('#star1').attr("src", "img/star2.png");
+                $('.starImg1').attr("src", "img/star2.png");
+                $('#showGrade').html('1점');
             }
-            
+
+            if(data == '2'){
+                $('.starImg1').attr("src", "img/star2.png");
+                $('.starImg2').attr("src", "img/star2.png");
+                $('#showGrade').html('2점');
+            }   
+            if(data == '3'){
+                $('.starImg1').attr("src", "img/star2.png");
+                $('.starImg2').attr("src", "img/star2.png");
+                $('.starImg3').attr("src", "img/star2.png");
+            }   
+            if(data == '4'){
+                $('.starImg4').attr("src", "img/star2.png");
+            }   
+            if(data == '5'){
+                $('.starImg5').attr("src", "img/star2.png");
+            }   
             
             
         }
@@ -430,31 +449,18 @@ $(document).ready(function() {
 	<div class="title_top"></div>
 		<%if(pass != null) { %>
 		  <div class="starRev">
-		       <a class="starR" id="star1"></a>
-		       <a class="starR" id="star2"></a>
-		       <a class="starR" id="star3"></a>
-		       <a class="starR" id="star4"></a>
-		       <a class="starR" id="star5"></a>
+		       <a class="starR" id="star1"><img class="starImg1" src="img/star1.png" width="30px" height="30px"></a>
+		       <a class="starR" id="star2"><img class="starImg2" src="img/star1.png" width="30px" height="30px"></a>
+		       <a class="starR" id="star3"><img class="starImg3" src="img/star1.png" width="30px" height="30px"></a>
+		       <a class="starR" id="star4"><img class="starImg4" src="img/star1.png" width="30px" height="30px"></a>
+		       <a class="starR" id="star5"><img class="starImg5" src="img/star1.png" width="30px" height="30px"></a>
           </div>
           <div id="showGrade"></div>
         
-<!-- 			<div class="review-star"> -->
-<!-- 				<div class="review_star"> -->
-<!-- 					<input type="button" name="star" id="star1" value="1" class="rev-star" title="1점"> -->
-<!-- 					<label for="star1"></label> -->
-<!-- 					<input type="button" name="star" id="star2" value="2" class="rev-star" title="2점"> -->
-<!-- 					<label for="star2"></label> -->
-<!-- 					<input type="button" name="star" id="star3" value="3" class="rev-star" title="3점"> -->
-<!-- 					<label for="star3"></label> -->
-<!-- 					<input type="button" name="star" id="star4" value="4" class="rev-star" title="4점"> -->
-<!-- 					<label for="star4"></label> -->
-<!-- 					<input type="button" name="star" id="star5" value="5" class="rev-star" title="5점"> -->
-<!-- 					<label for="star5"></label> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
 			
-			
-		  <div class="dibs"><button class="dibsBtn" value="<%=movieSeq %>"><img class="dibsBtnImg" src="img/check.png" width="20px" height="20px">&nbsp;찜꽁</button></div>
+		  <div class="dibs">
+		      <button class="dibsBtn" value="<%=movieSeq %>"><img class="dibsBtnImg" src="img/check.png" width="20px" height="20px">&nbsp;찜꽁</button>
+		  </div>
 		<%} else {%>   
 		  <div class="dibsLogin"><a href="MemberLoginForm.me">로그인</a>하시고 별점을 남겨주세요</div>
 		<%} %>
