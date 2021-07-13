@@ -32,7 +32,6 @@ String director = request.getParameter("director");
 <script src="${pageContext.request.contextPath}/js/jquery-ui.js"></script>
 <%-- <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script> --%>
   
-  
 <script type="text/javascript">
 $(document).ready(function() {
 	
@@ -352,7 +351,6 @@ $(document).ready(function() {
                         return false;
                     });
                     
-                    $('#showGrade').html('별점을 남겨주세요');
                     
                     $('#star1').click(function() {
                         var grade = 1;
@@ -387,7 +385,7 @@ $(document).ready(function() {
         
     }); // ajax - MovieDetail
     
- // 별점 삭제
+    // 별점 삭제
     function dialogStar() {
         
         $('#diStar').dialog({
@@ -433,30 +431,30 @@ $(document).ready(function() {
         success: function(data) {
             console.log('데이터' + data);
             
-            if(data == '0'){
+            if(data == 0){
                 $('#showGrade').html('별점을 남겨주세요');
             }
-            if(data == '1'){
+            if(data == 1){
             	$('#star1').addClass('on').prevAll('a').addClass('on');
                 $('#showGrade').html('1점');
                 $('#cancelStar').css("display", "");
             }
-            if(data == '2'){
+            if(data == 2){
             	$('#star2').addClass('on').prevAll('a').addClass('on');
                 $('#showGrade').html('2점');
                 $('#cancelStar').css("display", "");
             }   
-            if(data == '3'){
+            if(data == 3){
                 $('#star3').addClass('on').prevAll('a').addClass('on');
                 $('#showGrade').html('3점');
                 $('#cancelStar').css("display", "");
             }   
-            if(data == '4'){
+            if(data == 4){
                 $('#star4').addClass('on').prevAll('a').addClass('on');
                 $('#showGrade').html('4점');
                 $('#cancelStar').css("display", "");
             }   
-            if(data == '5'){
+            if(data == 5){
             	$('#star5').addClass('on').prevAll('a').addClass('on');
             	$('#showGrade').html('5점');
             	$('#cancelStar').css("display", "");
@@ -502,7 +500,6 @@ $(document).ready(function() {
 		       <a class="starR" id="star5"></a>
           </div>
           <div id="showGrade"></div>
-          
           
           <div id="cancelStar" style='display:none'>
             <input id="cancelBtn" type="button" value="취소">
