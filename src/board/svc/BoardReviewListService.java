@@ -80,4 +80,24 @@ public class BoardReviewListService {
 		return isUpdate;
 	}
 
+	public boolean deleteReview(int idx) {
+		System.out.println("BoardReviewService - deleteReview()");
+		boolean isSuccess =false;
+		
+		Connection con = getConnection();
+		BoardDao bdao = BoardDao.getInstance();
+		bdao.setConnection(con);
+		int insertCount = bdao.deleteReview(idx);
+		
+		if(insertCount>0) {
+			isSuccess = true;
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		close(con);
+		
+		return isSuccess;
+	}
+
 }

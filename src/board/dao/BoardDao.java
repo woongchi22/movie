@@ -196,15 +196,15 @@ public class BoardDao {
 
 	public int updateReview(ReviewBean reviewBean) {
 		System.out.println("BoardDAO-updateReview");
+		
+		System.out.println(reviewBean.getName());
 		int insertCount = 0;
-
 		try {
 
-			String sql = "update review set content = ? where name =? and movieSeq = ?";
+			String sql = "update review set content = ? where idx = ? ";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, reviewBean.getContent());
-			pstmt.setString(2, reviewBean.getName());
-			pstmt.setInt(3, reviewBean.getMovieSeq());
+			pstmt.setInt(2, reviewBean.getIdx());
 
 			insertCount = pstmt.executeUpdate();
 
@@ -217,6 +217,30 @@ public class BoardDao {
 
 		return insertCount;
 	}
+
+	public int deleteReview(int idx) {
+		System.out.println("BoardDAO-deleteReview");	
+		int insertCount = 0;
+		
+		try {
+
+			String sql = "delete from review where idx = ? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+
+			insertCount = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("BoardDAO - deleteReply() 에러: " + e.getMessage());
+
+		} finally {
+			close(pstmt);
+		}
+
+		return insertCount;
+	}
+	
 	
 	
 	

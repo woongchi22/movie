@@ -34,8 +34,8 @@ public class BoardReviewListAction implements Action {
 		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 		String title = (String) request.getParameter("query");
 		HttpSession session = request.getSession();
+//		String name = request.getParameter("name");
 		String name = (String)request.getAttribute("name");
-//		
 		System.out.println(movieSeq+title+name);
 //		
 		BoardReviewListService boardReviewListService = new BoardReviewListService();
