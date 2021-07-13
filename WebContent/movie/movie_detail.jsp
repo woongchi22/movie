@@ -241,8 +241,6 @@ $(document).ready(function() {
                         '<div class=title>'+title+'</div></div>');
                     }
                     $('.directorP').text(directorNm + " 감독의 다른 영화들");
-
-                        
                         
                 });
             });
@@ -345,36 +343,27 @@ $(document).ready(function() {
                         return false;
                     }); // click
                     
-                    21
                     $('#star1').click(function() {
-                        $('.starImg1').attr("src", "img/star2.png");
                         var grade = 1;
                         starClick(grade);
                     });
                     
                     $('#star2').click(function() {
-                    	$('.starImg1').attr("src", "img/star2.png");
-                        $('.starImg2').attr("src", "img/star2.png");
                         var grade = 2; 
                         starClick(grade);
                     });
                     
                     $('#star3').click(function() {
-                    	$('.starImg1').attr("src", "img/star2.png");
-                        $('.starImg2').attr("src", "img/star2.png");
-                        $('.starImg3').attr("src", "img/star2.png");
                         var grade = 3;
                         starClick(grade);
                     });
                     
                     $('#star4').click(function() {
-                        $('.starImg4').attr("src", "img/star2.png");
                         var grade = 4;
                         starClick(grade);
                     });
                     
                     $('#star5').click(function() {
-                        $('.starImg5').attr("src", "img/star2.png");
                         var grade = 5;
                         starClick(grade);
                     });
@@ -398,32 +387,37 @@ $(document).ready(function() {
             console.log('데이터' + data);
             
             if(data == '1'){
-                $('.starImg1').attr("src", "img/star2.png");
+            	$('#star1').addClass('on');
                 $('#showGrade').html('1점');
             }
-
             if(data == '2'){
-                $('.starImg1').attr("src", "img/star2.png");
-                $('.starImg2').attr("src", "img/star2.png");
+            	$('#star1').addClass('on');
+                $('#star2').addClass('on');
                 $('#showGrade').html('2점');
             }   
             if(data == '3'){
-                $('.starImg1').attr("src", "img/star2.png");
-                $('.starImg2').attr("src", "img/star2.png");
-                $('.starImg3').attr("src", "img/star2.png");
+            	$('#star1').addClass('on');
+                $('#star2').addClass('on');
+                $('#star3').addClass('on');
+                $('#showGrade').html('3점');
             }   
             if(data == '4'){
-                $('.starImg4').attr("src", "img/star2.png");
+            	$('#star1').addClass('on');
+                $('#star2').addClass('on');
+                $('#star3').addClass('on');
+                $('#star4').addClass('on');
+                $('#showGrade').html('4점');
             }   
             if(data == '5'){
-                $('.starImg5').attr("src", "img/star2.png");
+            	$('#star1').addClass('on');
+            	$('#star2').addClass('on');
+            	$('#star3').addClass('on');
+            	$('#star4').addClass('on');
+            	$('#star5').addClass('on');
+            	$('#showGrade').html('5점');
             }   
-            
-            
         }
-        
     });
-	 
 }); // document
 
 
@@ -441,7 +435,6 @@ $(document).ready(function() {
 <input type ="hidden" id="director" name="director" value="<%=director %>">
 <input type="hidden" id="name" name="name" value="<%=name %>">
 <input type="hidden" id="dibs" name="dibs" value="Y">
-<!-- <input type="hidden" id="grade" name=grade value="0"> -->
 
 
 <div class="review"><a href="BoardReviewList.bo?movieSeq=<%=movieSeq %>&query=<%=query %>" >리뷰</a></div>
@@ -449,15 +442,13 @@ $(document).ready(function() {
 	<div class="title_top"></div>
 		<%if(pass != null) { %>
 		  <div class="starRev">
-		       <a class="starR" id="star1"><img class="starImg1" src="img/star1.png" width="30px" height="30px"></a>
-		       <a class="starR" id="star2"><img class="starImg2" src="img/star1.png" width="30px" height="30px"></a>
-		       <a class="starR" id="star3"><img class="starImg3" src="img/star1.png" width="30px" height="30px"></a>
-		       <a class="starR" id="star4"><img class="starImg4" src="img/star1.png" width="30px" height="30px"></a>
-		       <a class="starR" id="star5"><img class="starImg5" src="img/star1.png" width="30px" height="30px"></a>
+		       <a class="starR" id="star1"></a>
+		       <a class="starR" id="star2"></a>
+		       <a class="starR" id="star3"></a>
+		       <a class="starR" id="star4"></a>
+		       <a class="starR" id="star5"></a>
           </div>
           <div id="showGrade"></div>
-        
-			
 		  <div class="dibs">
 		      <button class="dibsBtn" value="<%=movieSeq %>"><img class="dibsBtnImg" src="img/check.png" width="20px" height="20px">&nbsp;찜꽁</button>
 		  </div>
