@@ -30,7 +30,6 @@ String director = request.getParameter("director");
 <%-- modal --%>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="${pageContext.request.contextPath}/js/jquery-ui.js"></script>
-<%-- <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script> --%>
   
 <script type="text/javascript">
 $(document).ready(function() {
@@ -336,14 +335,6 @@ $(document).ready(function() {
             $.each(data.Data, function(idx, item) {
                 $.each(item.Result, function(idx, item2) {
 
-                    var title1 = item2.title
-                    var titleNoSpace = title1.replace(/ /g, ''); // 타이틀 공백제거
-                    var title2 = titleNoSpace.replace(/!HS/g,'') // 검색어는 !HS , !HE 로 둘러 싸여있어서 제거해줌
-                    var title3 = title2.replace(/!HE/g,'')
-                    var title4 = title3.trim(); // 양쪽끝에 공백을 제거해줌
-                    var title = encodeURIComponent(title4);
-                    
-                    
                     // 별점 클릭하면 별 채워짐
                     $('.starRev a').click(function() {
                         $(this).parent().children('a').removeClass('on');
