@@ -11,10 +11,14 @@ String name = (String)session.getAttribute("name");
 <title></title>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
+
+<%-- slick --%>
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
-<link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+<link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>   
+<script type="text/javascript" src="slick/slick.min.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function() {
 
@@ -44,6 +48,7 @@ $(document).ready(function() {
         }
 		
     var today = yy + "" + mm + "" + dd; // 박스오피스에서 정해준 날짜 형식(yyyymmdd)으로 변환
+    
     $.ajax({
          url: "BoxOffice.mo",
                  // &itemPerPage: 1-10위 까지의 데이터가 출력되도록 설정(최대 10)

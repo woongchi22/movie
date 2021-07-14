@@ -89,9 +89,84 @@
 #cancelBtn:hover {
     background-color: #c8c800;
 }
+#gradeMovie{
+    width: 260px;
+    height: 450px;
+    float: left;
+}
+.gradePoster{
+    width:250px;
+    height:350px;
+    background-size:100%;
+    margin:10px;
+    background-repeat:no-repeat;
+    float: left;
+}
+.gradeTitle{
+    margin: 0 10px;
+    float: left;
+}
+.starGra{
+/*     float: left; */
+    margin: 0 10px;
+/*     padding: 10px; */
+}
+.starG{
+    background: url("../img/star1.png") no-repeat;
+    background-size: 100%;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    cursor: pointer;  
+    
+}
 
-
-
-
-
-
+.starG.on{
+    background: url("../img/star2.png") no-repeat;
+    background-size: 100%;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    cursor: pointer;  
+}
+#star01:hover{
+    background: url("../img/star2.png") no-repeat; 
+    background-size: 100%;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    cursor: pointer;  
+}
+#star02:hover{
+    
+    background: url("../img/star2.png") no-repeat; 
+    background-size: 100%;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    cursor: pointer;  
+} 
+#star03:hover{
+    background: url("../img/star2.png") no-repeat; 
+    background-size: 100%;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    cursor: pointer;  
+} 
+#star04:hover{
+    background: url("../img/star2.png") no-repeat; 
+    background-size: 100%;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    cursor: pointer;  
+}
+#star05:hover{
+    background: url("../img/star2.png") no-repeat; 
+    background-size: 100%;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    cursor: pointer;  
+}

@@ -237,24 +237,7 @@ dt{
 	float: left;
 	
 }
-#gradeMovie{
-    width: 260px;
-    height: 410px;
-    float: left;
-    
-}
-.gradePoster{
-    width:250px;
-    height:350px;
-    background-size:100%;
-    margin:10px;
-    background-repeat:no-repeat;
-    float: left;
-}
-.gradeTitle{
-    margin: 0 10px;
-    float: left;
-}
+
 .otherMovie{
     margin: 15px 0 20px 10px;
     font-size: 18px;

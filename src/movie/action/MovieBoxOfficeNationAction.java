@@ -22,6 +22,8 @@ public class MovieBoxOfficeNationAction implements Action {
 
 		String movieNm = request.getParameter("title");
 		String openDt = request.getParameter("openDt");
+		System.out.println(movieNm + openDt);
+		
 		kmdbApi ba = new kmdbApi();
 		String getBox = ba.getBoxoffice(openDt,movieNm);
 		JsonParser jsonParser = new JsonParser();
@@ -32,6 +34,7 @@ public class MovieBoxOfficeNationAction implements Action {
 		PrintWriter out = response.getWriter();
 		out.println(jsonObject);
 		out.flush();
+		
 		return null;
 	}
 
