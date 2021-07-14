@@ -31,7 +31,7 @@ public class BoardDao {
 	ResultSet rs;
 
 
-
+	
 	public int reviewWrite(ReviewBean reviewBean) {
 		System.out.println("dao-reviewWrite");
 		int insertCount = 0;
@@ -62,7 +62,7 @@ public class BoardDao {
 		ArrayList<ReviewBean> reviewList = null;
 		
 		try {
-			String sql = "SELECT * FROM review where movieSeq=? ORDER BY idx DESC ";
+			String sql = "SELECT * FROM review WHERE movieSeq=? ORDER BY idx DESC ";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, movieSeq);
 			rs = pstmt.executeQuery();

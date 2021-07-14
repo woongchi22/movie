@@ -47,13 +47,6 @@ public class BoardReplyWriteAction implements Action {
 			out.println("</script>"); 
 		}else { 
 			request.setAttribute("replyBean", replyBean);
-//			replyBean.setContent("review");
-//			replyBean.setMovieSeq(movieSeq);
-//			replyBean.setName("name");
-			
-//			forward = new ActionForward();
-//			forward.setRedirect(true); 
-//			forward.setPath("BoardReply.bo"); 
 		}
 			
 		

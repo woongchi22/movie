@@ -39,8 +39,10 @@ String reviewUpdate = (String) request.getParameter("reviewUpdate");
 			
 			<% if(name!=null){%>
 				<div class="textA">
-				<textarea id = "rev_content" class="rev_content"></textarea>
-				<input type="button"  value="등록" id = "submitBtn" class="button">
+				<form action="BoardReviewWrite.bo?movieSeq=<%=movieSeq%>&query=<%=query%>"method="post" id="review_write">
+				<textarea id = "rev_content" class="rev_content" name="rev_content"></textarea>
+				<input type="submit"  value="등록" id = "submitBtn" class="button">
+				</form>
 				</div>
 			<% }else{%>
 			<div class="textA">
@@ -53,7 +55,7 @@ String reviewUpdate = (String) request.getParameter("reviewUpdate");
 			
 			
 				<div><%=rb.getContent() %></div>
-				<div class="re"> <%=rb.getName() %>| <%=rb.getdDate()%><%=rb.getIdx() %></div>
+				<div class="re"> <%=rb.getName() %>| <%=rb.getdDate()%></div>
 				<a href="BoardReply.bo?movieSeq=<%=rb.getMovieSeq()%>&idx=<%=rb.getIdx()%>">
 				<input type="button"  value="답댓글" id="ReviewReply_<%=rb.getIdx() %>" class="button" ></a>
 				 <input type="button" value="수정" id="updateReview_<%=rb.getIdx() %>" class="button">
@@ -78,12 +80,12 @@ $(document).ready(function() {
 	var review = $('#reviewUpdate_<%=rb.getIdx() %>').val();
 	
 	
-	
+	//리뷰삭제
 	$('#deleteReview_<%=rb.getIdx() %>').click(function() {
 		 $('#delete-message_<%=rb.getIdx() %>').dialog({
 			 modal: true,
 			 async : false,
-           buttons: {
+             buttons: {
                "확인": function() {
                    
                    idx = $('#idx').val();
@@ -92,8 +94,8 @@ $(document).ready(function() {
                    $.ajax({
                   	 url: "BoardReviewDelete.bo?idx=<%=rb.getIdx()%>",
                   	 method: "get",
-                       data: {
-                           idx:idx,
+                     data: {
+                           idx:idx
                        },		 
                   			 
                        success: function(data) {
@@ -104,7 +106,8 @@ $(document).ready(function() {
                    })
                    
                    $(this).dialog('close');
-                },//수정
+                },//확인
+                
                 "취소": function() {
                     $(this).dialog('close');
                 }
@@ -112,7 +115,7 @@ $(document).ready(function() {
 		 });
 	});
 	
-
+	//리뷰수정
 	$('#updateReview_<%=rb.getIdx() %>').click(function() {
 		 $('#update-message_<%=rb.getIdx() %>').dialog({
 			 modal: true,
@@ -125,7 +128,6 @@ $(document).ready(function() {
                      idx = $('#idx').val();
                      review = $('#reviewUpdate_<%=rb.getIdx() %>').val();
                      console.log('수정된리뷰'+review);
-                     console.log('이름'+name);
                      
                      $.ajax({
                     	 url: "BoardReviewUpdate.bo?idx=<%=rb.getIdx()%>",
@@ -155,24 +157,25 @@ $(document).ready(function() {
 	});
 	
 	
-	
-	$('#submitBtn').off("click").click(function() {
-	 review = $('#rev_content').val();
-		//리뷰 쓰기
-		$.ajax("BoardReviewWrite.bo", {
-			method:"post",
-			async : false,
-			datatype:"param",
-			data:{
-				query:query,
-				movieSeq:movieSeq,
-				review:review
-			},
-			success: function(data) {
-			}
+//혹시 몰라서 놔둠ㅋ	
+// 	$('#submitBtn').off("click").click(function() {
+// 		console.log("뜨남");
+// 	 review = $('#rev_content').val();
+// 		//리뷰 쓰기
+// 		$.ajax("BoardReviewWrite.bo", {
+// 			method:"post",
+// 			async : false,
+// 			datatype:"param",
+// 			data:{
+// 				query:query,
+// 				movieSeq:movieSeq,
+// 				review:review
+// 			},
+// 			success: function(data) {
+// 			}
 			
-		}); //ajax
-	}); //click
+// 		}); //ajax
+// 	}); //click
 	
 	
 
@@ -180,13 +183,7 @@ $(document).ready(function() {
 });//ready
  
 </script>       
-          
-          
 				<%} %>
-			
-		
-				
-		
 		<input type="hidden" id="name" name="name" value="<%=name%>">
 		<input type="hidden" id="movieSeq" name="movieSeq" value="<%=movieSeq%>">
 		<input type="hidden" id="query" name="query" value="<%=query%>">
