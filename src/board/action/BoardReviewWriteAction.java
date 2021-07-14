@@ -23,7 +23,7 @@ public class BoardReviewWriteAction implements Action {
 		
 		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 		String title = (String) request.getParameter("query");
-		String review = (String) request.getParameter("review");
+		String review = (String) request.getParameter("rev_content");
 		HttpSession session = request.getSession();
 		String name = (String) session.getAttribute("name");
 		
@@ -50,14 +50,9 @@ public class BoardReviewWriteAction implements Action {
 			out.println("</script>"); 
 		}else { 
 			request.setAttribute("reviewBean", reviewBean);
-			reviewBean.setContent("review");
-			reviewBean.setMovieSeq(movieSeq);
-			reviewBean.setTitle("title");
-			reviewBean.setName("name");
 			
 			forward = new ActionForward();
-			forward.setRedirect(true); 
-			forward.setPath("BoardReviewList.bo"); 
+			forward.setPath("BoardReviewList.bo");
 		}
 		
 		

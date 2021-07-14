@@ -17,15 +17,12 @@ public class BoardReviewUpdateAction implements Action {
 		System.out.println("BoardReviewUpdateAction");
 		
         String review = (String) request.getParameter("review");
-//        HttpSession session = request.getSession();
-//        String name = request.getParameter("name");
 		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 		int idx = Integer.parseInt(request.getParameter("idx"));
 		System.out.println("================");
 		System.out.println(review+idx);
 
 		ReviewBean reviewBean = new ReviewBean();
-//		reviewBean.setName(name);
 		reviewBean.setMovieSeq(movieSeq);
 		reviewBean.setContent(review);
 		reviewBean.setIdx(idx);

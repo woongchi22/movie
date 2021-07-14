@@ -45,7 +45,6 @@ public class BoardReplyAction implements Action {
 		BoardReplyService boardReplyService = new BoardReplyService();
 		ArrayList<ReplyBean> replyList = boardReplyService.replyList(replyBean);
 		System.out.println("!!!");
-		System.out.println(replyList.get(0).getContent());
 		request.setAttribute("replyList", replyList);
 		
 		ActionForward forword = new ActionForward();
