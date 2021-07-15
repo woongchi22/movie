@@ -5,6 +5,7 @@ import java.io.*;
 import javax.servlet.http.*;
 
 import action.*;
+import board.svc.BoardReviewListService;
 import movie.svc.*;
 import movie.vo.*;
 import vo.*;
@@ -41,6 +42,7 @@ public class GradeStarAction implements Action {
 		PrintWriter out = response.getWriter();
 		out.print(mb.getGrade());
 		
+
 		return forward;
 		
 	}

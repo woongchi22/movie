@@ -2,33 +2,32 @@ package board.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import action.Action;
-import board.svc.BoardReviewListService;
+import board.svc.BoardReplyService;
 import board.vo.ReviewBean;
 import vo.ActionForward;
 
-public class BoardReviewUpdateAction implements Action {
+public class BoardReplyUpdateAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("UTF-8");
-		System.out.println("BoardReviewUpdateAction");
+		System.out.println("BoardRevplyUpdateAction");
 		
         String review = (String) request.getParameter("review");
 		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 		int idx = Integer.parseInt(request.getParameter("idx"));
 		System.out.println("================");
-		System.out.println(review+idx+movieSeq);
+		System.out.println(review+idx);
 
-		ReviewBean reviewBean = new ReviewBean();
-		reviewBean.setMovieSeq(movieSeq);
-		reviewBean.setContent(review);
-		reviewBean.setIdx(idx);
+		ReviewBean replyBean = new ReviewBean();
+		replyBean.setMovieSeq(movieSeq);
+		replyBean.setContent(review);
+		replyBean.setIdx(idx);
 		
-		BoardReviewListService boardReviewListService = new BoardReviewListService();
-		boolean isUpdate = boardReviewListService.isUpdate(reviewBean);
+		BoardReplyService boardReplyService = new BoardReplyService();
+		boolean isUpdate = boardReplyService.isUpdate(replyBean);
 		
 	
 		ActionForward forward = new ActionForward();

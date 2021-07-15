@@ -23,7 +23,7 @@ public class BoardReviewWriteAction implements Action {
 		
 		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 		String title = (String) request.getParameter("query");
-		String review = (String) request.getParameter("rev_content");
+		String review = (String) request.getParameter("review");
 		HttpSession session = request.getSession();
 		String name = (String) session.getAttribute("name");
 		
@@ -33,7 +33,7 @@ public class BoardReviewWriteAction implements Action {
 		reviewBean.setTitle(title);
 		reviewBean.setName(name);
 		
-		System.out.println(review+title+name+movieSeq);
+		System.out.println(review+title+name+movieSeq+"!!!@@@@@@@@@");
 		System.out.println("======================");
 		System.out.println(reviewBean.getContent());
 		

@@ -3,6 +3,7 @@ package board.svc;
 
 import board.dao.BoardDao;
 import board.vo.ReplyBean;
+import board.vo.ReviewBean;
 
 import static db.JdbcUtil.*;
 
@@ -47,6 +48,47 @@ public class BoardReplyService {
 		close(con);
 		
 		return replyList;
+	}
+
+	public boolean deleteReply(int idx) {
+		System.out.println("BoardReplyService - deleteReply()");
+		boolean isSuccess =false;
+		
+		Connection con = getConnection();
+		BoardDao bdao = BoardDao.getInstance();
+		bdao.setConnection(con);
+		int insertCount = bdao.deleteReply(idx);
+		
+		if(insertCount>0) {
+			isSuccess = true;
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		close(con);
+		
+		return isSuccess;
+	
+	}
+
+	public boolean isUpdate(ReviewBean replyBean) {
+		System.out.println("BoardReplyService - updateReply()");
+		boolean isSuccess =false;
+		
+		Connection con = getConnection();
+		BoardDao bdao = BoardDao.getInstance();
+		bdao.setConnection(con);
+		int insertCount = bdao.updateReply(replyBean);
+		
+		if(insertCount>0) {
+			isSuccess = true;
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		close(con);
+		
+		return isSuccess;
 	}
 
 }

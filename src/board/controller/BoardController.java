@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import board.action.BoardReplyAction;
+import board.action.BoardReplyDeleteAction;
+import board.action.BoardReplyUpdateAction;
 import board.action.BoardReplyWriteAction;
 import board.action.BoardReviewDeleteAction;
 import board.action.BoardReviewListAction;
@@ -78,8 +80,24 @@ public class BoardController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-    	
+		} 
+    	  if(command.equals("/BoardReplyUpdate.bo")) {
+	  		  action = new BoardReplyUpdateAction();
+	  		  try {
+				  forward = action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+	  	  }
+    	  if (command.equals("/BoardReplyDelete.bo")) {
+			action = new BoardReplyDeleteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+    	  }
+    	  
     	
     if(forward !=null ) {
     	if(forward.isRedirect()){

@@ -5,6 +5,7 @@ import java.io.*;
 import javax.servlet.http.*;
 
 import action.*;
+import board.svc.BoardReviewListService;
 import movie.svc.*;
 import movie.vo.*;
 import vo.*;
@@ -60,6 +61,13 @@ public class StarAction implements Action {
 			break;
 		}
 		
+
+		  // getReview 를 위한 구문들
+	      BoardReviewListService boardReviewListService = new BoardReviewListService();
+	      System.out.println("리븅엑셔뉴 @@");
+	      String returnCmt = boardReviewListService.getReview(mb);
+	      System.out.println(returnCmt);
+	      request.setAttribute("returnCmt", returnCmt);
 		return forward;
 	}
 

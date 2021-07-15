@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import board.dao.BoardDao;
 import board.vo.ReviewBean;
+import movie.vo.MovieBean;
 
 import static db.JdbcUtil.*;
 public class BoardReviewListService {
@@ -99,5 +100,20 @@ public class BoardReviewListService {
 		
 		return isSuccess;
 	}
+
+	public String getReview(MovieBean mb) {
+		System.out.println("BoardReviewListService - getReview!");
+		
+		Connection con = getConnection();
+		BoardDao bdao = BoardDao.getInstance();
+		bdao.setConnection(con);
+		
+		String comment = bdao.getReviewDetail(mb);
+		
+		close(con);
+		
+		return comment;
+	}
+
 
 }
