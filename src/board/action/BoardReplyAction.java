@@ -36,6 +36,7 @@ public class BoardReplyAction implements Action {
 		replyBean.setMovieSeq(movieSeq);
 		replyBean.setIdx(idx);
 		
+		
 		// 선택한 리뷰 내용 들고오기
 		BoardReviewListService boardReviewListService = new BoardReviewListService();
 		ReviewBean reviewBean = boardReviewListService.getReview(idx, movieSeq);

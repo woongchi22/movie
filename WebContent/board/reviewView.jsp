@@ -37,6 +37,8 @@ String grade = request.getParameter("grade");
 		<input type="button" value="돌아가기" class = "button" onclick="history.back();">
 
 			
+
+
 			<% if(name != null){%>
 				<div class="textA">
 					<form action="BoardReviewWrite.bo?movieSeq=<%=movieSeq%>&query=<%=query%>"method="post" id="review_write">
@@ -49,18 +51,28 @@ String grade = request.getParameter("grade");
 					<textarea name = "content" id = "rev_content" readonly="readonly" class="rev_content">댓글쓰기 권한이 없습니다. 로그인이 필요합니다</textarea>
 				</div>
 			<% } %>
+
 		
-			
+			<div style="padding: 5% 5%;">
 			<%for(ReviewBean rb : reviewList) {%>
 			
-			
-				<div><%=rb.getContent() %></div>
-				<div class="re"> <%=rb.getName() %> | <%=rb.getdDate()%></div>
-				<a href="BoardReply.bo?movieSeq=<%=rb.getMovieSeq()%>&idx=<%=rb.getIdx()%>">
-				    <input type="button"  value="답댓글" id="ReviewReply_<%=rb.getIdx() %>" class="button" ></a>
+
+				<div style="margin: 10% ;border: solid 1px gray;">
+				<div style=" border-bottom: solid 0.3px #454545; " > <%=rb.getName() %></div>
+				<div style="margin: 10px 0;"><%=rb.getContent() %></div>
+<%-- 				<div><<a href="BoardReply.bo?movieSeq=<%=rb.getMovieSeq()%>&idx=<%=rb.getIdx()%>"> --%>
+<%-- 				<input type="button"  value="답댓글" id="ReviewReply_<%=rb.getIdx() %>" class="button" ></a></div> --%>
+				<div style="border-top: solid 0.3px #454545;" ><a href="">좋아요</a></div>
+				<%if(name.equals(rb.getName())){%>
+
 				 <input type="button" value="수정" id="updateReview_<%=rb.getIdx() %>" class="button">
             	 <input type="button" value="삭제" id="deleteReview_<%=rb.getIdx() %>" class="button">
-          		
+          		<%} %>
+				</div>
+				
+				
+				
+				
           		<div id="update-message_<%=rb.getIdx() %>" title="리뷰 수정" style="display:none">
 				    <textarea id="reviewUpdate_<%=rb.getIdx() %>" name="reviewUpdate" cols="25" rows="5"></textarea>
 				     리뷰를 수정해주세요.
@@ -69,7 +81,7 @@ String grade = request.getParameter("grade");
 				<div id = "delete-message_<%=rb.getIdx() %>" title="리뷰 삭제" style="display:none">
 				    리뷰를 삭제하시겠습니까?
 				</div>
-				
+		
 				
 <script type="text/javascript">
 $(document).ready(function() {
@@ -184,6 +196,7 @@ $(document).ready(function() {
  
 </script>       
 				<%} %>
+					</div>	
 		<input type="hidden" id="name" name="name" value="<%=name%>">
 		<input type="hidden" id="movieSeq" name="movieSeq" value="<%=movieSeq%>">
 		<input type="hidden" id="query" name="query" value="<%=query%>">

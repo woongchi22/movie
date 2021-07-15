@@ -7,6 +7,7 @@ import java.util.*;
 
 import board.vo.ReplyBean;
 import board.vo.ReviewBean;
+import movie.vo.MovieBean;
 
 
 
@@ -240,7 +241,78 @@ public class BoardDao {
 
 		return insertCount;
 	}
-	
+
+	public int deleteReply(int idx) {
+		System.out.println("BoardDAO-deleteReply");	
+		int insertCount = 0;
+		
+		try {
+
+			String sql = "delete from reply where idx = ? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+
+			insertCount = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("BoardDAO - deleteReply() 에러: " + e.getMessage());
+
+		} finally {
+			close(pstmt);
+		}
+
+		return insertCount;
+	}
+
+	public int updateReply(ReviewBean replyBean) {
+		System.out.println("BoardDAO-updateReply");
+		
+		System.out.println(replyBean.getName());
+		int insertCount = 0;
+		try {
+
+			String sql = "update reply set content = ? where idx = ? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, replyBean.getContent());
+			pstmt.setInt(2, replyBean.getIdx());
+
+			insertCount = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return insertCount;
+	}
+
+	public String getReviewDetail(MovieBean mb) {
+		System.out.println("립디테일");
+		String comment = "";
+		String sql = "SELECT content from review where name = ? and movieSeq = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mb.getName());
+			pstmt.setInt(2, mb.getMovieSeq());
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				comment = rs.getString("content");
+				System.out.println(comment);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return comment;
+		
+	}
+
 	
 	
 	

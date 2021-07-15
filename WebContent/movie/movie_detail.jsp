@@ -13,12 +13,15 @@ String movieSeq = (String)request.getParameter("movieSeq");
 String query = request.getParameter("query");
 String poster = (String)request.getParameter("image");
 String director = request.getParameter("director");
+String review = request.getParameter("review");
+String returnCmt = (String)request.getParameter("returnCmt");
 
 %>
 <title>[WhatFilx] <%=query %></title>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/movie.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <%-- slick --%>
 <!-- <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
@@ -33,7 +36,6 @@ String director = request.getParameter("director");
   
 <script type="text/javascript">
 $(document).ready(function() {
-	
 	var query = $('#query').val();
 	var movieSeq = $('#movieSeq').val();
 	var name = $('#name').val();
@@ -141,6 +143,8 @@ $(document).ready(function() {
 		}
 			   	 
 	}); 
+	
+
 	
 	// 찜꽁
     $.ajax('Dibs.mp', {
@@ -442,7 +446,6 @@ $(document).ready(function() {
         },
         success: function(data) {
             console.log('데이터' + data);
-            
             if(data == 0){
                 $('#showGrade').html('별점을 남겨주세요');
             }
@@ -471,14 +474,57 @@ $(document).ready(function() {
             	$('#showGrade').html('5점');
             	$('#cancelStar').css("display", "");
             }
-            
+          
         }
     });
     
     
 
+	
+ //리뷰   
+ $('#comment').click(function() {
+	var review = $('#opinion').val();
+    $('#dialog-comment').dialog({
+	     modal: true,
+	     buttons: {
+	         "작성": function() {
+	        		
+	        	var review = $('#opinion').val();
+	        	 console.log(review);
+
+	             $.ajax({
+	                 url: "BoardReviewWrite.bo",
+	                 method: "get",
+	                 async: false,
+	                 data: {
+	                	 query:query,
+	                	 review:review,
+	                     movieSeq:movieSeq,
+	                 },
+	                 success: function(data) {
+	                		
+// 	                         $('#review').append(data);
+	                         location.reload();
+	
+	
+	                 }
+	             });
+					$(this).dialog('close');
+	
+	             
+	
+	         },
+	
+	         "취소": function() {
+	             $(this).dialog('close');
+	         },
+	     }
+	
+	 });
+
+
     
-    
+ });
     
 }); // document
 
@@ -491,15 +537,23 @@ $(document).ready(function() {
 	<jsp:include page="/inc/top.jsp"/>
 </header>
 <body>
-
 <input type ="hidden" id="query" name="query" value="<%=query %>">
 <input type ="hidden" id="movieSeq" name="movieSeq" value="<%=movieSeq %>">
 <input type ="hidden" id="director" name="director" value="<%=director %>">
 <input type="hidden" id="name" name="name" value="<%=name %>">
+<input type ="button" id="returnCmt" name="returnCmt" value="<%=returnCmt %>">
 <input type="hidden" id="dibs" name="dibs" value="Y">
 
 
 <div class="review"><a href="BoardReviewList.bo?movieSeq=<%=movieSeq %>&query=<%=query %>" >리뷰</a></div>
+
+<!-- 리뷰해보는중 -->
+<input id="comment" name="comment" type="button" value ="코멘트 남기기">
+	<div id="dialog-comment" title="<%=query %>" style="display:none">
+  		<textarea id="opinion" name="opinion" cols="800" rows="800"></textarea>
+  	</div>
+<!-- 리뷰해보는중 -->
+
 <div class="wrap">
 	<div class="title_top"></div>
 		<%if(pass != null) { %>
@@ -523,6 +577,16 @@ $(document).ready(function() {
 		<%} else {%>   
 		  <div class="dibsLogin"><a href="MemberLoginForm.me">로그인</a>하시고 별점을 남겨주세요</div>
 		<%} %>
+		
+<%-- 		<% if(returnCmt.equals("")){ %> --%>
+<!-- 		        	<input id="comment" name="comment" type="button" value ="리뷰 남기러 가기"> -->
+<%-- 	        	<%}else{ %> --%>
+	        	<div id="review">
+	        	<br><%=name %>님의 코멘트 : <%=returnCmt %> </div>
+	  			    	 
+	     			     <input type="button" id ="updateCmt" value="수정">
+	       	             <input type="button" id ="deleteCmt" value="삭제">
+<%-- 	                	  <%} %> --%>
 	
 		<div class="starAvg"></div>
 		<div class="posters" ></div>
