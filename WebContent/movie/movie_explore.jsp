@@ -18,16 +18,27 @@
 
     <h2>찾고싶은 작품을 탐색해보세요</h2>
     <div>
-        <select>
-            <option>모든 장르</option>
+        <select id="genreExplore">
+            <option id="allGenre">모든 장르</option>
+            <option id=""></option>
+            <option id=""></option>
+            <option id=""></option>
+            <option id=""></option>
+            <option id=""></option>
+            <option id=""></option>
+            <option id=""></option>
+            <option id=""></option>
+            <option id=""></option>
+            <option id=""></option>
+            <option id=""></option>
             
         </select>
-        <select>
-            <option>모든 국가</option>
+        <select id="nationExplore">
+            <option id="allNation">모든 국가</option>
             
         </select>
-        <select>
-            <option>추천</option>
+        <select id="recommandExplore">
+            <option id="randomRecommand">랜덤 추천</option>
             
         </select>
         
