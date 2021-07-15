@@ -10,7 +10,7 @@ String query = request.getParameter("query");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>평가하기</title>
+<title>[WhatFilx]</title>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/movie.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>

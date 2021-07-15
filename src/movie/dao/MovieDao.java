@@ -123,6 +123,32 @@ public class MovieDao {
 		return deleteCount;
 	}
 
+	public float averageStar(int movieSeq) {
+		System.out.println("mDao - averageStar()");
+		
+		float avgGrade = 0.0f;
+		
+		try {
+			String sql = "SELECT ROUND((SUM(grade) / COUNT(grade)), 1) AS 'avgGrade' FROM grade WHERE movieSeq=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, movieSeq);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				avgGrade = rs.getFloat("avgGrade");
+				System.out.println("평균별점: " + avgGrade);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return avgGrade;
+	}
+
 }
 
 
