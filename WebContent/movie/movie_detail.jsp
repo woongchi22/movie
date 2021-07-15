@@ -91,8 +91,10 @@ $(document).ready(function() {
 					var directors = director.replace(/,\s*$/, '');
 					directorNm=directors.replace(/ /g, '');
 					
+					avgStar(); // 평균별점 함수
+					
 					$('.title_top').append('<div class=title_top>'+title4+'</div>');
-					$('.starEvr').append('<dt>평균별점: </dt><div class=runtime>'+rating+'&nbsp;  &middot;&nbsp;'+runtime+'분</div>');
+					$('.starAvg').append('<div id=avgGrade></div><div class=runtime>'+rating+'&nbsp; &middot; &nbsp;'+runtime+'분</div>');
 					$('.posters').append('<div class=poster style="background-image:url('+poster[0]+'),url(${pageContext.request.contextPath}/img/noImage.gif);"></div>');
 					$('.info').append('<div class=plot style="margin-bottom:7px;">'+plot+'</div><dt>감독</dt><div class=directors>'+directors+'</div><dt>출연</dt><div class=actors>'
 							+actors+'</div><dt>개요</dt><div class=summaryInfo>'+genre+' &nbsp;|&nbsp; '+nation+' &nbsp;|&nbsp; '+openDt+'</div><dt>배급</dt><div class=company>'+company+'</div>');
@@ -206,7 +208,6 @@ $(document).ready(function() {
                                     $('.dibsBtn').addClass('done');
                                     $('.dibsBtnImg').attr("src", "img/check2.png");
                                 }
-                                
                             } 
                         
                         }); // ajax - DibsPro
@@ -220,6 +221,7 @@ $(document).ready(function() {
         } // success
     
     }); // ajax - MovieDetail
+    
     
     //감독 다른 영화
     $.ajax('DirectorSearchPro.mo',{
@@ -290,8 +292,26 @@ $(document).ready(function() {
         }
     });
     
-    
-    // 별점 클릭 시 함수
+    // 평균 별점 함수
+    function avgStar() {
+    	$.ajax("AverageStar.mo", {
+            data: {
+                movieSeq:movieSeq,
+                grade:grade
+            },
+            success: function(data) {
+            	
+            	if(typeof(Storage) != null) {
+                    localStorage.setItem("avgStar", "평균 별점 &nbsp;" + data + "&nbsp;");
+                    document.getElementById("avgGrade").innerHTML = localStorage.getItem("avgStar");
+                }
+            }
+            
+        });
+    	
+	}
+   
+    // 별점 클릭 시 함수(등록, 수정)
     function starClick(grade) {
 		$.ajax("GradeStar.mo", {
 			method: 'post',
@@ -302,19 +322,20 @@ $(document).ready(function() {
 				query:query
 			},
 			success: function(data) {
-				console.log("데이터뭐야" + data);
 				
-					if(typeof(Storage) != 0) {
-				        localStorage.setItem("getStar", data+"점");
-				        document.getElementById("showGrade").innerHTML = localStorage.getItem("getStar");
-				        
-				        if($('#cancelStar').css("display") == "none") {
-				        	jQuery('#cancelStar').show(); 
-				        } 
-				        
-				    } else {
-				        document.getElementById("showGrade").innerHTML = "별점을 남겨주세요";
-				    }
+				avgStar(); // 평균 별점 함수
+				
+				if(typeof(Storage) != 0) {
+			        localStorage.setItem("getStar", data+"점");
+			        document.getElementById("showGrade").innerHTML = localStorage.getItem("getStar");
+			        
+			        if($('#cancelStar').css("display") == "none") {
+			        	jQuery('#cancelStar').show(); 
+			        } 
+			        
+			    } else {
+			        document.getElementById("showGrade").innerHTML = "별점을 남겨주세요";
+			    }
 			}
 		});
 	}
@@ -391,6 +412,7 @@ $(document).ready(function() {
                             movieSeq:movieSeq
                         },
                         success: function(data) {
+                        	avgStar(); // 평균 별점 함수
                             $('#star5').removeClass('on').prevAll('a').removeClass('on');
                             $('#showGrade').html('별점을 남겨주세요');
                             $('#cancelStar').css("display", "none");
@@ -398,7 +420,6 @@ $(document).ready(function() {
                     });
                     
                     $(this).dialog('close');
-                    
                 },
                 "취소": function() {
                     $(this).dialog('close');
@@ -455,7 +476,6 @@ $(document).ready(function() {
     });
     
     
-    
 
     
     
@@ -504,7 +524,7 @@ $(document).ready(function() {
 		  <div class="dibsLogin"><a href="MemberLoginForm.me">로그인</a>하시고 별점을 남겨주세요</div>
 		<%} %>
 	
-		<div class="starEvr"></div>
+		<div class="starAvg"></div>
 		<div class="posters" ></div>
 		<div class="info"></div>
 	    <div class="stills" ></div>

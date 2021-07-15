@@ -140,7 +140,22 @@ public class MovieController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} 
+			
+		// 평균 별점	
+		} else if(command.equals("/AverageStar.mo")) {
+			action = new AverageStarAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		// 탐색하기	
+		} else if(command.equals("/ExploreMovie.mo")) {
+			forward = new ActionForward();
+			forward.setPath("/movie/movie_explore.jsp");
+		}
+		
 					
 		
 		

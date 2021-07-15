@@ -16,7 +16,8 @@ String pass = (String)session.getAttribute("pass");
 		</span>
 		<span class="gradeBar">
 		  <%if(pass != null) { %>
-		      <a href="GradeMovie.mo">평가하기</a>
+		      <a href="GradeMovie.mo">평가하기</a> &nbsp;&nbsp;&nbsp;
+		      <a href="ExploreMovie.mo">탐색하기</a>
 		  <%} %>    
 		</span>
 		<span class="loginBar">

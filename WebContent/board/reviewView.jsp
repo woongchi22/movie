@@ -14,17 +14,17 @@ String query = request.getParameter("query");
 int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 String name = (String)session.getAttribute("name"); 
 String reviewUpdate = (String) request.getParameter("reviewUpdate");
+String grade = request.getParameter("grade"); 
 
 %>
 
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
-<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/movie.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
+
+<%-- modal --%>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="${pageContext.request.contextPath}/js/jquery-ui.js"></script>
-
-
 
 
 <title><%=query %> 리뷰</title>
@@ -37,41 +37,41 @@ String reviewUpdate = (String) request.getParameter("reviewUpdate");
 		<input type="button" value="돌아가기" class = "button" onclick="history.back();">
 
 			
-			<% if(name!=null){%>
+			<% if(name != null){%>
 				<div class="textA">
-				<form action="BoardReviewWrite.bo?movieSeq=<%=movieSeq%>&query=<%=query%>"method="post" id="review_write">
-				<textarea id = "rev_content" class="rev_content" name="rev_content"></textarea>
-				<input type="submit"  value="등록" id = "submitBtn" class="button">
-				</form>
+					<form action="BoardReviewWrite.bo?movieSeq=<%=movieSeq%>&query=<%=query%>"method="post" id="review_write">
+					<textarea id = "rev_content" class="rev_content" name="rev_content"></textarea>
+					<input type="submit" value="등록" id="submitBtn" class="button">
+					</form>
 				</div>
 			<% }else{%>
-			<div class="textA">
-				<textarea name = "content" id = "rev_content" readonly="readonly" class="rev_content">댓글쓰기 권한이 없습니다. 로그인이 필요합니다</textarea>
-			</div>
-			<%} %>
+				<div class="textA">
+					<textarea name = "content" id = "rev_content" readonly="readonly" class="rev_content">댓글쓰기 권한이 없습니다. 로그인이 필요합니다</textarea>
+				</div>
+			<% } %>
 		
 			
 			<%for(ReviewBean rb : reviewList) {%>
 			
 			
 				<div><%=rb.getContent() %></div>
-				<div class="re"> <%=rb.getName() %>| <%=rb.getdDate()%></div>
+				<div class="re"> <%=rb.getName() %> | <%=rb.getdDate()%></div>
 				<a href="BoardReply.bo?movieSeq=<%=rb.getMovieSeq()%>&idx=<%=rb.getIdx()%>">
-				<input type="button"  value="답댓글" id="ReviewReply_<%=rb.getIdx() %>" class="button" ></a>
+				    <input type="button"  value="답댓글" id="ReviewReply_<%=rb.getIdx() %>" class="button" ></a>
 				 <input type="button" value="수정" id="updateReview_<%=rb.getIdx() %>" class="button">
             	 <input type="button" value="삭제" id="deleteReview_<%=rb.getIdx() %>" class="button">
           		
           		<div id="update-message_<%=rb.getIdx() %>" title="리뷰 수정" style="display:none">
-			    <textarea id="reviewUpdate_<%=rb.getIdx() %>" name="reviewUpdate" cols="30" rows="5"></textarea>
-			     리뷰를 수정해주세요.
+				    <textarea id="reviewUpdate_<%=rb.getIdx() %>" name="reviewUpdate" cols="25" rows="5"></textarea>
+				     리뷰를 수정해주세요.
 				</div>		
 				
 				<div id = "delete-message_<%=rb.getIdx() %>" title="리뷰 삭제" style="display:none">
-				리뷰를 삭제하시겠습니까?
+				    리뷰를 삭제하시겠습니까?
 				</div>
 				
 				
- <script type="text/javascript">
+<script type="text/javascript">
 $(document).ready(function() {
 	var query = $('#query').val();
 	var movieSeq = $('#movieSeq').val();
@@ -187,6 +187,7 @@ $(document).ready(function() {
 		<input type="hidden" id="name" name="name" value="<%=name%>">
 		<input type="hidden" id="movieSeq" name="movieSeq" value="<%=movieSeq%>">
 		<input type="hidden" id="query" name="query" value="<%=query%>">
+		<input type="hidden" id="grade" name="grade" value="<%=grade %>">
 	
 		
 		
