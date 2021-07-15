@@ -24,36 +24,37 @@ public class BoardReviewWriteAction implements Action {
 		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 		String title = (String) request.getParameter("query");
 		String review = (String) request.getParameter("rev_content");
-		HttpSession session = request.getSession();
-		String name = (String) session.getAttribute("name");
+		String name = request.getParameter("name");
+		int grade = Integer.parseInt(request.getParameter("grade"));
 		
 		ReviewBean reviewBean = new ReviewBean();
 		reviewBean.setContent(review);
 		reviewBean.setMovieSeq(movieSeq);
 		reviewBean.setTitle(title);
 		reviewBean.setName(name);
+		reviewBean.setGrade(grade);
 		
-		System.out.println(review+title+name+movieSeq);
+		System.out.println(grade + review+title+name+movieSeq);
 		System.out.println("======================");
 		System.out.println(reviewBean.getContent());
 		
-		BoardReviewListService boardReviewListService = new BoardReviewListService();
-		boolean isSuccess = boardReviewListService.reviewWrite(reviewBean);
-		
-		
-		if(!isSuccess) {
-			response.setContentType("text/html;charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>"); 
-			out.println("alert('글 등록 실패!')");
-			out.println("history.back()"); 
-			out.println("</script>"); 
-		}else { 
-			request.setAttribute("reviewBean", reviewBean);
-			
-			forward = new ActionForward();
-			forward.setPath("BoardReviewList.bo");
-		}
+//		BoardReviewListService boardReviewListService = new BoardReviewListService();
+//		boolean isSuccess = boardReviewListService.reviewWrite(reviewBean);
+//		
+//		
+//		if(!isSuccess) {
+//			response.setContentType("text/html;charset=UTF-8");
+//			PrintWriter out = response.getWriter();
+//			out.println("<script>"); 
+//			out.println("alert('글 등록 실패!')");
+//			out.println("history.back()"); 
+//			out.println("</script>"); 
+//		}else { 
+//			request.setAttribute("reviewBean", reviewBean);
+//			
+//			forward = new ActionForward();
+//			forward.setPath("BoardReviewList.bo");
+//		}
 		
 		
 		return forward;

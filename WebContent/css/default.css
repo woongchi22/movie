@@ -129,20 +129,19 @@ dt{
 	margin-right: 10px;
 }
 .info{
-	line-height: 140%;
-	margin: 30px 10px 80px 10px;
-/* 	width: 450x; */
-/* 	height: 100%; */
-/* 	float: none; */
-/* 	margin-bottom: 10%; */
-/* border:1px solid red; */
-/*     clear: both; */
+	line-height: 150%;
+	margin: 90px 10px 20px 10px;
+	color: #c3c3c3;
 }
 .title_top{
 	font-size: 40px;
-	margin: 30px 0 30px 10px;
+	margin: 30px 0 15px 10px;
 	float: left;
 }
+/* .plot{ */
+/* 	margin: 90px 10px 20px 285px; */
+/* } */
+
 .dibs{
     margin: 67px 0 0 20px;
     float: left;
@@ -188,20 +187,31 @@ dt{
 .dibsBtn.done:link, .dibsBtn.done:visited {color: #fff;}
 .dibsBtn.done:hover, .dibsBtn.done:active {color: #575757;}
 
-.starEvr{
+.starAvg{
     font-size: 20px;
     margin: 20px;
     clear: both;
 }
+#avgGrade{
+	float: left;
+	border: 2px solid;
+    padding: 5px;
+    margin: 0 20px 0 0;
+}
+.runtime{
+    float: left;
+    padding: 7px;
+    color: #d0d0d0;
+}
 .posters{
 	float: left;
 	clear: both;
-	margin: 0 15px 10px 10px;
+	margin: 20px 15px 30px 10px;
 }
 .stills{
 /* 	float: left; */
-/* 	clear: both; */
-/* 	margin: 10px 20px 0px 30px; */
+	clear: both;
+	margin: 20px;
 }
 .wrap{
 	width: 1000px;
@@ -215,10 +225,14 @@ dt{
 }
 
 .directorP{
-	margin-top: 30px;
-	margin-bottom: 10px;
+	margin: 50px 0 20px 20px;
+	clear: both;
+	font-size: 20px;
 }
-
+.directorMovie{
+    clear: both;
+    margin: 10px;
+}
 .posterDibs{
     width:250px;
     height:350px;
@@ -265,4 +279,8 @@ textarea{
 	color: gray;
 	border-radius: 7px;
 	padding: 5px;
+}
+dt{
+	font-size: 18px;
+	font-weight: bold;
 }
