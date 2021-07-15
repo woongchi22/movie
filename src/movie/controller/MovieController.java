@@ -149,7 +149,13 @@ public class MovieController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} 
+			
+		// 탐색하기	
+		} else if(command.equals("/ExploreMovie.mo")) {
+			forward = new ActionForward();
+			forward.setPath("/movie/movie_explore.jsp");
+		}
+		
 					
 		
 		
