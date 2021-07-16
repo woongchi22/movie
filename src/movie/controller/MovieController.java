@@ -155,6 +155,7 @@ public class MovieController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("/movie/movie_explore.jsp");
 		
+
 		}else if(command.equals("/ExploreMovieAction.mo")) {
 			action = new ExploreMovieAction();
 			try {
@@ -163,6 +164,7 @@ public class MovieController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+
 					
 		}
 		

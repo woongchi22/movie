@@ -1,14 +1,13 @@
 package board.action;
 
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
-import board.svc.BoardReviewListService;
+import board.svc.BoardReviewWriteService;
 import board.vo.ReviewBean;
 import vo.ActionForward;
 
@@ -19,14 +18,14 @@ public class BoardReviewWriteAction implements Action {
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("BoardReviewWriteAction");
 		ActionForward forward = null;
-
 		
 		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 		String title = (String) request.getParameter("query");
-
 		String review = (String) request.getParameter("review");
 		HttpSession session = request.getSession();
 		String name = (String) session.getAttribute("name");
+		int grade = Integer.parseInt(request.getParameter("grade"));
+		System.out.println(movieSeq + title + review + name + grade + "이거 안나옴?");
 
 		
 		ReviewBean reviewBean = new ReviewBean();
@@ -35,30 +34,25 @@ public class BoardReviewWriteAction implements Action {
 		reviewBean.setTitle(title);
 		reviewBean.setName(name);
 		
+		BoardReviewWriteService boardReviewWriteService = new BoardReviewWriteService();
+		boolean isWrite = boardReviewWriteService.reviewWrite(reviewBean);
 
-		System.out.println(review+title+name+movieSeq);
 
-		System.out.println("======================");
-		System.out.println(reviewBean.getContent());
-		
-//		BoardReviewListService boardReviewListService = new BoardReviewListService();
-//		boolean isSuccess = boardReviewListService.reviewWrite(reviewBean);
-//		
-//		
-//		if(!isSuccess) {
-//			response.setContentType("text/html;charset=UTF-8");
-//			PrintWriter out = response.getWriter();
-//			out.println("<script>"); 
-//			out.println("alert('글 등록 실패!')");
-//			out.println("history.back()"); 
-//			out.println("</script>"); 
-//		}else { 
-//			request.setAttribute("reviewBean", reviewBean);
-//			
-//			forward = new ActionForward();
-//			forward.setPath("BoardReviewList.bo");
-//		}
-		
+		if(!isWrite) {
+			response.setContentType("text/html;charset=UTF-8"); // 문서 타입 설정
+			PrintWriter out = response.getWriter();
+			out.println("<script>"); // 자바스크립트 시작
+			out.println("alert('작성 실패!')"); // 오류메세지 출력
+			out.println("history.back()"); // 이전 페이지로
+			out.println("</script>"); // 자바스크립트 끝
+		} else {
+			
+			request.setAttribute("review", reviewBean.getContent());
+			
+			response.setCharacterEncoding("UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print(reviewBean.getContent());
+		}
 		
 		return forward;
 	}

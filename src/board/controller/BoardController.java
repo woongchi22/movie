@@ -18,6 +18,7 @@ import board.action.BoardReviewDeleteAction;
 import board.action.BoardReviewListAction;
 import board.action.BoardReviewUpdateAction;
 import board.action.BoardReviewWriteAction;
+import board.action.GetContentAction;
 import vo.ActionForward;
 
 @WebServlet("*.bo")
@@ -49,14 +50,14 @@ public class BoardController extends HttpServlet {
     		}
         }
     
-    	  if(command.equals("/BoardReply.bo")) {
-    	action = new BoardReplyAction();
-    	try {
-			forward = action.execute(request, response);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-    }
+    	if(command.equals("/BoardReply.bo")) {
+	    	action = new BoardReplyAction();
+	    	try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+    	}
     	  if(command.equals("/BoardReplyWrite.bo")) {
     		  action = new BoardReplyWriteAction();
     		  try {
@@ -96,7 +97,24 @@ public class BoardController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-    	  }
+			
+		// 코멘트 가져오기	
+  		} else if(command.equals("/GetContent.bo")) {
+  			action = new GetContentAction();
+  			try {
+  				forward = action.execute(request, response);
+  			} catch (Exception e) {
+  				e.printStackTrace();
+  			}
+  		} 
+    	  
+    	  
+    	  
+    	  
+    	  
+    	  
+    	  
+    	  
     	  
     	
     if(forward !=null ) {
