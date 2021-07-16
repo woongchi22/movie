@@ -33,8 +33,6 @@ public class BoardReviewWriteAction implements Action {
 		reviewBean.setMovieSeq(movieSeq);
 		reviewBean.setTitle(title);
 		reviewBean.setName(name);
-		reviewBean.setGrade(grade);
-		
 		
 		BoardReviewWriteService boardReviewWriteService = new BoardReviewWriteService();
 		boolean isWrite = boardReviewWriteService.reviewWrite(reviewBean);

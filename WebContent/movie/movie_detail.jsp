@@ -67,7 +67,8 @@ $(document).ready(function() {
 	                var actor = "";
 	                var genre = item2.genre;
 	                var nation = item2.nation;
-	                var openDt = item2.ratings.rating[0].ratingDate.substr(0,4);
+// 	                var openDt = item2.ratings.rating[0].ratingDate.substr(0,4);
+	                var openDt = item2.prodYear;
 	                var company = item2.company;
 					var poster = item2.posters.split("|");
 					var stills = item2.stlls.split("|");
