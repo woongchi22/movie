@@ -156,6 +156,8 @@ public class MovieController extends HttpServlet {
 			forward.setPath("/movie/movie_explore.jsp");
 		}
 		
+		
+		
 					
 		
 		

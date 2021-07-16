@@ -35,16 +35,16 @@ public class BoardDao {
 	
 	public int reviewWrite(ReviewBean reviewBean) {
 		System.out.println("dao-reviewWrite");
+		
 		int insertCount = 0;
-//		ArrayList<ReviewBean> reviewList = new ArrayList<ReviewBean>();
-		System.out.println(reviewBean.getContent());
-		String sql ="INSERT INTO review VALUES(idx,?,0,?,?,?,0,now())";
+		String sql ="INSERT INTO review VALUES(idx,?,?,?,?,?,0,now())";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, reviewBean.getName());
-			pstmt.setInt(2, reviewBean.getMovieSeq());
-			pstmt.setString(3, reviewBean.getTitle());
-			pstmt.setString(4, reviewBean.getContent());
+			pstmt.setInt(2, reviewBean.getGrade());
+			pstmt.setInt(3, reviewBean.getMovieSeq());
+			pstmt.setString(4, reviewBean.getTitle());
+			pstmt.setString(5, reviewBean.getContent());
 			
 			insertCount = pstmt.executeUpdate();
 		} catch (SQLException e) {

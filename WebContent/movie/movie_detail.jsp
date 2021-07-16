@@ -14,7 +14,7 @@ String query = request.getParameter("query");
 String poster = (String)request.getParameter("image");
 String director = request.getParameter("director");
 String review = request.getParameter("review");
-String returnCmt = (String)request.getParameter("returnCmt");
+String returnCmt = (String)request.getAttribute("returnCmt");
 
 %>
 <title>[WhatFilx] <%=query %></title>
@@ -337,6 +337,10 @@ $(document).ready(function() {
 			        	jQuery('#cancelStar').show(); 
 			        } 
 			        
+			        if($('#comment').css("display") == "none") {
+			        	jQuery('#comment').show(); 
+			        } 
+			        
 			    } else {
 			        document.getElementById("showGrade").innerHTML = "별점을 남겨주세요";
 			    }
@@ -420,6 +424,8 @@ $(document).ready(function() {
                             $('#star5').removeClass('on').prevAll('a').removeClass('on');
                             $('#showGrade').html('별점을 남겨주세요');
                             $('#cancelStar').css("display", "none");
+                            $('#comment').css("display", "none");
+                            
                         }
                     });
                     
@@ -453,78 +459,102 @@ $(document).ready(function() {
             	$('#star1').addClass('on').prevAll('a').addClass('on');
                 $('#showGrade').html('1점');
                 $('#cancelStar').css("display", "");
+                $('#comment').css("display", "");
             }
             if(data == 2){
             	$('#star2').addClass('on').prevAll('a').addClass('on');
                 $('#showGrade').html('2점');
                 $('#cancelStar').css("display", "");
+                $('#comment').css("display", "");
             }   
             if(data == 3){
                 $('#star3').addClass('on').prevAll('a').addClass('on');
                 $('#showGrade').html('3점');
                 $('#cancelStar').css("display", "");
+                $('#comment').css("display", "");
             }   
             if(data == 4){
                 $('#star4').addClass('on').prevAll('a').addClass('on');
                 $('#showGrade').html('4점');
                 $('#cancelStar').css("display", "");
+                $('#comment').css("display", "");
             }   
             if(data == 5){
             	$('#star5').addClass('on').prevAll('a').addClass('on');
             	$('#showGrade').html('5점');
             	$('#cancelStar').css("display", "");
+            	$('#comment').css("display", "");
             }
           
         }
     });
     
+    // 리뷰
+    $('#commentBtn').click(function() {
+		var review = $('#opinion').val();
+		console.log(review);
+		
+	    $('#dialog-comment').dialog({
+		     modal: true,
+		     buttons: {
+		         "작성": function() {
+		        	 var review = $('#opinion').val();
+		        	 console.log(review);
+	
+		             $.ajax({
+		                 url: "BoardReviewWrite.bo",
+		                 method: "get",
+		                 async: false,
+		                 data: {
+		                	 query:query,
+		                	 review:review,
+		                     movieSeq:movieSeq,
+		                     grade:grade
+		                 },
+		                 success: function(data) {
+		                	 console.log(data);
+		                		
+// 		                         $('#review').append(data);
+// 		                         location.reload();
+
+		                 }
+		             });
+					 $(this).dialog('close');
+		         },
+		
+		         "취소": function() {
+		             $(this).dialog('close');
+		         }
+		     }
+	
+	 	});
+    });    
     
 
 	
- //리뷰   
- $('#comment').click(function() {
-	var review = $('#opinion').val();
-    $('#dialog-comment').dialog({
-	     modal: true,
-	     buttons: {
-	         "작성": function() {
-	        		
-	        	var review = $('#opinion').val();
-	        	 console.log(review);
-
-	             $.ajax({
-	                 url: "BoardReviewWrite.bo",
-	                 method: "get",
-	                 async: false,
-	                 data: {
-	                	 query:query,
-	                	 review:review,
-	                     movieSeq:movieSeq,
-	                 },
-	                 success: function(data) {
-	                		
-// 	                         $('#review').append(data);
-	                         location.reload();
-	
-	
-	                 }
-	             });
-					$(this).dialog('close');
-	
-	             
-	
-	         },
-	
-	         "취소": function() {
-	             $(this).dialog('close');
-	         },
-	     }
-	
-	 });
+//     // 코멘트 가져오기
+//     $.ajax("GetContent.bo", {
+//     	data: {
+//     		name:name,
+//     		movieSeq:movieSeq,
+//     		content:content,
+//     		grade:grade
+//     	},
+//     	success: function(data) {
+// 			console.log(data);
+// 		}
+    	
+    	
+    	
+//     });
 
 
     
- });
+ 
+ 
+ 
+ 
+ 
     
 }); // document
 
@@ -541,17 +571,17 @@ $(document).ready(function() {
 <input type ="hidden" id="movieSeq" name="movieSeq" value="<%=movieSeq %>">
 <input type ="hidden" id="director" name="director" value="<%=director %>">
 <input type="hidden" id="name" name="name" value="<%=name %>">
-<input type ="button" id="returnCmt" name="returnCmt" value="<%=returnCmt %>">
+<%-- <input type ="button" id="returnCmt" name="returnCmt" value="<%=returnCmt %>"> --%>
 <input type="hidden" id="dibs" name="dibs" value="Y">
 
 
-<div class="review"><a href="BoardReviewList.bo?movieSeq=<%=movieSeq %>&query=<%=query %>" >리뷰</a></div>
+<%-- <div class="review"><a href="BoardReviewList.bo?movieSeq=<%=movieSeq %>&query=<%=query %>" >리뷰</a></div> --%>
 
 <!-- 리뷰해보는중 -->
-<input id="comment" name="comment" type="button" value ="코멘트 남기기">
-	<div id="dialog-comment" title="<%=query %>" style="display:none">
-  		<textarea id="opinion" name="opinion" cols="800" rows="800"></textarea>
-  	</div>
+<!-- <input id="comment" name="comment" type="button" value ="코멘트 남기기"> -->
+<%-- 	<div id="dialog-comment" title="<%=query %>" style="display:none"> --%>
+<!--   		<textarea id="opinion" name="opinion" cols="800" rows="800"></textarea> -->
+<!--   	</div> -->
 <!-- 리뷰해보는중 -->
 
 <div class="wrap">
@@ -568,8 +598,8 @@ $(document).ready(function() {
           
           <div id="cancelStar" style='display:none'>
             <input id="cancelBtn" type="button" value="취소">
-          <div id="diStar" style='display:none'>별점을 삭제하시겠습니까?</div>
           </div>
+          <div id="diStar" style='display:none'>별점을 삭제하시겠습니까?</div>
           
 		  <div class="dibs">
 		      <button class="dibsBtn" value="<%=movieSeq %>"><img class="dibsBtnImg" src="img/check.png" width="20px" height="20px">&nbsp;찜꽁</button>
@@ -581,13 +611,23 @@ $(document).ready(function() {
 <%-- 		<% if(returnCmt.equals("")){ %> --%>
 <!-- 		        	<input id="comment" name="comment" type="button" value ="리뷰 남기러 가기"> -->
 <%-- 	        	<%}else{ %> --%>
-	        	<div id="review">
-	        	<br><%=name %>님의 코멘트 : <%=returnCmt %> </div>
+<!-- 	        	<div id="review"> -->
+<%-- 	        	<br><%=name %>님의 코멘트 : <%=returnCmt %> </div> --%>
 	  			    	 
-	     			     <input type="button" id ="updateCmt" value="수정">
-	       	             <input type="button" id ="deleteCmt" value="삭제">
+<!-- 	     			     <input type="button" id ="updateCmt" value="수정"> -->
+<!-- 	       	             <input type="button" id ="deleteCmt" value="삭제"> -->
 <%-- 	                	  <%} %> --%>
 	
+	
+	
+		<div id="comment" style="display: none">
+			<input id="commentBtn" type="button" value ="코멘트 남기기">
+		</div>
+		<div id="dialog-comment" title="<%=query %>" style="display:none">
+  			<textarea id="opinion" cols="800" rows="800"></textarea>
+  		</div>
+  		<div id="review"><%=name %>님의 코멘트 : <%=returnCmt %></div>
+		
 		<div class="starAvg"></div>
 		<div class="posters" ></div>
 		<div class="info"></div>

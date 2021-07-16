@@ -63,11 +63,13 @@ public class StarAction implements Action {
 		
 
 		  // getReview 를 위한 구문들
-	      BoardReviewListService boardReviewListService = new BoardReviewListService();
-	      System.out.println("리븅엑셔뉴 @@");
-	      String returnCmt = boardReviewListService.getReview(mb);
-	      System.out.println(returnCmt);
-	      request.setAttribute("returnCmt", returnCmt);
+//	      BoardReviewListService boardReviewListService = new BoardReviewListService();
+//	      System.out.println("리븅엑셔뉴 @@");
+//	      String returnCmt = boardReviewListService.getReview(mb);
+//	      System.out.println(returnCmt);
+//	      request.setAttribute("returnCmt", returnCmt);
+	      
+	      
 		return forward;
 	}
 
