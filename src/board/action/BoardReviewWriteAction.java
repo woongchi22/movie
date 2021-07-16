@@ -34,10 +34,9 @@ public class BoardReviewWriteAction implements Action {
 		reviewBean.setMovieSeq(movieSeq);
 		reviewBean.setTitle(title);
 		reviewBean.setName(name);
-		reviewBean.setGrade(grade);
 		
 
-		System.out.println(grade + review+title+name+movieSeq);
+		System.out.println(review+title+name+movieSeq);
 
 		System.out.println("======================");
 		System.out.println(reviewBean.getContent());
