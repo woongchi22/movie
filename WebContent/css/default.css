@@ -285,3 +285,17 @@ dt{
 	font-size: 18px;
 	font-weight: bold;
 }
+select{
+  overflow-y: none;   
+  background-color:black;
+  color: #c0c0c0;
+  width: 200px;
+  height: 35px;
+  font-weight: bold;  
+  margin: 2% 0;
+}
+select:hover{
+	background-color: black;
+}
+
+

@@ -450,7 +450,7 @@ $(document).ready(function() {
     $.ajax('Star.mo', {
         data: {
             movieSeq:movieSeq,
-            grade:grade
+            grade:grade,
         },
         success: function(data) {
             console.log('데이터' + data);
@@ -552,8 +552,7 @@ $(document).ready(function() {
 //     });
 
 
-    
- 
+   
  
  
  

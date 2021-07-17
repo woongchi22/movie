@@ -10,33 +10,33 @@ import action.*;
 import api.*;
 import vo.*;
 
-public class ExploreMovieAction implements Action {
+public class NationExploreMovieAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("ExploreMovieAction");
+		System.out.println("NationExploreMovieAction");
 		request.setCharacterEncoding("UTF-8");
 		
-		String genre = request.getParameter("genre");
 		String nations = request.getParameter("nations");
 		String genre1 = "모든 장르";
-		String nations1 = "모든 국가";
-		
+		String genre = request.getParameter("genre");
+		System.out.println(nations);
+		System.out.println(genre);
 
 		kmdbApi movie = new kmdbApi();
 		String json = null;
-		System.out.println(genre);
 		
-		if(!nations1.equals(nations)) {
+		if(!genre1.equals(genre)) {
 			System.out.println("같이");
 			json = movie.getMovie(nations,genre);
 		}
-		else if(nations1.equals(nations)) {
+		else if(genre1.equals(genre)) {
 			System.out.println("따로");
-			json = movie.getMovie(genre);
+			json = movie.getMovie(nations);
 			}
+
 		
-//		json = movie.getMovieGenre(genre);
+//		json = movie.getMovieNation(nations);
 		JsonParser jsonParser = new JsonParser();
 		JsonObject jsonObject = (JsonObject) jsonParser.parse(json);
 		
