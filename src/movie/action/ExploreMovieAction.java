@@ -21,9 +21,8 @@ public class ExploreMovieAction implements Action {
 		System.out.println(genre);
 		kmdbApi movie = new kmdbApi();
 		String json = null;
-		
+		System.out.println(genre);
 		json = movie.getMovieGenre(genre);
-		
 		JsonParser jsonParser = new JsonParser();
 		JsonObject jsonObject = (JsonObject) jsonParser.parse(json);
 		
