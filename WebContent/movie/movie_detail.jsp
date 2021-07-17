@@ -14,7 +14,6 @@ String query = request.getParameter("query");
 String poster = (String)request.getParameter("image");
 String director = request.getParameter("director");
 String review = (String)request.getAttribute("review");
-// String returnCmt = (String)request.getAttribute("returnCmt");
 String grade = (String)request.getAttribute("grade");
 
 %>
@@ -296,6 +295,7 @@ $(document).ready(function() {
             
         }
     });
+
     
     // 평균 별점 함수
     function avgStar() {
@@ -341,6 +341,7 @@ $(document).ready(function() {
 			        if($('#comment').css("display") == "none") {
 			        	jQuery('#comment').show(); 
 			        } 
+			        
 			        
 			    } else {
 			        document.getElementById("showGrade").innerHTML = "별점을 남겨주세요";
@@ -427,7 +428,8 @@ $(document).ready(function() {
                             $('#showGrade').html('별점을 남겨주세요');
                             $('#cancelStar').css("display", "none");
                             $('#comment').css("display", "none");
-                            
+                            $('#commentBtn').css("display", "");
+                            $('#commentBox').css("display", "none");
                         }
                     });
                     
@@ -491,18 +493,36 @@ $(document).ready(function() {
         }
     });
     
-    // 리뷰
+    
+    // 리뷰 조회
+    $.ajax('GetContent.bo', {
+        data: {
+            movieSeq:movieSeq,
+            grade:grade
+        },
+        success: function(data) {
+            
+            if(data != 0) {
+            	$('#commentBtn').css("display", "none");
+                $('#commentBox').css("display", "");
+                $('#review').html(data);
+                $('#deleteBtn').css("display", "");
+                $('#updateBtn').css("display", "");
+            }
+          
+        }
+    });
+    
+    
+    // 리뷰 등록
     $('#commentBtn').click(function() {
 		var review = $('#opinion').val();
-		var grade = $('#grade').val();
-		console.log(grade);
 		
 	    $('#dialog-comment').dialog({
 		     modal: true,
 		     buttons: {
 		         "작성": function() {
 		        	 var review = $('#opinion').val();
-		        	 console.log(review);
 	
 		             $.ajax({
 		                 url: "BoardReviewWrite.bo",
@@ -517,39 +537,101 @@ $(document).ready(function() {
 		                 success: function(data) {
 		                	 console.log(data);
 		                	 
-		                	 $('#reviewName').css("display", "");
-		                     $('#review').append(data);
-
+		                	 $('#commentBtn').css("display", "none");
+		                	 $('#commentBox').css("display", "");
+		                     $('#review').html(data);
+		                     $('#deleteBtn').css("display", "");
+		                     $('#updateBtn').css("display", "");
 		                 }
 		             });
 					 $(this).dialog('close');
+					 
 		         },
-		
 		         "취소": function() {
 		             $(this).dialog('close');
 		         }
 		     }
 	
 	 	});
+    }); 
+    
+    
+    // 리뷰 삭제
+    $('#deleteBtn').click(function() {
+        
+        $('#dialog-delete').dialog({
+        	title: "삭제",
+             modal: true,
+             buttons: {
+                 "확인": function() {
+                     $.ajax({
+                         url: "BoardReviewDelete.bo",
+                         method: "get",
+                         async: false,
+                         data: {
+                        	 name:name,
+                             query:query,
+                             movieSeq:movieSeq
+                         },
+                         success: function(data) {
+                             $('#commentBtn').css("display", "");
+                             $('#commentBox').css("display", "none");
+                         }
+                     });
+                     $(this).dialog('close');
+                 },
+                 "취소": function() {
+                     $(this).dialog('close');
+                 }
+             }
+    
+        });
     });    
     
 
+    // 리뷰 수정
+    $('#updateBtn').click(function() {
+        var review = $('#opinion').val();
+        
+        $('#dialog-comment').dialog({
+             modal: true,
+             buttons: {
+                 "수정": function() {
+                     var review = $('#opinion').val();
+    
+                     $.ajax({
+                         url: "BoardReviewUpdate.bo",
+                         method: "get",
+                         async: false,
+                         data: {
+                        	 name:name,
+                             query:query,
+                             review:review,
+                             movieSeq:movieSeq,
+                             grade:grade
+                         },
+                         success: function(data) {
+                             console.log(data);
+                             
+//                              $('#review').remove();
+                             $('#review').html(data);
+                             $('#commentBtn').css("display", "none");
+                             $('#commentBox').css("display", "");
+                             $('#deleteBtn').css("display", "");
+                             $('#updateBtn').css("display", "");
+                         }
+                     });
+                     $(this).dialog('close');
+                     
+                 },
+                 "취소": function() {
+                     $(this).dialog('close');
+                 }
+             }
+    
+        });
+    }); 
 	
-//     // 코멘트 가져오기
-//     $.ajax("GetContent.bo", {
-//     	data: {
-//     		name:name,
-//     		movieSeq:movieSeq,
-//     		content:content,
-//     		grade:grade
-//     	},
-//     	success: function(data) {
-// 			console.log(data);
-// 		}
-    	
-    	
-    	
-//     });
 
 
    
@@ -573,20 +655,10 @@ $(document).ready(function() {
 <input type ="hidden" id="movieSeq" name="movieSeq" value="<%=movieSeq %>">
 <input type ="hidden" id="director" name="director" value="<%=director %>">
 <input type="hidden" id="name" name="name" value="<%=name %>">
-<%-- <input type ="button" id="returnCmt" name="returnCmt" value="<%=returnCmt %>"> --%>
 <input type="hidden" id="dibs" name="dibs" value="Y">
 <input type="hidden" id="grade" name="grade" value="<%=grade %>">
 
 
-
-<%-- <div class="review"><a href="BoardReviewList.bo?movieSeq=<%=movieSeq %>&query=<%=query %>" >리뷰</a></div> --%>
-
-<!-- 리뷰해보는중 -->
-<!-- <input id="comment" name="comment" type="button" value ="코멘트 남기기"> -->
-<%-- 	<div id="dialog-comment" title="<%=query %>" style="display:none"> --%>
-<!--   		<textarea id="opinion" name="opinion" cols="800" rows="800"></textarea> -->
-<!--   	</div> -->
-<!-- 리뷰해보는중 -->
 
 <div class="wrap">
 	<div class="title_top"></div>
@@ -608,34 +680,25 @@ $(document).ready(function() {
 		  <div class="dibs">
 		      <button class="dibsBtn" value="<%=movieSeq %>"><img class="dibsBtnImg" src="img/check.png" width="20px" height="20px">&nbsp;찜꽁</button>
 		  </div>
-		<%} else { %> {%>   
+		<%} else { %> 
 		  <div class="dibsLogin"><a href="MemberLoginForm.me">로그인</a>하시고 별점을 남겨주세요</div>
 		<%} %>
 		
-<%-- 		<% if(returnCmt.equals("")){ %> --%>
-<!-- 		        	<input id="comment" name="comment" type="button" value ="리뷰 남기러 가기"> -->
-<%-- 	        	<%}else{ %> --%>
-<!-- 	        	<div id="review"> -->
-<%-- 	        	<br><%=name %>님의 코멘트 : <%=returnCmt %> </div> --%>
-	  			    	 
-<!-- 	     			     <input type="button" id ="updateCmt" value="수정"> -->
-<!-- 	       	             <input type="button" id ="deleteCmt" value="삭제"> -->
-<%-- 	                	  <%} %> --%>
-	
-	
-	
 		<div id="comment" style="display: none">
 			<input id="commentBtn" type="button" value ="코멘트 남기기">
-			<div id="dialog-comment" title="<%=query %>" style="display:none">
-	  			<textarea id="opinion" cols="800" rows="800"></textarea>
-	  		</div>
-	  		<div id="commentBox">
-		  		<div id="reviewName" style="display: none"><%=name %>님의 코멘트</div>
-		  		<div id="review"><%=review %></div>
-	  			<input type="button" id ="updateCmt" value="수정">
-	  			<input type="button" id ="deleteCmt" value="삭제">
+	  		<div id="commentBox" style="display: none">
+		  		<div id="reviewName"><%=name %>님의 코멘트</div>
+		  		<div id="review"></div>
+	  		    <input type="button" id ="deleteBtn" style="display: none" value="삭제">
+	  		    <input type="button" id ="updateBtn" style="display: none" value="수정">
 		  	</div>	
 		</div>
+		<a class="moreCmt" href="BoardReviewList.bo">코멘트 더보기</a>
+		
+		<div id="dialog-comment" title="<%=query %>" style="display:none">
+		  <textarea id="opinion" cols="800" rows="800"><%=review %></textarea>
+		</div>
+		<div id="dialog-delete" style="display:none">코멘트를 삭제하시겠습니까?</div>
 		
 		<div class="starAvg"></div>
 		<div class="posters" ></div>

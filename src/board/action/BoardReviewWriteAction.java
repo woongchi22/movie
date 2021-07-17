@@ -25,8 +25,7 @@ public class BoardReviewWriteAction implements Action {
 		HttpSession session = request.getSession();
 		String name = (String) session.getAttribute("name");
 		int grade = Integer.parseInt(request.getParameter("grade"));
-		System.out.println(movieSeq + title + review + name + grade + "이거 안나옴?");
-
+//		System.out.println(movieSeq + title + review + name + grade + "이거 안나옴?");
 		
 		ReviewBean reviewBean = new ReviewBean();
 		reviewBean.setContent(review);
@@ -35,10 +34,8 @@ public class BoardReviewWriteAction implements Action {
 		reviewBean.setName(name);
 		reviewBean.setGrade(grade);
 		
-		
 		BoardReviewWriteService boardReviewWriteService = new BoardReviewWriteService();
 		boolean isWrite = boardReviewWriteService.reviewWrite(reviewBean);
-
 
 		if(!isWrite) {
 			response.setContentType("text/html;charset=UTF-8"); // 문서 타입 설정
@@ -49,11 +46,7 @@ public class BoardReviewWriteAction implements Action {
 			out.println("</script>"); // 자바스크립트 끝
 			
 		} else {
-			
 			request.setAttribute("review", reviewBean.getContent());
-			
-//			forward = new ActionForward();
-//			forward.setPath("/movie/movie_detail.jsp");
 			
 			response.setCharacterEncoding("UTF-8");
 			PrintWriter out = response.getWriter();

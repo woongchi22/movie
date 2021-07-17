@@ -33,6 +33,7 @@ public class BoardController extends HttpServlet {
     	Action action= null;
     	ActionForward forward = null;
     	
+    	// 리뷰 List
     	if(command.equals("/BoardReviewList.bo")) {
     		action = new BoardReviewListAction();
     		try {
@@ -40,58 +41,28 @@ public class BoardController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-    	}
-    	if(command.equals("/BoardReviewWrite.bo")) {
+    		
+    	// 리뷰 등록	
+    	} else if(command.equals("/BoardReviewWrite.bo")) {
         	action = new BoardReviewWriteAction();
         	try {
     			forward = action.execute(request, response);
     		} catch (Exception e) {
     			e.printStackTrace();
     		}
-        }
-    
-    	if(command.equals("/BoardReply.bo")) {
-	    	action = new BoardReplyAction();
-	    	try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-    	}
-    	  if(command.equals("/BoardReplyWrite.bo")) {
-    		  action = new BoardReplyWriteAction();
-    		  try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-    	  }
-    	  if(command.equals("/BoardReviewUpdate.bo")) {
-    		  action = new BoardReviewUpdateAction();
-    		  try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-    	  }
-    	  if (command.equals("/BoardReviewDelete.bo")) {
-			action = new BoardReviewDeleteAction();
+        
+        // 리뷰 수정	
+        } else if(command.equals("/BoardReviewUpdate.bo")) {
+			action = new BoardReviewUpdateAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} 
-    	  if(command.equals("/BoardReplyUpdate.bo")) {
-	  		  action = new BoardReplyUpdateAction();
-	  		  try {
-				  forward = action.execute(request, response);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-	  	  }
-    	  if (command.equals("/BoardReplyDelete.bo")) {
-			action = new BoardReplyDeleteAction();
+    	
+		// 리뷰 삭제 
+    	} else if (command.equals("/BoardReviewDelete.bo")) {
+			action = new BoardReviewDeleteAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -99,14 +70,48 @@ public class BoardController extends HttpServlet {
 			}
 			
 		// 코멘트 가져오기	
-  		} else if(command.equals("/GetContent.bo")) {
-  			action = new GetContentAction();
-  			try {
-  				forward = action.execute(request, response);
-  			} catch (Exception e) {
-  				e.printStackTrace();
-  			}
-  		} 
+    	} else if(command.equals("/GetContent.bo")) {
+    		action = new GetContentAction();
+    		try {
+    			forward = action.execute(request, response);
+    		} catch (Exception e) {
+    			e.printStackTrace();
+    		}
+    	} 
+    	
+//    	if(command.equals("/BoardReply.bo")) {
+//	    	action = new BoardReplyAction();
+//	    	try {
+//				forward = action.execute(request, response);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//    	}
+//    	  if(command.equals("/BoardReplyWrite.bo")) {
+//    		  action = new BoardReplyWriteAction();
+//    		  try {
+//				forward = action.execute(request, response);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//    	  }
+//    	  if(command.equals("/BoardReplyUpdate.bo")) {
+//	  		  action = new BoardReplyUpdateAction();
+//	  		  try {
+//				  forward = action.execute(request, response);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//	  	  }
+//    	  if (command.equals("/BoardReplyDelete.bo")) {
+//			action = new BoardReplyDeleteAction();
+//			try {
+//				forward = action.execute(request, response);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//    	} 
+			
     	  
     	  
     	  

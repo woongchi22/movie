@@ -5,17 +5,17 @@ import java.util.ArrayList;
 
 import board.dao.BoardDao;
 import board.vo.ReviewBean;
-import movie.vo.MovieBean;
 
 import static db.JdbcUtil.*;
+
 public class BoardReviewListService {
 
+	// 리뷰 List
 	public ArrayList<ReviewBean> getReview(int movieSeq) {
 		
 		System.out.println("BoardReviewListService");
 		ArrayList<ReviewBean> reviewList = null;
 
-		
 		Connection con = getConnection();
 		BoardDao bdao = BoardDao.getInstance();
 		bdao.setConnection(con);
@@ -24,6 +24,7 @@ public class BoardReviewListService {
 		return reviewList;
 	}
 
+	// 리뷰 등록
 	public boolean reviewWrite(ReviewBean reviewBean) {
 		System.out.println("BoardReviewListService-reviewWrite");
 		Connection con = getConnection();
@@ -31,8 +32,6 @@ public class BoardReviewListService {
 		bdao.setConnection(con);
 		boolean isWriteSuccess = false;
 		System.out.println(reviewBean.getContent());
-		
-		
 		
 		int insertCount = bdao.reviewWrite(reviewBean);
 		
@@ -46,21 +45,7 @@ public class BoardReviewListService {
 		return isWriteSuccess;
 	}
 
-	public ReviewBean getReview(int idx, int movieSeq) {
-		System.out.println("BoardReviewListService - getReview");
-		
-		Connection con = getConnection();
-		BoardDao bdao = BoardDao.getInstance();
-		bdao.setConnection(con);
-		
-		ReviewBean reviewBean = bdao.getReviewDetail(idx, movieSeq);
-		
-		close(con);
-		
-		return reviewBean;
-		
-	}
-
+	// 리뷰 수정
 	public boolean isUpdate(ReviewBean reviewBean) {
 		System.out.println("BoardReviewListService - isUpdate");
 		boolean isUpdate =false;
@@ -81,14 +66,16 @@ public class BoardReviewListService {
 		return isUpdate;
 	}
 
-	public boolean deleteReview(int idx) {
+	// 리뷰 삭제
+	public boolean deleteReview(String name, int movieSeq) {
 		System.out.println("BoardReviewService - deleteReview()");
 		boolean isSuccess =false;
 		
 		Connection con = getConnection();
 		BoardDao bdao = BoardDao.getInstance();
 		bdao.setConnection(con);
-		int insertCount = bdao.deleteReview(idx);
+		
+		int insertCount = bdao.deleteReview(name, movieSeq);
 		
 		if(insertCount>0) {
 			isSuccess = true;
@@ -115,6 +102,22 @@ public class BoardReviewListService {
 		
 		return comment;
 	}
+	
+//	public ReviewBean getReview(int idx, int movieSeq) {
+//		System.out.println("BoardReviewListService - getReview");
+//		
+//		Connection con = getConnection();
+//		BoardDao bdao = BoardDao.getInstance();
+//		bdao.setConnection(con);
+//		
+//		ReviewBean reviewBean = bdao.getReviewDetail(idx, movieSeq);
+//		
+//		close(con);
+//		
+//		return reviewBean;
+//		
+//	}
+
 
 
 }

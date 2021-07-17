@@ -184,7 +184,6 @@
 	height: 30px;
     border-radius: 10px;
     margin: 0 20px 0 0;
-/*     background-color: yellow; */
     border: none;
     color: black;
     font-size: 14px;
@@ -196,11 +195,48 @@
     background-color: #c0c0c0;
 }
 
-
-
-
-
-
-
+#reviewName{
+	margin: 5px 20px 0 0;
+	float: left;
+	color: yellow;
+	font-weight: bold;
+}
+#review{
+    padding: 5px;
+}
+#updateBtn{
+	width: 40px;
+    height: 30px;
+    border-radius: 10px;
+    margin: -30px 50px 0 0;
+    border: none;
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    float: right;
+}
+#updateBtn:hover {
+    background-color: #c0c0c0;
+}
+#deleteBtn{
+    width: 40px;
+    height: 30px;
+    border-radius: 10px;
+    margin: -30px 0 0 0;
+    border: none;
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    float: right;
+}
+#deleteBtn:hover {
+    background-color: #c0c0c0;
+}
+.moreCmt{
+	float: right;
+	margin: -15px 20px 0 0;
+}
 
 

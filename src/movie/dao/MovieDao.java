@@ -1,7 +1,6 @@
 package movie.dao;
 
-import static db.JdbcUtil.close;
-
+import static db.JdbcUtil.*;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -107,12 +106,21 @@ public class MovieDao {
 		int deleteCount = 0;
 		
 		try {
-			String sql = "DELETE FROM grade WHERE name=? and movieSeq=?";
+			String sql = "DELETE FROM grade WHERE name=? AND movieSeq=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, name);
 			pstmt.setInt(2, movieSeq);
 			deleteCount = pstmt.executeUpdate();
 			
+			sql = "DELETE FROM review WHERE name=? AND movieSeq=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setInt(2, movieSeq);
+			int deleteReview = pstmt.executeUpdate();
+			
+			if(deleteReview > 0) {
+				commit(con);	
+			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
