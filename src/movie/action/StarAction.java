@@ -34,7 +34,7 @@ public class StarAction implements Action {
 		int movieGrade = gradeStarService.selectStar(mb);
 		
 		request.setAttribute("grade", movieGrade);
-		System.out.println("grade : " + movieGrade);
+//		System.out.println("grade : " + movieGrade);
 		
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
@@ -69,7 +69,10 @@ public class StarAction implements Action {
 //	      System.out.println(returnCmt);
 //	      request.setAttribute("returnCmt", returnCmt);
 	      
-	      
+	    
+//		forward = new ActionForward();
+//		forward.setPath("/movie/movie_detail.jsp");
+		
 		return forward;
 	}
 

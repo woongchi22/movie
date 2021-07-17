@@ -101,14 +101,15 @@ public class BoardReviewListService {
 		return isSuccess;
 	}
 
-	public String getReview(MovieBean mb) {
-		System.out.println("BoardReviewListService - getReview!");
+	// 디테일 pro에서 보냄
+	public String getReview(ReviewBean rb) {
+		System.out.println("BoardReviewListService - getReview()");
 		
 		Connection con = getConnection();
 		BoardDao bdao = BoardDao.getInstance();
 		bdao.setConnection(con);
 		
-		String comment = bdao.getReviewDetail(mb);
+		String comment = bdao.getReviewDetail(rb);
 		
 		close(con);
 		
