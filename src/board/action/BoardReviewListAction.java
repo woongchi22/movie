@@ -27,16 +27,14 @@ public class BoardReviewListAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("BoardReviewListAction@@@@@@@@@@");
-		System.out.println("왜안떠");
+		
 		ActionForward forward = null;
 
-		
-		
 		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 		String title = (String) request.getParameter("query");
-		HttpSession session = request.getSession();
-		String name = (String)session.getAttribute("name");
-		System.out.println(movieSeq+title+name);
+//		HttpSession session = request.getSession();
+//		String name = (String)session.getAttribute("name");
+		System.out.println(movieSeq + title);
 
 		BoardReviewListService boardReviewListService = new BoardReviewListService();
 		ArrayList<ReviewBean> reviewList = boardReviewListService.getReview(movieSeq);

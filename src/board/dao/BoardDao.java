@@ -31,6 +31,69 @@ public class BoardDao {
 	PreparedStatement pstmt;
 	ResultSet rs;
 
+	// 디테일 pro에 넘겨줌
+	public String getReviewDetail(ReviewBean rb) {
+		System.out.println("dao - 립디테일");
+		String review = "";
+		
+		try {
+			String sql = "SELECT content FROM review WHERE name=? AND movieSeq=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, rb.getName());
+			pstmt.setInt(2, rb.getMovieSeq());
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				review = rs.getString("content");
+				System.out.println(review);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return review;
+	}
+
+	// 리뷰 List
+	public ArrayList<ReviewBean> getReview(int movieSeq) {
+		System.out.println("dao-getReview");
+		ArrayList<ReviewBean> reviewList = null;
+		
+		try {
+			String sql = "SELECT * FROM review WHERE movieSeq=? ORDER BY idx DESC ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, movieSeq);
+			rs = pstmt.executeQuery();
+			
+			reviewList = new ArrayList<ReviewBean>();
+			
+			while(rs.next()) {
+				ReviewBean review = new ReviewBean();
+				review.setIdx(rs.getInt("idx"));
+				review.setName(rs.getString("name"));
+				review.setGrade(rs.getInt("grade"));
+				review.setMovieSeq(rs.getInt("movieSeq"));
+				review.setTitle(rs.getString("title"));
+				review.setContent(rs.getString("content"));
+				review.setLike_count(rs.getInt("like_count"));
+				review.setDate(rs.getDate("date"));
+				
+				reviewList.add(review);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("ReviewdDao - getReview 에러");
+		} finally {
+			close(rs); // JdbcUtil.close(rs)
+			close(pstmt); // JdbcUtil.close(rs)
+		}
+		
+		return reviewList;
+	}
 
 	// 리뷰 등록
 	public int reviewWrite(ReviewBean reviewBean) {
@@ -60,45 +123,60 @@ public class BoardDao {
 		return insertCount;
 	}
 
-	public ArrayList<ReviewBean> getReview(int movieSeq) {
-		System.out.println("dao-getReview");
-		ArrayList<ReviewBean> reviewList = null;
+	// 리뷰 수정
+	public int updateReview(ReviewBean reviewBean) {
+		System.out.println("BoardDAO-updateReview");
+		
+		int insertCount = 0;
 		
 		try {
-			String sql = "SELECT * FROM review WHERE movieSeq=? ORDER BY idx DESC ";
+			String sql = "UPDATE review SET content=? WHERE name=? and movieSeq=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, movieSeq);
-			rs = pstmt.executeQuery();
+			pstmt.setString(1, reviewBean.getContent());
+			pstmt.setString(2, reviewBean.getName());
+			pstmt.setInt(3, reviewBean.getMovieSeq());
 			
-			reviewList = new ArrayList<ReviewBean>();
-			
-			while(rs.next()) {
-				ReviewBean review = new ReviewBean();
-				review.setIdx(rs.getInt("idx"));
-				review.setContent(rs.getString("content"));
-				review.setGrade(rs.getInt("grade"));
-				review.setLike_count(rs.getInt("like_count"));
-				review.setMovieSeq(rs.getInt("movieSeq"));
-				review.setName(rs.getString("name"));
-				review.setTitle(rs.getString("title"));
-				review.setDate(rs.getDate("date"));
-				
-				reviewList.add(review);
-//				System.out.println(reviewList);
-			}
+			insertCount = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("ReviewdDao - getReview 에러");
 		} finally {
-			// PreparedStatement, ResultSet 객체 반환
-			close(rs); // JdbcUtil.close(rs)
-			close(pstmt); // JdbcUtil.close(rs)
+			close(pstmt);
 		}
-		
-		return reviewList;
+
+		return insertCount;
 	}
 
+	// 리뷰 삭제
+	public int deleteReview(String name, int movieSeq) {
+		System.out.println("BoardDAO-deleteReview");	
+		int insertCount = 0;
+		
+		try {
+			String sql = "DELETE FROM review WHERE name=? AND movieSeq=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setInt(2, movieSeq);
+
+			insertCount = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("BoardDAO - deleteReview() 에러: " + e.getMessage());
+
+		} finally {
+			close(pstmt);
+		}
+
+		return insertCount;
+	}
+	
+	
+	
+	
+	
+	
+	
 	//리뷰 댓글
 	public int insertReply(ReplyBean replyBean, int idx) {
 		
@@ -197,52 +275,7 @@ public class BoardDao {
 		return replyList;
 	}
 
-	public int updateReview(ReviewBean reviewBean) {
-		System.out.println("BoardDAO-updateReview");
-		
-		System.out.println(reviewBean.getName());
-		int insertCount = 0;
-		try {
-
-			String sql = "update review set content = ? where idx = ? ";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, reviewBean.getContent());
-			pstmt.setInt(2, reviewBean.getIdx());
-
-			insertCount = pstmt.executeUpdate();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rs);
-			close(pstmt);
-		}
-
-		return insertCount;
-	}
-
-	public int deleteReview(int idx) {
-		System.out.println("BoardDAO-deleteReview");	
-		int insertCount = 0;
-		
-		try {
-
-			String sql = "delete from review where idx = ? ";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, idx);
-
-			insertCount = pstmt.executeUpdate();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println("BoardDAO - deleteReply() 에러: " + e.getMessage());
-
-		} finally {
-			close(pstmt);
-		}
-
-		return insertCount;
-	}
+	
 
 	public int deleteReply(int idx) {
 		System.out.println("BoardDAO-deleteReply");	
@@ -291,31 +324,6 @@ public class BoardDao {
 		return insertCount;
 	}
 	
-	// 디테일 pro에 넘겨줌
-	public String getReviewDetail(ReviewBean rb) {
-		System.out.println("dao - 립디테일");
-		String review = "";
-		
-		try {
-			String sql = "SELECT content FROM review WHERE name=? AND movieSeq=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, rb.getName());
-			pstmt.setInt(2, rb.getMovieSeq());
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				review = rs.getString("content");
-				System.out.println(review);
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rs);
-			close(pstmt);
-		}
-		return review;
-		
-	}
 
 	
 	
