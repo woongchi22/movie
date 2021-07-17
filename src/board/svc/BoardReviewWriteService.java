@@ -24,6 +24,7 @@ public class BoardReviewWriteService {
 		int insertCount = bdao.reviewWrite(reviewBean);
 		
 		if(insertCount > 0) {
+			isWrite = true;
 			commit(con);
 		} else {
 			rollback(con);

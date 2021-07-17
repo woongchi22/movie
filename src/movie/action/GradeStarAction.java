@@ -34,8 +34,6 @@ public class GradeStarAction implements Action {
 		GradeStarService gradeStarService = new GradeStarService();
 		gradeStarService.gradeStar(mb);
 		
-//		int movieGrade = gradeStarService.selectStar(mb);
-		
 		request.setAttribute("grade", mb.getGrade());
 		
 		response.setCharacterEncoding("UTF-8");

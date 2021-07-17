@@ -84,7 +84,7 @@ public class MovieController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-		// 영화 상세 정보	
+		// 영화 상세 정보(별점,코멘트)	
 		} else if(command.equals("/MovieDetailPro.mo")) {
 			action = new MovieDetailProAction();
 			try {
@@ -92,7 +92,8 @@ public class MovieController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
+		
+		// 영화 상세 정보 API
 		} else if(command.equals("/MovieDetail.mo")) {
 			action = new MovieDetailAction();
 			try {

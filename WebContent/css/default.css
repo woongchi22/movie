@@ -197,6 +197,7 @@ dt{
 	border: 2px solid;
     padding: 5px;
     margin: 0 20px 0 0;
+    border-radius: 5px;
 }
 .runtime{
     float: left;

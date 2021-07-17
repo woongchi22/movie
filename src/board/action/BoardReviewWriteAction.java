@@ -33,6 +33,8 @@ public class BoardReviewWriteAction implements Action {
 		reviewBean.setMovieSeq(movieSeq);
 		reviewBean.setTitle(title);
 		reviewBean.setName(name);
+		reviewBean.setGrade(grade);
+		
 		
 		BoardReviewWriteService boardReviewWriteService = new BoardReviewWriteService();
 		boolean isWrite = boardReviewWriteService.reviewWrite(reviewBean);
@@ -45,9 +47,13 @@ public class BoardReviewWriteAction implements Action {
 			out.println("alert('작성 실패!')"); // 오류메세지 출력
 			out.println("history.back()"); // 이전 페이지로
 			out.println("</script>"); // 자바스크립트 끝
+			
 		} else {
 			
 			request.setAttribute("review", reviewBean.getContent());
+			
+//			forward = new ActionForward();
+//			forward.setPath("/movie/movie_detail.jsp");
 			
 			response.setCharacterEncoding("UTF-8");
 			PrintWriter out = response.getWriter();

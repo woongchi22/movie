@@ -32,13 +32,14 @@ public class BoardDao {
 	ResultSet rs;
 
 
-	
+	// 리뷰 등록
 	public int reviewWrite(ReviewBean reviewBean) {
 		System.out.println("dao-reviewWrite");
 		
 		int insertCount = 0;
-		String sql ="INSERT INTO review VALUES(idx,?,?,?,?,?,0,now())";
+		
 		try {
+			String sql = "INSERT INTO review VALUES(idx,?,?,?,?,?,0,now())";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, reviewBean.getName());
 			pstmt.setInt(2, reviewBean.getGrade());
@@ -47,10 +48,11 @@ public class BoardDao {
 			pstmt.setString(5, reviewBean.getContent());
 			
 			insertCount = pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			System.out.println("BoardDAO - insertReview() 에러 : " + e.getMessage());
 
-		}finally {
+		} finally {
 			close(rs);
 			close(pstmt);
 		}
@@ -288,19 +290,21 @@ public class BoardDao {
 
 		return insertCount;
 	}
-
-	public String getReviewDetail(MovieBean mb) {
-		System.out.println("립디테일");
-		String comment = "";
-		String sql = "SELECT content from review where name = ? and movieSeq = ?";
+	
+	// 디테일 pro에 넘겨줌
+	public String getReviewDetail(ReviewBean rb) {
+		System.out.println("dao - 립디테일");
+		String review = "";
+		
 		try {
+			String sql = "SELECT content FROM review WHERE name=? AND movieSeq=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, mb.getName());
-			pstmt.setInt(2, mb.getMovieSeq());
+			pstmt.setString(1, rb.getName());
+			pstmt.setInt(2, rb.getMovieSeq());
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				comment = rs.getString("content");
-				System.out.println(comment);
+				review = rs.getString("content");
+				System.out.println(review);
 			}
 
 		} catch (SQLException e) {
@@ -309,7 +313,7 @@ public class BoardDao {
 			close(rs);
 			close(pstmt);
 		}
-		return comment;
+		return review;
 		
 	}
 
