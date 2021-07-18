@@ -10,15 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import board.action.BoardReplyAction;
-import board.action.BoardReplyDeleteAction;
-import board.action.BoardReplyUpdateAction;
-import board.action.BoardReplyWriteAction;
-import board.action.BoardReviewDeleteAction;
-import board.action.BoardReviewListAction;
-import board.action.BoardReviewUpdateAction;
-import board.action.BoardReviewWriteAction;
-import board.action.GetContentAction;
+import board.action.*;
 import vo.ActionForward;
 
 @WebServlet("*.bo")
@@ -77,7 +69,16 @@ public class BoardController extends HttpServlet {
     		} catch (Exception e) {
     			e.printStackTrace();
     		}
-    	} 
+    	// 리뷰 좋아요
+    	} else if(command.equals("/BoardReviewLike.bo")) {
+    		action = new BoardReviewlikeAction();
+    		try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+    	}
+    	
     	
 //    	if(command.equals("/BoardReply.bo")) {
 //	    	action = new BoardReplyAction();

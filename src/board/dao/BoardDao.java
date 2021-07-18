@@ -334,6 +334,124 @@ public class BoardDao {
 
 		return insertCount;
 	}
+
+	public int selectLike(ReviewBean rb) {
+		System.out.println("BoardDAO-selectLike");
+		
+		int selectCount = 0;
+		
+		try {
+			System.out.println("1");
+			String sql = "SELECT * FROM reviewLike WHERE name=? AND idx=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, rb.getName());
+			pstmt.setInt(2, rb.getIdx());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+			}else {
+				System.out.println("2");
+				sql ="INSERT INTO reviewLike VALUES(?,?,now())";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, rb.getIdx());
+				pstmt.setString(2, rb.getName());
+				
+				selectCount=pstmt.executeUpdate();
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("BoardDao - selectLike() 에러: " + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		
+		
+		
+		return selectCount;
+	}
+
+	public int reviewLike(ReviewBean rb) {
+		System.out.println("BoardDAO-reviewLike");
+		
+		int insertCount = 0;
+		
+		try {
+			String sql = "UPDATE review SET like_count=like_count+1 WHERE idx=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, rb.getIdx());
+			insertCount = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("BoardDao - selectLike() 에러: " + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return insertCount;
+	}
+	public int deleteLike(ReviewBean rb) {
+System.out.println("BoardDAO-selectLike");
+		
+		int selectCount = 0;
+		
+		try {
+			System.out.println("1");
+			String sql = "SELECT * FROM reviewLike WHERE name=? AND idx=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, rb.getName());
+			pstmt.setInt(2, rb.getIdx());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				System.out.println("2");
+				sql ="DELETE FROM reviewLike WHERE idx=? AND name=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, rb.getIdx());
+				pstmt.setString(2, rb.getName());
+				
+				selectCount=pstmt.executeUpdate();
+				
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("BoardDao - selectLike() 에러: " + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		
+		
+		
+			return selectCount;
+		}
+		
+	
+	public int likeCancel(ReviewBean rb) {
+	System.out.println("BoardDAO-likeCancel");
+		
+		int insertCount = 0;
+		
+		try {
+			String sql = "UPDATE review SET like_count=like_count-1 WHERE idx=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, rb.getIdx());
+			insertCount = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("BoardDao - likeCancel() 에러: " + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return insertCount;
+	}
+
 	
 
 	

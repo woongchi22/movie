@@ -102,6 +102,94 @@ public class BoardReviewListService {
 		
 		return comment;
 	}
+
+	public boolean insertLike(ReviewBean rb) {
+		System.out.println("BoardReviewListService - insertLike()");
+		
+		boolean isSuccess =false;
+		
+		Connection con = getConnection();
+		BoardDao bdao = BoardDao.getInstance();
+		bdao.setConnection(con);
+		
+		int insertCount = bdao.selectLike(rb);
+		
+		if(insertCount>0) {
+			isSuccess = true;
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		close(con);
+		
+		return isSuccess;
+	}
+
+	public boolean reviewLike(ReviewBean rb) {
+		System.out.println("BoardReviewListService - reviewLike()");
+		
+		boolean isSuccess =false;
+		
+		Connection con = getConnection();
+		BoardDao bdao = BoardDao.getInstance();
+		bdao.setConnection(con);
+		
+		int insertCount = bdao.reviewLike(rb);
+		
+		if(insertCount>0) {
+			isSuccess = true;
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		close(con);
+		
+		return isSuccess;
+	}
+
+	public boolean likeCancel(ReviewBean rb) {
+		System.out.println("BoardReviewListService - likeCancel()");
+		
+		boolean isSuccess =false;
+		
+		Connection con = getConnection();
+		BoardDao bdao = BoardDao.getInstance();
+		bdao.setConnection(con);
+		
+		int insertCount = bdao.likeCancel(rb);
+		
+		if(insertCount>0) {
+			isSuccess = true;
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		close(con);
+		
+		return isSuccess;
+	}
+
+	public boolean deleteLike(ReviewBean rb) {
+		System.out.println("BoardReviewListService - deleteLikes()");
+		
+		boolean isSuccess =false;
+		
+		Connection con = getConnection();
+		BoardDao bdao = BoardDao.getInstance();
+		bdao.setConnection(con);
+		
+		int insertCount = bdao.deleteLike(rb);
+		
+		if(insertCount>0) {
+			isSuccess = true;
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		close(con);
+		
+		return isSuccess;
+	}
 	
 //	public ReviewBean getReview(int idx, int movieSeq) {
 //		System.out.println("BoardReviewListService - getReview");

@@ -631,7 +631,18 @@ $(document).ready(function() {
         });
     }); 
 	
-
+	$.ajax('BoardReviewList.bo',{
+		method:post,
+		data:{
+			movieSeq:movieSeq
+			
+		},
+		success: function(data) {
+			console.log(" 성겅ㅋ");
+		}
+		
+		
+	})//ajax
 
    
  
@@ -702,6 +713,7 @@ $(document).ready(function() {
 		<div class="starAvg"></div>
 		<div class="posters" ></div>
 		<div class="info"></div>
+		<div class="reviewList"></div>
 	    <div class="stills" ></div>
 	    <div class="directorP"> </div>
 	    <div class="directorMovie"></div>
