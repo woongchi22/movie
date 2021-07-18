@@ -34,7 +34,6 @@ public class StarAction implements Action {
 		int movieGrade = gradeStarService.selectStar(mb);
 		
 		request.setAttribute("grade", movieGrade);
-//		System.out.println("grade : " + movieGrade);
 		
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
@@ -60,19 +59,7 @@ public class StarAction implements Action {
 			out.print("5");
 			break;
 		}
-		
 
-		  // getReview 를 위한 구문들
-//	      BoardReviewListService boardReviewListService = new BoardReviewListService();
-//	      System.out.println("리븅엑셔뉴 @@");
-//	      String returnCmt = boardReviewListService.getReview(mb);
-//	      System.out.println(returnCmt);
-//	      request.setAttribute("returnCmt", returnCmt);
-	      
-	    
-//		forward = new ActionForward();
-//		forward.setPath("/movie/movie_detail.jsp");
-		
 		return forward;
 	}
 

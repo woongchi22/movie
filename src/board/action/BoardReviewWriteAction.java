@@ -25,7 +25,7 @@ public class BoardReviewWriteAction implements Action {
 		HttpSession session = request.getSession();
 		String name = (String) session.getAttribute("name");
 		int grade = Integer.parseInt(request.getParameter("grade"));
-//		System.out.println(movieSeq + title + review + name + grade + "이거 안나옴?");
+		System.out.println(movieSeq + title + review + name + grade + "이거 안나옴?");
 		
 		ReviewBean reviewBean = new ReviewBean();
 		reviewBean.setContent(review);
