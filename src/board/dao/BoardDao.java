@@ -100,12 +100,23 @@ public class BoardDao {
 		System.out.println("dao-reviewWrite");
 		
 		int insertCount = 0;
+		int grade = reviewBean.getGrade();
 		
 		try {
-			String sql = "INSERT INTO review VALUES(idx,?,?,?,?,?,0,now())";
+			String sql = "SELECT grade FROM grade WHERE name=? AND movieSeq=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, reviewBean.getName());
-			pstmt.setInt(2, reviewBean.getGrade());
+			pstmt.setInt(2, reviewBean.getMovieSeq());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				grade = rs.getInt("grade");
+			}
+					
+			sql = "INSERT INTO review VALUES(idx,?,?,?,?,?,0,now())";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, reviewBean.getName());
+			pstmt.setInt(2, grade);
 			pstmt.setInt(3, reviewBean.getMovieSeq());
 			pstmt.setString(4, reviewBean.getTitle());
 			pstmt.setString(5, reviewBean.getContent());

@@ -87,7 +87,6 @@ $(document).ready(function() {
 		                     $('.stills').append('<div class=stillCut style="background-image: url(' + stills[i] + ');"></div>')
 		                     //                           $('.posters').append('<div class=stillCut><img style="height:150px;" src='+stills[i]+' onerror=this.src=../../../Movie/img/noImage.gif></div>')
 		                 } 
-							
 					}
 					
 					var actors = actor.replace(/,\s*$/, '');
@@ -452,7 +451,7 @@ $(document).ready(function() {
     $.ajax('Star.mo', {
         data: {
             movieSeq:movieSeq,
-            grade:grade,
+            grade:grade
         },
         success: function(data) {
             console.log('데이터' + data);
@@ -461,31 +460,31 @@ $(document).ready(function() {
             }
             if(data == 1){
             	$('#star1').addClass('on').prevAll('a').addClass('on');
-                $('#showGrade').html('1점');
+                $('#showGrade').html(data + "점");
                 $('#cancelStar').css("display", "");
                 $('#comment').css("display", "");
             }
             if(data == 2){
             	$('#star2').addClass('on').prevAll('a').addClass('on');
-                $('#showGrade').html('2점');
+            	$('#showGrade').html(data + "점");
                 $('#cancelStar').css("display", "");
                 $('#comment').css("display", "");
             }   
             if(data == 3){
                 $('#star3').addClass('on').prevAll('a').addClass('on');
-                $('#showGrade').html('3점');
+                $('#showGrade').html(data + "점");
                 $('#cancelStar').css("display", "");
                 $('#comment').css("display", "");
             }   
             if(data == 4){
                 $('#star4').addClass('on').prevAll('a').addClass('on');
-                $('#showGrade').html('4점');
+                $('#showGrade').html(data + "점");
                 $('#cancelStar').css("display", "");
                 $('#comment').css("display", "");
             }   
             if(data == 5){
             	$('#star5').addClass('on').prevAll('a').addClass('on');
-            	$('#showGrade').html('5점');
+            	$('#showGrade').html(data + "점");
             	$('#cancelStar').css("display", "");
             	$('#comment').css("display", "");
             }
@@ -517,6 +516,7 @@ $(document).ready(function() {
     // 리뷰 등록
     $('#commentBtn').click(function() {
 		var review = $('#opinion').val();
+		var grade = $('#grade').val();
 		
 	    $('#dialog-comment').dialog({
 		     modal: true,
@@ -613,7 +613,6 @@ $(document).ready(function() {
                          success: function(data) {
                              console.log(data);
                              
-//                              $('#review').remove();
                              $('#review').html(data);
                              $('#commentBtn').css("display", "none");
                              $('#commentBox').css("display", "");
@@ -693,7 +692,7 @@ $(document).ready(function() {
 	  		    <input type="button" id ="updateBtn" style="display: none" value="수정">
 		  	</div>	
 		</div>
-		<a class="moreCmt" href="BoardReviewList.bo">코멘트 더보기</a>
+		<a style="color: yellow" class="moreCmt" href="BoardReviewList.bo?movieSeq=<%=movieSeq %>&query=<%=query %>">코멘트 더보기</a>
 		
 		<div id="dialog-comment" title="<%=query %>" style="display:none">
 		  <textarea id="opinion" cols="800" rows="800"><%=review %></textarea>

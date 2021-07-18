@@ -47,10 +47,19 @@ public class MovieDao {
 				pstmt.setInt(1, mb.getGrade());
 				pstmt.setString(2, mb.getName());
 				pstmt.setInt(3, mb.getMovieSeq());
-				
 				insertCount = -1;
-				
 				pstmt.executeUpdate();
+				
+				sql = "UPDATE review SET grade=? WHERE name=? and movieSeq=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, mb.getGrade());
+				pstmt.setString(2, mb.getName());
+				pstmt.setInt(3, mb.getMovieSeq());
+				int updateCount = pstmt.executeUpdate();
+				
+				if(updateCount > 0) {
+					commit(con);	
+				}
 
 			} else {
 				sql = "INSERT INTO grade VALUES(idx,?,?,?,?)";
@@ -131,6 +140,7 @@ public class MovieDao {
 		return deleteCount;
 	}
 
+	// 평균 별점
 	public float averageStar(int movieSeq) {
 		System.out.println("mDao - averageStar()");
 		
