@@ -13,6 +13,8 @@ String name = (String)session.getAttribute("name");
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
+	$('.caption').html('<h1> 보고싶은 작품을 찾아보세요 </h1>');
+
 	$("#selected *").remove();
 	$('#genreExplore').change(function() {
 		var genre = $('#genreExplore option:selected').val();
@@ -30,8 +32,7 @@ $(document).ready(function() {
 				nations:nations
 			},
 			success: function(data) {
-				
-         	   $('.caption').html('<h1>'+name+'님에게 추천하는 '+genre+' 영화</h1>');
+         	    $('.caption').html('<h1>'+name+'님에게 추천하는 '+nations+' '+ genre +' 영화</h1>');
 				$.each(data.Data, function(idx,item) {
 					$.each(item.Result, function(idx2,item2) {
 					    var title1 = item2.title
@@ -49,8 +50,7 @@ $(document).ready(function() {
 	                    
 	                    if(poster) {
 	                        $('#selected').append('<div id=gradeMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query='
-                              + title + '><div class=gradePoster style="background-image: url(' + poster + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>'
-                              + '<div class="starGra"><a class="starG" id="star01"></a><a class="starG" id="star02"></a><a class="starG" id="star03"></a><a class="starG" id="star04"></a><a class="starG" id="star05"></a></div><div class=gradeTitle>'
+                              + title + '><div class=gradePoster style="background-image: url(' + poster + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a><div class="gradeTitle">'
                               + title4 + '</div></div>');
 	                                
 	                    }
@@ -77,8 +77,7 @@ $(document).ready(function() {
 				genre:genre
 			},
 			success: function(data) {
-				
-         	   $('.caption').html('<h1>'+name+'님에게 추천하는 '+nations+' 영화</h1>');
+         	    $('.caption').html('<h1>'+name+'님에게 추천하는 '+nations+' '+ genre +' 영화</h1>');
 				$.each(data.Data, function(idx,item) {
 					$.each(item.Result, function(idx2,item2) {
 					    var title1 = item2.title
@@ -96,9 +95,8 @@ $(document).ready(function() {
 	                    
 	                    if(poster) {
 	                        $('#selected').append('<div id=gradeMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query='
-                              + title + '><div class=gradePoster style="background-image: url(' + poster + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>'
-                              + '<div class="starGra"><a class="starG" id="star01"></a><a class="starG" id="star02"></a><a class="starG" id="star03"></a><a class="starG" id="star04"></a><a class="starG" id="star05"></a></div><div class=gradeTitle>'
-                              + title4 + '</div></div>');
+                              + title + '><div class=gradePoster style="background-image: url(' + poster + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a><div class="gradeTitle">'
+                              + title4 + '</div><input type="hidden" id = "prodYear" name="prodYear" value = '+prodYear+'></div>');
 	                                
 	                    }
                        
@@ -108,8 +106,12 @@ $(document).ready(function() {
 		});
 	}); //change
 	
-	
-	
+	$('#year').change(function() {
+		  $('#year').sort(function(a, b) { // 오름차순
+		    return a.$('.gradeTitle') < b.$('.gradeTitle') ? -1 : a.$('.gradeTitle') > b.$('.gradeTitle') ? 1 : 0;
+		});
+
+	});
 	
 	
 	
@@ -129,12 +131,10 @@ $(document).ready(function() {
     <jsp:include page="/inc/top.jsp"/>
 </header>
 <body>
-
     <h2 class="caption"></h2>
     <div class="exploreBar" style="padding: 0 10px;">
         <select id="genreExplore">
             <option id="allGenre">모든 장르</option>
-<!--             <option>모든 장르</option> -->
             <option id="sf">SF</option>
             <option id="family">가족</option>
             <option id="horror">공포</option>
@@ -179,12 +179,7 @@ $(document).ready(function() {
             <option id="hongkong">홍콩</option>
         </select>
         
-        <select id="recommandExplore">
-            <option id="randomRecommand">랜덤 추천</option>
-            
-        </select>
-        
-         <select id="sort" style="float: right;">
+        <select id="sort" style="float: right;margin-right: 40px;">
             <option id="sortRecommand">추천순</option>
             <option id="year">최신작품순</option>
             <option id="runtime">러닝타임 짧은 순</option>

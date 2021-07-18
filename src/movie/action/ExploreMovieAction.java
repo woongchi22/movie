@@ -21,20 +21,34 @@ public class ExploreMovieAction implements Action {
 		String nations = request.getParameter("nations");
 		String genre1 = "모든 장르";
 		String nations1 = "모든 국가";
-		
+		String ty1="애니메이션";
+		String ty2="다큐멘터리";
 
 		kmdbApi movie = new kmdbApi();
 		String json = null;
 		System.out.println(genre);
 		
-		if(!nations1.equals(nations)) {
-			System.out.println("같이");
-			json = movie.getMovie(nations,genre);
+		if(genre.equals(ty1) || genre.equals(ty2) ) {
+			if(!nations1.equals(nations)) {
+				System.out.println("같이");
+				json = movie.getMovieType(nations,genre);
+			}
+			if(nations1.equals(nations)) {
+				System.out.println("따로");
+				json = movie.getMovieType(genre);
+				}
+			
+		}
+		else {
+			if(!nations1.equals(nations)) {
+				System.out.println("같이");
+				json = movie.getMovie(nations,genre);
 		}
 		else if(nations1.equals(nations)) {
 			System.out.println("따로");
-			json = movie.getMovie(genre);
+			json = movie.getMovieGenre(genre);
 			}
+		}
 		
 //		json = movie.getMovieGenre(genre);
 		JsonParser jsonParser = new JsonParser();
