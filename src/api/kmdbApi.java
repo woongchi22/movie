@@ -296,7 +296,7 @@ public class kmdbApi {
 
 
 	public String getMovie(String nations, String genre) throws IOException {
-		System.out.println("kmdb - getMovieNation");
+		System.out.println("kmdb - getMovie");
 		
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&nation="
@@ -330,11 +330,79 @@ public class kmdbApi {
 	}
 
 
-	public String getMovie(String genre) throws IOException {
+	public String getMovie(String nations) throws IOException {
 		System.out.println("kmdb - getMovieNation");
 		
 		StringBuilder urlBuilder = new StringBuilder(
-				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&genre="
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&nation="
+						+ nations + "&ServiceKey=319276GM630XRTRNIWN8");
+
+		URL url = new URL(urlBuilder.toString());
+		HttpURLConnection con = (HttpURLConnection) url.openConnection();
+		con.setRequestMethod("GET");
+		con.setRequestProperty("Content-type", "application/json");
+		System.out.println("Response code: " + con.getResponseCode());
+		
+		BufferedReader rd;
+		if(con.getResponseCode() >= 200 && con.getResponseCode() <=300) {
+			rd = new BufferedReader(new InputStreamReader(con.getInputStream()));
+		} else {
+			rd = new BufferedReader(new InputStreamReader(con.getErrorStream())); 
+		}
+		
+		StringBuilder sb = new StringBuilder();
+		String line;
+		while ((line = rd.readLine()) != null) {
+			sb.append(line + "\n");
+		}
+		
+		rd.close(); 
+		con.disconnect(); 
+		System.out.println(sb.toString());
+		
+		return sb.toString();
+	}
+
+	//애니메이션,다큐
+	public String getMovieType(String nations, String genre)throws IOException  {
+		System.out.println("kmdb - getMovieType");
+		
+		StringBuilder urlBuilder = new StringBuilder(
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&nation="
+						+ nations +"&type="+genre+ "&ServiceKey=319276GM630XRTRNIWN8");
+
+		URL url = new URL(urlBuilder.toString());
+		HttpURLConnection con = (HttpURLConnection) url.openConnection();
+		con.setRequestMethod("GET");
+		con.setRequestProperty("Content-type", "application/json");
+		System.out.println("Response code: " + con.getResponseCode());
+		
+		BufferedReader rd;
+		if(con.getResponseCode() >= 200 && con.getResponseCode() <=300) {
+			rd = new BufferedReader(new InputStreamReader(con.getInputStream()));
+		} else {
+			rd = new BufferedReader(new InputStreamReader(con.getErrorStream())); 
+		}
+		
+		StringBuilder sb = new StringBuilder();
+		String line;
+		while ((line = rd.readLine()) != null) {
+			sb.append(line + "\n");
+		}
+		
+		rd.close(); 
+		con.disconnect(); 
+		System.out.println(sb.toString());
+		
+		return sb.toString();
+	}
+
+	//애니메이션,다큐
+	public String getMovieType(String genre) throws IOException {
+		System.out.println("kmdb - getMovieType");
+		
+		StringBuilder urlBuilder = new StringBuilder(
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&type="
 						+ genre + "&ServiceKey=319276GM630XRTRNIWN8");
 
 		URL url = new URL(urlBuilder.toString());
