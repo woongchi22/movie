@@ -28,6 +28,8 @@ String grade = (String)request.getAttribute("grade");
 
 <title><%=query %> 코멘트</title>
 </head>
+
+
 <header>
 	<jsp:include page="/inc/top.jsp"/>
 </header>
@@ -44,35 +46,48 @@ String grade = (String)request.getAttribute("grade");
 				    <div style="margin: 10px 0;"><%=rb.getContent() %></div>
 				    <div><a href="BoardReply.bo?movieSeq=<%=rb.getMovieSeq()%>&idx=<%=rb.getIdx()%>">
 				    <input type="button"  value="답댓글" id="ReviewReply_<%=rb.getIdx() %>" class="button" ></a></div>
-				    <div style="border-top: solid 0.3px #454545;" ><a href="">좋아요</a></div>
-<%-- 				<%if(name.equals(rb.getName())){%> --%>
-
-<%-- 				 <input type="button" value="수정" id="updateReview_<%=rb.getIdx() %>" class="button"> --%>
-<%--             	 <input type="button" value="삭제" id="deleteReview_<%=rb.getIdx() %>" class="button"> --%>
-<%--           		<%} %> --%>
+				    <div class="likeImg"></div><div style="color: gray; font-weight: bold;"><%=rb.getLike_count() %></div>
+				    <div style="border-top: solid 0.3px #454545;"><input type="button" id = "like_<%=rb.getIdx() %>" value="좋아요"></div>
+<%-- 				    <div style="border-top: solid 0.3px #454545;" id = "like" ><a href="BoardReviewLike.bo?idx=<%=rb.getIdx()%>&name=<%=name%>">좋아요</a></div> --%>
 				</div>
-			<%} %>	
+			
 			</div>  
-				
-				
-<%--           		<div id="update-message_<%=rb.getIdx() %>" title="리뷰 수정" style="display:none"> --%>
-<%-- 				    <textarea id="reviewUpdate_<%=rb.getIdx() %>" name="reviewUpdate" cols="25" rows="5"></textarea> --%>
-<!-- 				     리뷰를 수정해주세요. -->
-<!-- 				</div>		 -->
-				
-<%-- 				<div id = "delete-message_<%=rb.getIdx() %>" title="리뷰 삭제" style="display:none"> --%>
-<!-- 				    리뷰를 삭제하시겠습니까? -->
-<!-- 				</div> -->
-		
-				
 <script type="text/javascript">
-
-
+$(document).ready(function() {
+	var name = $('#name').val();
+	var idx = <%=rb.getIdx() %>
 	
- 
-</script>       
-				
+	console.log(name);
+	console.log(idx);
+		
+		$('#like_<%=rb.getIdx() %>').click(function() {
+			
+			if(name != 'null'){
+			
+				$.ajax('BoardReviewLike.bo',{
+					method:"get",
+					data:{
+						name:name,
+						idx:idx
+					},
+					success: function(data) {
+						location.reload();
+					}
 					
+					
+				});
+			}else{
+				alert('로그인이 필요합니다.');
+					
+			}
+		})//click
+});
+
+
+
+
+</script>	
+			<%} %>			
 		<input type="hidden" id="name" name="name" value="<%=name%>">
 		<input type="hidden" id="movieSeq" name="movieSeq" value="<%=movieSeq%>">
 		<input type="hidden" id="query" name="query" value="<%=query%>">
