@@ -1,6 +1,7 @@
 package movie.action;
 
 import java.io.*;
+import java.util.*;
 
 import javax.servlet.http.*;
 
@@ -27,6 +28,15 @@ public class NationExploreMovieAction implements Action {
 
 		String ty1="애니메이션";
 		String ty2="다큐멘터리";
+		
+		String totalCount = request.getParameter("totalCount");
+		System.out.println(totalCount);
+		int tc = Integer.parseInt(totalCount);
+		
+		
+		Random r = new Random();
+		int startCount = r.nextInt(tc); // 
+		
 		
 		kmdbApi movie = new kmdbApi();
 		String json = null;

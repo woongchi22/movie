@@ -633,10 +633,6 @@ $(document).ready(function() {
         });
     }); 
 	
-// 	$.ajax('BoardReviewList.bo',{
-// 		method:post,
-// 		data:{
-// 			movieSeq:movieSeq
 			
 // 		},
 // 		success: function(data) {

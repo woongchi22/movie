@@ -1,14 +1,8 @@
 @charset "UTF-8";
 
-
  * {margin: 0; padding: 0; }
  
-.clear {
-	clear: both;
-} /* 영역구분 */
-
 header{
-/* 	border: solid 1px blue; */
 	position: fixed;
 	top: 0;
   	left: 0;
@@ -20,14 +14,12 @@ header{
 	background-color: black;
 	z-index: 999;
 }
-
 body{
 	background-color: black;
 	color:white;
    	padding: 30px;
   	margin-top: 120px;
 }
-
 a{
 	text-decoration: none;
 	font-weight: bold;
@@ -38,7 +30,6 @@ a:hover, a:active {color: #bfbfbf;}
 
 .mainBar{
     float: left;
-/*     border: solid 1px red; */
   	padding: 10px;
 }
 .gradeBar{
@@ -47,7 +38,6 @@ a:hover, a:active {color: #bfbfbf;}
     margin: 15px 0 0 30px;
 }
 .searchBar{
-/* 	border: solid 1px yellow; */
 	float: right;
 	padding: 10px;
 	margin: 3px;
@@ -64,7 +54,7 @@ a:hover, a:active {color: #bfbfbf;}
 }
 
 h2{
-	margin: 10px;
+	margin: 0 0 15px 20px;
 }
 .poster{
 	width:250px;
@@ -73,7 +63,6 @@ h2{
 	margin:10px;
 	background-repeat:no-repeat;
 }
-
 .stillCut{
 	width:207px;
 	height:138px;
@@ -85,23 +74,18 @@ h2{
 	width:250px;
 	height:350px;
 	background-size:100%;
-/* 	margin-right:20px; */
-/* 	margin-top:20px; */
-/* 	margin-left:10px; */
 	background-repeat:no-repeat;
 }
 .content{
 	border:1px solid black;
 	margin:20px auto;
 	padding:20px 0px;
-/* 	background-color: rgba(240,255,255,0.1); */
 	border-radius: 10px;
 }
 .slick-track{
 	background-color: #000000;
 	border-radius: 10px 10px;
 }
-
 .searchBtn{
     width: 30px;
     height: 25px;
@@ -176,7 +160,7 @@ dt{
     width: 80px;
     height: 40px;
     border-radius: 10px;
-    background-color: red;
+    background-color: rgb(255 0 0 / 95%);
     border: solid white;
     color: black;
     cursor: pointer;
@@ -210,7 +194,6 @@ dt{
 	margin: 20px 15px 30px 10px;
 }
 .stills{
-/* 	float: left; */
 	clear: both;
 	margin: 20px;
 }
@@ -299,6 +282,7 @@ select:hover{
 	background-color: black;
 }
 
+
 .likeImg{
 	background-image: url("../img/like.png"); 
 	background-size: 100%;
@@ -323,3 +307,4 @@ select:hover{
 	border-radius: 10px;
 	padding: 10px;
 }
+
