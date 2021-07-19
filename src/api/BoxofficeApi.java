@@ -12,12 +12,11 @@ public class BoxofficeApi {
 
 	public String getBoxOffice(String targetDt) throws IOException {
 		System.out.println("BoxofficeApi-getBoxOffice!!!!!!!!!!!!!!");
-		System.out.println(targetDt);
+//		System.out.println(targetDt);
 		String serviceKey = "4d549b0bc63467abbc7ffe4a1169333a";
 		
 		StringBuilder urlBuilder = new StringBuilder("http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?key="
                 + serviceKey + "&itemPerPage=9&multiMovieYn=N&weekGb=0&targetDt=" + targetDt);
-//		urlBuilder.append("&" + URLEncoder.encode("targetDt", "UTF-8") + "=" + targetDt); 
 		
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -38,8 +37,8 @@ public class BoxofficeApi {
 		
 		rd.close();
 		conn.disconnect();
-		System.out.println(sb.toString());
-		System.out.println(targetDt);
+//		System.out.println(sb.toString());
+//		System.out.println(targetDt);
 		return sb.toString();
 	}
 

@@ -18,8 +18,8 @@ public class BoardReplyUpdateAction implements Action {
         String review = (String) request.getParameter("review");
 		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 		int idx = Integer.parseInt(request.getParameter("idx"));
-		System.out.println("================");
-		System.out.println(review+idx);
+//		System.out.println("================");
+//		System.out.println(review+idx);
 
 		ReviewBean replyBean = new ReviewBean();
 		replyBean.setMovieSeq(movieSeq);

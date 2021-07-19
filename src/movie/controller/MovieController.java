@@ -175,6 +175,15 @@ public class MovieController extends HttpServlet {
 				e.printStackTrace();
 			}
 
+		// startCount 추가			
+		} else if(command.equals("/NationExploreMovieAction.mo")) {
+			action = new NationExploreMovieAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
 					
 		}
 		

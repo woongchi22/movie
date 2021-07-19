@@ -71,7 +71,7 @@ public class BoardController extends HttpServlet {
     		}
     	// 리뷰 좋아요
     	} else if(command.equals("/BoardReviewLike.bo")) {
-    		action = new BoardReviewlikeAction();
+    		action = new BoardReviewLikeAction();
     		try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

@@ -5,27 +5,19 @@ import java.net.*;
 
 public class kmdbApi {
 	
+	// 박스오피스
 	public String getBoxoffice(String openDt, String movieNm) throws IOException {
 		System.out.println("kmdbApi-getBoxOffice");
-		
-		System.out.println(movieNm);
-		System.out.println(openDt);
 		
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&releaseDts="
 						+ openDt + "&title=" + movieNm + "&ServiceKey=319276GM630XRTRNIWN8");
-		/* URL */
-//		urlBuilder.append("&" + URLEncoder.encode("releaseDts", "UTF-8") + "=" + URLEncoder.encode(openDt, "UTF-8")); // 개봉일
-//		urlBuilder.append("&" + URLEncoder.encode("title", "UTF-8") + "=" + URLEncoder.encode(movieNm, "UTF-8")); // 영화명
-//		urlBuilder.append("&" + URLEncoder.encode("val002", "UTF-8") + "=" + URLEncoder.encode("01", "UTF-8")); /* 상영 월 */
 		
 		URL url = new URL(urlBuilder.toString());
 		
-		System.out.println("==========");
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("GET");
 		conn.setRequestProperty("Content-type", "application/json");
-		System.out.println("Response code: " + conn.getResponseCode());
 
 		BufferedReader rd;
 		if (conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
@@ -39,8 +31,7 @@ public class kmdbApi {
 			sb.append(line + "\n");
 		}
 		
-		System.out.println("----------------");
-		System.out.println(sb.toString());
+//		System.out.println(sb.toString());
 		rd.close();
 		conn.disconnect();
 
@@ -60,7 +51,7 @@ public class kmdbApi {
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
 		con.setRequestMethod("GET");
 		con.setRequestProperty("Content-type", "application/json");
-		System.out.println("Response code: " + con.getResponseCode());
+//		System.out.println("Response code: " + con.getResponseCode());
 		
 		BufferedReader rd;
 		if(con.getResponseCode() >= 200 && con.getResponseCode() <=300) {
@@ -95,7 +86,7 @@ public class kmdbApi {
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
 		con.setRequestMethod("GET");
 		con.setRequestProperty("Content-type", "application/json");
-		System.out.println("Response code: " + con.getResponseCode());
+//		System.out.println("Response code: " + con.getResponseCode());
 		
 		BufferedReader rd;
 		if(con.getResponseCode() >= 200 && con.getResponseCode() <=300) {
@@ -130,7 +121,7 @@ public class kmdbApi {
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
 		con.setRequestMethod("GET");
 		con.setRequestProperty("Content-type", "application/json");
-		System.out.println("Response code: " + con.getResponseCode());
+//		System.out.println("Response code: " + con.getResponseCode());
 		
 		BufferedReader rd;
 		if(con.getResponseCode() >= 200 && con.getResponseCode() <=300) {
@@ -165,7 +156,7 @@ public class kmdbApi {
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
 		con.setRequestMethod("GET");
 		con.setRequestProperty("Content-type", "application/json");
-		System.out.println("Response code: " + con.getResponseCode());
+//		System.out.println("Response code: " + con.getResponseCode());
 		
 		BufferedReader rd;
 		if(con.getResponseCode() >= 200 && con.getResponseCode() <=300) {
@@ -200,7 +191,6 @@ public class kmdbApi {
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
 		con.setRequestMethod("GET");
 		con.setRequestProperty("Content-type", "application/json");
-		System.out.println("Response code: " + con.getResponseCode());
 		
 		BufferedReader rd;
 		if(con.getResponseCode() >= 200 && con.getResponseCode() <=300) {
@@ -228,13 +218,13 @@ public class kmdbApi {
 		
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&startCount="
-						+ startCount + "&ServiceKey=319276GM630XRTRNIWN8");
+						+ startCount + "&createDts=1980&ServiceKey=319276GM630XRTRNIWN8");
 
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
 		con.setRequestMethod("GET");
 		con.setRequestProperty("Content-type", "application/json");
-		System.out.println("Response code: " + con.getResponseCode());
+//		System.out.println("Response code: " + con.getResponseCode());
 		
 		BufferedReader rd;
 		if(con.getResponseCode() >= 200 && con.getResponseCode() <=300) {
@@ -263,13 +253,13 @@ public class kmdbApi {
 		
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&genre="
-						+ genre + "&ServiceKey=319276GM630XRTRNIWN8");
+						+ genre + "&createDts=1980&ServiceKey=319276GM630XRTRNIWN8");
 
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
 		con.setRequestMethod("GET");
 		con.setRequestProperty("Content-type", "application/json");
-		System.out.println("Response code: " + con.getResponseCode());
+//		System.out.println("Response code: " + con.getResponseCode());
 		
 		BufferedReader rd;
 		if(con.getResponseCode() >= 200 && con.getResponseCode() <=300) {
@@ -300,13 +290,13 @@ public class kmdbApi {
 		
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&nation="
-						+ nations +"&genre="+genre+ "&ServiceKey=319276GM630XRTRNIWN8");
+						+ nations +"&genre="+genre+ "&createDts=1980&ServiceKey=319276GM630XRTRNIWN8");
 
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
 		con.setRequestMethod("GET");
 		con.setRequestProperty("Content-type", "application/json");
-		System.out.println("Response code: " + con.getResponseCode());
+//		System.out.println("Response code: " + con.getResponseCode());
 		
 		BufferedReader rd;
 		if(con.getResponseCode() >= 200 && con.getResponseCode() <=300) {
@@ -324,7 +314,7 @@ public class kmdbApi {
 		rd.close(); 
 		con.disconnect(); 
 		System.out.println(sb.toString());
-		System.out.println(genre + nations + "!!!!!!!!!!");
+//		System.out.println(genre + nations + "!!!!!!!!!!");
 		
 		return sb.toString();
 	}
@@ -335,13 +325,13 @@ public class kmdbApi {
 		
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&nation="
-						+ nations + "&ServiceKey=319276GM630XRTRNIWN8");
+						+ nations + "&createDts=1980&ServiceKey=319276GM630XRTRNIWN8");
 
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
 		con.setRequestMethod("GET");
 		con.setRequestProperty("Content-type", "application/json");
-		System.out.println("Response code: " + con.getResponseCode());
+//		System.out.println("Response code: " + con.getResponseCode());
 		
 		BufferedReader rd;
 		if(con.getResponseCode() >= 200 && con.getResponseCode() <=300) {
@@ -369,13 +359,13 @@ public class kmdbApi {
 		
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&nation="
-						+ nations +"&type="+genre+ "&ServiceKey=319276GM630XRTRNIWN8");
+						+ nations +"&type="+genre+ "&createDts=1980&ServiceKey=319276GM630XRTRNIWN8");
 
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
 		con.setRequestMethod("GET");
 		con.setRequestProperty("Content-type", "application/json");
-		System.out.println("Response code: " + con.getResponseCode());
+//		System.out.println("Response code: " + con.getResponseCode());
 		
 		BufferedReader rd;
 		if(con.getResponseCode() >= 200 && con.getResponseCode() <=300) {
@@ -403,13 +393,13 @@ public class kmdbApi {
 		
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&type="
-						+ genre + "&ServiceKey=319276GM630XRTRNIWN8");
+						+ genre + "&createDts=1980&ServiceKey=319276GM630XRTRNIWN8");
 
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
 		con.setRequestMethod("GET");
 		con.setRequestProperty("Content-type", "application/json");
-		System.out.println("Response code: " + con.getResponseCode());
+//		System.out.println("Response code: " + con.getResponseCode());
 		
 		BufferedReader rd;
 		if(con.getResponseCode() >= 200 && con.getResponseCode() <=300) {

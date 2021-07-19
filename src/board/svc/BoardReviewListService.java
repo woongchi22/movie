@@ -106,7 +106,7 @@ public class BoardReviewListService {
 	public boolean insertLike(ReviewBean rb) {
 		System.out.println("BoardReviewListService - insertLike()");
 		
-		boolean isSuccess =false;
+		boolean isSuccess = false;
 		
 		Connection con = getConnection();
 		BoardDao bdao = BoardDao.getInstance();
