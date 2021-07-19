@@ -11,45 +11,53 @@ import action.*;
 import api.*;
 import vo.*;
 
-public class NationExploreMovieAction implements Action {
+public class RandomNationExploreMovieAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("NationExploreMovieAction");
-		request.setCharacterEncoding("UTF-8");
+		System.out.println("RandomNationExploreMovieAction");
 		
 		String nations = request.getParameter("nations");
-		String genre1 = "모든 장르";
-		String nations1 = "모든 국가";
+		String allGenre = "모든 장르";
+		String allNations = "모든 국가";
 
 		String genre = request.getParameter("genre");
-		System.out.println(nations);
-		System.out.println(genre);
+//		System.out.println(nations);
+//		System.out.println(genre);
 
 		String ty1="애니메이션";
 		String ty2="다큐멘터리";
+		
+		String totalCount = request.getParameter("totalCount");
+//		System.out.println(totalCount);
+		int tc = Integer.parseInt(totalCount);
+		
+		Random r = new Random();
+		int startCount = r.nextInt(tc); // 랜덤
+//		System.out.println(startCount);
 		
 		kmdbApi movie = new kmdbApi();
 		String json = null;
 		
 		if(genre.equals(ty1) || genre.equals(ty2) ) {
-			if(!nations1.equals(nations)) {
+			if(!allNations.equals(nations)) {
 				System.out.println("같이");
-				json = movie.getMovieType(nations,genre);
+				json = movie.getStartMovieType(nations,genre, startCount);
 			}
-			if(nations1.equals(nations)) {
+			if(allNations.equals(nations)) {
 				System.out.println("따로");
-				json = movie.getMovieType(genre);
+				json = movie.getStartMovieType(genre, startCount);
 				}
 			
-		}else {
-			if(!genre1.equals(genre)) {
+		} else {
+		
+			if(!allGenre.equals(genre)) {
 				System.out.println("같이");
-				json = movie.getMovie(nations,genre);
+				json = movie.getStartMovie(nations,genre, startCount);
 			}
-			if(genre1.equals(genre)) {
+			if(allGenre.equals(genre)) {
 				System.out.println("따로");
-				json = movie.getMovie(nations);
+				json = movie.getStartMovie(nations, startCount);
 			}
 
 		}
@@ -61,6 +69,7 @@ public class NationExploreMovieAction implements Action {
 		PrintWriter out = response.getWriter();
 		out.print(jsonObject);
 		out.flush();
+		
 		return null;
 	}
 
