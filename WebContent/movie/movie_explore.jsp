@@ -13,7 +13,8 @@ String name = (String)session.getAttribute("name");
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	$('.caption').html('<h1> 보고싶은 작품을 찾아보세요 </h1>');
+	
+	$('.caption').html('<h2> 보고싶은 작품을 찾아보세요 </h2>');
 
 	$("#selected *").remove();
 	$('#genreExplore').change(function() {
@@ -32,31 +33,35 @@ $(document).ready(function() {
 				nations:nations
 			},
 			success: function(data) {
-         	    $('.caption').html('<h1>'+name+'님에게 추천하는 '+nations+' '+ genre +' 영화</h1>');
-				$.each(data.Data, function(idx,item) {
-					$.each(item.Result, function(idx2,item2) {
-					    var title1 = item2.title
-	                    var titleNoSpace = title1.replace(/ /g, ''); // 타이틀 공백제거
-	                    var title2 = titleNoSpace.replace(/!HS/g,'') // 검색어는 !HS , !HE 로 둘러 싸여있어서 제거해줌
-	                    var title3 = title2.replace(/!HE/g,'')
-	                    var title4 = title3.trim(); // 양쪽끝에 공백을 제거해줌
-	                    var title = encodeURIComponent(title4);
-	                    var prodYear = item2.prodYear
+         	    $('.caption').html('<h2>'+name+'님에게 추천하는 '+nations+' '+ genre +' 영화</h2>');
+         	    console.log("여 오나");
+         	    $.each(data.Data, function(idx,item) {
+					console.log("토탈카운트"+item.TotalCount);
+				});
+// 				$.each(data.Data, function(idx,item) {
+// 					$.each(item.Result, function(idx2,item2) {
+// 					    var title1 = item2.title
+// 	                    var titleNoSpace = title1.replace(/ /g, ''); // 타이틀 공백제거
+// 	                    var title2 = titleNoSpace.replace(/!HS/g,'') // 검색어는 !HS , !HE 로 둘러 싸여있어서 제거해줌
+// 	                    var title3 = title2.replace(/!HE/g,'')
+// 	                    var title4 = title3.trim(); // 양쪽끝에 공백을 제거해줌
+// 	                    var title = encodeURIComponent(title4);
+// 	                    var prodYear = item2.prodYear
 	                    
-	                    console.log(prodYear);
-	                    var posters = item2.posters.split("|");
-	                    var poster = posters[0]
+// 	                    console.log(prodYear);
+// 	                    var posters = item2.posters.split("|");
+// 	                    var poster = posters[0]
 		                    
 	                    
-	                    if(poster) {
-	                        $('#selected').append('<div id=gradeMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query='
-                              + title + '><div class=gradePoster style="background-image: url(' + poster + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a><div class="gradeTitle">'
-                              + title4 + '</div></div>');
+// 	                    if(poster) {
+// 	                        $('#selected').append('<div id=gradeMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query='
+//                               + title + '><div class=gradePoster style="background-image: url(' + poster + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a><div class="gradeTitle">'
+//                               + title4 + '</div></div>');
 	                                
-	                    }
+// 	                    }
                        
-					})
-				})
+// 					});
+// 				});
 			}
 		});
 	}); //change
@@ -77,31 +82,65 @@ $(document).ready(function() {
 				genre:genre
 			},
 			success: function(data) {
-         	    $('.caption').html('<h1>'+name+'님에게 추천하는 '+nations+' '+ genre +' 영화</h1>');
-				$.each(data.Data, function(idx,item) {
-					$.each(item.Result, function(idx2,item2) {
-					    var title1 = item2.title
-	                    var titleNoSpace = title1.replace(/ /g, ''); // 타이틀 공백제거
-	                    var title2 = titleNoSpace.replace(/!HS/g,'') // 검색어는 !HS , !HE 로 둘러 싸여있어서 제거해줌
-	                    var title3 = title2.replace(/!HE/g,'')
-	                    var title4 = title3.trim(); // 양쪽끝에 공백을 제거해줌
-	                    var title = encodeURIComponent(title4);
-	                    var prodYear = item2.prodYear
+         	    $('.caption').html('<h2>'+name+'님에게 추천하는 '+nations+' '+ genre +' 영화</h2>');
+         	    
+         	    $.each(data.Data, function(idx,item) {
+                   var totalCount = item.TotalCount
+                   console.log(totalCount);
+                   
+                   $.ajax("CountNationExploreMovieAction.mo", {
+                	   async: false,    
+                       dataType:"json",
+                       method: 'post',
+                       data: {
+                           nations:nations,
+                           genre:genre,
+                           totalCount:totalCount
+                       }, 
+                       success: function(data) {
+						
+                    	   console.log("발제에ㅜ");
+                    	   
+                    	   
+                    	   
+                    	   
+                    	   
+                       }
+                       
+                       
+                       
+                   });
+                   
+                   
+                   
+                   
+                   
+                   
+               });
+// 				$.each(data.Data, function(idx,item) {
+// 					$.each(item.Result, function(idx2,item2) {
+// 					    var title1 = item2.title
+// 	                    var titleNoSpace = title1.replace(/ /g, ''); // 타이틀 공백제거
+// 	                    var title2 = titleNoSpace.replace(/!HS/g,'') // 검색어는 !HS , !HE 로 둘러 싸여있어서 제거해줌
+// 	                    var title3 = title2.replace(/!HE/g,'')
+// 	                    var title4 = title3.trim(); // 양쪽끝에 공백을 제거해줌
+// 	                    var title = encodeURIComponent(title4);
+// 	                    var prodYear = item2.prodYear
 	                    
-	                    console.log(title4);
-	                    var posters = item2.posters.split("|");
-	                    var poster = posters[0]
+// 	                    console.log(title4);
+// 	                    var posters = item2.posters.split("|");
+// 	                    var poster = posters[0]
 		                    
 	                    
-	                    if(poster) {
-	                        $('#selected').append('<div id=gradeMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query='
-                              + title + '><div class=gradePoster style="background-image: url(' + poster + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a><div class="gradeTitle">'
-                              + title4 + '</div><input type="hidden" id = "prodYear" name="prodYear" value = '+prodYear+'></div>');
+// 	                    if(poster) {
+// 	                        $('#selected').append('<div id=gradeMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query='
+//                               + title + '><div class=gradePoster style="background-image: url(' + poster + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a><div class="gradeTitle">'
+//                               + title4 + '</div><input type="hidden" id = "prodYear" name="prodYear" value = '+prodYear+'></div>');
 	                                
-	                    }
+// 	                    }
                        
-					})
-				})
+// 					});
+// 				});
 			}
 		});
 	}); //change
@@ -131,7 +170,7 @@ $(document).ready(function() {
     <jsp:include page="/inc/top.jsp"/>
 </header>
 <body>
-    <h2 class="caption"></h2>
+    <div class="caption"></div>
     <div class="exploreBar" style="padding: 0 10px;">
         <select id="genreExplore">
             <option id="allGenre">모든 장르</option>
@@ -165,6 +204,7 @@ $(document).ready(function() {
         
         <select id="nationExplore">
             <option id="allNation">모든 국가</option>
+            <option id="korea">대한민국</option>
             <option id="germany">독일</option>
             <option id="unitedStates">미국</option>
             <option id="spain">스페인</option>
@@ -175,7 +215,6 @@ $(document).ready(function() {
             <option id="china">중국</option>
             <option id="canada">캐나다</option>
             <option id="france">프랑스</option>
-            <option id="korea">대한민국</option>
             <option id="hongkong">홍콩</option>
         </select>
         

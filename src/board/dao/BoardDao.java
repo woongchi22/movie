@@ -341,7 +341,6 @@ public class BoardDao {
 		int selectCount = 0;
 		
 		try {
-			System.out.println("1");
 			String sql = "SELECT * FROM reviewLike WHERE name=? AND idx=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, rb.getName());
@@ -351,7 +350,6 @@ public class BoardDao {
 			if(rs.next()) {
 				
 			}else {
-				System.out.println("2");
 				sql ="INSERT INTO reviewLike VALUES(?,?,now())";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setInt(1, rb.getIdx());
@@ -367,9 +365,6 @@ public class BoardDao {
 			close(rs);
 			close(pstmt);
 		}
-			
-		
-		
 		
 		return selectCount;
 	}
@@ -393,8 +388,10 @@ public class BoardDao {
 		
 		return insertCount;
 	}
+	
+	
 	public int deleteLike(ReviewBean rb) {
-System.out.println("BoardDAO-selectLike");
+		System.out.println("BoardDAO-selectLike");
 		
 		int selectCount = 0;
 		
