@@ -162,7 +162,6 @@ public class MovieController extends HttpServlet {
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -175,9 +174,18 @@ public class MovieController extends HttpServlet {
 				e.printStackTrace();
 			}
 
-		// startCount 추가			
-		} else if(command.equals("/NationExploreMovieAction.mo")) {
-			action = new NationExploreMovieAction();
+		// 랜덤 탐색		
+		} else if(command.equals("/RandomNationExploreMovieAction.mo")) {
+			action = new RandomNationExploreMovieAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		// 랜덤 탐색			
+		} else if(command.equals("/RandomExploreMovieAction.mo")) {
+			action = new RandomExploreMovieAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

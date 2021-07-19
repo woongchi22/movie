@@ -43,10 +43,10 @@ public class ExploreMovieAction implements Action {
 			if(!nations1.equals(nations)) {
 				System.out.println("같이");
 				json = movie.getMovie(nations,genre);
-		}
-		else if(nations1.equals(nations)) {
-			System.out.println("따로");
-			json = movie.getMovieGenre(genre);
+			}
+			if(nations1.equals(nations)) {
+				System.out.println("따로");
+				json = movie.getMovieGenre(genre);
 			}
 		}
 		

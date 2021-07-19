@@ -36,32 +36,48 @@ $(document).ready(function() {
          	    $('.caption').html('<h2>'+name+'님에게 추천하는 '+nations+' '+ genre +' 영화</h2>');
          	    console.log("여 오나");
          	    $.each(data.Data, function(idx,item) {
-					console.log("토탈카운트"+item.TotalCount);
+         	    	var totalCount = item.TotalCount
+                    console.log(totalCount);
+         	    	
+         	    	$.ajax("RandomExploreMovieAction.mo", {
+                        async: false,    
+                        dataType:"json",
+                        method: 'post',
+                        data: {
+                            nations:nations,
+                            genre:genre,
+                            totalCount:totalCount
+                        }, 
+                        success: function(data) {
+                            $.each(data.Data, function(idx,item) {
+                                 $.each(item.Result, function(idx2,item2) {
+                                     var title1 = item2.title
+                                     var titleNoSpace = title1.replace(/ /g, ''); // 타이틀 공백제거
+                                     var title2 = titleNoSpace.replace(/!HS/g,'') // 검색어는 !HS , !HE 로 둘러 싸여있어서 제거해줌
+                                     var title3 = title2.replace(/!HE/g,'')
+                                     var title4 = title3.trim(); // 양쪽끝에 공백을 제거해줌
+                                     var title = encodeURIComponent(title4);
+                                     var prodYear = item2.prodYear
+                                        
+                                     console.log(title4);
+                                     var posters = item2.posters.split("|");
+                                     var poster = posters[0]
+                                        
+                                     if(poster) {
+                                         $('#selected').append('<div id=gradeMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query='
+                                              + title + '><div class=gradePoster style="background-image: url(' + poster + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a><div class="gradeTitle">'
+                                              + title4 + '</div><input type="hidden" id = "prodYear" name="prodYear" value = '+prodYear+'></div>');
+                                                    
+                                     }
+                                       
+                                 });
+                             });
+                            
+                        }
+                        
+                    });
+         	    	
 				});
-// 				$.each(data.Data, function(idx,item) {
-// 					$.each(item.Result, function(idx2,item2) {
-// 					    var title1 = item2.title
-// 	                    var titleNoSpace = title1.replace(/ /g, ''); // 타이틀 공백제거
-// 	                    var title2 = titleNoSpace.replace(/!HS/g,'') // 검색어는 !HS , !HE 로 둘러 싸여있어서 제거해줌
-// 	                    var title3 = title2.replace(/!HE/g,'')
-// 	                    var title4 = title3.trim(); // 양쪽끝에 공백을 제거해줌
-// 	                    var title = encodeURIComponent(title4);
-// 	                    var prodYear = item2.prodYear
-	                    
-// 	                    console.log(prodYear);
-// 	                    var posters = item2.posters.split("|");
-// 	                    var poster = posters[0]
-		                    
-	                    
-// 	                    if(poster) {
-// 	                        $('#selected').append('<div id=gradeMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query='
-//                               + title + '><div class=gradePoster style="background-image: url(' + poster + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a><div class="gradeTitle">'
-//                               + title4 + '</div></div>');
-	                                
-// 	                    }
-                       
-// 					});
-// 				});
 			}
 		});
 	}); //change
@@ -88,7 +104,7 @@ $(document).ready(function() {
                    var totalCount = item.TotalCount
                    console.log(totalCount);
                    
-                   $.ajax("CountNationExploreMovieAction.mo", {
+                   $.ajax("RandomNationExploreMovieAction.mo", {
                 	   async: false,    
                        dataType:"json",
                        method: 'post',
@@ -98,49 +114,36 @@ $(document).ready(function() {
                            totalCount:totalCount
                        }, 
                        success: function(data) {
-						
-                    	   console.log("발제에ㅜ");
-                    	   
-                    	   
-                    	   
-                    	   
+                    	   $.each(data.Data, function(idx,item) {
+	                            $.each(item.Result, function(idx2,item2) {
+	                                var title1 = item2.title
+	                                var titleNoSpace = title1.replace(/ /g, ''); // 타이틀 공백제거
+	                                var title2 = titleNoSpace.replace(/!HS/g,'') // 검색어는 !HS , !HE 로 둘러 싸여있어서 제거해줌
+	                                var title3 = title2.replace(/!HE/g,'')
+	                                var title4 = title3.trim(); // 양쪽끝에 공백을 제거해줌
+	                                var title = encodeURIComponent(title4);
+	                                var prodYear = item2.prodYear
+	                                   
+	                                console.log(title4);
+	                                var posters = item2.posters.split("|");
+	                                var poster = posters[0]
+	                                   
+	                                if(poster) {
+	                                    $('#selected').append('<div id=gradeMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query='
+	                                         + title + '><div class=gradePoster style="background-image: url(' + poster + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a><div class="gradeTitle">'
+	                                         + title4 + '</div><input type="hidden" id = "prodYear" name="prodYear" value = '+prodYear+'></div>');
+	                                               
+	                                }
+	                                  
+	                            });
+	                        });
                     	   
                        }
                        
-                       
-                       
                    });
                    
-                   
-                   
-                   
-                   
-                   
                });
-// 				$.each(data.Data, function(idx,item) {
-// 					$.each(item.Result, function(idx2,item2) {
-// 					    var title1 = item2.title
-// 	                    var titleNoSpace = title1.replace(/ /g, ''); // 타이틀 공백제거
-// 	                    var title2 = titleNoSpace.replace(/!HS/g,'') // 검색어는 !HS , !HE 로 둘러 싸여있어서 제거해줌
-// 	                    var title3 = title2.replace(/!HE/g,'')
-// 	                    var title4 = title3.trim(); // 양쪽끝에 공백을 제거해줌
-// 	                    var title = encodeURIComponent(title4);
-// 	                    var prodYear = item2.prodYear
-	                    
-// 	                    console.log(title4);
-// 	                    var posters = item2.posters.split("|");
-// 	                    var poster = posters[0]
-		                    
-	                    
-// 	                    if(poster) {
-// 	                        $('#selected').append('<div id=gradeMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query='
-//                               + title + '><div class=gradePoster style="background-image: url(' + poster + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a><div class="gradeTitle">'
-//                               + title4 + '</div><input type="hidden" id = "prodYear" name="prodYear" value = '+prodYear+'></div>');
-	                                
-// 	                    }
-                       
-// 					});
-// 				});
+// 				
 			}
 		});
 	}); //change
