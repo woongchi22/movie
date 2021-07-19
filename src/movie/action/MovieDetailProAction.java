@@ -1,6 +1,8 @@
 package movie.action;
 
 
+import java.util.*;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -50,6 +52,9 @@ public class MovieDetailProAction implements Action {
 		request.setAttribute("review", review);
 		System.out.println(review);
 		
+		// 리뷰 리스트
+		ArrayList<ReviewBean> reviewList = boardReviewListService.getReview(movieSeq,title);
+		request.setAttribute("reviewList", reviewList);
 		
 		forward = new ActionForward();
 		forward.setPath("/movie/movie_detail.jsp");
