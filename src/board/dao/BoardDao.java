@@ -452,6 +452,43 @@ System.out.println("BoardDAO-selectLike");
 		return insertCount;
 	}
 
+	public ArrayList<ReviewBean> getReview(int movieSeq, String title) {
+		System.out.println("dao-getReview:desc");
+		ArrayList<ReviewBean> reviewList = null;
+		
+		try {
+			String sql = "SELECT * FROM review WHERE movieSeq=? ORDER BY like_count DESC ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, movieSeq);
+			rs = pstmt.executeQuery();
+			
+			reviewList = new ArrayList<ReviewBean>();
+			
+			while(rs.next()) {
+				ReviewBean review = new ReviewBean();
+				review.setIdx(rs.getInt("idx"));
+				review.setName(rs.getString("name"));
+				review.setGrade(rs.getInt("grade"));
+				review.setMovieSeq(rs.getInt("movieSeq"));
+				review.setTitle(rs.getString("title"));
+				review.setContent(rs.getString("content"));
+				review.setLike_count(rs.getInt("like_count"));
+				review.setDate(rs.getDate("date"));
+				
+				reviewList.add(review);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("ReviewdDao - getReview 에러");
+		} finally {
+			close(rs); // JdbcUtil.close(rs)
+			close(pstmt); // JdbcUtil.close(rs)
+		}
+		
+		return reviewList;
+	}
+
 	
 
 	

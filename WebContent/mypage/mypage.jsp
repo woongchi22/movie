@@ -204,6 +204,13 @@ $(document).ready(function(){
 </header>
 
 <body>
+	<div class="sidebar">
+	<ul>
+							<li class="active"><a href="#" data-nav-section="about">개인정보수정</a></li>
+							<li><a href="BoardReviewList.bo" data-nav-section="review">내가 쓴 리뷰</a></li>
+						</ul>
+	
+	</div>
     <div class="joinAll">
         <div class="loginLogin">
            <span class="loginSpan">회원정보 수정</span>

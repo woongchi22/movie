@@ -276,10 +276,11 @@ textarea{
 }
 
 .button{
-	float: right;
 	color: gray;
-	border-radius: 7px;
-	padding: 5px;
+	margin:2px;
+	border: 0;
+	outline: 0;
+	background-color: rgba(0,0,0,0);
 }
 dt{
 	font-size: 18px;
@@ -305,4 +306,20 @@ select:hover{
 	width: 20px;
 	margin: 0 5px;
 	float: left;
+}
+.sidebar{
+	float: left;
+}
+
+.sidebar li{
+	list-style-type: none;
+}
+.review_box{
+	float: left;
+	width: 280px;
+	height: 230px;
+	margin-left: 10px;
+	background-color: rgba( 130, 130, 130, 0.4 );
+	border-radius: 10px;
+	padding: 10px;
 }

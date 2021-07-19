@@ -1,3 +1,5 @@
+<%@page import="board.vo.ReviewBean"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="movie.vo.MovieBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -15,7 +17,7 @@ String poster = (String)request.getParameter("image");
 String director = request.getParameter("director");
 String review = (String)request.getAttribute("review");
 String grade = (String)request.getAttribute("grade");
-
+ArrayList<ReviewBean> reviewList = (ArrayList<ReviewBean>) request.getAttribute("reviewList");
 %>
 <title>[WhatFilx] <%=query %></title>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
@@ -631,18 +633,18 @@ $(document).ready(function() {
         });
     }); 
 	
-	$.ajax('BoardReviewList.bo',{
-		method:post,
-		data:{
-			movieSeq:movieSeq
+// 	$.ajax('BoardReviewList.bo',{
+// 		method:post,
+// 		data:{
+// 			movieSeq:movieSeq
 			
-		},
-		success: function(data) {
-			console.log(" 성겅ㅋ");
-		}
+// 		},
+// 		success: function(data) {
+// 			console.log(" 성겅ㅋ");
+// 		}
 		
 		
-	})//ajax
+// 	})//ajax
 
    
  
@@ -713,7 +715,18 @@ $(document).ready(function() {
 		<div class="starAvg"></div>
 		<div class="posters" ></div>
 		<div class="info"></div>
-		<div class="reviewList"></div>
+		<div class="reviewList" style="clear: both; margin: 20px 30px;" >
+			<% for(ReviewBean rb : reviewList) {%>
+			<div class = "review_box" >
+			<span style="margin: 2px;"><%=rb.getName() %> </span>
+			<span style="float: right;"> 별점 <%=rb.getGrade() %>점</span>
+			<div style="height: 160px;margin: 5px 2px 2px 2px;"><%=rb.getContent() %></div>
+			<div class="likeImg"></div>
+			<div><%=rb.getLike_count() %></div>
+			<div><input type="button" id = "like_<%=rb.getIdx() %>"class="button" value="좋아요"></div>
+			</div>
+			<%} %>
+		</div>
 	    <div class="stills" ></div>
 	    <div class="directorP"> </div>
 	    <div class="directorMovie"></div>

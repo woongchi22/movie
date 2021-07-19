@@ -190,6 +190,18 @@ public class BoardReviewListService {
 		
 		return isSuccess;
 	}
+
+	public ArrayList<ReviewBean> getReview(int movieSeq, String title) {
+		System.out.println("BoardReviewListService");
+		ArrayList<ReviewBean> reviewList = null;
+
+		Connection con = getConnection();
+		BoardDao bdao = BoardDao.getInstance();
+		bdao.setConnection(con);
+		
+		reviewList = bdao.getReview(movieSeq,title);
+		return reviewList;
+	}
 	
 //	public ReviewBean getReview(int idx, int movieSeq) {
 //		System.out.println("BoardReviewListService - getReview");
