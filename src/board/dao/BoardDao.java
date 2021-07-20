@@ -137,7 +137,10 @@ public class BoardDao {
 	// 리뷰 수정
 	public int updateReview(ReviewBean reviewBean) {
 		System.out.println("BoardDAO-updateReview");
-		
+		System.out.println(reviewBean.getContent());
+		System.out.println(reviewBean.getName());
+		System.out.println(reviewBean.getMovieSeq());
+
 		int insertCount = 0;
 		
 		try {
@@ -454,7 +457,7 @@ public class BoardDao {
 		ArrayList<ReviewBean> reviewList = null;
 		
 		try {
-			String sql = "SELECT * FROM review WHERE movieSeq=? ORDER BY like_count DESC ";
+			String sql = "SELECT * FROM review WHERE movieSeq=? ORDER BY like_count DESC LIMIT 3 ";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, movieSeq);
 			rs = pstmt.executeQuery();
@@ -479,16 +482,50 @@ public class BoardDao {
 			e.printStackTrace();
 			System.out.println("ReviewdDao - getReview 에러");
 		} finally {
-			close(rs); // JdbcUtil.close(rs)
-			close(pstmt); // JdbcUtil.close(rs)
+			close(rs);
+			close(pstmt); 
 		}
 		
 		return reviewList;
 	}
 
-	
+	public ArrayList<ReviewBean> getReview(String name) {
+		System.out.println("dao-getReview:my");
+		ArrayList<ReviewBean> reviewList = null;
+		
+		try {
+			String sql = "SELECT * FROM review WHERE name=? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			rs = pstmt.executeQuery();
+			
+			reviewList = new ArrayList<ReviewBean>();
+			
+			while(rs.next()) {
+				ReviewBean review = new ReviewBean();
+				review.setIdx(rs.getInt("idx"));
+				review.setName(rs.getString("name"));
+				review.setGrade(rs.getInt("grade"));
+				review.setMovieSeq(rs.getInt("movieSeq"));
+				review.setTitle(rs.getString("title"));
+				review.setContent(rs.getString("content"));
+				review.setLike_count(rs.getInt("like_count"));
+				review.setDate(rs.getDate("date"));
+				reviewList.add(review);
+				System.out.println(review.getTitle());
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("ReviewdDao - getReview 에러");
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return reviewList;
+	}
 
-	
 	
 	
 	

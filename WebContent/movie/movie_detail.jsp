@@ -1,3 +1,4 @@
+<%@page import="board.vo.PageInfo"%>
 <%@page import="board.vo.ReviewBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="movie.vo.MovieBean"%>
@@ -18,6 +19,7 @@ String director = request.getParameter("director");
 String review = (String)request.getAttribute("review");
 String grade = (String)request.getAttribute("grade");
 ArrayList<ReviewBean> reviewList = (ArrayList<ReviewBean>) request.getAttribute("reviewList");
+
 %>
 <title>[WhatFilx] <%=query %></title>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
