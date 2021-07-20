@@ -42,17 +42,18 @@ String grade = (String)request.getAttribute("grade");
 	
 		<div class="reviewList">
 		    <div class="reviewName"> <%=rb.getName() %></div>
-		    <div class="reviewGrade"><img class="reviewStar" src="img/star3.png"> <%=rb.getGrade() %></div>
+		    <div class="reviewGrade"><img class="reviewStar" src="img/star3.png"> <%=rb.getGrade() %>점</div>
 		    <hr>
 		    <div class="reviewContent"><%=rb.getContent() %></div>
 		    <hr>
-		    <div class="likeImg"></div>
-		    <div class="reviewLc"><%=rb.getLike_count() %></div>
-		    <hr>
-		    <div class="reviewLike">
-		      <input class="likeBtn" type="button" id="like_<%=rb.getIdx() %>" value="좋아요">
-		      <a href="BoardReply.bo?movieSeq=<%=rb.getMovieSeq()%>&idx=<%=rb.getIdx()%>">
-                      <input type="button" value="댓글달기" id="ReviewReply_<%=rb.getIdx() %>" class="replyBtn" ></a>
+		    <div class="reList">
+			    <div class="likeImg"></div>
+			    <div class="reviewLc"><%=rb.getLike_count() %></div>
+			    <div>
+			      <a href="BoardReply.bo?movieSeq=<%=rb.getMovieSeq()%>&idx=<%=rb.getIdx()%>">
+	                      <input type="button" value="댓글달기" id="ReviewReply_<%=rb.getIdx() %>" class="replyBtn" ></a>
+			      <input class="likeBtn" type="button" id="like_<%=rb.getIdx() %>" value="좋아요">    
+			    </div>
 		    </div>
 		</div>
 			
