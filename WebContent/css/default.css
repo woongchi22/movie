@@ -304,7 +304,7 @@ select:hover{
 	float: left;
 	width: 290px;
 	height: 230px;
-	margin-left: 10px;
+	margin: 0 10px 20px 0;
 	background-color: #dfdfdf46;
 	border-radius: 10px;
 	padding: 10px;

@@ -234,7 +234,7 @@
 }
 .moreCmt{
 	float: right;
-	margin: -15px 25px 15px 0;
+	margin: -30px 40px 15px 0;
 	clear: both;
 }
 .reviewAll{
@@ -334,9 +334,13 @@ hr{
 	margin: 10px;
     line-height: 170%;
     height: 130px;
-/*     text-overflow: ellipsis; */
-/*     overflow: hidden; */
-/*     white-space: nowrap; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    -webkit-line-clamp: 5;
+    white-space: break-spaces;
 }
 
 
