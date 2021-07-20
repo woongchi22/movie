@@ -258,14 +258,26 @@ textarea{
 	margin-bottom: 20px;
 }
 
-.button{
+.deleteBtn{
 	color: #b7b7b7;
-	margin: -18px 12px;
-	border: 0;
-	font-size: 15px;
-	background-color: rgba(0,0,0,0);
-	float: right;
-	cursor: pointer;
+    border: 0;
+    font-size: 15px;
+    background-color: rgba(0,0,0,0);
+    float: right;
+    cursor: pointer;
+    
+	margin: -35px 0 0 0;
+    padding: 5px;
+}
+.updateBtn{
+	color: #b7b7b7;
+    border: 0;
+    font-size: 15px;
+    background-color: rgba(0,0,0,0);
+    float: right;
+    cursor: pointer;
+	margin: -35px 75px 0 0;
+    padding: 5px;
 }
 dt{
 	font-size: 18px;
@@ -295,10 +307,13 @@ select:hover{
 }
 .sidebar{
 	float: left;
+	clear: both;
+	position: fixed;
 }
 
 .sidebar li{
 	list-style-type: none;
+	margin: 10px;
 }
 .review_box{
 	float: left;
@@ -310,3 +325,14 @@ select:hover{
 	padding: 10px;
 }
 
+.myReviewList{
+   background-color: #dfdfdf46; 
+   margin: 20px 30%;
+   border-radius: 10px;
+   clear: both; 
+	
+}
+.button{
+	clear: both;
+	margin: 40px 15px;
+}
