@@ -20,7 +20,7 @@ public class MovieGradeRandomAction implements Action {
 		response.setCharacterEncoding("UTF-8");
 		
 		Random r = new Random();
-		int startCount = r.nextInt(61393); // 0~61392 랜덤
+		int startCount = r.nextInt(61343); // 0~61392 랜덤
 		
 		kmdbApi movie = new kmdbApi();
 		String json = movie.getMovieGrade(startCount);

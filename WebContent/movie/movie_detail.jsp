@@ -684,7 +684,6 @@ $(document).ready(function() {
             <input id="cancelBtn" type="button" value="취소">
           </div>
           <div id="diStar" style='display:none'>별점을 삭제하시겠습니까?</div>
-          
 		  <div class="dibs">
 		      <button class="dibsBtn" value="<%=movieSeq %>"><img class="dibsBtnImg" src="img/check.png" width="20px" height="20px">&nbsp;찜꽁</button>
 		  </div>
@@ -701,7 +700,6 @@ $(document).ready(function() {
 	  		    <input type="button" id ="updateBtn" style="display: none" value="수정">
 		  	</div>	
 		</div>
-		<a style="color: yellow" class="moreCmt" href="BoardReviewList.bo?movieSeq=<%=movieSeq %>&query=<%=query %>">코멘트 더보기</a>
 		
 		<div id="dialog-comment" title="<%=query %>" style="display:none">
 		  <textarea id="opinion" cols="800" rows="800"><%=review %></textarea>
@@ -711,15 +709,18 @@ $(document).ready(function() {
 		<div class="starAvg"></div>
 		<div class="posters" ></div>
 		<div class="info"></div>
-		<div class="reviewList" style="clear: both; margin: 20px 30px;" >
+		<a style="color: yellow" class="moreCmt" href="BoardReviewList.bo?movieSeq=<%=movieSeq %>&query=<%=query %>">코멘트 더보기</a>
+		<div class="reviewList" >
 			<% for(ReviewBean rb : reviewList) {%>
 			<div class = "review_box" >
-			<span style="margin: 2px;"><%=rb.getName() %> </span>
-			<span style="float: right;"> 별점 <%=rb.getGrade() %>점</span>
-			<div style="height: 160px;margin: 5px 2px 2px 2px;"><%=rb.getContent() %></div>
-			<div class="likeImg"></div>
-			<div><%=rb.getLike_count() %></div>
-			<div><input type="button" id = "like_<%=rb.getIdx() %>"class="button" value="좋아요"></div>
+				<span class="reviewLn"><%=rb.getName() %> </span>
+				<span class="reviewLg"><img class="reviewStar" src="img/star3.png"> <%=rb.getGrade() %>점</span>
+				<hr>
+				<div class="reviewLco"><%=rb.getContent() %></div>
+				<hr>
+				<div id="likeImg"></div>
+				<div><%=rb.getLike_count() %></div>
+				<div><input type="button" id = "like_<%=rb.getIdx() %>"class="button" value="좋아요"></div>
 			</div>
 			<%} %>
 		</div>

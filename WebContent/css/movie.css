@@ -234,7 +234,7 @@
 }
 .moreCmt{
 	float: right;
-	margin: -15px 20px 0 0;
+	margin: -15px 25px 15px 0;
 	clear: both;
 }
 .reviewAll{
@@ -245,6 +245,8 @@
    background-color: #dfdfdf46; 
    margin: 20px;
    border-radius: 10px;
+   clear: both; 
+/*    margin: 20px 30px; */
 }
 hr{
     margin: 10px;
@@ -253,10 +255,15 @@ hr{
     border-style: solid;
     border-color: #808080b0;
 }
-.reviewContent, .reviewLc, .reviewLike{
+.reviewContent{
 	margin: 10px 15px;
 	padding: 5px;
 	line-height: 170%;
+	white-space: break-spaces;
+}
+.reList{
+	margin: 40px 15px;
+    padding: 5px;
 }
 .reviewName{
 	margin: 10px 20px;
@@ -279,27 +286,32 @@ hr{
     background-size: 100%;
     height: 20px;
     width: 20px;
-    margin: 9px 8px 0 20px;
+    margin: -30px 9px 0 0;
+    float: left;
+}
+.reviewLc{
+    margin: -31px 0 0 30px;
     float: left;
 }
 .likeBtn{
-	margin: 1px 5px 10px 0;
-    float: left;
-    border-radius: 5px;
-    background-color: gray;
-    border: none;
+	color: #b7b7b7;
+    border: 0;
+    font-size: 15px;
+    background-color: rgba(0,0,0,0);
+    float: right;
     cursor: pointer;
-    font-weight: bold;
+	margin: -35px 75px 0 0;
     padding: 5px;
-/*     color:#fff; */
 }
 .replyBtn{
-	margin: 0 0 10px 10px;
-    border-radius: 5px;
-    background-color: gray;
-    border: none;
+	color: #b7b7b7;
+    border: 0;
+    font-size: 15px;
+    background-color: rgba(0,0,0,0);
+    float: right;
     cursor: pointer;
-    font-weight: bold;
+    
+	margin: -35px 0 0 0;
     padding: 5px;
 /*     color:#fff; */
 	
@@ -307,10 +319,25 @@ hr{
 .back{
 	margin: 0 0 0 660px;
 }
-
-
-
-
+.reviewLn{
+	margin: 0px 0 10px 12px;
+    padding: 5px 0;
+    float: left;
+    font-weight: bold;
+}
+.reviewLg{
+    margin: 0px 12px 10px 0;
+    padding: 5px 0;
+    float: right;
+}
+.reviewLco{
+	margin: 10px;
+    line-height: 170%;
+    height: 130px;
+/*     text-overflow: ellipsis; */
+/*     overflow: hidden; */
+/*     white-space: nowrap; */
+}
 
 
 
