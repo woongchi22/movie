@@ -57,9 +57,6 @@ String grade = (String)request.getAttribute("grade");
 		    </div>
 		</div>
 			
-			  
-			
-			
 <script type="text/javascript">
 
 $(document).ready(function() {
