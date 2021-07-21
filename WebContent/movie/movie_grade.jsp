@@ -64,7 +64,7 @@ $(document).ready(function() {
                     }
                     
                     // 별점 클릭하면 별 채워짐
-                    $('.starGra a').click(function() {
+                    $('.starGra a').click(function(event) {
                         $(this).parent().children('a').removeClass('on');
                         $(this).addClass('on').prevAll('a').addClass('on');
                         return false;
@@ -72,6 +72,11 @@ $(document).ready(function() {
                     
                     var grade = 0;
                     $('#star01').click(function() {
+                    	
+                    	var i = $('#star01').index(this);
+                    	console.log(i);
+                    	
+                    	
                         var grade = 1;
                         console.log(grade+'별점!!!');
                         starClick(grade);
