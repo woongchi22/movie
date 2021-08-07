@@ -1,9 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+String query = request.getParameter("query"); 
+String name = (String)session.getAttribute("name");
+
+
+%>
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/movie.css" rel="stylesheet" type="text/css">
+<script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	
@@ -17,7 +26,7 @@ $(document).ready(function() {
 		dataType:"json",
 		data:{query:query},
 		success: function(data) {
-// 			console.log(query);
+
 			// 배열 4개
 			$.each(data.Data, function(idx, item) {
 				
@@ -44,8 +53,7 @@ $(document).ready(function() {
 	                	if(poster) {
 	                		$('#koreaList').append('<div id=koreaMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query=' + title +
 	                				'><div class=poster style="background-image: url(' + poster + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
-	                				'<div class=title>' + title4 + '</div>'+
-	                				'<input type='button' value='담기' style=margin-left:-50px;></div>');
+	                				'<div class=title>' + title4 + '</div><input type="button" value="담기"></div>');
 	                				
 	                	}
 	                
@@ -363,6 +371,8 @@ $(document).ready(function() {
 </header>
 <body>
 <input type ="button" value="담기">
+        <input type="hidden" id="query" name="query" value="<%=query %>">
+
 
 </body>
 </html>

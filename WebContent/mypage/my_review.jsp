@@ -1,3 +1,4 @@
+<%@page import="movie.vo.MovieBean"%>
 <%@page import="board.vo.ReviewBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -6,6 +7,7 @@
 <html>
 <%
 ArrayList<ReviewBean> reviewList = (ArrayList<ReviewBean>)request.getAttribute("reviewList");
+ArrayList<MovieBean> movieList = (ArrayList<MovieBean>)request.getAttribute("movieList");
 String name = (String)session.getAttribute("name"); 
 %>
 <head>
@@ -29,32 +31,64 @@ String name = (String)session.getAttribute("name");
 <div class="sidebar">
 	<ul>
 		<li class="active"><a href="Mypage.mp">개인정보 수정</a></li>
-		<li><a href="BoardMyReviewList.bo?name=<%=name %>">내가 평가한 영화</a></li>
+		<li><a href="BoardMyReviewList.bo?name=<%=name %>">▶&nbsp; 내가 평가한 영화</a></li>
+		<li><a href="MypageCollection.mp?name=<%=name%>">컬렉션</a></li>
 	</ul>
 </div>
 
 	<div class="noMovie">아직 평가한 영화가 없습니다.</div>
+
+	<%for(MovieBean mb : movieList) { %>
+	   <script type="text/javascript">
+          $('.noMovie').css("display", "none");
+       </script>
+       
+	   <div class="myReAll">
+	       <div class="myReviewList">
+               <div class="reviewPoster" style="background-image: url('<%=mb.getPoster() %>'), url(${pageContext.request.contextPath}/img/noImage.gif);"></div>
+	           <div class="reviewTitle"><%=mb.getTitle() %></div>
+	           <div class="reviewGrade"><img class="reviewStar" src="img/star3.png"> <%=mb.getGrade() %>점</div>
+	           <hr>
+               <div class="reviewGo"><a class="reA" href="MovieDetailPro.mo?movieSeq=<%=mb.getMovieSeq()%>&query=<%=mb.getTitle()%>">▶&nbsp;코멘트 쓰러가기</a></div>
+               <hr>
+               <div class="button">
+                  <a href="MovieDetailPro.mo?movieSeq=<%=mb.getMovieSeq()%>&query=<%=mb.getTitle()%>">
+                   <input type="button" class="updateBtn" value="수정"></a>
+                   <input type="button" id="deleteBtn_<%=mb.getIdx() %>" class="deleteBtn" value="삭제">
+               </div>
+	       </div>
+	   </div>
+	   
+	   <%for(ReviewBean rb : reviewList){ %>
+            <%if(mb.getMovieSeq() == rb.getMovieSeq() && rb.getContent() != null) { %>
+                <script type="text/javascript">
+                   $('.myReviewList').css("display", "none");
+                </script>
+            
+            <%} %>
+       <%} %>
+	<%} %>
 	
 	<%for(ReviewBean rb : reviewList){ %>
 	   <script type="text/javascript">
-	    $('.noMovie').css("display", "none");
+	      $('.noMovie').css("display", "none");
 	   </script>
-	   	
-		<div class="myReviewList">
-		     <div class="reviewPoster" style="background-image: url('<%=rb.getPoster() %>'), url(${pageContext.request.contextPath}/img/noImage.gif);"></div>
-		     <hr>
-			 <div class="reviewTitle"><%=rb.getTitle() %></div>
-			 <div class="reviewGrade"><img class="reviewStar" src="img/star3.png"> <%=rb.getGrade() %>점</div>
-			 <hr>
-			 <div class="reviewContent"><%=rb.getContent() %></div>
-		
-			 <hr>
-			 <div class="button">
-			 	<a href="MovieDetailPro.mo?movieSeq=<%=rb.getMovieSeq()%>&query=<%=rb.getTitle()%>">
-				 <input type="button" id="" class="updateBtn" value="수정"></a>
-				 <input type="button" id="deleteBtn_<%=rb.getIdx() %>" class="deleteBtn" value="삭제">
-			 </div>
-			 <div id="dialog-delete" style="display:none">코멘트를 삭제하시겠습니까?</div>
+	   
+	   	<div class="myReAll">
+			<div class="myReviewList">
+			     <div class="reviewPoster" style="background-image: url('<%=rb.getPoster() %>'), url(${pageContext.request.contextPath}/img/noImage.gif);"></div>
+				 <div class="reviewTitle"><%=rb.getTitle() %></div>
+				 <div class="reviewGrade"><img class="reviewStar" src="img/star3.png"> <%=rb.getGrade() %>점</div>
+				 <hr>
+				 <div class="reviewContent"><%=rb.getContent() %></div>
+				 <hr>
+				 <div class="button">
+				 	<a href="MovieDetailPro.mo?movieSeq=<%=rb.getMovieSeq()%>&query=<%=rb.getTitle()%>">
+					 <input type="button" class="updateBtn" value="수정"></a>
+					 <input type="button" id="deleteBtn_<%=rb.getIdx() %>" class="deleteBtn" value="삭제">
+				 </div>
+				 <div id="dialog-delete" style="display:none">코멘트를 삭제하시겠습니까?</div>
+			</div>
 		</div>
 	   
 

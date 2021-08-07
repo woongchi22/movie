@@ -7,6 +7,8 @@ import javax.servlet.http.*;
 import action.*;
 import board.svc.*;
 import board.vo.*;
+import movie.svc.*;
+import movie.vo.*;
 import vo.*;
 
 public class BoardMyReviewListAction implements Action {
@@ -20,8 +22,11 @@ public class BoardMyReviewListAction implements Action {
 		System.out.println(name);
 		BoardReviewListService boardReviewListService = new BoardReviewListService();
 		ArrayList<ReviewBean> reviewList = boardReviewListService.getReview(name);
-		
 		request.setAttribute("reviewList", reviewList);
+		
+		MovieListService movieListService = new MovieListService();
+		ArrayList<MovieBean> movieList = movieListService.getMovie(name);
+		request.setAttribute("movieList", movieList);
 		
 		ActionForward forward = new ActionForward();
 		forward = new ActionForward();
