@@ -64,8 +64,10 @@ public class MypageController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-		} 
-		
+		} else if(command.equals("/MypageCollection.mp")) {
+			forward = new ActionForward();
+			forward.setPath("/mypage/collection.jsp");
+		}
 		
 		
 		
