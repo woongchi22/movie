@@ -25,7 +25,9 @@ public class BoardReviewWriteAction implements Action {
 		HttpSession session = request.getSession();
 		String name = (String) session.getAttribute("name");
 		int grade = Integer.parseInt(request.getParameter("grade"));
-		System.out.println(movieSeq + title + review + name + grade + "이거 안나옴?");
+		String poster = request.getParameter("poster");
+		
+		System.out.println(movieSeq + title + review + name + grade + "이거 안나옴?" + poster);
 		
 		ReviewBean reviewBean = new ReviewBean();
 		reviewBean.setContent(review);
@@ -33,6 +35,7 @@ public class BoardReviewWriteAction implements Action {
 		reviewBean.setTitle(title);
 		reviewBean.setName(name);
 		reviewBean.setGrade(grade);
+		reviewBean.setPoster(poster);
 		
 		BoardReviewWriteService boardReviewWriteService = new BoardReviewWriteService();
 		boolean isWrite = boardReviewWriteService.reviewWrite(reviewBean);

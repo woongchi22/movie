@@ -348,7 +348,14 @@ hr{
 	float: left;
 	font-weight: bold;
 }
-
+.reviewPoster{
+	width:250px;
+    height:350px;
+    background-size:100%;
+    margin:10px;
+    background-repeat:no-repeat;
+    float: left;
+}
 
 
 

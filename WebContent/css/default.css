@@ -336,3 +336,9 @@ select:hover{
 	clear: both;
 	margin: 40px 15px;
 }
+.noMovie{
+   margin: 20px 30%;
+   font-size: 20px;
+   color: red;
+   font-weight: bold;
+}
