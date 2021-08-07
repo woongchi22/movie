@@ -1,5 +1,3 @@
-<%@page import="mypage.vo.CollectionBean"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -7,7 +5,6 @@
 <%
 request.setCharacterEncoding("UTF-8");
 String name = (String)session.getAttribute("name");
-ArrayList<CollectionBean> collection = (ArrayList<CollectionBean>)(request.getAttribute("collection")); 
 
 %>
 <head>
@@ -73,11 +70,8 @@ $(document).ready(function() {
 		</form>	
 	</div>
 
-<h2><%=name %> 님의 컬렉션 목록</h2><br>
-<% for(int i = 0; i < collection.size(); i++) {%>
-<h2>컬렉션 명:<%=collection.get(i).getCollection_name() %></h2><br>
-<h4>컬렉션 내용:<%=collection.get(i).getContent() %></h4>
-<%} %>
+<h2><%=name %> 님의 컬렉션 목록</h2>
+
 
 </div>
 
