@@ -216,6 +216,14 @@ public class MypageDao {
 		return dbList;
 	}
 
+	public ArrayList<MypageGenreBean> selectGenre(String name) {
+		System.out.println("mypage dao -  selectGenre()");
+
+		String sql = "SELECT genre FROM "
+		
+		return null;
+	}
+
 	
 	
 	

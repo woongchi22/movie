@@ -53,9 +53,8 @@ String name = (String)session.getAttribute("name");
 $(document).ready(function() {
 	//리뷰 삭제
 	$('#deleteBtn_<%=rb.getIdx()%>').click(function() {
-		name = $('#name').val();
-		query = $('#query').val();
-		movieSeq =$('#movieSeq').val();
+		name = $('#name_<%=rb.getMovieSeq()%>').val();
+		movieSeq =$('#movieSeq_<%=rb.getMovieSeq()%>').val();
 	 	console.log(name);
 	 	console.log(query);
 	 	console.log(movieSeq);
@@ -70,7 +69,6 @@ $(document).ready(function() {
 	                         async: false,
 	                         data: {
 	                        	 name:name,
-	                             query:query,
 	                             movieSeq:movieSeq
 	                         },
 	                         success: function(data) {
@@ -92,9 +90,9 @@ $(document).ready(function() {
 
 
 </script>
-<input type="hidden" id="name" name="name" value="<%=rb.getName()%>">
-<%-- <input type ="hidden" id="query" name="query" value="<%=rb.getTitle()%>"> --%>
-<%-- <input type ="hidden" id="movieSeq" name="movieSeq" value="<%=rb.getMovieSeq()%>"> --%>
+<input type="hidden" id="name_<%=rb.getMovieSeq()%>" name="name" value="<%=rb.getName()%>">
+<input type ="hidden" id="query" name="query" value="<%=rb.getTitle()%>">
+<input type ="hidden" id="movieSeq_<%=rb.getMovieSeq()%>" name="movieSeq" value="<%=rb.getMovieSeq()%>">
 <%} %>
 
 </body>
