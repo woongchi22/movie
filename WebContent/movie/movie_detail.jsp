@@ -254,7 +254,7 @@ $(document).ready(function() {
                     if(image[0]){
                         $('.directorMovie').append('<div class="directorsMovie"><a href=MovieDetailPro.mo?movieSeq='+item2.movieSeq+'&query='+title6+'>'
                                 +'<div class=poster style="background-image:url('+image[0]+'),url(${pageContext.request.contextPath}/img/noImage.gif);"></div></a>'+
-                        '<div class=title>'+title+'</div></div>');
+                                '<div class=title>'+title+'</div></div>');
                     }
                     $('.directorP').text(directorNm + " 감독의 다른 영화들");
                         
@@ -531,41 +531,67 @@ $(document).ready(function() {
 		var review = $('#opinion').val();
 		var grade = $('#grade').val();
 		
-	    $('#dialog-comment').dialog({
-		     modal: true,
-		     buttons: {
-		         "작성": function() {
-		        	 var review = $('#opinion').val();
-	
-		             $.ajax({
-		                 url: "BoardReviewWrite.bo",
-		                 method: "get",
-		                 async: false,
-		                 data: {
-		                	 query:query,
-		                	 review:review,
-		                     movieSeq:movieSeq,
-		                     grade:grade
-		                 },
-		                 success: function(data) {
-		                	 console.log(data);
-		                	 
-		                	 $('#commentBtn').css("display", "none");
-		                	 $('#commentBox').css("display", "");
-		                     $('#review').html(data);
-		                     $('#deleteBtn').css("display", "");
-		                     $('#updateBtn').css("display", "");
-		                 }
-		             });
-					 $(this).dialog('close');
-					 
-		         },
-		         "취소": function() {
-		             $(this).dialog('close');
-		         }
-		     }
-	
-	 	});
+		$.ajax({
+			url: "MovieDetail.mo",
+			method: "post",
+	        dataType: "json",
+	        data: {
+	            movieSeq:movieSeq,
+	            query:query
+	        },
+	        success: function(data) {
+
+	            $.each(data.Data, function(idx, item) {
+	                $.each(item.Result, function(idx, item2) {
+	                
+	                	var image = item2.posters.split("|");
+	                	var poster = image[0]
+	                	
+	                	$('#dialog-comment').dialog({
+	                        modal: true,
+	                        buttons: {
+	                            "작성": function() {
+	                                var review = $('#opinion').val();
+	               
+	                                $.ajax({
+	                                    url: "BoardReviewWrite.bo",
+	                                    method: "get",
+	                                    async: false,
+	                                    data: {
+	                                        query:query,
+	                                        review:review,
+	                                        movieSeq:movieSeq,
+	                                        grade:grade,
+	                                        poster:poster
+	                                    },
+	                                    success: function(data) {
+	                                        console.log(data);
+	                                        
+	                                        $('#commentBtn').css("display", "none");
+	                                        $('#commentBox').css("display", "");
+	                                        $('#review').html(data);
+	                                        $('#deleteBtn').css("display", "");
+	                                        $('#updateBtn').css("display", "");
+	                                    }
+	                                });
+	                                $(this).dialog('close');
+	                                
+	                            },
+	                            "취소": function() {
+	                                $(this).dialog('close');
+	                            }
+	                        }
+	               
+	                   });
+	                	
+	                	
+	                	
+	                });
+	            });    
+			}
+			
+		});
+		
     }); 
     
     

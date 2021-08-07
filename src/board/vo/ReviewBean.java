@@ -8,8 +8,11 @@ public class ReviewBean {
 	private int movieSeq;
 	private String title;
 	private String content;
+	private String poster;
 	private int like_count;
 	private Date date;
+	
+	
 	public int getIdx() {
 		return idx;
 	}
@@ -46,18 +49,25 @@ public class ReviewBean {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	public String getPoster() {
+		return poster;
+	}
+	public void setPoster(String poster) {
+		this.poster = poster;
+	}
 	public int getLike_count() {
 		return like_count;
 	}
 	public void setLike_count(int like_count) {
 		this.like_count = like_count;
 	}
-	public Date getdDate() {
+	public Date getDate() {
 		return date;
 	}
 	public void setDate(Date date) {
 		this.date = date;
 	}
+	
 	
 	
 	
