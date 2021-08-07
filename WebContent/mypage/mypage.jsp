@@ -206,14 +206,14 @@ $(document).ready(function(){
 <body>
 	<div class="sidebar">
 	<ul>
-							<li class="active"><a href="Mypage.mp">개인정보수정</a></li>
-							<li><a href="BoardMyReviewList.bo?name=<%=name %>" data-nav-section="review">내가 쓴 리뷰</a></li>
-						</ul>
+		<li class="active"><a href="Mypage.mp">개인정보 수정</a></li>
+		<li><a href="BoardMyReviewList.bo?name=<%=name %>">내가 평가한 영화</a></li>
+	</ul>
 	
 	</div>
     <div class="joinAll">
         <div class="loginLogin">
-           <span class="loginSpan">회원정보 수정</span>
+           <span class="loginSpan">개인정보 수정</span>
 		   <a class="loginOther" href="javascript:location.reload()">취소</a>
 		</div>
 	    <form action="MemberUpdatePro.me" method="post" id="update_fr">

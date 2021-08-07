@@ -28,26 +28,35 @@ String name = (String)session.getAttribute("name");
 <body>
 <div class="sidebar">
 	<ul>
-		<li class="active"><a href="#" data-nav-section="about">개인정보수정</a></li>
-		<li><a href="BoardMyReviewList.bo?name=<%=name %>" data-nav-section="review">내가 쓴 리뷰</a></li>
+		<li class="active"><a href="Mypage.mp">개인정보 수정</a></li>
+		<li><a href="BoardMyReviewList.bo?name=<%=name %>">내가 평가한 영화</a></li>
 	</ul>
 </div>
 
-<%for(ReviewBean rb : reviewList){%>	
-<div class="myReviewList">
-	 <div class="reviewTitle"><%=rb.getTitle() %></div>
-	 <div class="reviewGrade"><img class="reviewStar" src="img/star3.png"> <%=rb.getGrade() %>점</div>
-	 <hr>
-	 <div class="reviewContent"><%=rb.getContent() %></div>
-
-	 <hr>
-	 <div class="button">
-	 	<a href="MovieDetailPro.mo?movieSeq=<%=rb.getMovieSeq()%>&query=<%=rb.getTitle()%>">
-		 <input type="button" id="" class="updateBtn" value="수정"></a>
-		 <input type="button" id="deleteBtn_<%=rb.getIdx() %>" class="deleteBtn" value="삭제">
-	 </div>
-	 <div id="dialog-delete" style="display:none">코멘트를 삭제하시겠습니까?</div>
-</div>
+	<div class="noMovie">아직 평가한 영화가 없습니다.</div>
+	
+	<%for(ReviewBean rb : reviewList){ %>
+	   <script type="text/javascript">
+	    $('.noMovie').css("display", "none");
+	   </script>
+	   	
+		<div class="myReviewList">
+		     <div class="reviewPoster" style="background-image: url('<%=rb.getPoster() %>'), url(${pageContext.request.contextPath}/img/noImage.gif);"></div>
+		     <hr>
+			 <div class="reviewTitle"><%=rb.getTitle() %></div>
+			 <div class="reviewGrade"><img class="reviewStar" src="img/star3.png"> <%=rb.getGrade() %>점</div>
+			 <hr>
+			 <div class="reviewContent"><%=rb.getContent() %></div>
+		
+			 <hr>
+			 <div class="button">
+			 	<a href="MovieDetailPro.mo?movieSeq=<%=rb.getMovieSeq()%>&query=<%=rb.getTitle()%>">
+				 <input type="button" id="" class="updateBtn" value="수정"></a>
+				 <input type="button" id="deleteBtn_<%=rb.getIdx() %>" class="deleteBtn" value="삭제">
+			 </div>
+			 <div id="dialog-delete" style="display:none">코멘트를 삭제하시겠습니까?</div>
+		</div>
+	   
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -77,9 +86,11 @@ $(document).ready(function() {
 	                         }
 	                     });
 	                     $(this).dialog('close');
+	                     location.reload();
 	                 },
 	                 "취소": function() {
 	                     $(this).dialog('close');
+	                     
 	                 }
 	             }
 	    
@@ -93,7 +104,8 @@ $(document).ready(function() {
 <input type="hidden" id="name_<%=rb.getMovieSeq()%>" name="name" value="<%=rb.getName()%>">
 <input type ="hidden" id="query" name="query" value="<%=rb.getTitle()%>">
 <input type ="hidden" id="movieSeq_<%=rb.getMovieSeq()%>" name="movieSeq" value="<%=rb.getMovieSeq()%>">
-<%} %>
+    <%} %>
+   
 
 </body>
 </html>

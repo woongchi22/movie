@@ -69,6 +69,7 @@ public class BoardController extends HttpServlet {
     		} catch (Exception e) {
     			e.printStackTrace();
     		}
+    		
     	// 리뷰 좋아요
     	} else if(command.equals("/BoardReviewLike.bo")) {
     		action = new BoardReviewLikeAction();
@@ -77,6 +78,8 @@ public class BoardController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+    	
+    	// 마이페이지 리스트
     	} else if(command.equals("/BoardMyReviewList.bo")) {
     		action = new BoardMyReviewListAction();
     		try {
