@@ -67,7 +67,23 @@ public class MypageController extends HttpServlet {
 		} else if(command.equals("/MypageCollection.mp")) {
 			forward = new ActionForward();
 			forward.setPath("/mypage/collection.jsp");
+		} else if(command.equals("/CollectionMovieAdd.mp")) {
+			action = new MypageCollectionMovieAddAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/MypageCollectionCreate.mp")) {
+			action = new MypageCollectionCreateAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
+		
 		
 		
 		

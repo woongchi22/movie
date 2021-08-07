@@ -191,12 +191,14 @@ public class MovieController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
-					
+			
+		// 컬렉션			
 		} else if(command.equals("/CollectionSearch.mo")) {
 			forward = new ActionForward();
 			forward.setPath("/movie/movie_collection_search.jsp");
-		}
+		} 
+		
+		// 컬렉션 검색
 		
 		
 		
