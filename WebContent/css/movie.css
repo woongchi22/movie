@@ -258,8 +258,24 @@ hr{
 .reviewContent{
 	margin: 10px 15px;
 	padding: 5px;
+	height: 80px;
 	line-height: 170%;
-	white-space: break-spaces;
+	overflow: auto;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    -webkit-line-clamp: 3;
+    white-space: break-spaces;
+}
+.reviewGo{
+    margin: 10px 15px;
+    padding: 5px;
+    height: 80px;
+}
+.reA{
+	font-weight: normal;
+	font-size: 13px;
 }
 .reList{
 	margin: 40px 15px;
@@ -272,14 +288,14 @@ hr{
 	font-weight: bold;
 }
 .reviewGrade{
-	margin: 10px 25px;
+	margin: 10px 15px 10px 0;
     padding: 5px 0;
     float: right;
 }
 .reviewStar{
 	width: 20px;
 	height: 20px;
-	margin: -4px 3px;
+	margin: -4px 1px;
 }
 .likeImg{
     background-image: url("../img/like.png"); 
@@ -343,16 +359,20 @@ hr{
     white-space: break-spaces;
 }
 .reviewTitle{
-	margin: 10px 20px;
+	margin: 10px 0 10px 15px;
 	padding: 5px 0;
 	float: left;
 	font-weight: bold;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 170px;
 }
 .reviewPoster{
 	width:250px;
     height:350px;
     background-size:100%;
-    margin:10px;
+    margin:10px 10px 0 10px;
     background-repeat:no-repeat;
     float: left;
 }

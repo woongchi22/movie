@@ -206,10 +206,9 @@ $(document).ready(function(){
 <body>
 	<div class="sidebar">
 	<ul>
-
-		<li class="active"><a href="Mypage.mp">개인정보 수정</a></li>
+		<li class="active"><a href="Mypage.mp">▶&nbsp; 개인정보 수정</a></li>
 		<li><a href="BoardMyReviewList.bo?name=<%=name %>">내가 평가한 영화</a></li>
-  	<li><a href="MypageCollection.mp?name=<%=name%>">컬렉션</a></li>
+  	    <li><a href="MypageCollection.mp?name=<%=name%>">컬렉션</a></li>
 	</ul>
 
 	

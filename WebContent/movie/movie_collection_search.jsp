@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
 <%
 String query = request.getParameter("query"); 
 String name = (String)session.getAttribute("name");
 
 
 %>
+<html>
+<head>
+<meta charset="UTF-8">
 
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
@@ -18,7 +18,6 @@ String name = (String)session.getAttribute("name");
 <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
 <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>   
 <script type="text/javascript" src="slick/slick.min.js"></script>
-
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -37,7 +36,7 @@ $(document).ready(function() {
 		dataType:"json",
 		data:{query:query},
 		success: function(data) {
-// 			console.log(query);
+
 			// 배열 4개
 			$.each(data.Data, function(idx, item) {
 				
@@ -66,7 +65,6 @@ $(document).ready(function() {
 	                				'><div class=poster style="background-image: url(' + poster + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
 	                				'<div class=title>' + title4 + '</div>'+
 	                				'<input type="button" value="담기" id="'+item2.movieSeq+'" ></div>');
-	                				
 	                	}
 	                	
 ///////////////////////////////////

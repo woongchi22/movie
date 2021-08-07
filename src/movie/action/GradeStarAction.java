@@ -27,8 +27,8 @@ public class GradeStarAction implements Action {
 		String director = request.getParameter("director");
 		String genre = request.getParameter("genre");
 		int runtime = Integer.parseInt(request.getParameter("runtime"));
-		
-		System.out.println(name + movieSeq + title + grade + nation+director+genre+runtime);
+		String poster = request.getParameter("poster");
+		System.out.println(name + movieSeq + title + grade + nation+director+genre+runtime+poster);
 		
 		MovieBean mb = new MovieBean();
 		mb.setName(name);
@@ -39,6 +39,7 @@ public class GradeStarAction implements Action {
 		mb.setDirector(director);
 		mb.setGenre(genre);
 		mb.setRuntime(runtime);
+		mb.setPoster(poster);
 		
 		GradeStarService gradeStarService = new GradeStarService();
 		gradeStarService.gradeStar(mb);
