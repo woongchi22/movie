@@ -256,6 +256,7 @@ $(document).ready(function() {
                                 +'<div class=poster style="background-image:url('+image[0]+'),url(${pageContext.request.contextPath}/img/noImage.gif);"></div></a>'+
                                 '<div class=title>'+title+'</div></div>');
                     }
+                    
                     $('.directorP').text(directorNm + " 감독의 다른 영화들");
                         
                 });
@@ -320,7 +321,7 @@ $(document).ready(function() {
 	}
    
     // 별점 클릭 시 함수(등록, 수정)
-    function starClick(grade, nation, director, genre, runtime) {
+    function starClick(grade, nation, director, genre, runtime, poster) {
 		$.ajax("GradeStar.mo", {
 			method: 'post',
 			data: {
@@ -331,7 +332,8 @@ $(document).ready(function() {
 				nation:nation,
 				director:director,
 				genre:genre,
-				runtime:runtime
+				runtime:runtime,
+				poster:poster
 			},
 			success: function(data) {
 				
@@ -378,6 +380,8 @@ $(document).ready(function() {
                 	var director = item2.directors.director[0].directorNm
                 	var genre = item2.genre
                 	var runtime = item2.runtime
+                	var image = item2.posters.split("|");
+                	var poster = image[0]
 
                     // 별점 클릭하면 별 채워짐
                     $('.starRev a').click(function() {
@@ -389,27 +393,27 @@ $(document).ready(function() {
                     
                     $('#star1').click(function() {
                         var grade = 1;
-                        starClick(grade, nation, director, genre, runtime);
+                        starClick(grade, nation, director, genre, runtime, poster);
                     });
                     
                     $('#star2').click(function() {
                         var grade = 2; 
-                        starClick(grade, nation, director, genre, runtime);
+                        starClick(grade, nation, director, genre, runtime, poster);
                     });
                     
                     $('#star3').click(function() {
                         var grade = 3;
-                        starClick(grade, nation, director, genre, runtime);
+                        starClick(grade, nation, director, genre, runtime, poster);
                     });
                     
                     $('#star4').click(function() {
                         var grade = 4;
-                        starClick(grade, nation, director, genre, runtime);
+                        starClick(grade, nation, director, genre, runtime, poster);
                     });
                     
                     $('#star5').click(function() {
                         var grade = 5;
-                        starClick(grade, nation, director, genre, runtime);
+                        starClick(grade, nation, director, genre, runtime, poster);
                     });
                     
                 }); //each2
@@ -750,7 +754,7 @@ $(document).ready(function() {
 			<%} %>
 		</div>
 	    <div class="stills" ></div>
-	    <div class="directorP"> </div>
+	    <div class="directorP"></div>
 	    <div class="directorMovie"></div>
    
 </div>

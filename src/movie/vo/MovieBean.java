@@ -12,7 +12,7 @@ public class MovieBean {
 	private String director;
 	private String genre;
 	private int runtime;
-	
+	private String poster;
 	
 	public int getIdx() {
 		return idx;
@@ -67,6 +67,12 @@ public class MovieBean {
 	}
 	public void setRuntime(int runtime) {
 		this.runtime = runtime;
+	}
+	public String getPoster() {
+		return poster;
+	}
+	public void setPoster(String poster) {
+		this.poster = poster;
 	}
 	
 	

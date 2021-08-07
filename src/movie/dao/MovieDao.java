@@ -62,7 +62,7 @@ public class MovieDao {
 				}
 
 			} else {
-				sql = "INSERT INTO grade VALUES(idx,?,?,?,?,?,?,?,?)";
+				sql = "INSERT INTO grade VALUES(idx,?,?,?,?,?,?,?,?,?)";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, mb.getName());
 				pstmt.setInt(2, mb.getMovieSeq());
@@ -72,6 +72,7 @@ public class MovieDao {
 				pstmt.setString(6, mb.getDirector());
 				pstmt.setString(7, mb.getGenre());
 				pstmt.setInt(8, mb.getRuntime());
+				pstmt.setString(9, mb.getPoster());
 				
 				insertCount = pstmt.executeUpdate();
 			}
@@ -169,6 +170,47 @@ public class MovieDao {
 		}
 		
 		return avgGrade;
+	}
+
+	// 평가한 영화 가져오기
+	public ArrayList<MovieBean> getMovie(String name) {
+		System.out.println("mdao-getMovie");
+		
+		ArrayList<MovieBean> movieList = null;
+		
+		try {
+			String sql = "SELECT * FROM grade WHERE name=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			rs = pstmt.executeQuery();
+			
+			movieList = new ArrayList<MovieBean>();
+			
+			while(rs.next()) {
+				MovieBean movie = new MovieBean();
+				movie.setIdx(rs.getInt("idx"));
+				movie.setName(rs.getString("name"));
+				movie.setMovieSeq(rs.getInt("movieSeq"));
+				movie.setTitle(rs.getString("title"));
+				movie.setGrade(rs.getInt("grade"));
+				movie.setNation(rs.getString("nation"));
+				movie.setDirector(rs.getString("director"));
+				movie.setGenre(rs.getString("genre"));
+				movie.setRuntime(rs.getInt("runtime"));
+				movie.setPoster(rs.getString("poster"));
+				movieList.add(movie);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("movieDAO - getMovie 에러");
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return movieList;
 	}
 
 }

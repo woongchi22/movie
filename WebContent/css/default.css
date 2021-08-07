@@ -276,8 +276,14 @@ textarea{
     background-color: rgba(0,0,0,0);
     float: right;
     cursor: pointer;
-	margin: -35px 75px 0 0;
+	margin: -35px 40px 0 0;
     padding: 5px;
+}
+.updateBtn:hover {
+    color: #e5e5e5;
+}
+.deleteBtn:hover {
+    color: #e5e5e5;
 }
 dt{
 	font-size: 18px;
@@ -327,17 +333,20 @@ select:hover{
 
 .myReviewList{
    background-color: #dfdfdf46; 
-   margin: 20px 30%;
+   width: 270px;
+   float: left;
+   margin: 5px;
    border-radius: 10px;
-   clear: both; 
-	
+}
+.myReAll{
+   margin: 10px 210px;
 }
 .button{
 	clear: both;
 	margin: 40px 15px;
 }
 .noMovie{
-   margin: 20px 30%;
+   margin: 10px 30%;
    font-size: 20px;
    color: red;
    font-weight: bold;

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import board.dao.BoardDao;
 import board.vo.ReviewBean;
-
 import static db.JdbcUtil.*;
 
 public class BoardReviewListService {
@@ -103,6 +102,7 @@ public class BoardReviewListService {
 		return comment;
 	}
 
+	// 좋아요
 	public boolean insertLike(ReviewBean rb) {
 		System.out.println("BoardReviewListService - insertLike()");
 		
@@ -214,7 +214,7 @@ public class BoardReviewListService {
 		reviewList = bdao.getReview(name);
 		return reviewList;
 	}
-	
+
 
 
 
