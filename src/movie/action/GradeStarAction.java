@@ -23,13 +23,22 @@ public class GradeStarAction implements Action {
 		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 		String title = request.getParameter("query");
 		int grade = Integer.parseInt(request.getParameter("grade"));
-		System.out.println(name + movieSeq + title + grade);
+		String nation = request.getParameter("nation");
+		String director = request.getParameter("director");
+		String genre = request.getParameter("genre");
+		int runtime = Integer.parseInt(request.getParameter("runtime"));
+		
+		System.out.println(name + movieSeq + title + grade + nation+director+genre+runtime);
 		
 		MovieBean mb = new MovieBean();
 		mb.setName(name);
 		mb.setMovieSeq(movieSeq);
 		mb.setTitle(title);
 		mb.setGrade(grade);
+		mb.setNation(nation);
+		mb.setDirector(director);
+		mb.setGenre(genre);
+		mb.setRuntime(runtime);
 		
 		GradeStarService gradeStarService = new GradeStarService();
 		gradeStarService.gradeStar(mb);

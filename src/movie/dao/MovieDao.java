@@ -62,12 +62,16 @@ public class MovieDao {
 				}
 
 			} else {
-				sql = "INSERT INTO grade VALUES(idx,?,?,?,?)";
+				sql = "INSERT INTO grade VALUES(idx,?,?,?,?,?,?,?,?)";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, mb.getName());
 				pstmt.setInt(2, mb.getMovieSeq());
 				pstmt.setString(3, mb.getTitle());
 				pstmt.setInt(4, mb.getGrade());
+				pstmt.setString(5, mb.getNation());
+				pstmt.setString(6, mb.getDirector());
+				pstmt.setString(7, mb.getGenre());
+				pstmt.setInt(8, mb.getRuntime());
 				
 				insertCount = pstmt.executeUpdate();
 			}

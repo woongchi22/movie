@@ -86,7 +86,7 @@
 #cancelBtn:hover {
     background-color: #c8c800;
 }
-#gradeMovie{
+.gradeMovie{
     width: 260px;
     height: 450px;
     float: left;

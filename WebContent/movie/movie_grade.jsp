@@ -4,6 +4,7 @@
 String name = (String)session.getAttribute("name"); 
 String movieSeq = (String)request.getParameter("movieSeq");
 String query = request.getParameter("query");
+String grade = (String)request.getAttribute("grade");
 
 %>    
 <!DOCTYPE html>
@@ -53,31 +54,39 @@ $(document).ready(function() {
                     var posters = item2.posters.split("|");
                     var poster = posters[0]
                     
-                    var c = item.Count
-                    
+	                    
                     if(poster) {
-                    	$('#gradeMovieList').append('<div id=gradeMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query='
-                    			+ title + '><div class=gradePoster style="background-image: url(' + poster + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>'
-                    			+ '<div class="starGra"><a class="starG" id="star01"></a><a class="starG" id="star02"></a><a class="starG" id="star03"></a><a class="starG" id="star04"></a><a class="starG" id="star05"></a></div><div class=gradeTitle>'
-                    			+ title4 + '</div></div>');
+                    	
+//                     	for(i=0; i<100; i++){
+                    		
+	                    	$('#gradeMovieList').append('<div class=gradeMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query='
+	                    			+ title + '><div class=gradePoster style="background-image: url(' + poster + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>'
+	                    			+ '<div class="starGra"><a class="starG" id="star01"></a><a class="starG" id="star02"></a><a class="starG" id="star03"></a><a class="starG" id="star04"></a><a class="starG" id="star05"></a></div><div class=gradeTitle>'
+	                    			+ title4 + '</div></div>');
+//                     	}
+                    	
+                    	$('#gradePoster').eq(idx).text('머노');
                     			
+                    	 // 별점 클릭하면 별 채워짐
+                        $('.starGra a').click(function() {
+                            $(this).parent().children('a').removeClass('on');
+                            $(this).addClass('on').prevAll('a').addClass('on');
+                            return false;
+                        });
+                    	 
+                        $('.starGra a').on("click", function() {
+                            var idx = $('.starGra a').index(this);
+                            console.log(idx);
+                        });
+                    	 
                     }
                     
-                    // 별점 클릭하면 별 채워짐
-                    $('.starGra a').click(function(event) {
-                        $(this).parent().children('a').removeClass('on');
-                        $(this).addClass('on').prevAll('a').addClass('on');
-                        return false;
-                    });
                     
+                    
+                                       
                     var grade = 0;
                     $('#star01').click(function() {
-                    	
-                    	var i = $('#star01').index(this);
-                    	console.log(i);
-                    	
-                    	
-                        var grade = 1;
+                        var grade =  1;
                         console.log(grade+'별점!!!');
                         starClick(grade);
                     });
