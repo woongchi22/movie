@@ -66,14 +66,6 @@ public class MypageController extends HttpServlet {
 			
 		} 
 		
-		else if(command.equals("/MypageGener.mp")) {
-			action = new MypageGenerAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
 		
 		
 		
