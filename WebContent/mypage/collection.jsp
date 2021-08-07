@@ -49,8 +49,8 @@ $(document).ready(function() {
 
 <div class="sidebar">
 	<ul>
-		<li class="active"><a href="Mypage.mp">개인정보수정</a></li>
-		<li><a href="BoardMyReviewList.bo?name=<%=name %>" data-nav-section="review">내가 쓴 리뷰</a></li>
+		<li class="active"><a href="Mypage.mp">개인정보 수정</a></li>
+		<li><a href="BoardMyReviewList.bo?name=<%=name %>" data-nav-section="review">내가 평가한 영화</a></li>
 		<li><a href="MypageCollection.mp?name=<%=name%>">▶&nbsp; 컬렉션</a></li>
 	</ul>
 	
