@@ -216,6 +216,36 @@ public class MypageDao {
 		return dbList;
 	}
 
+	public int addCollection(CollectionBean collectionBean) {
+		System.out.println("mypage dao - addCollection");
+		int isSuccess = 0;
+		try {
+			String sql = "insert into collection values(idx,?,?,?,?,?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, collectionBean.getName());
+			pstmt.setString(2, collectionBean.getCollection_name());
+			pstmt.setString(3, collectionBean.getMovieSeq());
+			pstmt.setString(4, collectionBean.getTitle());
+			pstmt.setString(5, collectionBean.getPoster());
+			pstmt.setString(6, collectionBean.getContent());
+			System.out.println(collectionBean.getName());
+			System.out.println(collectionBean.getCollection_name());
+			System.out.println(collectionBean.getMovieSeq());
+			System.out.println(collectionBean.getTitle());
+			System.out.println(collectionBean.getPoster());
+			System.out.println(collectionBean.getContent());
+			
+			isSuccess = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return isSuccess;
+	}
+
 	
 	
 	

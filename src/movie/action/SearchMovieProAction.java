@@ -14,7 +14,7 @@ public class SearchMovieProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("SearchMpvieProAction!!");
+		System.out.println("SearchMovieProAction!!");
 		
 		response.setCharacterEncoding("UTF-8");
 		String title = request.getParameter("query");

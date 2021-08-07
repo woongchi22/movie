@@ -1,17 +1,21 @@
+<%@page import="mypage.vo.CollectionBean"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <%
 request.setCharacterEncoding("UTF-8");
-String email = (String) session.getAttribute("email");
-String name = (String) session.getAttribute("name");
-String pass = (String) session.getAttribute("pass");
+String name = (String)session.getAttribute("name");
+ArrayList<CollectionBean> collection = (ArrayList<CollectionBean>)(request.getAttribute("collection")); 
 
 %>
 <head>
 <meta charset="UTF-8">
 <title>My collection</title>
+<!-- <link rel="stylesheet" type="text/css" href="slick/slick.css"/> -->
+<!-- <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>    -->
+<!-- <script type="text/javascript" src="slick/slick.min.js"></script> -->
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/memberLogin.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/memberJoin.css" rel="stylesheet" type="text/css">
@@ -59,19 +63,25 @@ $(document).ready(function() {
 	<input type="button" value="컬렉션 추가" id="showAddCollection">
 	
 	<div style="display: none;" id="showCollection">
-		<form action ="MypageCollectionUpdate.mp" method="post">
-			컬렉션 이름<br> <input type ="text" id="collection_name"> <br>
-			컬렉션 내용 <textarea id="collection_content" class="textarea"></textarea>
+		<form action ="MypageCollectionCreate.mp" method="post">
+			컬렉션 이름<br> <input type ="text" name="subject"id="subject"> <br>
+			컬렉션 내용 <textarea name="content"id="content" class="textarea"></textarea>
 			<input type ="button" id="addMov" value="작품추가">
-			<input type ="button" id="addCollection" value="생성">
+			<div id="movies">
+			</div>
+			<input type="submit" value="생성" id="submit">		
 		</form>	
 	</div>
 
-
+<h2><%=name %> 님의 컬렉션 목록</h2><br>
+<% for(int i = 0; i < collection.size(); i++) {%>
+<h2>컬렉션 명:<%=collection.get(i).getCollection_name() %></h2><br>
+<h4>컬렉션 내용:<%=collection.get(i).getContent() %></h4>
+<%} %>
 
 </div>
 
-
+<input type="hidden" id="name" name="name" value="<%=name %>">
 
 </body>
 </html>
