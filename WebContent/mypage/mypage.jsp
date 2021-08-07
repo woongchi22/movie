@@ -208,7 +208,6 @@ $(document).ready(function(){
 	<ul>
 							<li class="active"><a href="Mypage.mp">개인정보수정</a></li>
 							<li><a href="BoardMyReviewList.bo?name=<%=name %>" data-nav-section="review">내가 쓴 리뷰</a></li>
-							<li><a href="MypageGener.mp">선호하는 장르&국가</a></li>
 						</ul>
 	
 	</div>
