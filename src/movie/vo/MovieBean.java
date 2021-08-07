@@ -8,6 +8,11 @@ public class MovieBean {
 	private int movieSeq;
 	private String title;
 	private int grade;
+	private String nation;
+	private String director;
+	private String genre;
+	private int runtime;
+	
 	
 	public int getIdx() {
 		return idx;
@@ -38,6 +43,30 @@ public class MovieBean {
 	}
 	public void setGrade(int grade) {
 		this.grade = grade;
+	}
+	public String getNation() {
+		return nation;
+	}
+	public void setNation(String nation) {
+		this.nation = nation;
+	}
+	public String getDirector() {
+		return director;
+	}
+	public void setDirector(String director) {
+		this.director = director;
+	}
+	public String getGenre() {
+		return genre;
+	}
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+	public int getRuntime() {
+		return runtime;
+	}
+	public void setRuntime(int runtime) {
+		this.runtime = runtime;
 	}
 	
 	

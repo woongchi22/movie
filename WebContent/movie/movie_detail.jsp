@@ -320,14 +320,18 @@ $(document).ready(function() {
 	}
    
     // 별점 클릭 시 함수(등록, 수정)
-    function starClick(grade) {
+    function starClick(grade, nation, director, genre, runtime) {
 		$.ajax("GradeStar.mo", {
 			method: 'post',
 			data: {
 				grade:grade,
 				name:name,
 				movieSeq:movieSeq,
-				query:query
+				query:query,
+				nation:nation,
+				director:director,
+				genre:genre,
+				runtime:runtime
 			},
 			success: function(data) {
 				
@@ -369,6 +373,11 @@ $(document).ready(function() {
         	
             $.each(data.Data, function(idx, item) {
                 $.each(item.Result, function(idx, item2) {
+                	
+                	var nation = item2.nation
+                	var director = item2.directors.director[0].directorNm
+                	var genre = item2.genre
+                	var runtime = item2.runtime
 
                     // 별점 클릭하면 별 채워짐
                     $('.starRev a').click(function() {
@@ -380,27 +389,27 @@ $(document).ready(function() {
                     
                     $('#star1').click(function() {
                         var grade = 1;
-                        starClick(grade);
+                        starClick(grade, nation, director, genre, runtime);
                     });
                     
                     $('#star2').click(function() {
                         var grade = 2; 
-                        starClick(grade);
+                        starClick(grade, nation, director, genre, runtime);
                     });
                     
                     $('#star3').click(function() {
                         var grade = 3;
-                        starClick(grade);
+                        starClick(grade, nation, director, genre, runtime);
                     });
                     
                     $('#star4').click(function() {
                         var grade = 4;
-                        starClick(grade);
+                        starClick(grade, nation, director, genre, runtime);
                     });
                     
                     $('#star5').click(function() {
                         var grade = 5;
-                        starClick(grade);
+                        starClick(grade, nation, director, genre, runtime);
                     });
                     
                 }); //each2
@@ -635,18 +644,6 @@ $(document).ready(function() {
         });
     }); 
 	
-			
-// 		},
-// 		success: function(data) {
-// 			console.log(" 성겅ㅋ");
-// 		}
-		
-		
-// 	})//ajax
-
-   
- 
- 
  
  
     

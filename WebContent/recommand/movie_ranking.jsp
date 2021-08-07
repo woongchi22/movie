@@ -56,7 +56,7 @@ $(document).ready(function() {
          dataType: "json",
          data: {
          	targetDt:today,
-          	},
+         },
          success: function(data) {
          	$('.boxOfficeMovie').prepend('<h2>박스오피스</h2>');
             $.each(data, function(idx, item) {
