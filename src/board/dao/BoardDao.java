@@ -331,6 +331,7 @@ public class BoardDao {
 		return insertCount;
 	}
 
+	// 디테일에 리뷰 3개 가져오기
 	public ArrayList<ReviewBean> getReview(int movieSeq, String title) {
 		System.out.println("dao-getReview:desc");
 		ArrayList<ReviewBean> reviewList = null;
@@ -368,12 +369,13 @@ public class BoardDao {
 		return reviewList;
 	}
 
+	// 내가 평가한 영화 가져오기
 	public ArrayList<ReviewBean> getReview(String name) {
 		System.out.println("dao-getReview:my");
 		ArrayList<ReviewBean> reviewList = null;
 		
 		try {
-			String sql = "SELECT * FROM review WHERE name=? ";
+			String sql = "SELECT * FROM review WHERE name=? ORDER BY idx DESC";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, name);
 			rs = pstmt.executeQuery();
@@ -412,7 +414,7 @@ public class BoardDao {
 	
 	
 	
-	
+	// --------------- 보류 ------------------------------------------------------
 	
 	//리뷰 댓글
 	public int insertReply(ReplyBean replyBean, int idx) {

@@ -338,6 +338,13 @@ select:hover{
    margin: 5px;
    border-radius: 10px;
 }
+.myGradeList{
+   background-color: #dfdfdf46; 
+   width: 270px;
+   float: left;
+   margin: 5px;
+   border-radius: 10px;
+}
 .myReAll{
    margin: 10px 210px;
 }
