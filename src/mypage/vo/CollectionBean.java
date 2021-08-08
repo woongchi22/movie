@@ -7,7 +7,6 @@ public class CollectionBean {
 	private String movieSeq;
 	private String title;
 	private String poster;
-	private String content;
 	
 	public int getIdx() {
 		return idx;
@@ -44,12 +43,6 @@ public class CollectionBean {
 	}
 	public void setPoster(String poster) {
 		this.poster = poster;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
 	}
 
 	
