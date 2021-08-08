@@ -246,6 +246,41 @@ public class MypageDao {
 		return isSuccess;
 	}
 
+	public ArrayList<CollectionBean> selectCollection(String name) {
+		System.out.println("mypage dao - selectCollection");
+		ArrayList<CollectionBean> list = new ArrayList<CollectionBean>();
+		try {
+			String sql = "SELECT * FROM collection where name =? ORDER BY idx DESC";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				CollectionBean cb = new CollectionBean();
+				cb.setCollection_name(rs.getString("collection_name"));
+				cb.setMovieSeq(rs.getString("movieSeq"));
+				cb.setTitle(rs.getString("title"));
+				cb.setPoster(rs.getString("poster"));
+				cb.setContent(rs.getString("content"));
+				cb.setIdx(rs.getInt("idx"));
+				list.add(cb);
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		
+		
+		return list;
+	}
+
 	
 	
 	

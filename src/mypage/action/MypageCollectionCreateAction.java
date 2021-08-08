@@ -54,8 +54,7 @@ public class MypageCollectionCreateAction implements Action {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('등록되었습니다')");
-//			out.println("window.location.href = 'MypageCollection.mp'");
-			out.println("window.location.href = 'Mypage.mp'");
+			out.println("window.location.href = 'MypageCollection.mp'");
 			out.println("</script>");
 		}
 		

@@ -5,6 +5,7 @@ import mypage.vo.*;
 import static db.JdbcUtil.*;
 
 import java.sql.*;
+import java.util.*;
 public class MypageAddCollectionService {
 
 	public boolean addCollection(CollectionBean collectionBean) {
@@ -23,6 +24,22 @@ public class MypageAddCollectionService {
 		close(con);
 		
 		return isSuccess;
+	}
+
+	public ArrayList<CollectionBean> selectCollection(String name) {
+		System.out.println("MypageAddCollectionService");
+		ArrayList<CollectionBean> selectCollection = null;
+		Connection con = getConnection();
+		MypageDao mdao = MypageDao.getInstance();
+		mdao.setConnection(con);
+		
+		selectCollection = mdao.selectCollection(name);
+		
+		close(con);
+		
+		return selectCollection;
+		
+		
 	}
 
 }
