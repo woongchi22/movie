@@ -21,14 +21,12 @@ public class MypageCollectionCreateAction implements Action {
 		String[] movieSeq = request.getParameterValues("movieSeq");
 		String[] poster = request.getParameterValues("poster");
 		String subject = request.getParameter("subject");
-		String content = request.getParameter("content");
 		String joinTitle = String.join(",", title);
 		String joinPoster = String.join(",", poster);
 		String joinMovieSeq = String.join("," , movieSeq);
 		
 		System.out.println(name);
 		System.out.println(subject);
-		System.out.println(content);
 		
 		int[] intArr = null;
 		if( movieSeq != null ){
@@ -40,7 +38,6 @@ public class MypageCollectionCreateAction implements Action {
 		
 		CollectionBean collectionBean = new CollectionBean();
 		collectionBean.setCollection_name(subject);
-		collectionBean.setContent(content);
 		collectionBean.setName(name);
 		collectionBean.setPoster(joinPoster);
 		collectionBean.setTitle(joinTitle);
