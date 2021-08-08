@@ -64,7 +64,7 @@ $(document).ready(function() {
                                      var poster = posters[0]
                                         
                                      if(poster) {
-                                         $('#selected').append('<div id=gradeMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query='
+                                         $('#selected').append('<div class=gradeMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query='
                                               + title + '><div class=gradePoster style="background-image: url(' + poster + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a><div class="gradeTitle">'
                                               + title4 + '</div><input type="hidden" id = "prodYear" name="prodYear" value = '+prodYear+'></div>');
                                                     
@@ -129,7 +129,7 @@ $(document).ready(function() {
 	                                var poster = posters[0]
 	                                   
 	                                if(poster) {
-	                                    $('#selected').append('<div id=gradeMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query='
+	                                    $('#selected').append('<div class=gradeMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query='
 	                                         + title + '><div class=gradePoster style="background-image: url(' + poster + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a><div class="gradeTitle">'
 	                                         + title4 + '</div><input type="hidden" id = "prodYear" name="prodYear" value = '+prodYear+'></div>');
 	                                               

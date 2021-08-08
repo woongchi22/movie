@@ -179,7 +179,7 @@ public class MovieDao {
 		ArrayList<MovieBean> movieList = null;
 		
 		try {
-			String sql = "SELECT * FROM grade WHERE name=?";
+			String sql = "SELECT * FROM grade WHERE name=? ORDER BY idx DESC";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, name);
 			rs = pstmt.executeQuery();

@@ -44,7 +44,7 @@ String name = (String)session.getAttribute("name");
        </script>
        
 	   <div class="myReAll">
-	       <div class="myReviewList">
+	       <div class="myGradeList" id="ms_<%=mb.getMovieSeq() %>">
                <div class="reviewPoster" style="background-image: url('<%=mb.getPoster() %>'), url(${pageContext.request.contextPath}/img/noImage.gif);"></div>
 	           <div class="reviewTitle"><%=mb.getTitle() %></div>
 	           <div class="reviewGrade"><img class="reviewStar" src="img/star3.png"> <%=mb.getGrade() %>점</div>
@@ -62,7 +62,7 @@ String name = (String)session.getAttribute("name");
 	   <%for(ReviewBean rb : reviewList){ %>
             <%if(mb.getMovieSeq() == rb.getMovieSeq() && rb.getContent() != null) { %>
                 <script type="text/javascript">
-                   $('.myReviewList').css("display", "none");
+                   $('#ms_'+<%=mb.getMovieSeq() %>).css("display", "none");
                 </script>
             
             <%} %>
