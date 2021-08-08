@@ -213,6 +213,47 @@ public class MovieDao {
 		return movieList;
 	}
 
+	// 장르 가져오기
+	public ArrayList<MovieBean> getGenre(String name) {
+		System.out.println("mdao - getGenre()");
+		
+		ArrayList<MovieBean> movieList = null;
+		
+		try {
+			String sql = "SELECT genre FROM grade WHERE name=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			rs = pstmt.executeQuery();
+			
+			movieList = new ArrayList<MovieBean>();
+			
+			while(rs.next()) {
+				MovieBean movie = new MovieBean();
+				movie.setIdx(rs.getInt("idx"));
+				movie.setName(rs.getString("name"));
+				movie.setMovieSeq(rs.getInt("movieSeq"));
+				movie.setTitle(rs.getString("title"));
+				movie.setGrade(rs.getInt("grade"));
+				movie.setNation(rs.getString("nation"));
+				movie.setDirector(rs.getString("director"));
+				movie.setGenre(rs.getString("genre"));
+				movie.setRuntime(rs.getInt("runtime"));
+				movie.setPoster(rs.getString("poster"));
+				movieList.add(movie);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("movieDAO - getMovie 에러");
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return movieList;
+	}
+
 }
 
 
