@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+String name = (String)session.getAttribute("name");
+%>    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,9 +20,19 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
+	var name = $('#name').val();
 	
 	$.ajax({
-		url: "recommandGenre.mo",
+		url: "RecommandGenre.mo",
+		method: "post",
+		data: {
+			name:name
+		},
+		success: function(data) {
+			console.log(data);
+			$('.recommandGenre').prepend('<h2>선호하는 장르의 영화</h2>');
+			
+		}
 		
 		
 		
@@ -36,8 +50,11 @@ $(document).ready(function() {
 
 <body>
     <div class="recommandGenre">
-        <div class="boxOffice"></div>
+<!--         <div class="boxOffice"></div> -->
     </div>
+    
+    
+    <input type="hidden" id="name" value="<%=name %>">
 
 </body>
 </html>

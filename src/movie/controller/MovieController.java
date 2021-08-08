@@ -196,9 +196,17 @@ public class MovieController extends HttpServlet {
 		} else if(command.equals("/CollectionSearch.mo")) {
 			forward = new ActionForward();
 			forward.setPath("/movie/movie_collection_search.jsp");
-		} 
+			
+		// 좋아하는 장르의 영화	
+		} else if(command.equals("/RecommandGenre.mo")) {
+			action = new RecommandGenreAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
-		// 컬렉션 검색
 		
 		
 		

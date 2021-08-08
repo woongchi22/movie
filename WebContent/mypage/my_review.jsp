@@ -21,7 +21,6 @@ String name = (String)session.getAttribute("name");
 <script src="${pageContext.request.contextPath}/js/jquery-ui.js"></script>
 
 
-
 <title>My Review</title>
 </head>
 <header>
@@ -54,10 +53,54 @@ String name = (String)session.getAttribute("name");
                <div class="button">
                   <a href="MovieDetailPro.mo?movieSeq=<%=mb.getMovieSeq()%>&query=<%=mb.getTitle()%>">
                    <input type="button" class="updateBtn" value="수정"></a>
-                   <input type="button" id="deleteBtn_<%=mb.getIdx() %>" class="deleteBtn" value="삭제">
+                   <input type="button" id="gradeDeleteBtn_<%=mb.getIdx() %>" class="deleteBtn" value="삭제">
                </div>
 	       </div>
 	   </div>
+	   
+	   <script type="text/javascript">
+	   $(document).ready(function() {
+		    // 평점부분 삭제
+		    $('#gradeDeleteBtn_<%=mb.getIdx()%>').click(function() {
+		        name = $('#name_<%=mb.getMovieSeq()%>').val();
+		        movieSeq = $('#movieSeq_<%=mb.getMovieSeq()%>').val();
+		        query = $('#query').val();
+                
+		          $('#dialog-delete').dialog({
+		                title: "삭제",
+		                modal: true,
+		                buttons: {
+		                     "확인": function() {
+		                         $.ajax({
+		                             url: "DeleteStar.mo",
+		                             method: "get",
+		                             async: false,
+		                             data: {
+		                                 name:name,
+		                                 movieSeq:movieSeq,
+		                                 query:query
+		                             },
+		                             success: function(data) {
+		                             }
+		                         });
+		                         $(this).dialog('close');
+		                         location.reload();
+		                     },
+		                     "취소": function() {
+		                         $(this).dialog('close');
+		                         
+		                     }
+		                 }
+		        
+		            });
+		        
+		    });
+		});
+	   
+	   </script>
+	   <input type="hidden" id="name_<%=mb.getMovieSeq()%>" name="name" value="<%=mb.getName()%>">
+       <input type ="hidden" id="query" name="query" value="<%=mb.getTitle()%>">
+       <input type ="hidden" id="movieSeq_<%=mb.getMovieSeq()%>" name="movieSeq" value="<%=mb.getMovieSeq()%>">
 	   
 	   <%for(ReviewBean rb : reviewList){ %>
             <%if(mb.getMovieSeq() == rb.getMovieSeq() && rb.getContent() != null) { %>
@@ -98,9 +141,6 @@ $(document).ready(function() {
 	$('#deleteBtn_<%=rb.getIdx()%>').click(function() {
 		name = $('#name_<%=rb.getMovieSeq()%>').val();
 		movieSeq =$('#movieSeq_<%=rb.getMovieSeq()%>').val();
-	 	console.log(name);
-	 	console.log(query);
-	 	console.log(movieSeq);
 		  $('#dialog-delete').dialog({
 	        	title: "삭제",
 	             modal: true,
@@ -115,8 +155,6 @@ $(document).ready(function() {
 	                             movieSeq:movieSeq
 	                         },
 	                         success: function(data) {
-// 	                             $('#commentBtn').css("display", "");
-// 	                             $('#commentBox').css("display", "none");
 	                         }
 	                     });
 	                     $(this).dialog('close');
@@ -130,7 +168,7 @@ $(document).ready(function() {
 	    
 	        });
 		
-	})
+	});
 });
 
 
