@@ -220,7 +220,7 @@ public class MovieDao {
 		ArrayList<MovieBean> movieList = null;
 		
 		try {
-			String sql = "SELECT genre FROM grade WHERE name=?";
+			String sql = "SELECT * FROM grade WHERE name=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, name);
 			rs = pstmt.executeQuery();
@@ -228,6 +228,7 @@ public class MovieDao {
 			movieList = new ArrayList<MovieBean>();
 			
 			while(rs.next()) {
+				
 				MovieBean movie = new MovieBean();
 				movie.setIdx(rs.getInt("idx"));
 				movie.setName(rs.getString("name"));

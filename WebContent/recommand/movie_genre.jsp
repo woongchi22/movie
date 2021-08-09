@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%
 String name = (String)session.getAttribute("name");
+
 %>    
     
 <!DOCTYPE html>
@@ -25,6 +26,7 @@ $(document).ready(function() {
 	$.ajax({
 		url: "RecommandGenre.mo",
 		method: "post",
+		dataType: "json",
 		data: {
 			name:name
 		},
