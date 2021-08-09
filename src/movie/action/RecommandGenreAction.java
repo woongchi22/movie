@@ -27,17 +27,14 @@ public class RecommandGenreAction implements Action {
 		ArrayList<MovieBean> movieList = movieListService.getGenre(name);
 		request.setAttribute("movieList", movieList);
 		
-//		JsonParser jsonParser = new JsonParser();
-//		JsonObject jsonObject = (JsonObject) jsonParser.parse(getBox);
 		
 		response.setContentType("application/json;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		System.out.println(movieList);
 		out.print(movieList);
 		
-		
-//		forward = new ActionForward();
-//		forward.setPath("/recommand/movie_genre.jsp");
+		forward = new ActionForward();
+		forward.setPath("/recommand/movie_genre.jsp");
 		
 		return forward;
 	}
