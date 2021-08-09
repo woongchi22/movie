@@ -42,4 +42,22 @@ public class MypageAddCollectionService {
 		
 	}
 
+	public boolean updateCollection(CollectionBean collectionBean) {
+		System.out.println("MypageAddCollectionService");
+		boolean isSuccess = false;
+		Connection con = getConnection();
+		MypageDao mdao = MypageDao.getInstance();
+		mdao.setConnection(con);
+		int isUpdate = mdao.updateCollection(collectionBean);
+		if(isUpdate>0) {
+			isSuccess = true;
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		close(con);
+		
+		return isSuccess;
+	}
+
 }

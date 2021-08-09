@@ -7,7 +7,7 @@
     margin: 0 auto;
     border-radius: 10px;
 }
-.modifyBtn{
+.delBtn{
 	color: #b7b7b7;
     border: 0;
     font-size: 15px;
@@ -17,6 +17,20 @@
     
 	margin: -35px 0 0 115px;
     padding: 10px;
+    display: none;
+}
+
+.modifyBtn{
+	color: #b7b7b7;
+    border: 0;
+    font-size: 15px;
+    background-color: rgba(0,0,0,0);
+/*     text-align:center; */
+    cursor: pointer;
+    
+	margin: 5px;
+    padding: 10px;
+    display: none;
 }
 
 .collectionBtn{
