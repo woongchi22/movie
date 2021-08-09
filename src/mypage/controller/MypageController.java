@@ -86,6 +86,13 @@ public class MypageController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+		} else if(command.equals("/MypageCollectionUpdate.mp")) {
+			action = new MypageCollectionUpdateAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		

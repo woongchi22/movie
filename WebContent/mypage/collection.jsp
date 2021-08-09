@@ -39,8 +39,20 @@ $(document).ready(function() {
 				"open the window",
 				"toolbar=no, width=1000, height=850, top=150, left=150");
 	});	
+	$('#c_update').click(function() {
+		$('.delBtn').show();
+		$('.modifyBtn').show();
+		
+	});
 
-
+	$('.delBtn').click(function(){
+		var eachList = $(this).attr('id');	
+		var collectionNum = $(this).closest('#collectionNum').attr('class')
+		$('.' + collectionNum).find('.'+eachList).remove();
+	});
+	
+	
+	
 	$('#submit').click(function(){
 		if($('#subject').val() == ''){
 			alert("제목을 입력하세요")
@@ -56,6 +68,11 @@ $(document).ready(function() {
 		} 
 		location.reload();
 	})
+	
+	
+	
+	
+	
 	
 	$('.collectionView').slick({
 		   dots: false,
@@ -156,17 +173,20 @@ $(document).ready(function() {
 			<div class="c_title"><input type ="button" id="addMov" value="작품추가" class="collectionBtn"></div>
 			<div id="movies">
 			</div>
-			<div class="c_title"><input type="submit" value="생성" id="submit" class="collectionBtn"></div>		
+			<div class="c_title" style="display: none;" id = "c_submit">
+				<input type="submit" value="생성" id="submit" class="collectionBtn">
+			</div>		
 		</form>	
 	</div>
 
-<div><h3><%=name %> 님의 컬렉션 목록</h3></div>
-<%for(int i = 0; i < collection.size(); i++){ %>
-<div class="c_list">
-<div><h2>Collection:<%=collection.get(i).getCollection_name() %></h2>
+	<div><h3><%=name %> 님의 컬렉션 목록</h3></div>
 	<input type ="button" id="c_update" value="수정">
-</div>
-	<div class="collectionView" >
+	<%for(int i = 0; i < collection.size(); i++){ %>
+		<form action="MypageCollectionUpdate.mp" method="post">
+			<div id="collectionNum" class="collectionNum<%=i%>">
+			<div class="c_list">
+			<div><h2>Collection:<%=collection.get(i).getCollection_name() %></h2></div>
+			<div class="collectionView" >
 		<%for(int o = 0; o < collection.get(i).getTitle().split(",").length; o++){%>
 			<div class ="eachList<%=o %>" id="eachList">
 			<div id="modifyMovies"></div>
@@ -176,7 +196,7 @@ $(document).ready(function() {
 			<div class="title"><%=collection.get(i).getTitle().split(",")[o]%></div>
 	
 			<div class="modifyDel">
-			<input type="button" class ="modifyBtn" id="eachList<%=o %>" value="삭제"><br>
+			<input type="button" class ="delBtn" id="eachList<%=o %>" value="삭제"><br>
 			</div>
 			
 			<input type="hidden" name="movieSeq" value="<%=collection.get(i).getMovieSeq().split(",")[o]%>">
@@ -186,9 +206,15 @@ $(document).ready(function() {
 			</div>
 			
 		<%} %>
+		
 	</div>
+			<input type="submit" class="modifyBtn" type="submit" value="수정완료">
 </div>
+</div>
+</form>
 <%} %>
+
+			
 </div>
 
 <input type="hidden" id="name" name="name" value="<%=name %>">

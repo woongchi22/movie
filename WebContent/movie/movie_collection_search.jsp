@@ -95,6 +95,7 @@ $(document).ready(function() {
                                         "<input type='hidden' value='" + movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
                                         "<input type='hidden' value='" + poster + "'name = 'poster'>" +
                                         "<input type='hidden' value='" + title4+ "'name = 'title'></div>")
+                                        $('#c_submit', opener.document).show();
                                         	console.log("젭알 ㅠ");
 
                                         
@@ -121,6 +122,8 @@ $(document).ready(function() {
                                             "<input type='hidden' value='" + movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
                                             "<input type='hidden' value='" + poster + "'name = 'poster'>" +
                                             "<input type='hidden' value='" + title4+ "'name = 'title'></div>")
+                                            $('#c_submit', opener.document).show();
+
                                     } else { 
                                         alert("이미 추가된 영화입니다.")
                                     }
@@ -162,6 +165,8 @@ $(document).ready(function() {
                                           "<input type='hidden' value='" + movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
                                           "<input type='hidden' value='" + poster + "'name = 'poster'>" +
                                           "<input type='hidden' value='" + title4+ "'name = 'title'></div>")
+                                          $('#c_submit', opener.document).show();
+
                                           	console.log("젭알 ㅠ");
 
                                           
@@ -188,6 +193,8 @@ $(document).ready(function() {
                                               "<input type='hidden' value='" + movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
                                               "<input type='hidden' value='" + poster + "'name = 'poster'>" +
                                               "<input type='hidden' value='" + title4+ "'name = 'title'></div>")
+                                              $('#c_submit', opener.document).show();
+
                                       } else { 
                                           alert("이미 추가된 영화입니다.")
                                       }
@@ -298,10 +305,11 @@ $(document).ready(function() {
                     var title = encodeURIComponent(title4);
                     
                     var poster = item2.posters.split("|"); // 포스터 데이터는 '|' 로 구분되어있어서 스플릿 처리함 ( 여러개 있음 )
+                    var poster = posters[0]
                     
                     if(poster[0]) {
                     	$('#directorList').append('<div id=directorMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query=' + title +
-                                '><div class=poster style="background-image: url(' + poster[0] + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
+                                '><div class=poster style="background-image: url(' + poster + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
                                 '<div class=title>' + title4 + '</div>'+
                 				'<input type="button" value="담기" id="'+item2.movieSeq+'" class="modifyBtn"></div>');
                     }
@@ -329,6 +337,8 @@ $(document).ready(function() {
                                         "<input type='hidden' value='" + movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
                                         "<input type='hidden' value='" + poster + "'name = 'poster'>" +
                                         "<input type='hidden' value='" + title4+ "'name = 'title'></div>")
+                                        $('#c_submit', opener.document).show();
+
                                         	console.log("젭알 ㅠ");
 
                                         
@@ -355,6 +365,8 @@ $(document).ready(function() {
                                             "<input type='hidden' value='" + movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
                                             "<input type='hidden' value='" + poster + "'name = 'poster'>" +
                                             "<input type='hidden' value='" + title4+ "'name = 'title'></div>")
+                                            $('#c_submit', opener.document).show();
+
                                     } else { 
                                         alert("이미 추가된 영화입니다.")
                                     }
@@ -428,10 +440,10 @@ $(document).ready(function() {
                     var title = encodeURIComponent(title4);
                     
                     var poster = item2.posters.split("|"); // 포스터 데이터는 '|' 로 구분되어있어서 스플릿 처리함 ( 여러개 있음 )
-                    
-                    if(poster[0]) {
+                    var poster = posters[0]
+                    if(poster) {
                         $('#actorList').append('<div id=actorMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query=' + title +
-                                '><div class=poster style="background-image: url(' + poster[0] + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
+                                '><div class=poster style="background-image: url(' + poster + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
                                 '<div class=title>' + title4 + '</div>'+
                 				'<input type="button" value="담기" id="'+item2.movieSeq+'"class="modifyBtn" ></div>');
                     }
@@ -459,6 +471,8 @@ $(document).ready(function() {
                                         "<input type='hidden' value='" + movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
                                         "<input type='hidden' value='" + poster + "'name = 'poster'>" +
                                         "<input type='hidden' value='" + title4+ "'name = 'title'></div>")
+                                        $('#c_submit', opener.document).show();
+
                                         	console.log("젭알 ㅠ");
 
                                         
@@ -485,6 +499,8 @@ $(document).ready(function() {
                                             "<input type='hidden' value='" + movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
                                             "<input type='hidden' value='" + poster + "'name = 'poster'>" +
                                             "<input type='hidden' value='" + title4+ "'name = 'title'></div>")
+                                            $('#c_submit', opener.document).show();
+
                                     } else { 
                                         alert("이미 추가된 영화입니다.")
                                     }
@@ -558,10 +574,10 @@ $(document).ready(function() {
                     var title = encodeURIComponent(title4);
                     
                     var poster = item2.posters.split("|"); // 포스터 데이터는 '|' 로 구분되어있어서 스플릿 처리함 ( 여러개 있음 )
-                    
-                    if(poster[0]) {
+                    var poster = posters[0]
+                    if(poster) {
                         $('#keywordList').append('<div id=keywordMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query=' + title +
-                                '><div class=poster style="background-image: url(' + poster[0] + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
+                                '><div class=poster style="background-image: url(' + poster + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
                                 '<div class=title>' + title4 + '</div>'+
                 				'<input type="button" value="담기" id="'+item2.movieSeq+'"class="modifyBtn" ></div>');
                     }
@@ -589,6 +605,8 @@ $(document).ready(function() {
                                         "<input type='hidden' value='" + movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
                                         "<input type='hidden' value='" + poster + "'name = 'poster'>" +
                                         "<input type='hidden' value='" + title4+ "'name = 'title'></div>")
+                                        $('#c_submit', opener.document).show();
+
                                         	console.log("젭알 ㅠ");
 
                                         
@@ -615,6 +633,8 @@ $(document).ready(function() {
                                             "<input type='hidden' value='" + movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
                                             "<input type='hidden' value='" + poster + "'name = 'poster'>" +
                                             "<input type='hidden' value='" + title4+ "'name = 'title'></div>")
+                                            $('#c_submit', opener.document).show();
+
                                     } else { 
                                         alert("이미 추가된 영화입니다.")
                                     }
