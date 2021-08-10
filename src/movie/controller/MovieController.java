@@ -197,7 +197,13 @@ public class MovieController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("/movie/movie_collection_search.jsp");
 			
-		// 좋아하는 장르의 영화	
+		} else if(command.equals("/CollectionModifySearch.mo")) {
+			forward = new ActionForward();
+			forward.setPath("/movie/movie_collection_modify_search.jsp");
+			
+			
+			
+			// 좋아하는 장르의 영화	
 		} else if(command.equals("/RecommandGenre.mo")) {
 			action = new RecommandGenreAction();
 			try {

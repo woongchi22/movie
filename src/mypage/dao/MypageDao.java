@@ -261,6 +261,7 @@ public class MypageDao {
 				cb.setPoster(rs.getString("poster"));
 				cb.setIdx(rs.getInt("idx"));
 				list.add(cb);
+				System.out.println(rs.getString("movieSeq"));
 			}
 			
 			
@@ -284,15 +285,24 @@ public class MypageDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		  try {
+			  if(collectionBean.getMovieSeq() == null && collectionBean.getTitle() == null) {
+					String sql = "DELETE collection WHERE idx = ?";
+					pstmt = con.prepareStatement(sql);	
+					pstmt.setInt(1, collectionBean.getIdx());
+					isSuccess = pstmt.executeUpdate();
+			  }else {
+			  
+			  
+			  
 			String sql = "UPDATE collection set movieSeq=?,title=?,poster=? where idx = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, collectionBean.getMovieSeq());
 			pstmt.setString(2, collectionBean.getTitle());
 			pstmt.setString(3, collectionBean.getPoster());
 			pstmt.setInt(4, collectionBean.getIdx());
-			
+			System.out.println(collectionBean.getMovieSeq());
 			isSuccess = pstmt.executeUpdate();
-			
+			  }
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
