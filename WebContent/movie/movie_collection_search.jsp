@@ -57,7 +57,6 @@ $(document).ready(function() {
 	                
 	                var nation = item2.nation
 	                var posters = item2.posters.split("|"); // 포스터 데이터는 '|' 로 구분되어있어서 스플릿 처리함 ( 여러개 있음 )
-	                
 	                var poster = posters[0]
 // 	                console.log(poster);
 					
@@ -68,7 +67,7 @@ $(document).ready(function() {
 	                		$('#koreaList').append('<div id=koreaMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query=' + title +
 	                				'><div class=poster style="background-image: url(' + poster + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
 	                				'<div class=title>' + title4 + '</div>'+
-	                				'<input type="button" value="담기" id="'+item2.movieSeq+'" class="modifyBtn" ></div>');
+	                				'<input type="button" value="담기" id="'+item2.movieSeq+'" class="addBtn" ></div>');
 	                	}
 	                	
 ///////////////////////////////////
@@ -139,7 +138,7 @@ $(document).ready(function() {
                 			$('#foreignList').append('<div id=foreignMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query=' + title +
                                     '><div class=poster style="background-image: url(' + poster + '),url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
                                     '<div class=title>' + title4 + '</div>'+
-	                				'<input type="button" value="담기" id="'+item2.movieSeq+'" class="modifyBtn" ></div>');
+	                				'<input type="button" value="담기" id="'+item2.movieSeq+'" class="addBtn" ></div>');
                 		}
 ///////////////////////////////////
   					  $('#foreignList').on('click', '#' + item2.movieSeq, function() {
@@ -304,14 +303,14 @@ $(document).ready(function() {
                     var title4 = title3.trim(); // 양쪽끝에 공백을 제거해줌
                     var title = encodeURIComponent(title4);
                     
-                    var poster = item2.posters.split("|"); // 포스터 데이터는 '|' 로 구분되어있어서 스플릿 처리함 ( 여러개 있음 )
+                    var posters = item2.posters.split("|"); // 포스터 데이터는 '|' 로 구분되어있어서 스플릿 처리함 ( 여러개 있음 )
                     var poster = posters[0]
                     
-                    if(poster[0]) {
+                    if(poster) {
                     	$('#directorList').append('<div id=directorMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query=' + title +
                                 '><div class=poster style="background-image: url(' + poster + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
                                 '<div class=title>' + title4 + '</div>'+
-                				'<input type="button" value="담기" id="'+item2.movieSeq+'" class="modifyBtn"></div>');
+                				'<input type="button" value="담기" id="'+item2.movieSeq+'" class="addBtn"></div>');
                     }
 ///////////////////////////////////
 					  $('#directorList').on('click', '#' + item2.movieSeq, function() {
@@ -439,13 +438,13 @@ $(document).ready(function() {
                     var title4 = title3.trim(); // 양쪽끝에 공백을 제거해줌
                     var title = encodeURIComponent(title4);
                     
-                    var poster = item2.posters.split("|"); // 포스터 데이터는 '|' 로 구분되어있어서 스플릿 처리함 ( 여러개 있음 )
+                    var posters = item2.posters.split("|"); // 포스터 데이터는 '|' 로 구분되어있어서 스플릿 처리함 ( 여러개 있음 )
                     var poster = posters[0]
                     if(poster) {
                         $('#actorList').append('<div id=actorMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query=' + title +
                                 '><div class=poster style="background-image: url(' + poster + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
                                 '<div class=title>' + title4 + '</div>'+
-                				'<input type="button" value="담기" id="'+item2.movieSeq+'"class="modifyBtn" ></div>');
+                				'<input type="button" value="담기" id="'+item2.movieSeq+'"class="addBtn" ></div>');
                     }
 ///////////////////////////////////
 					  $('#actorList').on('click', '#' + item2.movieSeq, function() {
@@ -573,13 +572,13 @@ $(document).ready(function() {
                     var title4 = title3.trim(); // 양쪽끝에 공백을 제거해줌
                     var title = encodeURIComponent(title4);
                     
-                    var poster = item2.posters.split("|"); // 포스터 데이터는 '|' 로 구분되어있어서 스플릿 처리함 ( 여러개 있음 )
+                    var posters = item2.posters.split("|"); // 포스터 데이터는 '|' 로 구분되어있어서 스플릿 처리함 ( 여러개 있음 )
                     var poster = posters[0]
                     if(poster) {
                         $('#keywordList').append('<div id=keywordMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query=' + title +
                                 '><div class=poster style="background-image: url(' + poster + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
                                 '<div class=title>' + title4 + '</div>'+
-                				'<input type="button" value="담기" id="'+item2.movieSeq+'"class="modifyBtn" ></div>');
+                				'<input type="button" value="담기" id="'+item2.movieSeq+'"class="addBtn" ></div>');
                     }
 ///////////////////////////////////
 					  $('#keywordList').on('click', '#' + item2.movieSeq, function() {

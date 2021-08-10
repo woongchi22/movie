@@ -21,6 +21,7 @@ public class MypageCollectionAction implements Action {
 		MypageAddCollectionService service = new MypageAddCollectionService();
 		ArrayList<CollectionBean> collection = service.selectCollection(name);
 		request.setAttribute("collection", collection);
+		System.out.println(collection);
 		forward = new ActionForward();
 		forward.setPath("/mypage/collection.jsp");
 		

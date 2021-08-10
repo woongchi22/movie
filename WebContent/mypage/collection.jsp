@@ -187,7 +187,7 @@ $(document).ready(function() {
 			<div class="c_list">
 			<div><h2>Collection:<%=collection.get(i).getCollection_name() %></h2></div>
 			<div class="collectionView" >
-		<%for(int o = 0; o < collection.get(i).getTitle().split(",").length; o++){%>
+		<%for(int o = 0; o < collection.get(i).getTitle().split(",").length-1; o++){%>
 			<div class ="eachList<%=o %>" id="eachList">
 			<div id="modifyMovies"></div>
 			<a href="MovieDetailPro.mo?movieSeq=<%=collection.get(i).getMovieSeq().split(",")[o]%>&query=<%=collection.get(i).getTitle().split(",")[o]%>">
