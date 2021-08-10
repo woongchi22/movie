@@ -197,15 +197,51 @@ public class MovieController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("/movie/movie_collection_search.jsp");
 			
-		// 좋아하는 장르의 영화	
-		} else if(command.equals("/RecommandGenre.mo")) {
-			action = new RecommandGenreAction();
+		// 선호하는 영화 리스트
+		} else if(command.equals("/RecommandList.mo")) {
+			action = new RecommandListAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		
+		// 선호하는 장르 영화
+		} else if(command.equals("/RecommandGenreSearch.mo")) {
+			action = new RecommandGenreSearchAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		// 선호하는 장르의 영화 랜덤	
+		} else if(command.equals("/RecommandGenreRandomSearch.mo")) {
+			action = new RecommandGenreRandomSearchAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		// 선호하는 나라 영화	
+		}  else if(command.equals("/RecommandNationSearch.mo")) {
+			action = new RecommandNationSearchAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		// 선호하는 나라의 영화 랜덤	
+		} else if(command.equals("/RecommandNationRandomSearch.mo")) {
+			action = new RecommandNationRandomSearchAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} 
 		
 		
 		

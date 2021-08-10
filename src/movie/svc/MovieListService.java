@@ -24,18 +24,4 @@ public class MovieListService {
 		return movieList;
 	}
 
-	// 장르 가져오기
-	public ArrayList<MovieBean> getGenre(String name) {
-		System.out.println("MovieListService - getGenre!!");
-		ArrayList<MovieBean> movieList = null;
-
-		Connection con = getConnection();
-		MovieDao mdao = MovieDao.getInstance();
-		mdao.setConnection(con);
-		
-		movieList = mdao.getGenre(name);
-		
-		return movieList;
-	}
-
 }
