@@ -13,7 +13,7 @@ public class MypageCollectionUpdateAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("MypageCollectionUpdateAction");
+		System.out.println("MypageCollectionUpdateAction@@@@@@@@@@@");
 
 		ActionForward forward = null;
 		HttpSession session = request.getSession();
@@ -27,18 +27,17 @@ public class MypageCollectionUpdateAction implements Action {
 		System.out.println(movieSeq);
 		System.out.println(poster);
 		System.out.println(idx);
-		
+		System.out.println("===========");
+		System.out.println(name + title + movieSeq + poster + idx);
 		
 		
 		System.out.println("되나안되나");
-		System.out.println(title[0]);
+		System.out.println(movieSeq);
 		String joinTitle = String.join(",", title);
 		String joinPoster = String.join(",", poster);
 		String joinMovieSeq = String.join("," , movieSeq);
 		
-		System.out.println(joinTitle);
-		System.out.println(joinPoster);
-		System.out.println(joinMovieSeq);
+		System.out.println("joinMovieSeq : "+joinMovieSeq);
 		
 		for(int i = 0; i<poster.length;i++) {
 			System.out.println((i+1)+"번째 포스터값 : " + poster[i]);

@@ -39,10 +39,23 @@ $(document).ready(function() {
 				"open the window",
 				"toolbar=no, width=1000, height=850, top=150, left=150");
 	});	
+	
+	$('.modifyAddMov').click(function(){
+		var addId = $(this).attr('id');
+		console.log(addId);
+		
+		console.log("왔당게 ㅋ");
+		window.open("CollectionModifySearch.mo?addId=" + addId,
+				"open the window",
+				"toolbar=no, width=1000, height=850, top=150, left=150");
+	});	
+	
+	
+	
 	$('#c_update').click(function() {
 		$('.delBtn').show();
 		$('.modifyBtn').show();
-		
+		$('.modifyAddMov').show();
 	});
 
 	$('.delBtn').click(function(){
@@ -51,7 +64,13 @@ $(document).ready(function() {
 		$('.' + collectionNum).find('.'+eachList).remove();
 	});
 	
-	
+	$(document).on('click', '.delBtn .modifyDelteBtn', function() {
+		var index = $('.delBtn .modifyDelteBtn').index(this);	
+//	alert(index);
+		$('.eachList').eq(index).remove();
+		
+});
+
 	
 	$('#submit').click(function(){
 		if($('#subject').val() == ''){
@@ -187,7 +206,7 @@ $(document).ready(function() {
 			<div class="c_list">
 			<div><h2>Collection:<%=collection.get(i).getCollection_name() %></h2></div>
 			<div class="collectionView" >
-		<%for(int o = 0; o < collection.get(i).getTitle().split(",").length-1; o++){%>
+		<%for(int o = 0; o < collection.get(i).getTitle().split(",").length; o++){%>
 			<div class ="eachList<%=o %>" id="eachList">
 			<div id="modifyMovies"></div>
 			<a href="MovieDetailPro.mo?movieSeq=<%=collection.get(i).getMovieSeq().split(",")[o]%>&query=<%=collection.get(i).getTitle().split(",")[o]%>">
@@ -196,7 +215,7 @@ $(document).ready(function() {
 			<div class="title"><%=collection.get(i).getTitle().split(",")[o]%></div>
 	
 			<div class="modifyDel">
-			<input type="button" class ="delBtn" id="eachList<%=o %>" value="삭제"><br>
+				<input type="button" class ="delBtn" id="eachList<%=o %>" value="삭제"><br>
 			</div>
 			
 			<input type="hidden" name="movieSeq" value="<%=collection.get(i).getMovieSeq().split(",")[o]%>">
@@ -208,6 +227,7 @@ $(document).ready(function() {
 		<%} %>
 		
 	</div>
+			<input type ="button" id="add<%=i %>" value="작품추가" class="modifyAddMov">
 			<input type="submit" class="modifyBtn" type="submit" value="수정완료">
 </div>
 </div>
