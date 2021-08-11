@@ -61,4 +61,22 @@ public class MypageAddCollectionService {
 		return isSuccess;
 	}
 
+	public boolean deleteCollection(String collection_name) {
+		System.out.println("MypageAddCollectionService-deleteCollection");
+		boolean isSuccess = false;
+		Connection con = getConnection();
+		MypageDao mdao = MypageDao.getInstance();
+		mdao.setConnection(con);
+		int isUpdate = mdao.deleteCollection(collection_name);
+		if(isUpdate>0) {
+			isSuccess = true;
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		close(con);
+		
+		return isSuccess;
+	}
+
 }

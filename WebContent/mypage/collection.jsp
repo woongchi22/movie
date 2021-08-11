@@ -58,19 +58,35 @@ $(document).ready(function() {
 		$('.modifyAddMov').show();
 	});
 
-	$('.delBtn').click(function(){
-		var eachList = $(this).attr('id');	
-		var collectionNum = $(this).closest('#collectionNum').attr('class')
-		$('.' + collectionNum).find('.'+eachList).remove();
-	});
+// 	$('.delBtn').click(function(){
+// 		var eachList = $(this).attr('id');	
+// 		var collectionNum = $(this).closest('#collectionNum').attr('class')
+// 		$('.' + collectionNum).find('.'+eachList).remove();
+// 	});
 	
-	$(document).on('click', '.delBtn .modifyDelteBtn', function() {
-		var index = $('.delBtn .modifyDelteBtn').index(this);	
+// 	$('.modifyDelBtn').click(function(){
+// 		var eachList = $(this).attr('id');	
+// 		var collectionNum = $(this).closest('#collectionNum').attr('class')
+// 		$('.' + collectionNum).find('.'+eachList).remove();
+// 	});
+	
+	
+	$(document).on('click', '.delBtn .modifyDelBtn', function() {
+		var index = $('.delBtn .modifyDelBtn').index(this);	
 //	alert(index);
 		$('.eachList').eq(index).remove();
 		
 });
 
+	$('.delBtn').on('click', function() {
+		var index = $('.delBtn').index(this);	
+//	alert(index);
+		$('.eachList').eq(index).remove();
+		
+});
+	
+	
+	
 	
 	$('#submit').click(function(){
 		if($('#subject').val() == ''){
@@ -206,20 +222,21 @@ $(document).ready(function() {
 			<div class="c_list">
 			<div><h2>Collection:<%=collection.get(i).getCollection_name() %></h2></div>
 			<div class="collectionView" >
-		<%for(int o = 0; o < collection.get(i).getTitle().split(",").length; o++){%>
+			<input type="hidden" name="collection_name" value="<%=collection.get(i).getCollection_name()%>">
+		<%for(int o = 0; o < collection.get(i).getMovieSeq().split(",").length; o++){%>
 			<div class ="eachList<%=o %>" id="eachList">
 			<div id="modifyMovies"></div>
-			<a href="MovieDetailPro.mo?movieSeq=<%=collection.get(i).getMovieSeq().split(",")[o]%>&query=<%=collection.get(i).getTitle().split(",")[o]%>">
+			<a href="MovieDetailPro.mo?movieSeq=<%=collection.get(i).getMovieSeq().split(",")[o]%>&query=<%=collection.get(i).getTitle().split("&")[o]%>">
 			</a>
 			<div class="poster" style="background-image: url('<%=collection.get(i).getPoster().split(",")[o]%>'),url(${pageContext.request.contextPath}/img/noImage.gif;"></div>
-			<div class="title"><%=collection.get(i).getTitle().split(",")[o]%></div>
+			<div class="title"><%=collection.get(i).getTitle().split("&")[o]%></div>
 	
 			<div class="modifyDel">
 				<input type="button" class ="delBtn" id="eachList<%=o %>" value="삭제"><br>
 			</div>
 			
 			<input type="hidden" name="movieSeq" value="<%=collection.get(i).getMovieSeq().split(",")[o]%>">
-			<input type="hidden" name="title" value="<%=collection.get(i).getTitle().split(",")[o]%>">
+			<input type="hidden" name="title" value="<%=collection.get(i).getTitle().split("&")[o]%>">
 			<input type="hidden" name="poster" value="<%=collection.get(i).getPoster().split(",")[o]%>">
 			<input type="hidden" name="idx" value="<%=collection.get(i).getIdx()%>">
 			</div>
