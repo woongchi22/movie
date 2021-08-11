@@ -89,7 +89,6 @@ $(document).ready(function() {
 						
 						if (stills[i]) {
 		                     $('.stills').append('<div class=stillCut style="background-image: url(' + stills[i] + ');"></div>')
-		                     //                           $('.posters').append('<div class=stillCut><img style="height:150px;" src='+stills[i]+' onerror=this.src=../../../Movie/img/noImage.gif></div>')
 		                 } 
 					}
 					
@@ -102,7 +101,7 @@ $(document).ready(function() {
 					$('.title_top').append('<div class=title_top>'+title4+'</div>');
 					$('.starAvg').append('<div id=avgGrade></div><div class=runtime>'+rating+'&nbsp; &middot; &nbsp;'+runtime+'분</div>');
 					$('.posters').append('<div class=poster style="background-image:url('+poster[0]+'),url(${pageContext.request.contextPath}/img/noImage.gif);"></div>');
-					$('.info').append('<div class=plot style="margin-bottom:7px;">'+plot+'</div><dt>감독</dt><div class=directors>'+directors+'</div><dt>출연</dt><div class=actors>'
+					$('.info').append('<div class=plot>'+plot+'</div><dt>감독</dt><div class=directors>'+directors+'</div><dt>출연</dt><div class=actors>'
 							+actors+'</div><dt>개요</dt><div class=summaryInfo>'+genre+' &nbsp;|&nbsp; '+nation+' &nbsp;|&nbsp; '+openDt+'</div><dt>배급</dt><div class=company>'+company+'</div>');
 				
 				});	// each
@@ -241,6 +240,12 @@ $(document).ready(function() {
         success: function(data) {
         	
             $.each(data.Data, function(idx,item) {
+            	
+            	if(item.TotalCount == 0) {
+            		$('.directorP').text(directorNm + "감독의 다른 영화를 찾을 수 없습니다");
+            		return false;
+            	} 
+            	
                 $.each(item.Result, function(idx, item2) {
                     
                     var title = item2.title
@@ -260,6 +265,7 @@ $(document).ready(function() {
                     $('.directorP').text(directorNm + " 감독의 다른 영화들");
                         
                 });
+                
             });
 
             $('.directorMovie').slick({
