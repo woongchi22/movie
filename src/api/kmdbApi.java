@@ -581,6 +581,142 @@ public class kmdbApi {
 		
 		return sb.toString();
 	}
+	
+	// 선호하는 영화 장르
+	public String getGenre(String genre) throws IOException {
+		System.out.println("kmdb - getGenre()");
+		
+		StringBuilder urlBuilder = new StringBuilder(
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&genre="
+						+ genre + "&createDts=2000&ServiceKey=319276GM630XRTRNIWN8");
+
+		URL url = new URL(urlBuilder.toString());
+		HttpURLConnection con = (HttpURLConnection) url.openConnection();
+		con.setRequestMethod("GET");
+		con.setRequestProperty("Content-type", "application/json");
+		
+		BufferedReader rd;
+		if(con.getResponseCode() >= 200 && con.getResponseCode() <=300) {
+			rd = new BufferedReader(new InputStreamReader(con.getInputStream()));
+		} else {
+			rd = new BufferedReader(new InputStreamReader(con.getErrorStream())); 
+		}
+		
+		StringBuilder sb = new StringBuilder();
+		String line;
+		while ((line = rd.readLine()) != null) {
+			sb.append(line + "\n");
+		}
+		
+		rd.close(); 
+		con.disconnect(); 
+		System.out.println(sb.toString());
+		
+		return sb.toString();
+	}
+
+	// 선호하는 영화 장르 랜덤 
+	public String getGenre(String genre, int startCount) throws IOException {
+		System.out.println("kmdb - getGenre");
+		
+		StringBuilder urlBuilder = new StringBuilder(
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&genre="
+						+ genre + "&createDts=2000&startCount=" + startCount + "&ServiceKey=319276GM630XRTRNIWN8");
+
+		URL url = new URL(urlBuilder.toString());
+		HttpURLConnection con = (HttpURLConnection) url.openConnection();
+		con.setRequestMethod("GET");
+		con.setRequestProperty("Content-type", "application/json");
+		
+		BufferedReader rd;
+		if(con.getResponseCode() >= 200 && con.getResponseCode() <=300) {
+			rd = new BufferedReader(new InputStreamReader(con.getInputStream()));
+		} else {
+			rd = new BufferedReader(new InputStreamReader(con.getErrorStream())); 
+		}
+		
+		StringBuilder sb = new StringBuilder();
+		String line;
+		while ((line = rd.readLine()) != null) {
+			sb.append(line + "\n");
+		}
+		
+		rd.close(); 
+		con.disconnect(); 
+		System.out.println(sb.toString());
+		
+		return sb.toString();
+	}
+
+	// 선호하는 나라 영화
+	public String getNation(String nation) throws IOException {
+		System.out.println("kmdb - getNation()");
+		
+		StringBuilder urlBuilder = new StringBuilder(
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&nation="
+						+ nation + "&createDts=2000&ServiceKey=319276GM630XRTRNIWN8");
+
+		URL url = new URL(urlBuilder.toString());
+		HttpURLConnection con = (HttpURLConnection) url.openConnection();
+		con.setRequestMethod("GET");
+		con.setRequestProperty("Content-type", "application/json");
+		
+		BufferedReader rd;
+		if(con.getResponseCode() >= 200 && con.getResponseCode() <=300) {
+			rd = new BufferedReader(new InputStreamReader(con.getInputStream()));
+		} else {
+			rd = new BufferedReader(new InputStreamReader(con.getErrorStream())); 
+		}
+		
+		StringBuilder sb = new StringBuilder();
+		String line;
+		while ((line = rd.readLine()) != null) {
+			sb.append(line + "\n");
+		}
+		
+		rd.close(); 
+		con.disconnect(); 
+		System.out.println(sb.toString());
+		
+		return sb.toString();
+	}
+
+
+	// 선호하는 나라 영화 랜덤
+	public String getNation(String nation, int startCount) throws IOException {
+		System.out.println("kmdb - getNation(n, s)");
+		
+		StringBuilder urlBuilder = new StringBuilder(
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&nation="
+						+ nation + "&createDts=2000&startCount=" + startCount + "&ServiceKey=319276GM630XRTRNIWN8");
+
+		URL url = new URL(urlBuilder.toString());
+		HttpURLConnection con = (HttpURLConnection) url.openConnection();
+		con.setRequestMethod("GET");
+		con.setRequestProperty("Content-type", "application/json");
+		
+		BufferedReader rd;
+		if(con.getResponseCode() >= 200 && con.getResponseCode() <=300) {
+			rd = new BufferedReader(new InputStreamReader(con.getInputStream()));
+		} else {
+			rd = new BufferedReader(new InputStreamReader(con.getErrorStream())); 
+		}
+		
+		StringBuilder sb = new StringBuilder();
+		String line;
+		while ((line = rd.readLine()) != null) {
+			sb.append(line + "\n");
+		}
+		
+		rd.close(); 
+		con.disconnect(); 
+		System.out.println(sb.toString());
+		
+		return sb.toString();
+	}
+
+
+	
 
 	
 	

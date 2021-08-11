@@ -35,13 +35,13 @@ $(document).ready(function() {
             
             var plus = '';
             for(var i=0; i<data.length; i++) {
-//              console.log(data[i].genre);
-                plus = data[i].genre + ',' + plus // 장르 다 더하기
+//              console.log(data[i].nation);
+                plus = data[i].nation + ',' + plus // 나라 다 더하기
             }
             
             var comma = plus.slice(0, -1); // 끝에 콤마 삭제
             const strings = comma.split(','); // 배열로 만들기
-//          console.log(strings);
+            console.log(strings);
             
             // 출현빈도 구하기 1 (forEach)
             const res = {};
@@ -60,31 +60,31 @@ $(document).ready(function() {
             });
 //          console.log(mode);
             
-            var genre = mode;
-            console.log(genre);
+            var nation = mode;
+            console.log(nation);
             
-            // 장르 랜덤
+            // 나라 랜덤
             $.ajax({
-                url: "RecommandGenreSearch.mo",
+                url: "RecommandNationSearch.mo",
                 method:"post",       
                 dataType: "json",
                 data: {
-                	genre:genre
+                    nation:nation
                 },
                 success: function(data) {
                     
-                    $('.recommandGenre').prepend('<h2><%=name %>님이 선호하는 장르의 영화 추천</h2>');
+                    $('.recommandNation').prepend('<h2><%=name %>님이 선호하는 나라의 영화 추천</h2>');
                     
                     $.each(data.Data, function(idx, item) {
                         var totalCount = item.TotalCount
                         console.log(totalCount);
                         
-                        $.ajax("RecommandGenreRandomSearch.mo", {
+                        $.ajax("RecommandNationRandomSearch.mo", {
 //                          async: false,    
                             dataType:"json",
                             method: 'post',
                             data: {
-                                genre:genre,
+                                nation:nation,
                                 totalCount:totalCount
                             }, 
                             success: function(data) {
@@ -101,7 +101,7 @@ $(document).ready(function() {
                                          var poster = posters[0]
                                             
                                          if(poster) {
-                                             $('.genreMovie').append('<div class=boxOfficeMovie><a href=MovieDetailPro.mo?movieSeq='+item2.movieSeq+'&query='+title4+' class=boxOfficePoster>'+
+                                             $('.nationMovie').append('<div class=boxOfficeMovie><a href=MovieDetailPro.mo?movieSeq='+item2.movieSeq+'&query='+title4+' class=boxOfficePoster>'+
                                                      '<div class=poster style="background-image:url('+poster+'),url(${pageContext.request.contextPath}/img/noImage.gif);"></div></a>'+
                                                      '<div class=title>'+title4+'</div></div>');
                                          }
@@ -110,7 +110,7 @@ $(document).ready(function() {
                                      });
                                  });
                                      
-                               $('.genreMovie').slick({
+                               $('.nationMovie').slick({
                                    dots: false,
                                    infinite: false,
                                    arrows: true,
@@ -174,8 +174,8 @@ $(document).ready(function() {
 </header>
 
 <body>
-    <div class="recommandGenre">
-        <div class="genreMovie"></div>
+    <div class="recommandNation">
+        <div class="nationMovie"></div>
     </div>
     
     

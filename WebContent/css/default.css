@@ -56,6 +56,9 @@ a:hover, a:active {color: #bfbfbf;}
 h2{
 	margin: 0 0 15px 20px;
 }
+h3{
+    margin: 0 0 15px 20px;
+}
 .poster{
 	width:250px;
 	height:350px;
