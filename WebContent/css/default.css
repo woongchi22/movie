@@ -125,10 +125,51 @@ dt{
 	margin: 30px 0 15px 10px;
 	float: left;
 }
-/* .plot{ */
-/* 	margin: 90px 10px 20px 285px; */
-/* } */
+.plot{
+	margin: 10px 10px;
+	padding: 5px;
+	line-height: 170%;
+    overflow: auto;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    -webkit-line-clamp: 7;
+    white-space: break-spaces;
+}
+.plot::-webkit-scrollbar { /* 스크롤 전체 */
+    width: 10px;
+}
+.plot::-webkit-scrollbar-thumb { /* 스크롤 막대 */
+    background-color: #2f3542;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+}
+.plot::-webkit-scrollbar-track { /* 스크롤 여부 */
+    background-color: grey;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+}
 
+.directors, .summaryInfo{
+	margin: 5px 0;
+    line-height: 170%;
+}
+.actors{
+    margin: 5px 10px;
+    line-height: 170%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    -webkit-line-clamp: 2;
+    white-space: break-spaces;
+}
+#koreaSearch, #foreignSearch, #directorSearch, #actorSearch, #keywordSearch{
+	margin: 5px 25px;
+}
 .dibs{
     margin: 67px 0 0 20px;
     float: left;
