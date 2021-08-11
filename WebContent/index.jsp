@@ -32,7 +32,6 @@ String name = (String)session.getAttribute("name");
                 <jsp:include page="/recommand/movie_nation.jsp"/>
             </div>
             
-            
 		<%} %>
 
 	</section>
