@@ -87,14 +87,14 @@ $(document).ready(function() {
 		 	  			      			    '<div class=poster style="background-image: url('+poster+')"></div>'+ 
 		 	  			      				'<div class=title>'+title4+'</div>'+
 		 	  			      				'<div class=modifyDel>' +
-		 	  			      				'<input type=button class="modifyDelteBtn" value=삭제>' +
+		 	  			      				'<input type=button class=modifyDelBtn value=삭제>' +
 		 	  			      				'</div>' +
 		 	  			      				'<input type="hidden" name="movieSeq" value='+movieSeq+'>'+
 		 	  			      				'<input type="hidden" name="title" value='+title4+'>' +
 		 	  			      				'<input type="hidden" name="poster" value='+poster+'>' +
 		 	  			      				'<input type="hidden" name="idx"></div>');
                                         $('#c_submit', opener.document).show();
-                                        $('.modifyDelteBtn', opener.document).show();
+                                        $('.modifyDelBtn', opener.document).show();
 
                                         
                                         return false;
@@ -118,14 +118,14 @@ $(document).ready(function() {
 			 	  			      			    '<div class=poster style="background-image: url('+poster+')"></div>'+ 
 			 	  			      				'<div class=title>'+title4+'</div>'+
 			 	  			      				'<div class=modifyDel>' +
-			 	  			      				'<input type=button class="modifyDelteBtn" value=삭제>' +
+			 	  			      				'<input type=button class=modifyDelBtn value=삭제>' +
 			 	  			      				'</div>' +
 			 	  			      				'<input type="hidden" name="movieSeq" value='+movieSeq+'>'+
 			 	  			      				'<input type="hidden" name="title" value='+title4+'>' +
 			 	  			      				'<input type="hidden" name="poster" value='+poster+'>' +
 			 	  			      				'<input type="hidden" name="idx"></div>');
                                             $('#c_submit', opener.document).show();
-                                            $('.modifyDelteBtn', opener.document).show();
+                                            $('.modifyDelBtn', opener.document).show();
                                     } else { 
                                         alert("이미 추가된 영화입니다.")
                                     }
@@ -165,14 +165,14 @@ $(document).ready(function() {
 		 	  			      			    '<div class=poster style="background-image: url('+poster+')"></div>'+ 
 		 	  			      				'<div class=title>'+title4+'</div>'+
 		 	  			      				'<div class=modifyDel>' +
-		 	  			      				'<input type=button class="modifyDelteBtn" value=삭제>' +
+		 	  			      				'<input type=button class=modifyDelBtn value=삭제>' +
 		 	  			      				'</div>' +
 		 	  			      				'<input type="hidden" name="movieSeq" value='+movieSeq+'>'+
 		 	  			      				'<input type="hidden" name="title" value='+title4+'>' +
 		 	  			      				'<input type="hidden" name="poster" value='+poster+'>' +
 		 	  			      				'<input type="hidden" name="idx"></div>');
                                           $('#c_submit', opener.document).show();
-                                          $('.modifyDelteBtn', opener.document).show();
+                                          $('.modifyDelBtn', opener.document).show();
 
                                           
                                           return false;
@@ -196,14 +196,14 @@ $(document).ready(function() {
     		 	  			      			    '<div class=poster style="background-image: url('+poster+')"></div>'+ 
     		 	  			      				'<div class=title>'+title4+'</div>'+
     		 	  			      				'<div class=modifyDel>' +
-    		 	  			      				'<input type=button class="modifyDelteBtn" value=삭제>' +
+    		 	  			      				'<input type=button class=modifyDelBtn value=삭제>' +
     		 	  			      				'</div>' +
     		 	  			      				'<input type="hidden" name="movieSeq" value='+movieSeq+'>'+
     		 	  			      				'<input type="hidden" name="title" value='+title4+'>' +
     		 	  			      				'<input type="hidden" name="poster" value='+poster+'>' +
     		 	  			      				'<input type="hidden" name="idx"></div>');
                                               $('#c_submit', opener.document).show();
-                                              $('.modifyDelteBtn', opener.document).show();
+                                              $('.modifyDelBtn', opener.document).show();
 
                                       } else { 
                                           alert("이미 추가된 영화입니다.")

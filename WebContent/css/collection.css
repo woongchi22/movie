@@ -19,6 +19,18 @@
     padding: 10px;
     display: none;
 }
+.modifyDelBtn{
+	color: #b7b7b7;
+    border: 0;
+    font-size: 15px;
+    background-color: rgba(0,0,0,0);
+/*     text-align:center; */
+    cursor: pointer;
+    
+	margin: -35px 0 0 115px;
+    padding: 10px;
+    display: none;
+}
 
 .modifyBtn{
 	color: #b7b7b7;

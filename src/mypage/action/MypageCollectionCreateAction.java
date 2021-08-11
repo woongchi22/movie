@@ -21,10 +21,12 @@ public class MypageCollectionCreateAction implements Action {
 		String[] movieSeq = request.getParameterValues("movieSeq");
 		String[] poster = request.getParameterValues("poster");
 		String subject = request.getParameter("subject");
-		String joinTitle = String.join(",", title);
+		String joinTitle = String.join("&", title);
 		String joinPoster = String.join(",", poster);
 		String joinMovieSeq = String.join("," , movieSeq);
 		
+		
+		System.out.println("@@@@@@@"+joinTitle);
 		System.out.println(name);
 		System.out.println(subject);
 		

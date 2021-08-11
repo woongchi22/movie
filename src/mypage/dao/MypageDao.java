@@ -283,16 +283,7 @@ public class MypageDao {
 		System.out.println("mypage dao - updateCollection");
 		int isSuccess = 0;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 		  try {
-			  if(collectionBean.getMovieSeq() == null && collectionBean.getTitle() == null) {
-					String sql = "DELETE collection WHERE idx = ?";
-					pstmt = con.prepareStatement(sql);	
-					pstmt.setInt(1, collectionBean.getIdx());
-					isSuccess = pstmt.executeUpdate();
-			  }else {
-			  
-			  
 			  
 			String sql = "UPDATE collection set movieSeq=?,title=?,poster=? where idx = ?";
 			pstmt = con.prepareStatement(sql);
@@ -302,17 +293,38 @@ public class MypageDao {
 			pstmt.setInt(4, collectionBean.getIdx());
 			System.out.println(collectionBean.getMovieSeq());
 			isSuccess = pstmt.executeUpdate();
-			  }
+			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			close(rs);
 			close(pstmt);
 		}
 		  
 		  
 		
+		return isSuccess;
+	}
+
+	public int deleteCollection(String collection_name) {
+		System.out.println("mypage dao - deleteCollection");
+		int isSuccess = 0;
+		
+		try {
+			String sql = "DELETE FROM collection WHERE collection_name = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, collection_name);
+			System.out.println(collection_name);
+			isSuccess = pstmt.executeUpdate();
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		  
 		return isSuccess;
 	}
 
