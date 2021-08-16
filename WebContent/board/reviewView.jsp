@@ -38,8 +38,14 @@ String grade = (String)request.getAttribute("grade");
 	<div class="reviewAll">
 	   <h2><%=query %> 코멘트</h2>
        <a class="back" href="MovieDetailPro.mo?movieSeq=<%=movieSeq %>&query=<%=query %>">돌아가기</a>
+       <div class="noComment">아직 등록된 코멘트가 없습니다.</div>
+       
 	<%for(ReviewBean rb : reviewList) {%>
-	
+	   <%if(rb.getName() != null) { %>
+	       <script type="text/javascript">
+	       $('.noComment').css("display", "none");
+	       </script>
+	   <%} %>
 		<div class="reviewList">
 		    <div class="reviewName"> <%=rb.getName() %></div>
 		    <div class="reviewGrade"><img class="reviewStar" src="img/star3.png"> <%=rb.getGrade() %>점</div>

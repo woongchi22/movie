@@ -19,12 +19,13 @@ public class RecommandGenreSearchAction implements Action {
 		
 		response.setCharacterEncoding("UTF-8");
 		String genre = request.getParameter("genre");
+		String genre2 = request.getParameter("genre2");
 		
 		kmdbApi movie = new kmdbApi();
 		String json = null;
 		
 		if(genre != null) {
-			json = movie.getGenre(genre);
+			json = movie.getGenre(genre, genre2);
 		}
 
 		JsonParser jsonParser = new JsonParser();

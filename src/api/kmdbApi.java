@@ -583,12 +583,12 @@ public class kmdbApi {
 	}
 	
 	// 선호하는 영화 장르
-	public String getGenre(String genre) throws IOException {
+	public String getGenre(String genre, String genre2) throws IOException {
 		System.out.println("kmdb - getGenre()");
 		
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&genre="
-						+ genre + "&createDts=2000&ServiceKey=319276GM630XRTRNIWN8");
+						+ genre + "%20" + genre2 + "&createDts=2000&ServiceKey=319276GM630XRTRNIWN8");
 
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -616,12 +616,12 @@ public class kmdbApi {
 	}
 
 	// 선호하는 영화 장르 랜덤 
-	public String getGenre(String genre, int startCount) throws IOException {
+	public String getGenre(String genre, String genre2, int startCount) throws IOException {
 		System.out.println("kmdb - getGenre");
 		
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&genre="
-						+ genre + "&createDts=2000&startCount=" + startCount + "&ServiceKey=319276GM630XRTRNIWN8");
+						+ genre + "%20" + genre2 + "&createDts=2000&startCount=" + startCount + "&ServiceKey=319276GM630XRTRNIWN8");
 
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -654,7 +654,7 @@ public class kmdbApi {
 		
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&nation="
-						+ nation + "&createDts=2000&ServiceKey=319276GM630XRTRNIWN8");
+						+ nation + "&createDts=2010&ServiceKey=319276GM630XRTRNIWN8");
 
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -688,7 +688,7 @@ public class kmdbApi {
 		
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&nation="
-						+ nation + "&createDts=2000&startCount=" + startCount + "&ServiceKey=319276GM630XRTRNIWN8");
+						+ nation + "&createDts=2010&startCount=" + startCount + "&ServiceKey=319276GM630XRTRNIWN8");
 
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();

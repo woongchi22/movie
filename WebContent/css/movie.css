@@ -391,4 +391,7 @@ hr{
     background-repeat:no-repeat;
     float: left;
 }
-
+.noComment{
+	margin: 60px 20px;
+	color: red;
+}

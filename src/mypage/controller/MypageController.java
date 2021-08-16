@@ -93,6 +93,15 @@ public class MypageController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
+		// 컬렉션 리스트	
+		} else if(command.equals("/CollectionList.mp")) {
+			action = new CollectionListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		

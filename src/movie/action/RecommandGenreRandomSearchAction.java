@@ -19,6 +19,7 @@ public class RecommandGenreRandomSearchAction implements Action {
 		
 		response.setCharacterEncoding("UTF-8");
 		String genre = request.getParameter("genre");
+		String genre2 = request.getParameter("genre2");
 		String totalCount = request.getParameter("totalCount");
 		int tc = Integer.parseInt(totalCount);
 		
@@ -29,7 +30,7 @@ public class RecommandGenreRandomSearchAction implements Action {
 		String json = null;
 		
 		if(genre != null) {
-			json = movie.getGenre(genre, startCount);
+			json = movie.getGenre(genre, genre2, startCount);
 		}
 
 		JsonParser jsonParser = new JsonParser();
