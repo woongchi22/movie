@@ -77,6 +77,7 @@ $(document).ready(function() {
 //	alert(index);
 		$('.eachList').eq(index).remove();
 		
+		
 });
 
 	$('.delBtn').on('click', function() {
