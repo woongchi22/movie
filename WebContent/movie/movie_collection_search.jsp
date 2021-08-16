@@ -5,7 +5,6 @@
 String query = request.getParameter("query"); 
 String name = (String)session.getAttribute("name");
 
-
 %>
 <html>
 <head>
@@ -21,17 +20,12 @@ String name = (String)session.getAttribute("name");
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="slick/slick.min.js"></script> 
 
-
-
 <script type="text/javascript">
 $(document).ready(function() {
-	console.log("들어왔슈");
 	
 	var query = $('#query').val();
 	var name = $('#name').val();
-	console.log(query);
 	query = query.replace(/ /g,'');
-
 		
 
 	// 영화 검색(한국, 외국)
@@ -43,9 +37,11 @@ $(document).ready(function() {
 
 			// 배열 4개
 			$.each(data.Data, function(idx, item) {
-				
-				var count = item.Count; // 10
-				
+				if(item.TotalCount == 0) {
+                    $('#koreaSearch').text("-");
+                    $('#foreignSearch').text("-");
+                    return false;
+                }
 				$.each(item.Result, function(idx, item2) {
 					
 					var title1 = item2.title
@@ -58,11 +54,9 @@ $(document).ready(function() {
 	                var nation = item2.nation
 	                var posters = item2.posters.split("|"); // 포스터 데이터는 '|' 로 구분되어있어서 스플릿 처리함 ( 여러개 있음 )
 	                var poster = posters[0]
-// 	                console.log(poster);
 					
 	                // 한국 영화 검색
 	                if(nation == "대한민국") {
-	                	
 	                	if(poster) {
 	                		$('#koreaList').append('<div id=koreaMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query=' + title +
 	                				'><div class=poster style="background-image: url(' + poster + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
@@ -70,11 +64,11 @@ $(document).ready(function() {
 	                				'<input type="button" value="담기" id="'+item2.movieSeq+'" class="addBtn" ></div>');
 	                	}
 	                	
-///////////////////////////////////
-					  $('#koreaList').on('click', '#' + item2.movieSeq, function() {
+	                    $('#koreaList').on('click', '#' + item2.movieSeq, function() {
                         var movieSeq = item2.movieSeq;
 //                         var poster = poster;
                         console.log("들왔당께");
+                        
                         $.ajax('CollectionMovieAdd.mp', {
                             data: {
                                 name: name,
@@ -140,8 +134,8 @@ $(document).ready(function() {
                                     '<div class=title>' + title4 + '</div>'+
 	                				'<input type="button" value="담기" id="'+item2.movieSeq+'" class="addBtn" ></div>');
                 		}
-///////////////////////////////////
-  					  $('#foreignList').on('click', '#' + item2.movieSeq, function() {
+                		
+                		  $('#foreignList').on('click', '#' + item2.movieSeq, function() {
                           var movieSeq = item2.movieSeq;
 //                           var poster = poster;
                           console.log("들왔당께외국인ㅋ");
@@ -293,7 +287,10 @@ $(document).ready(function() {
             console.log(query);
             
             $.each(data.Data, function(idx, item) {
-                
+            	if(item.TotalCount == 0) {
+                    $('#directorSearch').text("-");
+                    return false;
+                }
                 $.each(item.Result, function(idx, item2) {
                     
                     var title1 = item2.title
@@ -312,7 +309,7 @@ $(document).ready(function() {
                                 '<div class=title>' + title4 + '</div>'+
                 				'<input type="button" value="담기" id="'+item2.movieSeq+'" class="addBtn"></div>');
                     }
-///////////////////////////////////
+                    
 					  $('#directorList').on('click', '#' + item2.movieSeq, function() {
                         var movieSeq = item2.movieSeq;
 //                         var poster = poster;
@@ -428,7 +425,10 @@ $(document).ready(function() {
             console.log(query);
             
             $.each(data.Data, function(idx, item) {
-                
+            	if(item.TotalCount == 0) {
+                    $('#actorSearch').text("-");
+                    return false;
+                }
                 $.each(item.Result, function(idx, item2) {
                     
                     var title1 = item2.title
@@ -446,7 +446,7 @@ $(document).ready(function() {
                                 '<div class=title>' + title4 + '</div>'+
                 				'<input type="button" value="담기" id="'+item2.movieSeq+'"class="addBtn" ></div>');
                     }
-///////////////////////////////////
+                    
 					  $('#actorList').on('click', '#' + item2.movieSeq, function() {
                         var movieSeq = item2.movieSeq;
 //                         var poster = poster;
@@ -562,7 +562,10 @@ $(document).ready(function() {
             console.log(query);
             
             $.each(data.Data, function(idx, item) {
-                
+            	if(item.TotalCount == 0) {
+                    $('#keywordSearch').text("-");
+                    return false;
+                }
                 $.each(item.Result, function(idx, item2) {
                     
                     var title1 = item2.title
@@ -580,7 +583,7 @@ $(document).ready(function() {
                                 '<div class=title>' + title4 + '</div>'+
                 				'<input type="button" value="담기" id="'+item2.movieSeq+'"class="addBtn" ></div>');
                     }
-///////////////////////////////////
+                    
 					  $('#keywordList').on('click', '#' + item2.movieSeq, function() {
                         var movieSeq = item2.movieSeq;
 //                         var poster = poster;
@@ -702,26 +705,31 @@ $(document).ready(function() {
 	<section>
 	        <div class="content">
 			    <h2>한국 영화</h2>
+			    <div id="koreaSearch"></div>
 			    <div id="koreaList"></div>
 	        </div>
 	        
 	        <div class="content">
 	            <h2>외국 영화</h2>
+	            <div id="foreignSearch"></div>
 	            <div id="foreignList"></div>
 	        </div>
 	        
 	        <div class="content">
 	            <h2>감독</h2>
+	            <div id="directorSearch"></div>
 	            <div id="directorList"></div>
 	        </div>
 	        
 	        <div class="content">
 	            <h2>배우</h2>
+	            <div id="actorSearch"></div>
 	            <div id="actorList"></div>
 	        </div>
 	        
 	        <div class="content">
 	            <h2>키워드</h2>
+	            <div id="keywordSearch"></div>
 	            <div id="keywordList"></div>
 	        </div>
 	    

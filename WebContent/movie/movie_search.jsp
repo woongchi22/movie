@@ -5,7 +5,6 @@
 String query = request.getParameter("query"); 
 String name = (String)session.getAttribute("name");
 
-
 %>
 
 <html>
@@ -35,8 +34,11 @@ $(document).ready(function() {
 			console.log(query);
 			// 배열 4개
 			$.each(data.Data, function(idx, item) {
-				
-				var count = item.Count; // 10
+				if(item.TotalCount == 0) {
+                    $('#koreaSearch').text("-");
+                    $('#foreignSearch').text("-");
+                    return false;
+                }
 				
 				$.each(item.Result, function(idx, item2) {
 					
@@ -49,22 +51,18 @@ $(document).ready(function() {
 	                
 	                var nation = item2.nation
 	                var posters = item2.posters.split("|"); // 포스터 데이터는 '|' 로 구분되어있어서 스플릿 처리함 ( 여러개 있음 )
-	                
 	                var poster = posters[0]
-// 	                console.log(poster);
 					
 	                // 한국 영화 검색
 	                if(nation == "대한민국") {
-	                	
 	                	if(poster) {
 	                		$('#koreaList').append('<div id=koreaMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query=' + title +
 	                				'><div class=poster style="background-image: url(' + poster + '), url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
 	                				'<div class=title>' + title4 + '</div></div>');
-	                	}
+	                	} 
 	                
 	                // 해외 영화 검색	
                 	} else {
-                		
                 		if(poster) {
                 			$('#foreignList').append('<div id=foreignMovie><a href=MovieDetailPro.mo?movieSeq=' + item2.movieSeq + '&query=' + title +
                                     '><div class=poster style="background-image: url(' + poster + '),url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>' + 
@@ -160,6 +158,10 @@ $(document).ready(function() {
             console.log(query);
             
             $.each(data.Data, function(idx, item) {
+            	if(item.TotalCount == 0) {
+                    $('#directorSearch').text("-");
+                    return false;
+                }
                 
                 $.each(item.Result, function(idx, item2) {
                     
@@ -231,7 +233,11 @@ $(document).ready(function() {
             console.log(query);
             
             $.each(data.Data, function(idx, item) {
-                
+            	if(item.TotalCount == 0) {
+                    $('#actorSearch').text("-");
+                    return false;
+                }
+            	
                 $.each(item.Result, function(idx, item2) {
                     
                     var title1 = item2.title
@@ -302,7 +308,10 @@ $(document).ready(function() {
             console.log(query);
             
             $.each(data.Data, function(idx, item) {
-                
+            	if(item.TotalCount == 0) {
+                    $('#keywordSearch').text("-");
+                    return false;
+                }
                 $.each(item.Result, function(idx, item2) {
                     
                     var title1 = item2.title
@@ -379,34 +388,37 @@ $(document).ready(function() {
     <section>
         <div class="content">
 		    <h2>한국 영화</h2>
+		    <div id="koreaSearch"></div>
 		    <div id="koreaList"></div>
         </div>
         
         <div class="content">
             <h2>외국 영화</h2>
+            <div id="foreignSearch"></div>
             <div id="foreignList"></div>
         </div>
         
         <div class="content">
             <h2>감독</h2>
+            <div id="directorSearch"></div>
             <div id="directorList"></div>
         </div>
         
         <div class="content">
             <h2>배우</h2>
+            <div id="actorSearch"></div>
             <div id="actorList"></div>
         </div>
         
         <div class="content">
             <h2>키워드</h2>
+            <div id="keywordSearch"></div>
             <div id="keywordList"></div>
         </div>
 	    
     </section>
-    
 
 
-        <input type="hidden" id="query" name="query" value="<%=query %>">
-
+    <input type="hidden" id="query" name="query" value="<%=query %>">
 </body>
 </html>

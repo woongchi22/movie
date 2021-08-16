@@ -73,7 +73,7 @@ $(document).ready(function() {
                 },
                 success: function(data) {
                     
-                    $('.recommandNation').prepend('<h2><%=name %>님이 선호하는 나라의 영화 추천</h2>');
+                    $('.recommandNation').prepend('<h2><%=name %>님이 선호하는 국가의 영화 추천</h2>');
                     
                     $.each(data.Data, function(idx, item) {
                         var totalCount = item.TotalCount
