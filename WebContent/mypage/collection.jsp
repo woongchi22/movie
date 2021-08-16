@@ -80,6 +80,7 @@ $(document).ready(function() {
 		
 });
 
+	
 	$('.delBtn').on('click', function() {
 		var index = $('.delBtn').index(this);	
 //	alert(index);
