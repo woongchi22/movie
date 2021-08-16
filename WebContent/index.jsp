@@ -37,6 +37,7 @@ String name = (String)session.getAttribute("name");
             </div>
             
             
+            
 		<%} %>
 
 	</section>
