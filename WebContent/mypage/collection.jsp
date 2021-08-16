@@ -69,6 +69,7 @@ $(document).ready(function() {
 		var eachList = $(this).attr('id');	
 		var collectionNum = $(this).closest('#collectionNum').attr('class')
 		$('.' + collectionNum).find('.'+eachList).remove();
+		
 	});
 	
 	
