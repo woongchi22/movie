@@ -44,24 +44,47 @@ $(document).ready(function() {
 //          console.log(strings);
             
             // 출현빈도 구하기 1 (forEach)
-            const res = {};
+            const counts = {};
             strings.forEach((x) => {
-                res[x] = (res[x] || 0) + 1;
+            	counts[x] = (counts[x] || 0) + 1;
             });
-            console.log(res);
+            console.log(counts);
             
+            // 출현빈도 구하기 2 (reduec)
+//             const counts = strings.reduce((x, r) => {
+//             	x[r] = (x[r] || 0) + 1;
+//             	return x;
+//             }, {});
+//             console.log(counts);
+
             // 최빈값 구하기
-            const keys = Object.keys(res);
-            let mode = keys[0];
-            keys.forEach((val, idx) => {
-                if(res[val] > res[mode]) {
-                    mode = val;
-                }
+//             const keys = Object.keys(counts);
+//             let mode = keys[0];
+//             keys.forEach((val, idx) => {
+            	
+//                 if(counts[val] > counts[mode]) {
+//                 	mode = val;
+//                 }
+//             });
+//             console.log("첫번째" + mode);
+
+
+            // 배열 생성 -> [요소:개수], [], ...
+            const result = [];
+            for(let key in counts) {
+            	result.push([key, counts[key]]);
+            }
+
+            // 출현 빈도별
+            result.sort((first, second) => {
+            	return second[1] - first[1]; // 내림차순
             });
-//          console.log(mode);
+            console.log(result);
             
-            var genre = mode;
+            var genre = result[0][0];
+            var genre2 = result[1][0];
             console.log(genre);
+            console.log(genre2);
             
             // 장르 랜덤
             $.ajax({
@@ -69,7 +92,8 @@ $(document).ready(function() {
                 method:"post",       
                 dataType: "json",
                 data: {
-                	genre:genre
+                	genre:genre,
+                	genre2:genre2
                 },
                 success: function(data) {
                     
@@ -85,6 +109,7 @@ $(document).ready(function() {
                             method: 'post',
                             data: {
                                 genre:genre,
+                                genre2:genre2,
                                 totalCount:totalCount
                             }, 
                             success: function(data) {
@@ -99,13 +124,13 @@ $(document).ready(function() {
                                             
                                          var posters = item2.posters.split("|");
                                          var poster = posters[0]
+                                         var rt = item2.runtime
                                             
-                                         if(poster) {
+                                         if(poster && rt >= 60) {
                                              $('.genreMovie').append('<div class=boxOfficeMovie><a href=MovieDetailPro.mo?movieSeq='+item2.movieSeq+'&query='+title4+' class=boxOfficePoster>'+
                                                      '<div class=poster style="background-image:url('+poster+'),url(${pageContext.request.contextPath}/img/noImage.gif);"></div></a>'+
                                                      '<div class=title>'+title4+'</div></div>');
                                          }
-                                         
                                            
                                      });
                                  });

@@ -25,11 +25,15 @@ String name = (String)session.getAttribute("name");
 	      </script>
 	      
 			<div class="content">
-	            <jsp:include page="/recommand/movie_genre.jsp"/>
+	            <jsp:include page="/recommand/recommand_genre.jsp"/>
 	        </div>
 	        
 	        <div class="content">
-                <jsp:include page="/recommand/movie_nation.jsp"/>
+                <jsp:include page="/recommand/recommand_nation.jsp"/>
+            </div>
+            
+            <div class="content">
+                <jsp:include page="/recommand/recommand_collection.jsp"/>
             </div>
             
 		<%} %>

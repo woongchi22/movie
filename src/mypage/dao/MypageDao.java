@@ -328,6 +328,39 @@ public class MypageDao {
 		return isSuccess;
 	}
 
+	public ArrayList<CollectionBean> getCollection() {
+		System.out.println("mydao - getCollection()");
+		ArrayList<CollectionBean> collectionList = null;
+		
+		try {
+			String sql = "SELECT * FROM collection";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			collectionList = new ArrayList<CollectionBean>();
+			
+			while(rs.next()) {
+				CollectionBean collection = new CollectionBean();
+				collection.setIdx(rs.getInt(1));
+				collection.setName(rs.getString(2));
+				collection.setCollection_name(rs.getString(3));
+				collection.setMovieSeq(rs.getString(4));
+				collection.setTitle(rs.getString(5));
+				collection.setPoster(rs.getString(6));
+				collectionList.add(collection);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("mydao- getCollection 에러");
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return collectionList;
+	}
+
 	
 	
 	
