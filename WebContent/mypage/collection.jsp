@@ -72,7 +72,7 @@ $(document).ready(function() {
 		
 		
 	});
-	//
+	///
 	
 	$(document).on('click', '.delBtn .modifyDelBtn', function() {
 		var index = $('.delBtn .modifyDelBtn').index(this);	
