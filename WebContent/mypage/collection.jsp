@@ -70,8 +70,9 @@ $(document).ready(function() {
 		var collectionNum = $(this).closest('#collectionNum').attr('class')
 		$('.' + collectionNum).find('.'+eachList).remove();
 		
+		
 	});
-	
+	//
 	
 	$(document).on('click', '.delBtn .modifyDelBtn', function() {
 		var index = $('.delBtn .modifyDelBtn').index(this);	
