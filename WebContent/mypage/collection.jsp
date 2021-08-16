@@ -58,17 +58,18 @@ $(document).ready(function() {
 		$('.modifyAddMov').show();
 	});
 
-// 	$('.delBtn').click(function(){
-// 		var eachList = $(this).attr('id');	
-// 		var collectionNum = $(this).closest('#collectionNum').attr('class')
-// 		$('.' + collectionNum).find('.'+eachList).remove();
-// 	});
+	$('.delBtn').click(function(){
+		var eachList = $(this).attr('id');	
+		var collectionNum = $(this).closest('#collectionNum').attr('class')
+		$('.' + collectionNum).find('.'+eachList).remove();
+	});
 	
-// 	$('.modifyDelBtn').click(function(){
-// 		var eachList = $(this).attr('id');	
-// 		var collectionNum = $(this).closest('#collectionNum').attr('class')
-// 		$('.' + collectionNum).find('.'+eachList).remove();
-// 	});
+	
+	$('.modifyDelBtn').click(function(){
+		var eachList = $(this).attr('id');	
+		var collectionNum = $(this).closest('#collectionNum').attr('class')
+		$('.' + collectionNum).find('.'+eachList).remove();
+	});
 	
 	
 	$(document).on('click', '.delBtn .modifyDelBtn', function() {
