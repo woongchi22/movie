@@ -36,6 +36,7 @@ String name = (String)session.getAttribute("name");
                 <jsp:include page="/recommand/recommand_collection.jsp"/>
             </div>
             
+            
 		<%} %>
 
 	</section>
