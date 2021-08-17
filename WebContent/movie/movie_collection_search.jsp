@@ -26,15 +26,37 @@ $(document).ready(function() {
 	var query = $('#query').val();
 	var name = $('#name').val();
 	query = query.replace(/ /g,'');
-		
+	var each = null;
+	console.log("zzzzz"+each);
+	var i = 1;
+	
+	
+	function add() {
+	    var element = document.createElement("input");
+	    element.type = 'button';
+	    element.value = "삭제";
+// 	    element.name = "a"+i;
+	    element.id = "each"+i++;
+	    var foo = document.getElementById("eachList");
+	    each = element;
+// 	    foo.appendChild(element);
+		console.log(element);
+	 
+	}
+	
+	
 
+	
 	// 영화 검색(한국, 외국)
 	$.ajax('SearchMoviePro.mo', {
 		method:"post",
 		dataType:"json",
 		data:{query:query},
 		success: function(data) {
-
+		
+			
+			
+			
 			// 배열 4개
 			$.each(data.Data, function(idx, item) {
 				if(item.TotalCount == 0) {
@@ -77,6 +99,7 @@ $(document).ready(function() {
                                 poster: poster
                             },
                             success: function(rdata) {
+                            	
                                 var dupCheck = "";
                                 if ($("#movies", opener.document).find('.title').length == 0) {
                                 	console.log("추가되라 ㅠ");
@@ -90,7 +113,6 @@ $(document).ready(function() {
                                         "<input type='hidden' value='" + title4+ "'name = 'title'></div>")
                                         $('#c_submit', opener.document).show();
                                         	console.log("젭알 ㅠ");
-
                                         
                                         return false;
                                 } else { // #movies가 존재하는 경우
@@ -108,14 +130,17 @@ $(document).ready(function() {
 
 
                                     if (dupCheck == "Y") {
+                                    	  add();
+                                    	
                                         $("#movies", opener.document).slick('slickAdd',"<div class=collectionList>" +
                                             '<div class=poster style="background-image: url(' + poster + ')"></div>' +
                                             '<div class=title>' + title4+
                                             "</div>" +
                                             "<input type='hidden' value='" + movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
                                             "<input type='hidden' value='" + poster + "'name = 'poster'>" +
-                                            "<input type='hidden' value='" + title4+ "'name = 'title'></div>")
+                                            "<input type='hidden' value='" + title4+ "'name = 'title'>"+each+"</div>")
                                             $('#c_submit', opener.document).show();
+                                      
 
                                     } else { 
                                         alert("이미 추가된 영화입니다.")

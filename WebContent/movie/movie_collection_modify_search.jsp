@@ -27,7 +27,20 @@ $(document).ready(function() {
 	console.log(query);
 	query = query.replace(/ /g,'');
 
+	
+	
 		
+// 	var i = 1;
+// 	function add() {
+// 	    var element = document.createElement("input");
+// 	    element.type = 'button';
+// 	    element.value = "삭제";
+// // 	    element.name = "a"+i;
+// 	    element.id = "each"+i++;
+// 	    var foo = document.getElementById("eachList");
+// 	    foo.appendChild(element);
+// 	}
+	
 
 	// 영화 검색(한국, 외국)
 	$.ajax('SearchMoviePro.mo', {
