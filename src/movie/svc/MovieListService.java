@@ -12,7 +12,6 @@ public class MovieListService {
 
 	// 평가한 영화 가져오기
 	public ArrayList<MovieBean> getMovie(String name) {
-		System.out.println("MovieListService - getMovie");
 		ArrayList<MovieBean> movieList = null;
 
 		Connection con = getConnection();

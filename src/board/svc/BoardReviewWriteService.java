@@ -13,8 +13,6 @@ import board.vo.ReviewBean;
 public class BoardReviewWriteService {
 
 	public boolean reviewWrite(ReviewBean reviewBean) {
-		System.out.println("BoardReviewWriteService");
-		
 		boolean isWrite = false;
 		
 		Connection con = getConnection();

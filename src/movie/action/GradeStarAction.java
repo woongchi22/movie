@@ -14,8 +14,6 @@ public class GradeStarAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("GradeStarAction!!!");
-		
 		ActionForward forward = null;
 		
 		HttpSession session = request.getSession();
@@ -49,7 +47,6 @@ public class GradeStarAction implements Action {
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
 		out.print(mb.getGrade());
-		
 
 		return forward;
 		

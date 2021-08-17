@@ -13,9 +13,8 @@ import mypage.dao.*;
 
 public class GradeStarService {
 
+	// 별점 등록
 	public boolean gradeStar(MovieBean mb) {
-		System.out.println("GradeStarService!");
-		
 		boolean isInsert = false;
 		
 		Connection con = getConnection();
@@ -38,9 +37,8 @@ public class GradeStarService {
 		
 	}
 
+	// 별점 조회
 	public int selectStar(MovieBean mb) {
-		System.out.println("GradeStarService - selectGrade()");
-		
 		int movieGrade = 0;
 		
 		Connection con = getConnection();

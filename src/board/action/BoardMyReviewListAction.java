@@ -15,11 +15,10 @@ public class BoardMyReviewListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("BoardMyReviewListAction");
 		request.setCharacterEncoding("UTF-8");
 		
 		String name = request.getParameter("name");
-		System.out.println(name);
+//		System.out.println(name);
 		BoardReviewListService boardReviewListService = new BoardReviewListService();
 		ArrayList<ReviewBean> reviewList = boardReviewListService.getReview(name);
 		request.setAttribute("reviewList", reviewList);

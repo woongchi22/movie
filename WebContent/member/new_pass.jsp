@@ -15,8 +15,8 @@ String name = (String)session.getAttribute("name");
 <link href="${pageContext.request.contextPath}/css/memberLogin.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/memberJoin.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
-<script type="text/javascript">
 
+<script type="text/javascript">
 $(document).ready(function() {
 	
     // 패스워드 정규식 & 보안강도 표시

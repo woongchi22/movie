@@ -17,15 +17,16 @@ public class MemberController extends HttpServlet {
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String command = request.getServletPath();
-		System.out.println(command);
 		
 		Action action = null;
 		ActionForward forward = null;
+		System.out.println(command);
 		
 		// 회원가입
 		if(command.equals("/MemberJoinForm.me")) {
 			forward = new ActionForward();
 			forward.setPath("/member/member_join.jsp");
+			
 		} else if(command.equals("/MemberJoinPro.me")) {
 			action = new MemberJoinProAction();
 			try {
@@ -60,6 +61,7 @@ public class MemberController extends HttpServlet {
 		} else if(command.equals("/ForgetPassForm.me")) {
 			forward = new ActionForward();
 			forward.setPath("/member/forget_pass.jsp");
+			
 		} else if(command.equals("/ForgetPassPro.me")) {
 			action = new ForgetPassProAction();
 			try {
@@ -72,6 +74,7 @@ public class MemberController extends HttpServlet {
 		} else if(command.equals("/NewPassForm.me")) {
 			forward = new ActionForward();
 			forward.setPath("/member/new_pass.jsp");
+			
 		} else if(command.equals("/NewPassPro.me")) {
 			action = new NewPassProAction();
 			try {
@@ -107,7 +110,7 @@ public class MemberController extends HttpServlet {
 				e.printStackTrace();
 			}
 		
-			//이름 중복 체크
+		//이름 중복 체크
 		}else if(command.equals("/dupName.me")) {
 			action = new MemberNameAction();
 			try {

@@ -13,8 +13,6 @@ import mypage.vo.*;
 public class DibsProService {
 
 	public boolean dibs(DibsBean db) {
-		System.out.println("DibsProService!!");
-		
 		boolean isInsert = false;
 		
 		Connection con = getConnection();

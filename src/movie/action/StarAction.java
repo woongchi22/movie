@@ -14,15 +14,13 @@ public class StarAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("StarAction!!");
-		
 		ActionForward forward = null;
 		
 		HttpSession session = request.getSession();
 		String name = (String) session.getAttribute("name");
 		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 		int grade = Integer.parseInt(request.getParameter("grade"));
-		System.out.println(movieSeq + name + grade);
+//		System.out.println(movieSeq + name + grade);
 		
 		MovieBean mb = new MovieBean();
 		mb.setName(name);

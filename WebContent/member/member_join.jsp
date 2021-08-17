@@ -10,8 +10,8 @@
 <link href="${pageContext.request.contextPath}/css/memberLogin.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/memberJoin.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
-<script type="text/javascript">
 
+<script type="text/javascript">
 $(document).ready(function() {
    
      //회원가입 이메일 중복 확인
@@ -20,18 +20,19 @@ $(document).ready(function() {
       // 정규식 판별 변수
 		 var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.([a-zA-Z]){2,3}$/i;
 		 var checkResult = regExp.test( $("#email").val() );
-         console.log("성공");
+//          console.log("성공");
 
          if(email==""){
         	 $('#check_email').text('이메일을 입력해주세요.');
              $('.check_font').css('color', 'red');
              return false;
+             
           // 정규식에 위배되는 경우
          }else if(!checkResult){
         	 alert('이메일 양식을 확인해주세요.');
-				$('.confirm').eq(0).val("N");
+			 $('.confirm').eq(0).val("N");
+				
          }else {
-         	 
              $.ajax("dupEmail.me",{
                  data:{email:email},
                  success:function(rdata){
@@ -52,12 +53,13 @@ $(document).ready(function() {
      //회원가입 이름 중복 확인
      $('#dupName').click(function(){
          var name = $('#name').val();
-         console.log("이름 성공");
+//          console.log("이름 성공");
 
          if(name == ""){
              $('#check_name').text('이름을 입력해주세요.');
              $('.check_font').css('color', 'red');
              return false;
+             
          }else {
              $.ajax("dupName.me",{
                  data:{name:name},
@@ -264,7 +266,6 @@ $(document).ready(function() {
                 <input type="email" name="email" id="email" placeholder="이메일(xxx@xxx.xxx)" class="joinEmail">
                 <div class="check_font" id="check_email"></div>
 	            <button type="button" id="dupEmail" class="joinCheck"> 이메일 중복체크 </button>
-	            <!--             <button class = "check_font" id="dupEmail" type="button">이메일 중복체크</button> -->
             </div>
             <div>
                 <input type="text" name="name" id="name" placeholder="이름" class="joinEmail">

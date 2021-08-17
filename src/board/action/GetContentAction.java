@@ -14,8 +14,6 @@ public class GetContentAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("GetContentAction");
-		
 		ActionForward forward = null;
 		
 		HttpSession session = request.getSession();

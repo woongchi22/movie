@@ -43,6 +43,7 @@ $(document).ready(function() {
 		if(mm < 10){
           mm = "0" + mm; 
         }
+		
         if(dd < 10){
           dd = "0" + dd;
         }
@@ -125,18 +126,18 @@ $(document).ready(function() {
              data : {
                 openDt:openDt,
                 title:title
-                 },
+             },
              success: function(data) { 
                  $.each(data.Data, function(idx, item) {
-                   $.each(item.Result,function(idx2,item2){
-                       var image = item2.posters.split("|");
-                       result = image[0] +"|"+item2.nation + "|"+item2.movieSeq;
-                   });
+	                   $.each(item.Result,function(idx2,item2){
+	                       var image = item2.posters.split("|");
+	                       result = image[0] +"|"+item2.nation + "|"+item2.movieSeq;
+	                   });
                  });
                  
              }
        }); 
-        return result;
+       return result;
         
      }
     

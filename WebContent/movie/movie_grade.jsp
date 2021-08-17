@@ -38,10 +38,8 @@ $(document).ready(function() {
             name:name
         },
         success: function(data) {
-        	console.log("오나");
             
             $.each(data.Data, function(idx, item) {
-            	
                 $.each(item.Result, function(idx, item2) {
                 	
                     var title1 = item2.title
@@ -54,7 +52,6 @@ $(document).ready(function() {
                     var posters = item2.posters.split("|");
                     var poster = posters[0]
                     
-	                    
                     if(poster) {
                     	
 //                     	for(i=0; i<100; i++){

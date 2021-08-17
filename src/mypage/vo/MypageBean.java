@@ -6,7 +6,6 @@ public class MypageBean {
 	private String name;
 	private String pass;
 	
-	
 	public int getIdx() {
 		return idx;
 	}

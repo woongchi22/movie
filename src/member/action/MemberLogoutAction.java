@@ -11,8 +11,6 @@ public class MemberLogoutAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("MemberLogoutAction");
-		
 		ActionForward forward = null;
 		
 		HttpSession session = request.getSession();

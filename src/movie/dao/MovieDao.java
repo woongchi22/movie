@@ -30,8 +30,6 @@ public class MovieDao {
 	
 	// 별점 등록
 	public int gradeInsert(MovieBean mb) {
-		System.out.println("mDao - gradeInsert()");
-		
 		int insertCount = 0;
 		
 		try {
@@ -89,7 +87,6 @@ public class MovieDao {
 
 	// 별점 조회
 	public int selectStar(MovieBean mb) {
-		
 		int movieGrade = 0;
 		
 		try {
@@ -115,8 +112,6 @@ public class MovieDao {
 
 	// 별점 삭제
 	public int deleteStar(String name, int movieSeq) {
-		System.out.println("mDao - deleteStar()");
-		
 		int deleteCount = 0;
 		
 		try {
@@ -147,8 +142,6 @@ public class MovieDao {
 
 	// 평균 별점
 	public float averageStar(int movieSeq) {
-		System.out.println("mDao - averageStar()");
-		
 		float avgGrade = 0.0f;
 		
 		try {
@@ -174,8 +167,6 @@ public class MovieDao {
 
 	// 평가한 영화 가져오기
 	public ArrayList<MovieBean> getMovie(String name) {
-		System.out.println("mdao-getMovie");
-		
 		ArrayList<MovieBean> movieList = null;
 		
 		try {

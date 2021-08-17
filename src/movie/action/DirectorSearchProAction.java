@@ -14,8 +14,6 @@ public class DirectorSearchProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("DirectorSearchProAction!!");
-		
 		response.setCharacterEncoding("UTF-8");
 		String director = request.getParameter("query");
 		
@@ -33,7 +31,6 @@ public class DirectorSearchProAction implements Action {
 		PrintWriter out = response.getWriter();
 		out.print(jsonObject);
 		out.flush();
-		
 		
 		return null;
 	}

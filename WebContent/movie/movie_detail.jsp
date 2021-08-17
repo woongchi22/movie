@@ -54,7 +54,6 @@ $(document).ready(function() {
 			movieSeq:movieSeq
 		},
 		success: function(data){
-			
 			$.each(data.Data, function(idx,item) {
 				$.each(item.Result, function(idx2,item2) {
 					var title1 = item2.title
@@ -71,7 +70,6 @@ $(document).ready(function() {
 	                var actor = "";
 	                var genre = item2.genre;
 	                var nation = item2.nation;
-// 	                var openDt = item2.ratings.rating[0].ratingDate.substr(0,4);
 	                var openDt = item2.prodYear;
 	                var company = item2.company;
 					var poster = item2.posters.split("|");
@@ -86,7 +84,6 @@ $(document).ready(function() {
 					}
 					
 					for(var i in stills){
-						
 						if (stills[i]) {
 		                     $('.stills').append('<div class=stillCut style="background-image: url(' + stills[i] + ');"></div>')
 		                 } 
@@ -101,8 +98,15 @@ $(document).ready(function() {
 					$('.title_top').append('<div class=title_top>'+title4+'</div>');
 					$('.starAvg').append('<div id=avgGrade></div><div class=runtime>'+rating+'&nbsp; &middot; &nbsp;'+runtime+'분</div>');
 					$('.posters').append('<div class=poster style="background-image:url('+poster[0]+'),url(${pageContext.request.contextPath}/img/noImage.gif);"></div>');
-					$('.info').append('<div class=plot>'+plot+'</div><dt>감독</dt><div class=directors>'+directors+'</div><dt>출연</dt><div class=actors>'
-							+actors+'</div><dt>개요</dt><div class=summaryInfo>'+genre+' &nbsp;|&nbsp; '+nation+' &nbsp;|&nbsp; '+openDt+'</div><dt>배급</dt><div class=company>'+company+'</div>');
+					
+					if(actors == "") {
+						actors = " ";
+						$('.info').append('<div class=plot>'+plot+'</div><dt>감독</dt><div class=directors>'+directors+'</div><dt>출연</dt><div class=actors>'
+								+actors+'</div><dt>개요</dt><div class=summaryInfo>'+genre+' &nbsp;|&nbsp; '+nation+' &nbsp;|&nbsp; '+openDt+'</div><dt>배급</dt><div class=company>'+company+'</div>');
+					} else {
+						$('.info').append('<div class=plot>'+plot+'</div><dt>감독</dt><div class=directors>'+directors+'</div><dt>출연</dt><div class=actors>'
+                                +actors+'</div><dt>개요</dt><div class=summaryInfo>'+genre+' &nbsp;|&nbsp; '+nation+' &nbsp;|&nbsp; '+openDt+'</div><dt>배급</dt><div class=company>'+company+'</div>');
+					}
 				
 				});	// each
 				
@@ -154,8 +158,6 @@ $(document).ready(function() {
             movieSeq:movieSeq
         },
         success: function(data) {
-            console.log('데이터 y/n' + data);
-            
             if(data == 'Y') {
                 $('.dibsBtn').addClass('done');
                 $('.dibsBtnImg').attr("src", "img/check2.png");
@@ -178,7 +180,6 @@ $(document).ready(function() {
             query:query
         },
         success: function(data) {
-            
             $.each(data.Data, function(idx, item) {
                 $.each(item.Result, function(idx, item2) {
 
@@ -188,7 +189,6 @@ $(document).ready(function() {
                     var title3 = title2.replace(/!HE/g,'')
                     var title4 = title3.trim(); // 양쪽끝에 공백을 제거해줌
                     var title = encodeURIComponent(title4);
-                    
                     var poster = item2.posters.split("|");
                     
                     $('.dibsBtn').click(function() {
@@ -206,7 +206,6 @@ $(document).ready(function() {
                             },
                             async: false,
                             success: function(data) {
-                            	
                                 if($('.dibsBtn').hasClass('done') == true) {
                                     $('.dibsBtn').removeClass('done')
                                     $('.dibsBtnImg').attr("src", "img/check.png");
@@ -238,7 +237,6 @@ $(document).ready(function() {
         	query:directorNm
         },
         success: function(data) {
-        	
             $.each(data.Data, function(idx,item) {
             	
             	if(item.TotalCount == 0) {
@@ -357,7 +355,6 @@ $(document).ready(function() {
 			        	jQuery('#comment').show(); 
 			        } 
 			        
-			        
 			    } else {
 			        document.getElementById("showGrade").innerHTML = "별점을 남겨주세요";
 			    }
@@ -378,7 +375,6 @@ $(document).ready(function() {
             name:name
         },
         success: function(data) {
-        	
             $.each(data.Data, function(idx, item) {
                 $.each(item.Result, function(idx, item2) {
                 	
@@ -477,7 +473,6 @@ $(document).ready(function() {
             grade:grade
         },
         success: function(data) {
-            console.log('데이터' + data);
             if(data == 0){
                 $('#showGrade').html('별점을 남겨주세요');
             }
@@ -523,7 +518,6 @@ $(document).ready(function() {
             grade:grade
         },
         success: function(data) {
-            
             if(data != 0) {
             	$('#commentBtn').css("display", "none");
                 $('#commentBox').css("display", "");
@@ -550,7 +544,6 @@ $(document).ready(function() {
 	            query:query
 	        },
 	        success: function(data) {
-
 	            $.each(data.Data, function(idx, item) {
 	                $.each(item.Result, function(idx, item2) {
 	                
@@ -575,8 +568,6 @@ $(document).ready(function() {
 	                                        poster:poster
 	                                    },
 	                                    success: function(data) {
-	                                        console.log(data);
-	                                        
 	                                        $('#commentBtn').css("display", "none");
 	                                        $('#commentBox').css("display", "");
 	                                        $('#review').html(data);
@@ -585,7 +576,6 @@ $(document).ready(function() {
 	                                    }
 	                                });
 	                                $(this).dialog('close');
-	                                
 	                            },
 	                            "취소": function() {
 	                                $(this).dialog('close');
@@ -660,8 +650,6 @@ $(document).ready(function() {
                              grade:grade
                          },
                          success: function(data) {
-                             console.log(data);
-                             
                              $('#review').html(data);
                              $('#commentBtn').css("display", "none");
                              $('#commentBox').css("display", "");
@@ -764,8 +752,6 @@ $(document).ready(function() {
 	    <div class="directorMovie"></div>
    
 </div>
-
-
 
 
 

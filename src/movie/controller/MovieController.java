@@ -16,7 +16,6 @@ import vo.*;
 @WebServlet("*.mo")
 public class MovieController extends HttpServlet {
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		request.setCharacterEncoding("UTF-8");
 		String command = request.getServletPath();
 		
@@ -29,7 +28,6 @@ public class MovieController extends HttpServlet {
 		if(command.equals("/MovieSearch.mo")) {
 			forward = new ActionForward();
 			forward.setPath("/movie/movie_search.jsp");
-			
 		
 		// 영화 검색(한국,외국)	
 		} else if(command.equals("/SearchMoviePro.mo")) {
@@ -155,7 +153,6 @@ public class MovieController extends HttpServlet {
 		} else if(command.equals("/ExploreMovie.mo")) {
 			forward = new ActionForward();
 			forward.setPath("/movie/movie_explore.jsp");
-		
 
 		}else if(command.equals("/ExploreMovieAction.mo")) {
 			action = new ExploreMovieAction();
@@ -164,7 +161,6 @@ public class MovieController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
 					
 		}else if(command.equals("/NationExploreMovieAction.mo")) {
 			action = new NationExploreMovieAction();
@@ -202,6 +198,7 @@ public class MovieController extends HttpServlet {
 			forward.setPath("/movie/movie_collection_modify_search.jsp");
 			
 			
+		// ------------------------------------------------- system.out 삭제해야함 --------------------------------------	
 		// 선호하는 영화 리스트
 		} else if(command.equals("/RecommandList.mo")) {
 			action = new RecommandListAction();

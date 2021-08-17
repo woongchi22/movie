@@ -13,8 +13,6 @@ public class MemberLoginProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("MemberLoginProAction");
-		
 		ActionForward forward = null;
 		
 		MemberBean mb = new MemberBean();
@@ -34,7 +32,6 @@ public class MemberLoginProAction implements Action {
 		}
 		
 		if(!isLogin) {
-			
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter(); 
 			out.println("<script>");
@@ -43,14 +40,12 @@ public class MemberLoginProAction implements Action {
 			out.println("</script>");
 			
 		} else {
-			
 			HttpSession session = request.getSession();
 			session.setAttribute("name", name);
 			session.setAttribute("email",mb.getEmail());
 			session.setAttribute("pass",mb.getPass());
-			
-			System.out.println(mb.getEmail());
-			System.out.println(mb.getPass());
+//			System.out.println(mb.getEmail());
+//			System.out.println(mb.getPass());
 			
 			forward = new ActionForward();
 			forward.setRedirect(true);

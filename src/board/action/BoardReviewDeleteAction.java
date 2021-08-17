@@ -13,14 +13,11 @@ public class BoardReviewDeleteAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("BoardReviewDeleteAction");
-		
 		ActionForward forward = null;
 		
 		String name = request.getParameter("name");
 		String title = request.getParameter("query");
 		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
-		
 		
 		BoardReviewListService boardReviewListService = new BoardReviewListService();
 		boolean isSuccess = boardReviewListService.deleteReview(name, movieSeq);
@@ -38,7 +35,6 @@ public class BoardReviewDeleteAction implements Action {
 			forward.setRedirect(true);
 			forward.setPath("MovieDetailPro.mo?movieSeq=" + movieSeq + "&query=" + title);
 		}
-		
 		
 		return forward;
 	}

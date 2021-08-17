@@ -19,7 +19,7 @@ String name = (String)session.getAttribute("name");
 
 <script type="text/javascript">
 $(document).ready(function() {
-	var name = $('#name').val();
+// 	var name = $('#name').val();
 	
 	// 컬렉션 리스트
 	$.ajax({

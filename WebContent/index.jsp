@@ -12,6 +12,7 @@ String name = (String)session.getAttribute("name");
 <header>
 	<jsp:include page="/inc/top.jsp"/>
 </header>
+
 <body>
 	<section id="main">
 		<h3 id="h3"><a href="MemberLoginForm.me" style="color: red">로그인</a>을 하시면 영화를 추천해드립니다</h3>
