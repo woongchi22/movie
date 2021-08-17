@@ -82,7 +82,7 @@ $(document).ready(function() {
 						actor = actor + item2.actors.actor[num].actorNm+ ", ";
 					}
 					for(var num=0; num < item2.directors.director.length; num++){
-						director = director + item2.directors.director[num].directorNm+ " ";
+						director = director + item2.directors.director[num].directorNm+ ", ";
 					}
 					
 					for(var i in stills){

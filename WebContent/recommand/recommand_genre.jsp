@@ -127,7 +127,7 @@ $(document).ready(function() {
                                          var rt = item2.runtime
                                             
                                          if(poster && rt >= 60) {
-                                             $('.genreMovie').append('<div class=boxOfficeMovie><a href=MovieDetailPro.mo?movieSeq='+item2.movieSeq+'&query='+title4+' class=boxOfficePoster>'+
+                                             $('.genreMovie').append('<div><a href=MovieDetailPro.mo?movieSeq='+item2.movieSeq+'&query='+title4+' class=boxOfficePoster>'+
                                                      '<div class=poster style="background-image:url('+poster+'),url(${pageContext.request.contextPath}/img/noImage.gif);"></div></a>'+
                                                      '<div class=title>'+title4+'</div></div>');
                                          }
