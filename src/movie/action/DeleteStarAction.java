@@ -12,14 +12,12 @@ public class DeleteStarAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("DeleteStarAction!");
-		
 		ActionForward forward = null;
 		
 		String name = request.getParameter("name");
 		String title = request.getParameter("query");
 		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
-		System.out.println(name+title+movieSeq);
+//		System.out.println(name+title+movieSeq);
 		
 		DeleteStarService deleteStarService = new DeleteStarService();
 		boolean isDelete = deleteStarService.deleteStar(name, movieSeq);

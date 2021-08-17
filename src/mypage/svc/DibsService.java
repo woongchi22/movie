@@ -11,8 +11,6 @@ import mypage.vo.*;
 public class DibsService {
 
 	public DibsBean selectDibs(String name, int movieSeq) {
-		System.out.println("selectDibs");
-		
 		DibsBean db = null;
 		
 		Connection con = getConnection();

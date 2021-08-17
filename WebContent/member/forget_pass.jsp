@@ -67,7 +67,6 @@ $(document).ready(function() {
 		<div class="loginLogin">
             <span class="loginSpan">비밀번호 찾기</span>
             <a class="loginOther" href="MemberLoginForm.me">돌아가기</a>
-<!-- 		    <input type="button" value="취소" onclick="history.back()" class="passReset"> -->
         </div>
         <form action="ForgetPassPro.me" method="post" id="findPass">
 	        <div>

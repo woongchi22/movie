@@ -13,9 +13,8 @@ import mypage.vo.*;
 
 public class DibsListService {
 
+	// 찜꽁 리스트
 	public ArrayList<DibsBean> getDibsList(String name) {
-		System.out.println("DibsListService");
-		
 		ArrayList<DibsBean> dbList = null;
 		
 		Connection con = getConnection();
@@ -31,8 +30,6 @@ public class DibsListService {
 
 	// admin 전용
 	public ArrayList<DibsBean> getDibsList() {
-		System.out.println("DibsListService - admin");
-		
 		ArrayList<DibsBean> dbList = null;
 		
 		Connection con = getConnection();

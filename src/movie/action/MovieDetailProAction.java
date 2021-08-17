@@ -19,15 +19,13 @@ public class MovieDetailProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("MovieDetailProAction~~~");
-		
 		ActionForward forward = null;
 		
 		HttpSession session = request.getSession();
 		String name = (String)session.getAttribute("name");
 		String title = request.getParameter("query");
 		int  movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
-		System.out.println(name+title+movieSeq);
+//		System.out.println(name+title+movieSeq);
 		
 		// 별점
 		MovieBean mb = new MovieBean();
@@ -39,7 +37,6 @@ public class MovieDetailProAction implements Action {
 		String grade = movieGrade + "";
 		
 		request.setAttribute("grade", grade);
-		System.out.println(grade);
 		
 		// 리뷰
 		ReviewBean rb = new ReviewBean();
@@ -50,7 +47,6 @@ public class MovieDetailProAction implements Action {
 		String review =  boardReviewListService.getReview(rb);
 		
 		request.setAttribute("review", review);
-		System.out.println(review);
 		
 		// 리뷰 리스트
 		ArrayList<ReviewBean> reviewList = boardReviewListService.getReview(movieSeq,title);

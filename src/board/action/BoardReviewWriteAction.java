@@ -16,7 +16,6 @@ public class BoardReviewWriteAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("UTF-8");
-		System.out.println("BoardReviewWriteAction");
 		ActionForward forward = null;
 		
 		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
@@ -27,7 +26,7 @@ public class BoardReviewWriteAction implements Action {
 		int grade = Integer.parseInt(request.getParameter("grade"));
 		String poster = request.getParameter("poster");
 		
-		System.out.println(movieSeq + title + review + name + grade + "이거 안나옴?" + poster);
+//		System.out.println(movieSeq + title + review + name + grade + "이거 안나옴?" + poster);
 		
 		ReviewBean reviewBean = new ReviewBean();
 		reviewBean.setContent(review);

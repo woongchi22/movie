@@ -12,8 +12,6 @@ import movie.dao.*;
 public class DeleteStarService {
 
 	public boolean deleteStar(String name, int movieSeq) {
-		System.out.println("DeleteStarService!!");
-		
 		boolean isDelete = false;
 		
 		Connection con = getConnection();

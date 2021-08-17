@@ -13,10 +13,8 @@ public class MemberEmailAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("MemberEmailAction!");
-		
 		String email = request.getParameter("email");
-		System.out.println("입력된 email 주소는 " + email);
+//		System.out.println("입력된 email 주소는 " + email);
 		DupCheckService dupCheck = new DupCheckService();
 		boolean checkResult = dupCheck.dupCheck(email,"email");
 
@@ -27,6 +25,7 @@ public class MemberEmailAction implements Action {
 //			out.print("<script>");
 //			out.print("alert('중복된 E-Mail입니다.')");
 //			out.print("</script>");
+			
 		}else {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -34,7 +33,7 @@ public class MemberEmailAction implements Action {
 //			out.print("<script>");
 //			out.print("alert('사용할 수 있는 E-Mail 입니다.')");
 //			out.print("</script>");
-			System.out.println(email+"asdf");
+//			System.out.println(email+"asdf");
 		}
 		
 		return null;

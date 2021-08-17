@@ -13,8 +13,6 @@ public class DibsProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("DibsProAction!!!!");
-		
 		HttpSession session = request.getSession();
 		String name = (String) session.getAttribute("name");
 		
@@ -22,7 +20,7 @@ public class DibsProAction implements Action {
 		String title = request.getParameter("query");
 		String poster = request.getParameter("poster");
 		String dibs = request.getParameter("dibs");
-		System.out.println(dibs + name + movieSeq + title + poster);
+//		System.out.println(dibs + name + movieSeq + title + poster);
 		
 		DibsBean db = new DibsBean();
 		db.setName(name);

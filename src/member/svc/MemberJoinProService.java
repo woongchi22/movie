@@ -8,12 +8,9 @@ import member.vo.*;
 public class MemberJoinProService {
 
 	public boolean insertMember(MemberBean mb) {
-		System.out.println("MemberJoinProService");
-		
 		boolean isInsert = false;
 		
 		Connection con = getConnection();
-		
 		MemberDao dao = MemberDao.getInstance();
 		dao.setConnection(con);
 		

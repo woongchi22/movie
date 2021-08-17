@@ -18,6 +18,7 @@ String name = (String)session.getAttribute("name");
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="slick/slick.min.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function() {
 	
@@ -31,7 +32,7 @@ $(document).ready(function() {
 		dataType:"json",
 		data:{query:query},
 		success: function(data) {
-			console.log(query);
+			
 			// 배열 4개
 			$.each(data.Data, function(idx, item) {
 				if(item.TotalCount == 0) {
@@ -155,7 +156,6 @@ $(document).ready(function() {
         dataType:"json",
         data:{query:query},
         success: function(data) {
-            console.log(query);
             
             $.each(data.Data, function(idx, item) {
             	if(item.TotalCount == 0) {
@@ -230,7 +230,6 @@ $(document).ready(function() {
         dataType:"json",
         data:{query:query},
         success: function(data) {
-            console.log(query);
             
             $.each(data.Data, function(idx, item) {
             	if(item.TotalCount == 0) {
@@ -305,7 +304,6 @@ $(document).ready(function() {
         dataType:"json",
         data:{query:query},
         success: function(data) {
-            console.log(query);
             
             $.each(data.Data, function(idx, item) {
             	if(item.TotalCount == 0) {

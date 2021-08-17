@@ -11,6 +11,7 @@ String name = (String)session.getAttribute("name");
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/movie.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function() {
 	
@@ -34,10 +35,10 @@ $(document).ready(function() {
 			},
 			success: function(data) {
          	    $('.caption').html('<h2>'+name+'님에게 추천하는 '+nations+' '+ genre +' 영화</h2>');
-         	    console.log("여 오나");
+         	    
          	    $.each(data.Data, function(idx,item) {
          	    	var totalCount = item.TotalCount
-                    console.log(totalCount);
+         	    	console.log(totalCount);
          	    	
          	    	$.ajax("RandomExploreMovieAction.mo", {
                         async: false,    
@@ -59,7 +60,6 @@ $(document).ready(function() {
                                      var title = encodeURIComponent(title4);
                                      var prodYear = item2.prodYear
                                         
-                                     console.log(title4);
                                      var posters = item2.posters.split("|");
                                      var poster = posters[0]
                                         
@@ -124,7 +124,6 @@ $(document).ready(function() {
 	                                var title = encodeURIComponent(title4);
 	                                var prodYear = item2.prodYear
 	                                   
-	                                console.log(title4);
 	                                var posters = item2.posters.split("|");
 	                                var poster = posters[0]
 	                                   

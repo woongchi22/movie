@@ -16,14 +16,12 @@ public class MemberUpdateProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("MemberUpdateAction");
+		
 		HttpSession session = request.getSession();
 		String email = (String) request.getParameter("email");
 		String name = (String) request.getParameter("name");
 		String pass = (String) request.getParameter("pass");
 
-		System.out.println(email);
-		
 		MemberBean mb = new MemberBean();
 		mb.setEmail(email);
 		mb.setName(name);
@@ -33,7 +31,6 @@ public class MemberUpdateProAction implements Action {
 		
 		MemberUpdateService memberUpdateService = new MemberUpdateService();
 		boolean checkResult = memberUpdateService.memberUpdate(mb);
-		
 		
 		if(checkResult) {
 			response.setContentType("text/html;charset=UTF-8");

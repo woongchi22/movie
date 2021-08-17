@@ -13,8 +13,6 @@ public class ForgetPassProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("ForgetPassProAction");
-		
 		ActionForward forward = null;
 		
 		MemberBean mb = new MemberBean();
@@ -45,7 +43,6 @@ public class ForgetPassProAction implements Action {
 		} else {
 			HttpSession session = request.getSession();
 			session.setAttribute("name", name);
-			System.out.println(name);
 			
 			forward = new ActionForward();
 			forward.setRedirect(true);

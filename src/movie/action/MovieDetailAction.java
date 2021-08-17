@@ -15,8 +15,6 @@ public class MovieDetailAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("MovieDetailAction");
-		
 		response.setCharacterEncoding("UTF-8");
 		String movieSeq = request.getParameter("movieSeq");
 		String query = request.getParameter("query");
@@ -39,7 +37,6 @@ public class MovieDetailAction implements Action {
 		PrintWriter out = response.getWriter();
 		out.print(jsonObject);
 		out.flush();
-
 		
 		return null;
 	}

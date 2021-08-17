@@ -8,7 +8,6 @@ import member.vo.MemberBean;
 public class MemberUpdateService {
 
 	public boolean memberUpdate(MemberBean mb) {
-		System.out.println("MemberUpdateService");
 		boolean checkResult =false;
 		
 		Connection con = getConnection();

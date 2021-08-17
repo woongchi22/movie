@@ -10,10 +10,8 @@ import member.vo.MemberBean;
 public class MemberLoginProService {
 
 	public String login(MemberBean mb) throws Exception {
-		System.out.println("MemberLoginProService");
 		
 		Connection con = getConnection();
-		
 		MemberDao dao = MemberDao.getInstance();
 		dao.setConnection(con);
 		

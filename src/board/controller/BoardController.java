@@ -16,14 +16,12 @@ import vo.ActionForward;
 @WebServlet("*.bo")
 public class BoardController extends HttpServlet {
     protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	
     	request.setCharacterEncoding("UTF-8");
     	String command = request.getServletPath();
-    	System.out.println(command);
-    	
     	
     	Action action= null;
     	ActionForward forward = null;
+    	System.out.println(command);
     	
     	// 리뷰 List
     	if(command.equals("/BoardReviewList.bo")) {

@@ -38,8 +38,6 @@ public class MypageDao {
 	
 	
 	public MemberBean getUserInfo(String email) {
-		System.out.println("MypageDAO - getMypageInfo 도착");
-		System.out.println(email);
 
 		MemberBean mb = new MemberBean();
 		PreparedStatement pstmt = null;
@@ -59,7 +57,7 @@ public class MypageDao {
 				mb.setName(rs.getString("name"));
 				mb.setPass(rs.getString("pass"));
 				mb.setDate(rs.getDate("date"));
-				System.out.println(mb.getEmail());
+//				System.out.println(mb.getEmail());
 			}
 
 		} catch (SQLException e) {
@@ -75,8 +73,6 @@ public class MypageDao {
 
 	// 찜뽕 등록,삭제
 	public int dibs(DibsBean db) {
-		System.out.println("mypage dao - dibs()");
-		
 		int insertCount = 0;
 		
 		try {
@@ -118,8 +114,6 @@ public class MypageDao {
 
 	// 찜뽕 리스트 조회
 	public ArrayList<DibsBean> selectDibsList(String name) {
-		System.out.println("mypage dao - selectDibsList()");
-		
 		ArrayList<DibsBean> dbList = null;
 		
 		try {
@@ -129,6 +123,7 @@ public class MypageDao {
 			rs = pstmt.executeQuery();
 			
 			dbList = new ArrayList<DibsBean>();
+			
 			while(rs.next()) {
 				DibsBean db = new DibsBean();
 				db.setIdx(rs.getInt(1));
@@ -153,8 +148,6 @@ public class MypageDao {
 
 	// 찜뽕 조회
 	public DibsBean selectDibs(String name, int movieSeq) {
-		System.out.println("mypage dao - selectDibs()");
-		
 		DibsBean db = null;
 		
 		try {
@@ -184,8 +177,6 @@ public class MypageDao {
 
 	// admin 전용
 	public ArrayList<DibsBean> selectDibsList() {
-		System.out.println("mypage dao - admin - selectDibs()");
-		
 		ArrayList<DibsBean> dbList = null;
 		
 		try {
@@ -206,6 +197,7 @@ public class MypageDao {
 				
 				dbList.add(db);
 			}	
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

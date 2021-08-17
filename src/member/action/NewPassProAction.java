@@ -13,16 +13,11 @@ public class NewPassProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("NewPassProAction!!");
-		
 		ActionForward forward = null;
-		
 		boolean isChange = false;
 		
 		HttpSession session = request.getSession();
 		String name = (String) request.getParameter("name");
-		
-		System.out.println(name); 
 		
 		NewPassProService newPassPrpService = new NewPassProService();
 		
@@ -32,8 +27,8 @@ public class NewPassProAction implements Action {
 		
 		isChange = newPassPrpService.changPass(mb);
 		
-		System.out.println(name + "맞나?");
-		System.out.println(mb.getPass() + "비번뜨남");
+//		System.out.println(name + "맞나?");
+//		System.out.println(mb.getPass() + "비번뜨남");
 		
 		if(!isChange) {
 			response.setContentType("text/html;charset=UTF-8");

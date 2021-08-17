@@ -15,8 +15,6 @@ public class RandomExploreMovieAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("RandomExploreMovieAction");
-		
 		String genre = request.getParameter("genre");
 		String nations = request.getParameter("nations");
 		String genre1 = "모든 장르";
@@ -35,20 +33,21 @@ public class RandomExploreMovieAction implements Action {
 		
 		if(genre.equals(ty1) || genre.equals(ty2) ) {
 			if(!nations1.equals(nations)) {
-				System.out.println("같이");
+//				System.out.println("같이");
 				json = movie.getStartMovieType(nations,genre, startCount);
 			}
 			if(nations1.equals(nations)) {
-				System.out.println("따로");
+//				System.out.println("따로");
 				json = movie.getStartMovieType(genre, startCount);
-				}
+			}
+			
 		} else {
 			if(!nations1.equals(nations)) {
-				System.out.println("같이");
+//				System.out.println("같이");
 				json = movie.getStartMovie(nations,genre, startCount);
 			}
 			if(nations1.equals(nations)) {
-				System.out.println("따로");
+//				System.out.println("따로");
 				json = movie.getStartMovieGenre(genre, startCount);
 			}
 		}

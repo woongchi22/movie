@@ -11,8 +11,6 @@ public class BoardReviewListService {
 
 	// 리뷰 List
 	public ArrayList<ReviewBean> getReview(int movieSeq) {
-		
-		System.out.println("BoardReviewListService");
 		ArrayList<ReviewBean> reviewList = null;
 
 		Connection con = getConnection();
@@ -25,12 +23,10 @@ public class BoardReviewListService {
 
 	// 리뷰 등록
 	public boolean reviewWrite(ReviewBean reviewBean) {
-		System.out.println("BoardReviewListService-reviewWrite");
 		Connection con = getConnection();
 		BoardDao bdao = BoardDao.getInstance();
 		bdao.setConnection(con);
 		boolean isWriteSuccess = false;
-		System.out.println(reviewBean.getContent());
 		
 		int insertCount = bdao.reviewWrite(reviewBean);
 		
@@ -46,8 +42,7 @@ public class BoardReviewListService {
 
 	// 리뷰 수정
 	public boolean isUpdate(ReviewBean reviewBean) {
-		System.out.println("BoardReviewListService - isUpdate");
-		boolean isUpdate =false;
+		boolean isUpdate = false;
 		
 		Connection con = getConnection();
 		BoardDao bdao = BoardDao.getInstance();
@@ -67,8 +62,7 @@ public class BoardReviewListService {
 
 	// 리뷰 삭제
 	public boolean deleteReview(String name, int movieSeq) {
-		System.out.println("BoardReviewService - deleteReview()");
-		boolean isSuccess =false;
+		boolean isSuccess = false;
 		
 		Connection con = getConnection();
 		BoardDao bdao = BoardDao.getInstance();
@@ -89,8 +83,6 @@ public class BoardReviewListService {
 
 	// 디테일 pro에서 보냄
 	public String getReview(ReviewBean rb) {
-		System.out.println("BoardReviewListService - getReview()");
-		
 		Connection con = getConnection();
 		BoardDao bdao = BoardDao.getInstance();
 		bdao.setConnection(con);
@@ -104,8 +96,6 @@ public class BoardReviewListService {
 
 	// 좋아요
 	public boolean insertLike(ReviewBean rb) {
-		System.out.println("BoardReviewListService - insertLike()");
-		
 		boolean isSuccess = false;
 		
 		Connection con = getConnection();
@@ -126,8 +116,6 @@ public class BoardReviewListService {
 	}
 
 	public boolean reviewLike(ReviewBean rb) {
-		System.out.println("BoardReviewListService - reviewLike()");
-		
 		boolean isSuccess =false;
 		
 		Connection con = getConnection();
@@ -148,8 +136,6 @@ public class BoardReviewListService {
 	}
 
 	public boolean likeCancel(ReviewBean rb) {
-		System.out.println("BoardReviewListService - likeCancel()");
-		
 		boolean isSuccess =false;
 		
 		Connection con = getConnection();
@@ -170,8 +156,6 @@ public class BoardReviewListService {
 	}
 
 	public boolean deleteLike(ReviewBean rb) {
-		System.out.println("BoardReviewListService - deleteLikes()");
-		
 		boolean isSuccess =false;
 		
 		Connection con = getConnection();
@@ -192,7 +176,6 @@ public class BoardReviewListService {
 	}
 
 	public ArrayList<ReviewBean> getReview(int movieSeq, String title) {
-		System.out.println("BoardReviewListService");
 		ArrayList<ReviewBean> reviewList = null;
 
 		Connection con = getConnection();
@@ -204,7 +187,6 @@ public class BoardReviewListService {
 	}
 
 	public ArrayList<ReviewBean> getReview(String name) {
-		System.out.println("BoardReviewListService");
 		ArrayList<ReviewBean> reviewList = null;
 
 		Connection con = getConnection();

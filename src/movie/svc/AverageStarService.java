@@ -12,8 +12,6 @@ import movie.dao.*;
 public class AverageStarService {
 
 	public float averageStar(int movieSeq) {
-		System.out.println("AverageStarService!!!");
-		
 		float avgGrade = 0.0f;
 		
 		Connection con = getConnection();

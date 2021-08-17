@@ -5,7 +5,6 @@ request.setCharacterEncoding("UTF-8");
 String name = (String)session.getAttribute("name");
 String pass = (String)session.getAttribute("pass");
 
-
 %>
 
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">

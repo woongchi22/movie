@@ -14,7 +14,6 @@ public class BoardReviewLikeAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("BoardReviewLikeAction");
 		request.setCharacterEncoding("UTF-8");
 		
 		int idx = Integer.parseInt(request.getParameter("idx"));

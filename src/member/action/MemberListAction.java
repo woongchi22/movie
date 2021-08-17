@@ -13,8 +13,6 @@ public class MemberListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("MemberListAction");
-		
 		ActionForward forward = null;
 		
 		String orderTarget = request.getParameter("orderTarget");

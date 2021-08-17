@@ -13,8 +13,6 @@ public class DibsListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("DibsListAction!!!");
-		
 		ActionForward forward = null;
 		
 		HttpSession session = request.getSession();

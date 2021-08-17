@@ -8,12 +8,9 @@ import static db.JdbcUtil.*;
 public class DupCheckService {
 
 	public boolean dupCheck(String email, String type) {
-		System.out.println("DupCheckService");
-		
 		boolean checkResult = false;
 		
 		Connection con = getConnection();
-		
 		MemberDao dao = MemberDao.getInstance();
 		dao.setConnection(con);
 		
@@ -26,12 +23,9 @@ public class DupCheckService {
 	}
 	
 	public boolean dupName(String name, String type) {
-		System.out.println("DupCheckService - Name");
-		
 		boolean checkResult = false;
 		
 		Connection con = getConnection();
-		
 		MemberDao dao = MemberDao.getInstance();
 		dao.setConnection(con);
 		

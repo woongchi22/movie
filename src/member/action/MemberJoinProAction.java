@@ -13,8 +13,6 @@ public class MemberJoinProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("MemberJoinProAction");
-		
 		ActionForward forward = null;
 		
 		String email = request.getParameter("email");
@@ -42,12 +40,12 @@ public class MemberJoinProAction implements Action {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('" + resultMsg + "');history.back();</script>");
+			
 		} else {
 			forward = new ActionForward();
 			forward.setRedirect(true);
 			forward.setPath("./");
 		}
-		
 		
 		return forward;
 	}

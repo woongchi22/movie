@@ -16,15 +16,13 @@ public class BoardReviewUpdateAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("UTF-8");
-		System.out.println("BoardReviewUpdateAction");
-		
 		ActionForward forward = null;
 		
         String review = (String) request.getParameter("review");
 		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 		String name = request.getParameter("name");
 		int grade = Integer.parseInt(request.getParameter("grade"));
-		System.out.println(grade+review+name+movieSeq);
+//		System.out.println(grade+review+name+movieSeq);
 
 		ReviewBean reviewBean = new ReviewBean();
 		reviewBean.setMovieSeq(movieSeq);

@@ -96,7 +96,7 @@
     height:350px;
     background-size:100%;
     margin:10px;
-    background-repeat:no-repeat;
+    background-repeat:round;
     float: left;
 }
 .gradeTitle{
@@ -388,7 +388,7 @@ hr{
     height:350px;
     background-size:100%;
     margin:10px 10px 0 10px;
-    background-repeat:no-repeat;
+    background-repeat:round;
     float: left;
 }
 .noComment{

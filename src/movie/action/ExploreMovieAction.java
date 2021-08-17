@@ -14,7 +14,6 @@ public class ExploreMovieAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("ExploreMovieAction");
 		request.setCharacterEncoding("UTF-8");
 		
 		String genre = request.getParameter("genre");
@@ -26,26 +25,25 @@ public class ExploreMovieAction implements Action {
 
 		kmdbApi movie = new kmdbApi();
 		String json = null;
-		System.out.println(genre);
+//		System.out.println(genre);
 		
 		if(genre.equals(ty1) || genre.equals(ty2) ) {
 			if(!nations1.equals(nations)) {
-				System.out.println("같이");
+//				System.out.println("같이");
 				json = movie.getMovieType(nations,genre);
 			}
 			if(nations1.equals(nations)) {
-				System.out.println("따로");
+//				System.out.println("따로");
 				json = movie.getMovieType(genre);
-				}
+			}
 			
-		}
-		else {
+		} else {
 			if(!nations1.equals(nations)) {
-				System.out.println("같이");
+//				System.out.println("같이");
 				json = movie.getMovie(nations,genre);
 			}
 			if(nations1.equals(nations)) {
-				System.out.println("따로");
+//				System.out.println("따로");
 				json = movie.getMovieGenre(genre);
 			}
 		}
@@ -58,6 +56,7 @@ public class ExploreMovieAction implements Action {
 		PrintWriter out = response.getWriter();
 		out.print(jsonObject);
 		out.flush();
+		
 		return null;
 	}
 

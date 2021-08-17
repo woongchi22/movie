@@ -6,7 +6,6 @@ String name = (String)session.getAttribute("name");
 String pass = (String)session.getAttribute("pass");
 String add = request.getParameter("addId");
 
-
 %>
 
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">

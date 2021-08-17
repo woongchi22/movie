@@ -10,30 +10,30 @@ import board.vo.ReviewBean;
 import movie.vo.MovieBean;
 
 
-
 public class BoardDao {
 	
 	private BoardDao() {}
-	
 	private static BoardDao instance;
-	
 	public static BoardDao getInstance() {
 		if(instance==null) {
 			instance = new BoardDao();
 		}
 		return instance;
 	}
+	
 	Connection con;
 	
 	public void setConnection(Connection con){
 		this.con = con;
 	}
+	
 	PreparedStatement pstmt;
 	ResultSet rs;
 
+	
+	
 	// 디테일 pro에 넘겨줌
 	public String getReviewDetail(ReviewBean rb) {
-		System.out.println("dao - 립디테일");
 		String review = "";
 		
 		try {
@@ -44,7 +44,7 @@ public class BoardDao {
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				review = rs.getString("content");
-				System.out.println(review);
+//				System.out.println(review);
 			}
 
 		} catch (SQLException e) {
@@ -59,7 +59,6 @@ public class BoardDao {
 
 	// 리뷰 List
 	public ArrayList<ReviewBean> getReview(int movieSeq) {
-		System.out.println("dao-getReview");
 		ArrayList<ReviewBean> reviewList = null;
 		
 		try {
@@ -98,8 +97,6 @@ public class BoardDao {
 
 	// 리뷰 등록
 	public int reviewWrite(ReviewBean reviewBean) {
-		System.out.println("dao-reviewWrite");
-		
 		int insertCount = 0;
 		int grade = reviewBean.getGrade();
 		
@@ -126,8 +123,8 @@ public class BoardDao {
 			insertCount = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
+			e.printStackTrace();
 			System.out.println("BoardDAO - insertReview() 에러 : " + e.getMessage());
-
 		} finally {
 			close(rs);
 			close(pstmt);
@@ -138,8 +135,6 @@ public class BoardDao {
 
 	// 리뷰 수정
 	public int updateReview(ReviewBean reviewBean) {
-		System.out.println("BoardDAO-updateReview");
-
 		int insertCount = 0;
 		
 		try {
@@ -162,7 +157,6 @@ public class BoardDao {
 
 	// 리뷰 삭제
 	public int deleteReview(String name, int movieSeq) {
-		System.out.println("BoardDAO-deleteReview");	
 		int insertCount = 0;
 		
 		try {
@@ -176,7 +170,6 @@ public class BoardDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("BoardDAO - deleteReview() 에러: " + e.getMessage());
-
 		} finally {
 			close(pstmt);
 		}
@@ -186,9 +179,6 @@ public class BoardDao {
 	
 
 	public ReviewBean getReviewDetail(int idx, int movieSeq) {
-		System.out.println("BoardDAO-getReviewDetail");
-		System.out.println(idx);
-		
 		ReviewBean reviewBean = new ReviewBean();
 		
 		try {
@@ -221,8 +211,6 @@ public class BoardDao {
 
 
 	public int selectLike(ReviewBean rb) {
-		System.out.println("BoardDAO-selectLike");
-		
 		int selectCount = 0;
 		
 		try {
@@ -234,7 +222,7 @@ public class BoardDao {
 			
 			if(rs.next()) {
 				
-			}else {
+			} else {
 				sql ="INSERT INTO reviewLike VALUES(?,?,now())";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setInt(1, rb.getIdx());
@@ -255,8 +243,6 @@ public class BoardDao {
 	}
 
 	public int reviewLike(ReviewBean rb) {
-		System.out.println("BoardDAO-reviewLike");
-		
 		int insertCount = 0;
 		
 		try {
@@ -264,6 +250,7 @@ public class BoardDao {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, rb.getIdx());
 			insertCount = pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			System.out.println("BoardDao - selectLike() 에러: " + e.getMessage());
 			e.printStackTrace();
@@ -276,12 +263,9 @@ public class BoardDao {
 	
 	
 	public int deleteLike(ReviewBean rb) {
-		System.out.println("BoardDAO-selectLike");
-		
 		int selectCount = 0;
 		
 		try {
-			System.out.println("1");
 			String sql = "SELECT * FROM reviewLike WHERE name=? AND idx=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, rb.getName());
@@ -312,8 +296,6 @@ public class BoardDao {
 		
 	
 	public int likeCancel(ReviewBean rb) {
-	System.out.println("BoardDAO-likeCancel");
-		
 		int insertCount = 0;
 		
 		try {
@@ -321,6 +303,7 @@ public class BoardDao {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, rb.getIdx());
 			insertCount = pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			System.out.println("BoardDao - likeCancel() 에러: " + e.getMessage());
 			e.printStackTrace();
@@ -333,7 +316,6 @@ public class BoardDao {
 
 	// 디테일에 리뷰 3개 가져오기
 	public ArrayList<ReviewBean> getReview(int movieSeq, String title) {
-		System.out.println("dao-getReview:desc");
 		ArrayList<ReviewBean> reviewList = null;
 		
 		try {
@@ -371,7 +353,6 @@ public class BoardDao {
 
 	// 내가 평가한 영화 가져오기
 	public ArrayList<ReviewBean> getReview(String name) {
-		System.out.println("dao-getReview:my");
 		ArrayList<ReviewBean> reviewList = null;
 		
 		try {
@@ -394,7 +375,6 @@ public class BoardDao {
 				review.setLike_count(rs.getInt("like_count"));
 				review.setDate(rs.getDate("date"));
 				reviewList.add(review);
-				System.out.println(review.getTitle());
 			}
 			
 		} catch (SQLException e) {

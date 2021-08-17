@@ -9,7 +9,6 @@
 
 <%
 ArrayList<ReviewBean> reviewList = (ArrayList<ReviewBean>)request.getAttribute("reviewList");
-
 String query = request.getParameter("query"); 
 int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 String name = (String)session.getAttribute("name"); 
@@ -28,11 +27,10 @@ String grade = (String)request.getAttribute("grade");
 
 <title><%=query %> 코멘트</title>
 </head>
-
-
 <header>
 	<jsp:include page="/inc/top.jsp"/>
 </header>
+
 <body>
 
 	<div class="reviewAll">
@@ -68,8 +66,8 @@ String grade = (String)request.getAttribute("grade");
 $(document).ready(function() {
 	var name = $('#name').val();
 	var idx = <%=rb.getIdx() %>
-	console.log(name);
-	console.log(idx);
+// 	console.log(name);
+// 	console.log(idx);
 		
 	$('#like_<%=rb.getIdx() %>').click(function() {
 		
