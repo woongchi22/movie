@@ -27,8 +27,9 @@ $(document).ready(function() {
 	console.log(query);
 	query = query.replace(/ /g,'');
 
-	
-	
+	var i = 0;
+	console.log("어푸");
+	console.log(i);
 		
 // 	var i = 1;
 // 	function add() {
@@ -91,8 +92,12 @@ $(document).ready(function() {
                                 poster: poster
                             },
                             success: function(rdata) {
+                            	
                                 var dupCheck = "";
                                 if ($(".collectionView", opener.document).eq(<%=seq%>).find('.title').length == 0) {
+                                	i++;
+                                	console.log(i);
+                                	
                                 	console.log("추가되라 ㅠ");
                                     dupCheck = "Y";
                                     $(".collectionView", opener.document).eq(<%=seq%>).slick('slickAdd',"<div class=eachList>"+ 
@@ -126,6 +131,8 @@ $(document).ready(function() {
 
 
                                     if (dupCheck == "Y") {
+                                    	i++;
+                                    	console.log(i);
                                         $(".collectionView", opener.document).eq(<%=seq%>).slick('slickAdd',"<div class=eachList>"+ 
 			 	  			      			    '<a href=MovieDetailPro.mo?movieSeq='+movieSeq+'></a>'+
 			 	  			      			    '<div class=poster style="background-image: url('+poster+')"></div>'+ 
@@ -171,6 +178,8 @@ $(document).ready(function() {
                               success: function(rdata) {
                                   var dupCheck = "";
                                   if ($(".collectionView", opener.document).eq(<%=seq%>).find('.title').length == 0) {
+                                	  i++;
+                                  	console.log(i);
                                   	console.log("추가되라 ㅠ");
                                       dupCheck = "Y";
                                       $(".collectionView", opener.document).eq(<%=seq%>).slick('slickAdd',"<div class=eachList>"+ 
@@ -204,6 +213,8 @@ $(document).ready(function() {
 
 
                                       if (dupCheck == "Y") {
+                                    	  i++;
+                                      	console.log(i);
                                           $(".collectionView", opener.document).eq(<%=seq%>).slick('slickAdd',"<div class=eachList>"+ 
       		 	  			      			    '<a href=MovieDetailPro.mo?movieSeq='+movieSeq+'></a>'+
     		 	  			      			    '<div class=poster style="background-image: url('+poster+')"></div>'+ 
