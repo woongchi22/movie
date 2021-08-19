@@ -95,22 +95,19 @@ $(document).ready(function() {
                             	
                                 var dupCheck = "";
                                 if ($(".collectionView", opener.document).eq(<%=seq%>).find('.title').length == 0) {
-                                	i++;
-                                	console.log(i);
                                 	
                                 	console.log("추가되라 ㅠ");
                                     dupCheck = "Y";
                                     $(".collectionView", opener.document).eq(<%=seq%>).slick('slickAdd',"<div class=eachList>"+ 
 		 	  			      			    '<a href=MovieDetailPro.mo?movieSeq='+movieSeq+'></a>'+
 		 	  			      			    '<div class=poster style="background-image: url('+poster+')"></div>'+ 
-		 	  			      				'<div class=title>'+title4+'</div>'+
-		 	  			      				'<div class=modifyDel>' +
-		 	  			      				'<input type=button class=modifyDelBtn value=삭제>' +
-		 	  			      				'</div>' +
-		 	  			      				'<input type="hidden" name="movieSeq" value='+movieSeq+'>'+
-		 	  			      				'<input type="hidden" name="title" value='+title4+'>' +
-		 	  			      				'<input type="hidden" name="poster" value='+poster+'>' +
-		 	  			      				'<input type="hidden" name="idx"></div>');
+			 	  			      			"<div class=title>"+title4+"</div>"+
+		 	  			      				"<div class=modifyDel>" +
+		 	  			      				"<input type='button' class='modifyDelBtn' id='modifyDelBtn"+i+"' value='삭제'>" +
+		 	  			      				"</div>" +
+		 	  			      				"<input type='hidden' name='movieSeq' value='"+movieSeq+"'>"+
+		 	  			      				"<input type='hidden' name='title' value='"+title4+"'>" +
+		 	  			      				"<input type='hidden' name='poster' value='"+poster+"'>" )
                                         $('#c_submit', opener.document).show();
                                         $('.modifyDelBtn', opener.document).show();
 
@@ -131,19 +128,18 @@ $(document).ready(function() {
 
 
                                     if (dupCheck == "Y") {
-                                    	i++;
+                                    	i++
                                     	console.log(i);
                                         $(".collectionView", opener.document).eq(<%=seq%>).slick('slickAdd',"<div class=eachList>"+ 
 			 	  			      			    '<a href=MovieDetailPro.mo?movieSeq='+movieSeq+'></a>'+
 			 	  			      			    '<div class=poster style="background-image: url('+poster+')"></div>'+ 
-			 	  			      				'<div class=title>'+title4+'</div>'+
-			 	  			      				'<div class=modifyDel>' +
-			 	  			      				'<input type=button class=modifyDelBtn value=삭제>' +
-			 	  			      				'</div>' +
-			 	  			      				'<input type="hidden" name="movieSeq" value='+movieSeq+'>'+
-			 	  			      				'<input type="hidden" name="title" value='+title4+'>' +
-			 	  			      				'<input type="hidden" name="poster" value='+poster+'>' +
-			 	  			      				'<input type="hidden" name="idx"></div>');
+				 	  			      			"<div class=title>"+title4+"</div>"+
+			 	  			      				"<div class=modifyDel>" +
+			 	  			      				"<input type='button' class='modifyDelBtn' id='modifyDelBtn"+i+"' value='삭제'>" +
+			 	  			      				"</div>" +
+			 	  			      				"<input type='hidden' name='movieSeq' value='"+movieSeq+"'>"+
+			 	  			      				"<input type='hidden' name='title' value='"+title4+"'>" +
+			 	  			      				"<input type='hidden' name='poster' value='"+poster+"'>" )
                                             $('#c_submit', opener.document).show();
                                             $('.modifyDelBtn', opener.document).show();
                                     } else { 
@@ -178,21 +174,19 @@ $(document).ready(function() {
                               success: function(rdata) {
                                   var dupCheck = "";
                                   if ($(".collectionView", opener.document).eq(<%=seq%>).find('.title').length == 0) {
-                                	  i++;
-                                  	console.log(i);
                                   	console.log("추가되라 ㅠ");
                                       dupCheck = "Y";
                                       $(".collectionView", opener.document).eq(<%=seq%>).slick('slickAdd',"<div class=eachList>"+ 
 		 	  			      			    '<a href=MovieDetailPro.mo?movieSeq='+movieSeq+'></a>'+
 		 	  			      			    '<div class=poster style="background-image: url('+poster+')"></div>'+ 
-		 	  			      				'<div class=title>'+title4+'</div>'+
-		 	  			      				'<div class=modifyDel>' +
-		 	  			      				'<input type=button class=modifyDelBtn value=삭제>' +
-		 	  			      				'</div>' +
-		 	  			      				'<input type="hidden" name="movieSeq" value='+movieSeq+'>'+
-		 	  			      				'<input type="hidden" name="title" value='+title4+'>' +
-		 	  			      				'<input type="hidden" name="poster" value='+poster+'>' +
-		 	  			      				'<input type="hidden" name="idx"></div>');
+		 	  			      				"<div class=title>"+title4+"</div>"+
+		 	  			      				"<div class=modifyDel>" +
+		 	  			      				"<input type='button' class='modifyDelBtn' id='modifyDelBtn"+i+"' value='삭제'>" +
+		 	  			      				"</div>" +
+		 	  			      				"<input type='hidden' name='movieSeq' value='"+movieSeq+"'>"+
+		 	  			      				"<input type='hidden' name='title' value='"+title4+"'>" +
+		 	  			      				"<input type='hidden' name='poster' value='+poster+'>" +
+		 	  			      				"<input type='hidden' name='idx'></div>");
                                           $('#c_submit', opener.document).show();
                                           $('.modifyDelBtn', opener.document).show();
 
@@ -213,19 +207,19 @@ $(document).ready(function() {
 
 
                                       if (dupCheck == "Y") {
-                                    	  i++;
+                                    	  i++
                                       	console.log(i);
                                           $(".collectionView", opener.document).eq(<%=seq%>).slick('slickAdd',"<div class=eachList>"+ 
       		 	  			      			    '<a href=MovieDetailPro.mo?movieSeq='+movieSeq+'></a>'+
     		 	  			      			    '<div class=poster style="background-image: url('+poster+')"></div>'+ 
-    		 	  			      				'<div class=title>'+title4+'</div>'+
-    		 	  			      				'<div class=modifyDel>' +
-    		 	  			      				'<input type=button class=modifyDelBtn value=삭제>' +
-    		 	  			      				'</div>' +
-    		 	  			      				'<input type="hidden" name="movieSeq" value='+movieSeq+'>'+
-    		 	  			      				'<input type="hidden" name="title" value='+title4+'>' +
-    		 	  			      				'<input type="hidden" name="poster" value='+poster+'>' +
-    		 	  			      				'<input type="hidden" name="idx"></div>');
+    		 	  			      				"<div class=title>"+title4+"</div>"+
+    		 	  			      				"<div class=modifyDel>" +
+    		 	  			      				"<input type='button' class='modifyDelBtn' id='modifyDelBtn"+i+"' value='삭제'>"+
+    		 	  			      				"</div>" +
+    		 	  			      				"<input type='hidden' name='movieSeq' value='"+movieSeq+"'>"+
+    		 	  			      				"<input type='hidden' name='title' value='+title4+'>" +
+    		 	  			      				"<input type='hidden' name='poster' value='+poster+'>" +
+    		 	  			      				"<input type='hidden' name='idx'></div>");
                                               $('#c_submit', opener.document).show();
                                               $('.modifyDelBtn', opener.document).show();
 
@@ -347,6 +341,8 @@ $(document).ready(function() {
                                 '<div class=title>' + title4 + '</div>'+
                 				'<input type="button" value="담기" id="'+item2.movieSeq+'" class="addBtn"></div>');
                     }
+                    
+                    
 ///////////////////////////////////
 					  $('#directorList').on('click', '#' + item2.movieSeq, function() {
                         var movieSeq = item2.movieSeq;
@@ -370,7 +366,14 @@ $(document).ready(function() {
                                         "</div>" +
                                         "<input type='hidden' value='" + movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
                                         "<input type='hidden' value='" + poster + "'name = 'poster'>" +
-                                        "<input type='hidden' value='" + title4+ "'name = 'title'></div>")
+                                        "<input type='hidden' value='" + title4+ "'name = 'title'></div>"+
+                                        "<div class=modifyDel>" +
+                	      				"<input type='button' class='modifyDelBtn' id='modifyDelBtn"+i+"' value='삭제'>" +
+                	      				"</div>")
+	 	  			      				
+	 	  			      				
+	 	  			      				
+	 	  			      				
                                         $('#c_submit', opener.document).show();
 
                                         	console.log("젭알 ㅠ");
@@ -392,13 +395,18 @@ $(document).ready(function() {
 
 
                                     if (dupCheck == "Y") {
+                                    	i++
+                                    	console.log(i);
                                         $(".collectionView", opener.document).eq(<%=seq%>).slick('slickAdd',"<div class=collectionList>" +
                                             '<div class=poster style="background-image: url(' + poster + ')"></div>' +
                                             '<div class=title>' + title4+
                                             "</div>" +
                                             "<input type='hidden' value='" + movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
                                             "<input type='hidden' value='" + poster + "'name = 'poster'>" +
-                                            "<input type='hidden' value='" + title4+ "'name = 'title'></div>")
+                                            "<input type='hidden' value='" + title4+ "'name = 'title'></div>"+
+                                            "<div class=modifyDel>" +
+                    	      				"<input type='button' class='modifyDelBtn' id='modifyDelBtn"+i+"' value='삭제'>" +
+                    	      				"</div>")
                                             $('#c_submit', opener.document).show();
                                     } else { 
                                         alert("이미 추가된 영화입니다.")
@@ -503,7 +511,10 @@ $(document).ready(function() {
                                        "</div>" +
                                        "<input type='hidden' value='" + movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
                                        "<input type='hidden' value='" + poster + "'name = 'poster'>" +
-                                       "<input type='hidden' value='" + title4+ "'name = 'title'></div>")
+                                       "<input type='hidden' value='" + title4+ "'name = 'title'></div>"+
+                                       "<div class=modifyDel>" +
+               	      				   "<input type='button' class='modifyDelBtn' id='modifyDelBtn"+i+"' value='삭제'>" +
+               	      				   "</div>")
                                        $('#c_submit', opener.document).show();
                                        	console.log("젭알 ㅠ");
 
@@ -524,13 +535,18 @@ $(document).ready(function() {
 
 
                                    if (dupCheck == "Y") {
+                                	   i++
+                                   	console.log(i);
                                        $(".collectionView", opener.document).eq(<%=seq%>).slick('slickAdd',"<div class=collectionList>" +
                                            '<div class=poster style="background-image: url(' + poster + ')"></div>' +
                                            '<div class=title>' + title4+
                                            "</div>" +
                                            "<input type='hidden' value='" + movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
                                            "<input type='hidden' value='" + poster + "'name = 'poster'>" +
-                                           "<input type='hidden' value='" + title4+ "'name = 'title'></div>")
+                                           "<input type='hidden' value='" + title4+ "'name = 'title'></div>"+
+                                           "<div class=modifyDel>" +
+                   	      				   "<input type='button' class='modifyDelBtn' id='modifyDelBtn"+i+"' value='삭제'>" +
+                   	      				   "</div>")
                                            $('#c_submit', opener.document).show();
                                    } else { 
                                        alert("이미 추가된 영화입니다.")
@@ -625,6 +641,8 @@ $(document).ready(function() {
                                poster: poster
                            },
                            success: function(rdata) {
+                        	   i++
+                           	console.log(i);
                                var dupCheck = "";
                                if ($(".collectionView", opener.document).eq(<%=seq%>).find('.title').length == 0) {
                                	console.log("추가되라 ㅠ");
@@ -635,7 +653,10 @@ $(document).ready(function() {
                                        "</div>" +
                                        "<input type='hidden' value='" + movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
                                        "<input type='hidden' value='" + poster + "'name = 'poster'>" +
-                                       "<input type='hidden' value='" + title4+ "'name = 'title'></div>")
+                                       "<input type='hidden' value='" + title4+ "'name = 'title'></div>"+
+	 	  			      			   "<div class=modifyDel>" +
+	 	  			      			   "<input type='button' class='modifyDelBtn' id='modifyDelBtn"+i+"' value=삭제>" +
+	 	  			      			   "</div>")
                                        $('#c_submit', opener.document).show();
 
                                        
@@ -655,13 +676,18 @@ $(document).ready(function() {
 
 
                                    if (dupCheck == "Y") {
+                                	   i++
+                                   	console.log(i);
                                        $(".collectionView", opener.document).eq(<%=seq%>).slick('slickAdd',"<div class=collectionList>" +
                                            '<div class=poster style="background-image: url(' + poster + ')"></div>' +
                                            '<div class=title>' + title4+
                                            "</div>" +
                                            "<input type='hidden' value='" + movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
                                            "<input type='hidden' value='" + poster + "'name = 'poster'>" +
-                                           "<input type='hidden' value='" + title4+ "'name = 'title'></div>")
+                                           "<input type='hidden' value='" + title4+ "'name = 'title'></div>"+
+	 	  			      				   "<div class=modifyDel>" +
+	 	  			      			       "<input type='button' class='modifyDelBtn' id='modifyDelBtn"+i+"' value=삭제>" +
+	 	  			      				   "</div>")
                                            $('#c_submit', opener.document).show();
                                     } else { 
                                        alert("이미 추가된 영화입니다.")

@@ -57,41 +57,41 @@ $(document).ready(function() {
 		$('.modifyBtn').show();
 		$('.modifyAddMov').show();
 	});
-
+///////////////////////////////////////////////////////////////////////
 	$('.delBtn').click(function(){
+		alert("1");
 		var eachList = $(this).attr('id');	
 		var collectionNum = $(this).closest('#collectionNum').attr('class')
 		$('.' + collectionNum).find('.'+eachList).remove();
 	});
 	
-	
-	$('.modifyDelBtn').click(function(){
-		var eachList = $(this).attr('id');	
+	$(document).on("click", ".modifyDelBtn", function() {
+		alert("2");
+		var modifyDelBtn = $(this).attr('id');	
 		var collectionNum = $(this).closest('#collectionNum').attr('class')
-		$('.' + collectionNum).find('.'+eachList).remove();
-		
-		
+		$('.' + collectionNum).find('.'+modifyDelBtn).remove();
 	});
-	///
 	
-	$(document).on('click', '.delBtn .modifyDelBtn', function() {
-		var index = $('.delBtn .modifyDelBtn').index(this);	
-//	alert(index);
-		$('.eachList').eq(index).remove();
-		
-		
-});
 
 	
 	$('.delBtn').on('click', function() {
+		alert("3");
 		var index = $('.delBtn').index(this);	
-//	alert(index);
+	alert(index);
 		$('.eachList').eq(index).remove();
 		
-});
+	});
+	
+	$(document).on("click", ".modifyDelBtn", function() {
+		alert("4");
+		var index =  $(this).attr('id').substring(12); 	
+		alert(index);
+	
+		$('#modifyDelBtn').eq(index).remove();
+	});
 	
 	
-	
+//////////////////////////////////////////////////////////////////////////////////	
 	
 	$('#submit').click(function(){
 		if($('#subject').val() == ''){
