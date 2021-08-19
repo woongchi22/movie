@@ -195,7 +195,7 @@ public class kmdbApi {
 	public String getMovieGrade(int startCount) throws IOException {
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&startCount="
-						+ startCount + "&createDts=1980&ServiceKey=319276GM630XRTRNIWN8");
+						+ startCount + "&createDts=1990&ServiceKey=319276GM630XRTRNIWN8");
 
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();

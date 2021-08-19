@@ -40,10 +40,12 @@ ArrayList<ReviewBean> reviewList = (ArrayList<ReviewBean>) request.getAttribute(
   
 <script type="text/javascript">
 $(document).ready(function() {
+	
 	var query = $('#query').val();
 	var movieSeq = $('#movieSeq').val();
 	var name = $('#name').val();
 	var directorNm = null;
+	var grade = $('#grade').val();
 	
 	$.ajax("MovieDetail.mo",{
 		method:"post",
@@ -93,7 +95,6 @@ $(document).ready(function() {
 					var directors = director.replace(/,\s*$/, '');
 					directorNm=directors.replace(/ /g, '');
 					
-					avgStar(); // 평균별점 함수
 					
 					$('.title_top').append('<div class=title_top>'+title4+'</div>');
 					$('.starAvg').append('<div id=avgGrade></div><div class=runtime>'+rating+'&nbsp; &middot; &nbsp;'+runtime+'분</div>');
@@ -107,7 +108,79 @@ $(document).ready(function() {
 						$('.info').append('<div class=plot>'+plot+'</div><dt>감독</dt><div class=directors>'+directors+'</div><dt>출연</dt><div class=actors>'
                                 +actors+'</div><dt>개요</dt><div class=summaryInfo>'+genre+' &nbsp;|&nbsp; '+nation+' &nbsp;|&nbsp; '+openDt+'</div><dt>배급</dt><div class=company>'+company+'</div>');
 					}
-				
+					
+					
+					
+					// 찜꽁 등록, 삭제
+                    $('.dibsBtn').click(function() {
+                        var dibs = $('#dibs').val();
+                        
+                        $.ajax({
+                            url: "DibsPro.mp",
+                            type: "post",
+                            data: {
+                                name:name,
+                                movieSeq:movieSeq,
+                                query:query,
+                                poster:poster[0],
+                                dibs:dibs
+                            },
+                            async: false,
+                            success: function(data) {
+                                if($('.dibsBtn').hasClass('done') == true) {
+                                    $('.dibsBtn').removeClass('done')
+                                    $('.dibsBtnImg').attr("src", "img/check.png");
+                                } else {
+                                    $('.dibsBtn').addClass('done');
+                                    $('.dibsBtnImg').attr("src", "img/check2.png");
+                                }
+                            } 
+                        
+                        }); // ajax - DibsPro
+                        
+                    }); // dibs 버튼 클릭
+					
+					
+                    
+                    avgStar(); // 평균별점 함수
+
+                    // 별점 클릭하면 별 채워짐
+                    $('.starRev a').click(function() {
+                        $(this).parent().children('a').removeClass('on');
+                        $(this).addClass('on').prevAll('a').addClass('on');
+                        return false;
+                    });
+                    
+                    var director = item2.directors.director[0].directorNm
+                    var image = item2.posters.split("|");
+                    var poster = image[0]
+                    
+                    $('#star1').click(function() {
+                        var grade = 1;
+                        starClick(grade, nation, director, genre, runtime, poster);
+                    });
+                    
+                    $('#star2').click(function() {
+                        var grade = 2; 
+                        starClick(grade, nation, director, genre, runtime, poster);
+                    });
+                    
+                    $('#star3').click(function() {
+                        var grade = 3;
+                        starClick(grade, nation, director, genre, runtime, poster);
+                    });
+                    
+                    $('#star4').click(function() {
+                        var grade = 4;
+                        starClick(grade, nation, director, genre, runtime, poster);
+                    });
+                    
+                    $('#star5').click(function() {
+                        var grade = 5;
+                        starClick(grade, nation, director, genre, runtime, poster);
+                    });
+					
+					
 				});	// each
 				
 			}); // each
@@ -169,63 +242,6 @@ $(document).ready(function() {
         }
         
     });
-    
-    
-    // 찜꽁 등록,삭제
-    $.ajax("MovieDetail.mo", {
-        method: "post",
-        dataType: "json",
-        data: {
-            movieSeq:movieSeq,
-            query:query
-        },
-        success: function(data) {
-            $.each(data.Data, function(idx, item) {
-                $.each(item.Result, function(idx, item2) {
-
-                    var title1 = item2.title
-                    var titleNoSpace = title1.replace(/ /g, ''); // 타이틀 공백제거
-                    var title2 = titleNoSpace.replace(/!HS/g,'') // 검색어는 !HS , !HE 로 둘러 싸여있어서 제거해줌
-                    var title3 = title2.replace(/!HE/g,'')
-                    var title4 = title3.trim(); // 양쪽끝에 공백을 제거해줌
-                    var title = encodeURIComponent(title4);
-                    var poster = item2.posters.split("|");
-                    
-                    $('.dibsBtn').click(function() {
-                        var dibs = $('#dibs').val();
-                        
-                        $.ajax({
-                            url: "DibsPro.mp",
-                            type: "post",
-                            data: {
-                                name:name,
-                                movieSeq:movieSeq,
-                                query:query,
-                                poster:poster[0],
-                                dibs:dibs
-                            },
-                            async: false,
-                            success: function(data) {
-                                if($('.dibsBtn').hasClass('done') == true) {
-                                    $('.dibsBtn').removeClass('done')
-                                    $('.dibsBtnImg').attr("src", "img/check.png");
-                                } else {
-                                    $('.dibsBtn').addClass('done');
-                                    $('.dibsBtnImg').attr("src", "img/check2.png");
-                                }
-                            } 
-                        
-                        }); // ajax - DibsPro
-                        
-                    }); // dibs 버튼 클릭
-                    
-                }); //each2
-                
-            }); // each
-            
-        } // success
-    
-    }); // ajax - MovieDetail
     
     
     //감독 다른 영화
@@ -362,69 +378,6 @@ $(document).ready(function() {
 			}
 		});
 	}
-	
-	// 별점
-	var grade = $('#grade').val();
-    $.ajax("MovieDetail.mo", {
-        method: "post",
-        dataType: "json",
-        data: {
-            movieSeq:movieSeq,
-            query:query,
-            grade:grade,
-            name:name
-        },
-        success: function(data) {
-            $.each(data.Data, function(idx, item) {
-                $.each(item.Result, function(idx, item2) {
-                	
-                	var nation = item2.nation
-                	var director = item2.directors.director[0].directorNm
-                	var genre = item2.genre
-                	var runtime = item2.runtime
-                	var image = item2.posters.split("|");
-                	var poster = image[0]
-
-                    // 별점 클릭하면 별 채워짐
-                    $('.starRev a').click(function() {
-                        $(this).parent().children('a').removeClass('on');
-                        $(this).addClass('on').prevAll('a').addClass('on');
-                        return false;
-                    });
-                    
-                    
-                    $('#star1').click(function() {
-                        var grade = 1;
-                        starClick(grade, nation, director, genre, runtime, poster);
-                    });
-                    
-                    $('#star2').click(function() {
-                        var grade = 2; 
-                        starClick(grade, nation, director, genre, runtime, poster);
-                    });
-                    
-                    $('#star3').click(function() {
-                        var grade = 3;
-                        starClick(grade, nation, director, genre, runtime, poster);
-                    });
-                    
-                    $('#star4').click(function() {
-                        var grade = 4;
-                        starClick(grade, nation, director, genre, runtime, poster);
-                    });
-                    
-                    $('#star5').click(function() {
-                        var grade = 5;
-                        starClick(grade, nation, director, genre, runtime, poster);
-                    });
-                    
-                }); //each2
-                
-            }); // each
-            
-        } // success
-        
-    }); // ajax - MovieDetail
     
     // 별점 삭제
     function dialogStar() {
@@ -529,7 +482,6 @@ $(document).ready(function() {
         }
     });
     
-    
     // 리뷰 등록
     $('#commentBtn').click(function() {
 		var review = $('#opinion').val();
@@ -584,8 +536,6 @@ $(document).ready(function() {
 	               
 	                   });
 	                	
-	                	
-	                	
 	                });
 	            });    
 			}
@@ -593,7 +543,6 @@ $(document).ready(function() {
 		});
 		
     }); 
-    
     
     // 리뷰 삭제
     $('#deleteBtn').click(function() {
@@ -626,7 +575,6 @@ $(document).ready(function() {
     
         });
     });    
-    
 
     // 리뷰 수정
     $('#updateBtn').click(function() {
@@ -668,7 +616,6 @@ $(document).ready(function() {
         });
     }); 
 	
- 
  
     
 }); // document

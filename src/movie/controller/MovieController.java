@@ -21,7 +21,7 @@ public class MovieController extends HttpServlet {
 		
 		Action action = null;
 		ActionForward forward = null;
-		System.out.println(command);
+//		System.out.println(command);
 		
 		
 		// 검색 버튼 
