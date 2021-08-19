@@ -21,7 +21,7 @@ public class BoardController extends HttpServlet {
     	
     	Action action= null;
     	ActionForward forward = null;
-    	System.out.println(command);
+//    	System.out.println(command);
     	
     	// 리뷰 List
     	if(command.equals("/BoardReviewList.bo")) {

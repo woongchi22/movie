@@ -21,7 +21,7 @@ public class MypageController extends HttpServlet {
 		
 		Action action = null;
 		ActionForward forward = null;
-		System.out.println(command);
+//		System.out.println(command);
 		
 		
 		// 마이페이지

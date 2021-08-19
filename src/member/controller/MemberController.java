@@ -20,7 +20,7 @@ public class MemberController extends HttpServlet {
 		
 		Action action = null;
 		ActionForward forward = null;
-		System.out.println(command);
+//		System.out.println(command);
 		
 		// 회원가입
 		if(command.equals("/MemberJoinForm.me")) {
