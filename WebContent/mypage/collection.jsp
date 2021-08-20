@@ -42,7 +42,7 @@ $(document).ready(function() {
 			window.open("CollectionSearch.mo",
 	                "open the window",
 	                "toolbar=no, width=1000, height=850, top=150, left=150");
-			$('.addCollection').show();
+// 			$('.addCollection').show();
 		}
 		
 	});	
@@ -228,21 +228,20 @@ $(document).ready(function() {
 		<form action ="MypageCollectionCreate.mp" method="post">
 			<div class="c_title">Collection</div>
 			<input type ="text" name="subject" id="subject" class="subject" placeholder="컬렉션명">
-			<div class="c_btn">
-			     <input type ="button" id="addMov" value="작품추가" class="addMovBtn">
-			     <input type ="button" id="cancle" value="취소" class="cancleBtn">
-			</div>
-				
+<!-- 			<div class="c_btn"> -->
+			     <input type="button" id="cancle" value="취소" class="cancleBtn">    
+			     <input type="button" id="addMov" value="작품추가" class="addMovBtn">
+<!-- 			</div> -->
+			
+	        <div id="movies"></div>
+	        <div class="c_title" style="display: none;" id = "c_submit">
+	            <input type="submit" value="생성" id="submit" class="createBtn">
+	        </div>  
 				
 		</form>	
 	</div>
 	
-	<div style="display: none;" class="addCollection">
-       <div class="c_title" style="display: none;" id = "c_submit">
-           <input type="submit" value="생성" id="submit" class="collectionBtn">
-       </div>  
-	   <div id="movies"></div>
-	</div>
+	
 
 	<input type ="button" id="c_update" value="수정">
 	<%for(int i = 0; i < collection.size(); i++){ %>
