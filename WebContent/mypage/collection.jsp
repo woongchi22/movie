@@ -74,7 +74,6 @@ $(document).ready(function() {
 	
 ///////////////////////////////////////////////////////////////////////
 	$('.delBtn').click(function(){
-		alert("1");
 		var eachList = $(this).attr('id');	
 		var collectionNum = $(this).closest('#collectionNum').attr('class')
 		$('.' + collectionNum).find('.'+eachList).remove();
@@ -92,17 +91,23 @@ $(document).ready(function() {
 	$('.delBtn').on('click', function() {
 		alert("3");
 		var index = $('.delBtn').index(this);	
-	alert(index);
+		alert(index);
 		$('.eachList').eq(index).remove();
 		
 	});
 	
 	$(document).on("click", ".modifyDelBtn", function() {
 		alert("4");
-		var index =  $(this).attr('id').substring(12); 	
-		alert(index);
+// 		var index =  $(this).attr('id').substring(12); 	
+		
 	
-		$('#modifyDelBtn').eq(index).remove();
+// 		$('#modifyDelBtn').eq(index).remove();
+		
+		
+		 var idx = $('.modifyDel button .modifyDelBtn').index(this);
+		 alert(idx);
+		    $('#modifyList').eq(idx).remove();
+		
 	});
 	
 	
