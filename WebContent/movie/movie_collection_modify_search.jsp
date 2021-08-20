@@ -98,7 +98,7 @@ $(document).ready(function() {
                                 	
                                 	console.log("추가되라 ㅠ");
                                     dupCheck = "Y";
-                                    $(".collectionView", opener.document).eq(<%=seq%>).slick('slickAdd',"<div class=eachList>"+ 
+                                    $(".collectionView", opener.document).eq(<%=seq%>).slick('slickAdd',"<div class=eachList id=modifyList"+i+">"+ 
 		 	  			      			    '<a href=MovieDetailPro.mo?movieSeq='+movieSeq+'></a>'+
 		 	  			      			    '<div class=poster style="background-image: url('+poster+')"></div>'+ 
 			 	  			      			"<div class=title>"+title4+"</div>"+
@@ -130,7 +130,7 @@ $(document).ready(function() {
                                     if (dupCheck == "Y") {
                                     	i++
                                     	console.log(i);
-                                        $(".collectionView", opener.document).eq(<%=seq%>).slick('slickAdd',"<div class=eachList>"+ 
+                                        $(".collectionView", opener.document).eq(<%=seq%>).slick('slickAdd',"<div class=eachList id=modifyList"+i+">"+ 
 			 	  			      			    '<a href=MovieDetailPro.mo?movieSeq='+movieSeq+'></a>'+
 			 	  			      			    '<div class=poster style="background-image: url('+poster+')"></div>'+ 
 				 	  			      			"<div class=title>"+title4+"</div>"+
