@@ -233,10 +233,8 @@ $(document).ready(function() {
 		<form action ="MypageCollectionCreate.mp" method="post">
 			<div class="c_title">Collection</div>
 			<input type ="text" name="subject" id="subject" class="subject" placeholder="컬렉션명">
-<!-- 			<div class="c_btn"> -->
-			     <input type="button" id="cancle" value="취소" class="cancleBtn">    
-			     <input type="button" id="addMov" value="작품추가" class="addMovBtn">
-<!-- 			</div> -->
+		    <input type="button" id="cancle" value="취소" class="cancleBtn">    
+		    <input type="button" id="addMov" value="작품추가" class="addMovBtn">
 			
 	        <div id="movies"></div>
 	        <div class="c_title" style="display: none;" id = "c_submit">
@@ -245,15 +243,16 @@ $(document).ready(function() {
 				
 		</form>	
 	</div>
+	<br>
 	
-	
-
-	<input type ="button" id="c_update" value="수정">
+<!-- 	<input type="button" id="c_update" value="수정" class="c_updateBtn"> -->
 	<%for(int i = 0; i < collection.size(); i++){ %>
 		<form action="MypageCollectionUpdate.mp" method="post">
 			<div id="collectionNum" class="collectionNum<%=i%>">
 				<div class="c_list">
-				     <div><h2>Collection:<%=collection.get(i).getCollection_name() %></h2></div>
+				     <div class="colName"><h3><%=collection.get(i).getCollection_name() %> &nbsp;<b style="color: #80808070 ">Collection</b></h3></div>
+<%-- 				     <input type="button" id="c_update<%=i%>" value="수정" class="c_updateBtn"> --%>
+				     <input type="button" id="c_update" value="수정" class="c_updateBtn">
 				     <div class="collectionView" >
 					     <input type="hidden" name="collection_name" value="<%=collection.get(i).getCollection_name()%>">
 				      <%for(int o = 0; o < collection.get(i).getMovieSeq().split(",").length; o++){%>
