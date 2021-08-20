@@ -35,10 +35,23 @@ $(document).ready(function() {
 	
 	$('#addMov').click(function(){
 		
-		window.open("CollectionSearch.mo",
-				"open the window",
-				"toolbar=no, width=1000, height=850, top=150, left=150");
+		if($('#subject').val() == ""){
+			$('#subject').focus();
+			
+		} else {
+			window.open("CollectionSearch.mo",
+	                "open the window",
+	                "toolbar=no, width=1000, height=850, top=150, left=150");
+			$('.addCollection').show();
+		}
+		
 	});	
+	
+	// 취소 버튼
+	$('.cancleBtn').click(function() {
+		$('#showCollection').css("display", "none");
+		$('#showAddCollection').css("display", "");
+	});
 	
 	$('.modifyAddMov').click(function(){
 		var addId = $(this).attr('id');
@@ -57,6 +70,8 @@ $(document).ready(function() {
 		$('.modifyBtn').show();
 		$('.modifyAddMov').show();
 	});
+	
+	
 ///////////////////////////////////////////////////////////////////////
 	$('.delBtn').click(function(){
 		alert("1");
@@ -115,39 +130,40 @@ $(document).ready(function() {
 	
 	
 	$('.collectionView').slick({
-		   dots: false,
-	     infinite: false,
-	     arrows: true,
-	     variableWidth:true,
-	     speed: 300,
-	     slidesToShow: 4,
-	     slidesToScroll: 3,
-		   responsive: [
-		     {
-		       breakpoint: 1024,
-		       settings: {
-		         slidesToShow: 3,
-		         slidesToScroll: 3,
-		         infinite: false,
-		         dots: false
-		       }
-		     },
-		     {
-		       breakpoint: 600,
-		       settings: {
-		         slidesToShow: 2,
-		         slidesToScroll: 2
-		       }
-		     },
-		     {
-		       breakpoint: 480,
-		       settings: {
-		         slidesToShow: 1,
-		         slidesToScroll: 1
-		       }
-		     }
-		   ]
-		 });	//$('.collectionView').slick() 끝
+		dots: false,
+		infinite: false,
+		arrows: true,
+		variableWidth:true,
+		speed: 300,
+		slidesToShow: 4,
+		slidesToScroll: 3,
+		responsive: [
+		 {
+		   breakpoint: 1024,
+		   settings: {
+		     slidesToShow: 3,
+		     slidesToScroll: 3,
+		     infinite: false,
+		     dots: false
+		   }
+		 },
+		 {
+		   breakpoint: 600,
+		   settings: {
+		     slidesToShow: 2,
+		     slidesToScroll: 2
+		   }
+		 },
+		 {
+		   breakpoint: 480,
+		   settings: {
+		     slidesToShow: 1,
+		     slidesToScroll: 1
+		   }
+		 }
+		]
+	});	//$('.collectionView').slick() 끝
+		 
 	$('#movies').slick({
 		 dots: false,
 	     infinite: false,
@@ -181,8 +197,10 @@ $(document).ready(function() {
 		       }
 		     }
 		   ]
-		 }); //$('#movies').slick() 끝
+    }); //$('#movies').slick() 끝
 	
+    
+    
 });//ready
 
 
@@ -200,63 +218,65 @@ $(document).ready(function() {
 		<li><a href="BoardMyReviewList.bo?name=<%=name %>" data-nav-section="review">내가 평가한 영화</a></li>
 		<li><a href="MypageCollection.mp?name=<%=name%>">▶&nbsp; 컬렉션</a></li>
 	</ul>
-	
 </div>
 
-<div style="margin-left:  300px;">
-	<input type="button" value="컬렉션 추가" id="showAddCollection" class="collectionBtn">
-	
+<div class="myReAll">
+    <div><h3><%=name %>님의 컬렉션 (숫자)</h3></div>
+    <input type="button" value="+ 컬렉션 추가" id="showAddCollection" class="collectionBtn">
+    
 	<div style="display: none;" id="showCollection" class="showCollection">
 		<form action ="MypageCollectionCreate.mp" method="post">
 			<div class="c_title">Collection</div>
-			<input type ="text" name="subject"id="subject" class="subject">
-			<div class="c_title"><input type ="button" id="addMov" value="작품추가" class="collectionBtn"></div>
-			<div id="movies">
+			<input type ="text" name="subject" id="subject" class="subject" placeholder="컬렉션명">
+			<div class="c_btn">
+			     <input type ="button" id="addMov" value="작품추가" class="addMovBtn">
+			     <input type ="button" id="cancle" value="취소" class="cancleBtn">
 			</div>
-			<div class="c_title" style="display: none;" id = "c_submit">
-				<input type="submit" value="생성" id="submit" class="collectionBtn">
-			</div>		
+				
+				
 		</form>	
 	</div>
+	
+	<div style="display: none;" class="addCollection">
+       <div class="c_title" style="display: none;" id = "c_submit">
+           <input type="submit" value="생성" id="submit" class="collectionBtn">
+       </div>  
+	   <div id="movies"></div>
+	</div>
 
-	<div><h3><%=name %> 님의 컬렉션 목록</h3></div>
 	<input type ="button" id="c_update" value="수정">
 	<%for(int i = 0; i < collection.size(); i++){ %>
 		<form action="MypageCollectionUpdate.mp" method="post">
 			<div id="collectionNum" class="collectionNum<%=i%>">
-			<div class="c_list">
-			<div><h2>Collection:<%=collection.get(i).getCollection_name() %></h2></div>
-			<div class="collectionView" >
-			<input type="hidden" name="collection_name" value="<%=collection.get(i).getCollection_name()%>">
-		<%for(int o = 0; o < collection.get(i).getMovieSeq().split(",").length; o++){%>
-			<div class ="eachList<%=o %>" id="eachList">
-			<div id="modifyMovies"></div>
-			<a href="MovieDetailPro.mo?movieSeq=<%=collection.get(i).getMovieSeq().split(",")[o]%>&query=<%=collection.get(i).getTitle().split("&")[o]%>">
-			</a>
-			<div class="poster" style="background-image: url('<%=collection.get(i).getPoster().split(",")[o]%>'),url(${pageContext.request.contextPath}/img/noImage.gif;"></div>
-			<div class="title"><%=collection.get(i).getTitle().split("&")[o]%></div>
-	
-			<div class="modifyDel">
-				<input type="button" class ="delBtn" id="eachList<%=o %>" value="삭제"><br>
-			</div>
-			
-			<input type="hidden" name="movieSeq" value="<%=collection.get(i).getMovieSeq().split(",")[o]%>">
-			<input type="hidden" name="title" value="<%=collection.get(i).getTitle().split("&")[o]%>">
-			<input type="hidden" name="poster" value="<%=collection.get(i).getPoster().split(",")[o]%>">
-			<input type="hidden" name="idx" value="<%=collection.get(i).getIdx()%>">
-			</div>
-			
-		<%} %>
-		
-	</div>
-			<input type ="button" id="add<%=i %>" value="작품추가" class="modifyAddMov">
-			<input type="submit" class="modifyBtn" type="submit" value="수정완료">
-</div>
-</div>
-</form>
-<%} %>
-
-			
+				<div class="c_list">
+				     <div><h2>Collection:<%=collection.get(i).getCollection_name() %></h2></div>
+				     <div class="collectionView" >
+					     <input type="hidden" name="collection_name" value="<%=collection.get(i).getCollection_name()%>">
+				      <%for(int o = 0; o < collection.get(i).getMovieSeq().split(",").length; o++){%>
+					     <div class ="eachList<%=o %>" id="eachList">
+							<div id="modifyMovies"></div>
+							<a href="MovieDetailPro.mo?movieSeq=<%=collection.get(i).getMovieSeq().split(",")[o]%>&query=<%=collection.get(i).getTitle().split("&")[o]%>"></a>
+							<div class="poster" style="background-image: url('<%=collection.get(i).getPoster().split(",")[o]%>'),url(${pageContext.request.contextPath}/img/noImage.gif;"></div>
+							<div class="title"><%=collection.get(i).getTitle().split("&")[o]%></div>
+					
+							<div class="modifyDel">
+								<input type="button" class ="delBtn" id="eachList<%=o %>" value="삭제"><br>
+							</div>
+							
+							<input type="hidden" name="movieSeq" value="<%=collection.get(i).getMovieSeq().split(",")[o]%>">
+							<input type="hidden" name="title" value="<%=collection.get(i).getTitle().split("&")[o]%>">
+							<input type="hidden" name="poster" value="<%=collection.get(i).getPoster().split(",")[o]%>">
+							<input type="hidden" name="idx" value="<%=collection.get(i).getIdx()%>">
+					     </div>
+				      <%} %>
+		            </div>
+		            
+				<input type ="button" id="add<%=i %>" value="작품추가" class="modifyAddMov">
+				<input type="submit" class="modifyBtn" type="submit" value="수정완료">
+	        </div>
+        </div>
+    </form>
+    <%} %>
 </div>
 
 <input type="hidden" id="name" name="name" value="<%=name %>">
