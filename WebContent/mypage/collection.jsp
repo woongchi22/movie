@@ -98,16 +98,15 @@ $(document).ready(function() {
 	
 	$(document).on("click", ".modifyDelBtn", function() {
 		alert("4");
-// 		var index =  $(this).attr('id').substring(12); 	
+		var index =  $(this).attr('id').substring(12); 	
 		
+		 alert(index);
 	
-// 		$('#modifyDelBtn').eq(index).remove();
+		$('#modifyDelBtn').eq(index).remove();
 		
 		
-		 var idx = $('.modifyDel button .modifyDelBtn').index(this);
-		 alert(idx);
-		    $('#modifyList').eq(idx).remove();
-		
+// 		 var idx = $('.modifyDel button .modifyDelBtn').index(this);
+// 		    $('.modifyDelBtn').remove();
 	});
 	
 	
