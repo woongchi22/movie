@@ -42,7 +42,6 @@ $(document).ready(function() {
 			window.open("CollectionSearch.mo",
 	                "open the window",
 	                "toolbar=no, width=1000, height=850, top=150, left=150");
-// 			$('.addCollection').show();
 		}
 		
 	});	
@@ -67,8 +66,8 @@ $(document).ready(function() {
 	
 	$('#c_update').click(function() {
 		$('.delBtn').show();
-		$('.modifyBtn').show();
-		$('.modifyAddMov').show();
+		$('.modifyBtn').css("display", "");
+		$('.modifyAddMov').css("display", "");
 	});
 	
 	
@@ -252,6 +251,7 @@ $(document).ready(function() {
 				     <div class="colName"><h3><%=collection.get(i).getCollection_name() %> &nbsp;<b style="color: #80808070 ">Collection</b></h3></div>
 <%-- 				     <input type="button" id="c_update<%=i%>" value="수정" class="c_updateBtn"> --%>
 				     <input type="button" id="c_update" value="수정" class="c_updateBtn">
+				     
 				     <div class="collectionView" >
 					     <input type="hidden" name="collection_name" value="<%=collection.get(i).getCollection_name()%>">
 				      <%for(int o = 0; o < collection.get(i).getMovieSeq().split(",").length; o++){%>
@@ -273,11 +273,11 @@ $(document).ready(function() {
 				      <%} %>
 		            </div>
 		            
-				<input type ="button" id="add<%=i %>" value="작품추가" class="modifyAddMov">
-				<input type="submit" class="modifyBtn" type="submit" value="수정완료">
-	        </div>
-        </div>
-    </form>
+					<input type="submit" class="modifyBtn" type="submit" value="수정완료" style="display: none;">
+					<input type ="button" id="add<%=i %>" value="작품추가" class="modifyAddMov" style="display: none;">
+	           </div>
+            </div>
+        </form>
     <%} %>
 </div>
 
