@@ -251,9 +251,9 @@
 hr{
     margin: 10px;
     clear: both;
-    border-width: 1px 0 0 0;
+    border-width: 2px 0 0 0;
     border-style: solid;
-    border-color: #808080b0;
+    border-color: #80808054;
 }
 .reviewContent{
 	margin: 10px 15px;
