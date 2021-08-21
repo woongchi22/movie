@@ -293,7 +293,7 @@ $(document).ready(function() {
                     
                     $(document).ready(function() {
                     	
-                    	$(document).on("click", ".editable", function() {
+                    	$(document).on("dblclick", ".editable", function() {
 							var value = $(this).text();
 							var input = "<input type='text' class='input-data' value='" + value + "'>";
 							$(this).html(input);
