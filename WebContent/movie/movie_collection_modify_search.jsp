@@ -4,8 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
- <% String add = request.getParameter("addId");
-   String seq = add.split("add")[1];%>
+<% 
+String add = request.getParameter("addId");
+String seq = add.split("add")[1];
+
+%>
+
 <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
 <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
@@ -84,6 +88,7 @@ $(document).ready(function() {
                         var movieSeq = item2.movieSeq;
 //                         var poster = poster;
                         console.log("들왔당께");
+                        
                         $.ajax('CollectionMovieAdd.mp', {
                             data: {
                                 name: name,

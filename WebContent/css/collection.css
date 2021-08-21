@@ -38,12 +38,9 @@
     border: 0;
     font-size: 15px;
     background-color: rgba(0,0,0,0);
-/*     text-align:center; */
     cursor: pointer;
-    
-	margin: -35px 0 0 115px;
+	margin: -35px 0 0 110px;
     padding: 10px;
-/*     display: none; */
 }
 
 .modifyBtn{
