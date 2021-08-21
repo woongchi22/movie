@@ -65,37 +65,17 @@ $(document).ready(function() {
 	
 	
 ///////////////////////////////////////////////////////////////////////
-// 	$('.delBtn').click(function(){
-// 		var eachList = $(this).attr('id');	
-// 		var collectionNum = $(this).closest('.collectionNum').attr('class')
-// 		$('.' + collectionNum).find('.'+eachList).remove();
-// 	});
 	
-// 	$(document).on("click", ".modifyDelBtn", function() {
-// 		alert("2");
-// 		var modifyDelBtn = $(this).attr('id');	
-// 		var collectionNum = $(this).closest('#collectionNum').attr('class')
-// 		$('.' + collectionNum).find('.'+modifyDelBtn).remove();
-// 	});
 	
-// 	$(document).on("click", ".addDelBtn", function() {
-// 		alert("5");
-// 		var addDelBtn = $(this).attr('id');	
-// 		var collectionNum = $(this).closest('#collectionNum').attr('class')
-// 		$('.' + collectionNum).find('.'+addDelBtn).remove();
-// 	});
+	$('.delBtn').click(function(){
+		var eachList = $(this).attr('id');	
+		var collectionNum = $(this).closest('#collectionNum').attr('class')
+		$('.' + collectionNum).find('.'+eachList).remove();
+	});
 
-	
-// 	$('.delBtn').on('click', function() {
-// 		alert("3");
-// 		var index = $('.delBtn').index(this);	
-// 		alert(index);
-// 		$('.eachList').eq(index).remove();
-		
-// 	});
-	
 	$(document).on("click", ".modifyDelBtn", function() {
 		var index =  $(this).attr('id').substring(12); 	
+		alert(index);
 		 $('#modifyList'+index).remove();
 	});
 	
@@ -299,24 +279,6 @@ $(document).ready(function() {
                             
                             
                         });
-                        
-                        // ------------------------------------
-                        
-                        $('#eachList<%=i%>').click(function(){
-                    		var eachList = $(this).attr('id');	
-                    		var collectionNum = $(this).closest('.collectionNum').attr('class')
-                    		$('.' + collectionNum).find('.'+eachList).remove();
-                    	});
-                        
-                        $('#eachList<%=i%>').on('click', function() {
-                    		alert("3");
-                    		var index = $('.delBtn').index(this);	
-                    		alert(index);
-                    		$('.eachList').eq(index).remove();
-                    		
-                    	});
-                        
-                        
                         
                     });
                     
