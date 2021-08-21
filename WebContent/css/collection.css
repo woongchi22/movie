@@ -143,9 +143,9 @@
 	background-color: #80808057;
 }
 .colName{
-	margin: 5px 10px 10px 10px;
+	margin: 8px 0 15px 10px;
 	float: left;
-	font-size: 20px;
+	font-size: 18px;
     font-weight: bold;
     letter-spacing: 1px;
 }
@@ -154,7 +154,14 @@
     float: left;
     font-size: 18px;
     font-weight: bold;
-    margin: 8px 0 10px 10px;
+    margin: 8px 10px 15px 10px;
+}
+.edi_colName{
+	margin: 8px 0 15px 10px;
+    float: left;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 .append{
 	color: #80808070;

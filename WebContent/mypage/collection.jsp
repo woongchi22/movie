@@ -237,6 +237,7 @@ $(document).ready(function() {
 			<div id="collectionNum" class="collectionNum<%=i%>">
 				<div class="c_list">
 				     <div class="colName editable" id="colName<%=i%>" contenteditable="false"><%=collection.get(i).getCollection_name() %> </div>
+				     <div class="edi_colName" id="edi_colName"></div>
 				     <div class="collection">Collection</div>
 				     <div class="append" id="append<%=i%>"></div>
 				     <input type="button" id="c_update<%=i%>" value="수정" class="c_updateBtn">
@@ -261,9 +262,6 @@ $(document).ready(function() {
 					     </div>
 				        <%} %>
 		            </div>
-		            
-					<input type="submit" id="complete<%=i %>" class="modifyBtn" type="submit" value="수정완료" style="display: none;">
-					<input type ="button" id="add<%=i %>" value="작품추가" class="modifyAddMov" style="display: none;">
 					
 					<script type="text/javascript">
                     $(document).ready(function() {
@@ -280,12 +278,14 @@ $(document).ready(function() {
                             // 컬렉션명 변경
                             $('.editable').focus(function() {
                             	$(this).css("border", "1px solid #FE7F9C");
-                            	$(this).css("padding", "5px");
+                            	$(this).css("padding", "2px");
 							});
                             
                             $('.editable').blur(function() {
-                            	$('#val').text($(this).text()); // 나중에 바뀌는 텍스트로 적용해야함
+                            	$('#edi_colName').text($(this).text()); // 나중에 바뀌는 텍스트로 적용해야함
                             	$(this).css("border", "initial");
+                            	$(this).css("display", "none");
+                            	
                             });
                             
                             $('.editable').keypress(function(event) {
@@ -294,6 +294,8 @@ $(document).ready(function() {
                             		$(this).blur();
                             	}
                             });
+                            
+                            
                             
                             
                         });
@@ -319,6 +321,9 @@ $(document).ready(function() {
                     });
                     
                     </script>
+                    
+                    <input type="submit" id="complete<%=i %>" class="modifyBtn" type="submit" value="수정완료" style="display: none;">
+                    <input type ="button" id="add<%=i %>" value="작품추가" class="modifyAddMov" style="display: none;">
                     
 	           </div>
             </div>
