@@ -116,14 +116,11 @@ $(document).ready(function() {
 			alert("영화를 선택하세요");
 			return false;
 		} 
-		location.reload();
+// 		location.reload();
 	})
+
 	
-	
-	
-	
-	
-	
+	// slick
 	$('.collectionView').slick({
 		dots: false,
 		infinite: false,
@@ -239,7 +236,7 @@ $(document).ready(function() {
 		<form action="MypageCollectionUpdate.mp" method="post">
 			<div id="collectionNum" class="collectionNum<%=i%>">
 				<div class="c_list">
-				     <div class="colName editable" id="colName<%=i%>" contenteditable="false" data-default="<%=collection.get(i).getCollection_name() %>"><%=collection.get(i).getCollection_name() %> </div>
+				     <div class="colName editable" id="colName<%=i%>" contenteditable="false"><%=collection.get(i).getCollection_name() %> </div>
 				     <div class="collection">Collection</div>
 				     <div class="append" id="append<%=i%>"></div>
 				     <input type="button" id="c_update<%=i%>" value="수정" class="c_updateBtn">
@@ -262,11 +259,6 @@ $(document).ready(function() {
 							<input type="hidden" name="poster" value="<%=collection.get(i).getPoster().split(",")[o]%>">
 							<input type="hidden" name="idx" value="<%=collection.get(i).getIdx()%>">
 					     </div>
-					     
-					     
-					     
-					     
-					     
 				        <%} %>
 		            </div>
 		            
@@ -274,48 +266,35 @@ $(document).ready(function() {
 					<input type ="button" id="add<%=i %>" value="작품추가" class="modifyAddMov" style="display: none;">
 					
 					<script type="text/javascript">
-// 					content = document.querySelector("[contenteditable]");
-//                     document.addEventListener("DOMContentLoaded", function() {
-//                         content.addEventListener("dblclick", function(event) {
-//                             if(content.isContentEditable == false){
-//                                 content.contentEditable = true;
-<%--                                 content.textContent = "<%=collection.get(i).getCollection_name() %>"; --%>
-//                                 content.style.border = "1px solid #FE7F9C";
-//                                 content.focus();
-                                
-//                             } else {
-//                                 content.contentEditable = false;
-//                                 content.style.border = "0px";
-//                             }
-//                         });
-                        
-//                     });
-                    
                     $(document).ready(function() {
                     	
-                    	$(document).on("dblclick", ".editable", function() {
-							var value = $(this).text();
-							var input = "<input type='text' class='input-data' value='" + value + "'>";
-							$(this).html(input);
-// 							$(this).removeClass("editable");
-						});
-                    	
-                    	$(document).on("blur", ".input-data", function() {
-                            var value = $(this).val();
-                            var div = $(this).parent("div");
-                            $(this).remove();
-                            div.html(value);
-//                             div.addClass("editable");
-                        });
-                    	
-                    	
-                    	
-                        $('#c_update<%=i%>').click(function() {
+                    	// 수정 버튼
+                        $('#c_update<%=i%>').one("click", function() {
                         	
-                        	$('#append<%=i%>').append("(컬렉션명 더블클릭 시 수정 가능)");
+                        	document.querySelector("[contenteditable]").contentEditable = true;
+                        	$('#append<%=i%>').append("(컬렉션명 클릭 시 수정 가능)");
                             $('.del<%=i%>').show();
                             $('#complete<%=i%>').css("display", "");
                             $('#add<%=i%>').css("display", "");
+                            
+                            // 컬렉션명 변경
+                            $('.editable').focus(function() {
+                            	$(this).css("border", "1px solid #FE7F9C");
+                            	$(this).css("padding", "5px");
+							});
+                            
+                            $('.editable').blur(function() {
+                            	$('#val').text($(this).text()); // 나중에 바뀌는 텍스트로 적용해야함
+                            	$(this).css("border", "initial");
+                            });
+                            
+                            $('.editable').keypress(function(event) {
+                            	if(event.which == 13){
+                            		e.preventDefault();
+                            		$(this).blur();
+                            	}
+                            });
+                            
                             
                         });
                         
@@ -334,8 +313,6 @@ $(document).ready(function() {
                     		$('.eachList').eq(index).remove();
                     		
                     	});
-                        
-                        
                         
                         
                         
