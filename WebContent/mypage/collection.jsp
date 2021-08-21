@@ -64,13 +64,6 @@ $(document).ready(function() {
 	
 	
 	
-	$('#c_update').click(function() {
-		$('.delBtn').show();
-		$('.modifyBtn').css("display", "");
-		$('.modifyAddMov').css("display", "");
-	});
-	
-	
 ///////////////////////////////////////////////////////////////////////
 	$('.delBtn').click(function(){
 		var eachList = $(this).attr('id');	
@@ -114,10 +107,6 @@ $(document).ready(function() {
 	$('#submit').click(function(){
 		if($('#subject').val() == ''){
 			alert("제목을 입력하세요")
-			return false;
-		}
-		if($('#content').val() == ''){
-			alert("내용을 입력하세요")
 			return false;
 		}
 		if($('#movieSeq').length < 1){
@@ -243,18 +232,18 @@ $(document).ready(function() {
 	</div>
 	<br>
 	
-<!-- 	<input type="button" id="c_update" value="수정" class="c_updateBtn"> -->
 	<%for(int i = 0; i < collection.size(); i++){ %>
 		<form action="MypageCollectionUpdate.mp" method="post">
 			<div id="collectionNum" class="collectionNum<%=i%>">
 				<div class="c_list">
-				     <div class="colName"><h3><%=collection.get(i).getCollection_name() %> &nbsp;<b style="color: #80808070 ">Collection</b></h3></div>
-<%-- 				     <input type="button" id="c_update<%=i%>" value="수정" class="c_updateBtn"> --%>
-				     <input type="button" id="c_update" value="수정" class="c_updateBtn">
+				     <div class="colName editable" id="colName<%=i%>" contenteditable="false" data-default="<%=collection.get(i).getCollection_name() %>"><%=collection.get(i).getCollection_name() %> </div>
+				     <div class="collection">Collection</div>
+				     <div class="append" id="append<%=i%>"></div>
+				     <input type="button" id="c_update<%=i%>" value="수정" class="c_updateBtn">
 				     
 				     <div class="collectionView" >
 					     <input type="hidden" name="collection_name" value="<%=collection.get(i).getCollection_name()%>">
-				      <%for(int o = 0; o < collection.get(i).getMovieSeq().split(",").length; o++){%>
+				        <%for(int o = 0; o < collection.get(i).getMovieSeq().split(",").length; o++){%>
 					     <div class ="eachList<%=o %>" id="eachList">
 							<div id="modifyMovies"></div>
 							<a href="MovieDetailPro.mo?movieSeq=<%=collection.get(i).getMovieSeq().split(",")[o]%>&query=<%=collection.get(i).getTitle().split("&")[o]%>"></a>
@@ -262,7 +251,7 @@ $(document).ready(function() {
 							<div class="title"><%=collection.get(i).getTitle().split("&")[o]%></div>
 					
 							<div class="modifyDel">
-								<input type="button" class ="delBtn" id="eachList<%=o %>" value="삭제"><br>
+								<input type="button" class ="delBtn del<%=i %>" id="eachList<%=o %>" value="삭제"><br>
 							</div>
 							
 							<input type="hidden" name="movieSeq" value="<%=collection.get(i).getMovieSeq().split(",")[o]%>">
@@ -270,11 +259,62 @@ $(document).ready(function() {
 							<input type="hidden" name="poster" value="<%=collection.get(i).getPoster().split(",")[o]%>">
 							<input type="hidden" name="idx" value="<%=collection.get(i).getIdx()%>">
 					     </div>
-				      <%} %>
+				        <%} %>
 		            </div>
 		            
-					<input type="submit" class="modifyBtn" type="submit" value="수정완료" style="display: none;">
+					<input type="submit" id="complete<%=i %>" class="modifyBtn" type="submit" value="수정완료" style="display: none;">
 					<input type ="button" id="add<%=i %>" value="작품추가" class="modifyAddMov" style="display: none;">
+					
+					<script type="text/javascript">
+// 					content = document.querySelector("[contenteditable]");
+//                     document.addEventListener("DOMContentLoaded", function() {
+//                         content.addEventListener("dblclick", function(event) {
+//                             if(content.isContentEditable == false){
+//                                 content.contentEditable = true;
+<%--                                 content.textContent = "<%=collection.get(i).getCollection_name() %>"; --%>
+//                                 content.style.border = "1px solid #FE7F9C";
+//                                 content.focus();
+                                
+//                             } else {
+//                                 content.contentEditable = false;
+//                                 content.style.border = "0px";
+//                             }
+//                         });
+                        
+//                     });
+                    
+                    $(document).ready(function() {
+                    	
+                    	$(document).on("click", ".editable", function() {
+							var value = $(this).text();
+							var input = "<input type='text' class='input-data' value='" + value + "'>";
+							$(this).html(input);
+// 							$(this).removeClass("editable");
+						});
+                    	
+                    	$(document).on("blur", ".input-data", function() {
+                            var value = $(this).val();
+                            var div = $(this).parent("div");
+                            $(this).remove();
+                            div.html(value);
+//                             div.addClass("editable");
+                        });
+                    	
+                    	
+                    	
+                        $('#c_update<%=i%>').click(function() {
+                        	
+                        	$('#append<%=i%>').append("(컬렉션명 더블클릭 시 수정 가능)");
+                            $('.del<%=i%>').show();
+                            $('#complete<%=i%>').css("display", "");
+                            $('#add<%=i%>').css("display", "");
+                            
+                        });
+                        
+                    });
+                    
+                    </script>
+                    
 	           </div>
             </div>
         </form>
