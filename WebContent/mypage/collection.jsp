@@ -275,12 +275,13 @@ $(document).ready(function() {
                             	}
                             });
                             
-                            
-                            
+<%--                             const element = document.getElementById('colName<%=i%>'); --%>
+//                             alert(element.innerText);
                             
                         });
                         
                     });
+                    
                     
                     </script>
                     
