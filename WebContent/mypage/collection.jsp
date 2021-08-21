@@ -65,11 +65,11 @@ $(document).ready(function() {
 	
 	
 ///////////////////////////////////////////////////////////////////////
-	$('.delBtn').click(function(){
-		var eachList = $(this).attr('id');	
-		var collectionNum = $(this).closest('#collectionNum').attr('class')
-		$('.' + collectionNum).find('.'+eachList).remove();
-	});
+// 	$('.delBtn').click(function(){
+// 		var eachList = $(this).attr('id');	
+// 		var collectionNum = $(this).closest('.collectionNum').attr('class')
+// 		$('.' + collectionNum).find('.'+eachList).remove();
+// 	});
 	
 	$(document).on("click", ".modifyDelBtn", function() {
 		alert("2");
@@ -80,25 +80,29 @@ $(document).ready(function() {
 	
 
 	
-	$('.delBtn').on('click', function() {
-		alert("3");
-		var index = $('.delBtn').index(this);	
-		alert(index);
-		$('.eachList').eq(index).remove();
+// 	$('.delBtn').on('click', function() {
+// 		alert("3");
+// 		var index = $('.delBtn').index(this);	
+// 		alert(index);
+// 		$('.eachList').eq(index).remove();
 		
-	});
+// 	});
 	
 	$(document).on("click", ".modifyDelBtn", function() {
 		alert("4");
 		var index =  $(this).attr('id').substring(12); 	
-		
 		 alert(index);
+
 	
-		$('#modifyDelBtn').eq(index).remove();
+// 		$('#modifyDelBtn').eq(index).remove();
 		
 		
 // 		 var idx = $('.modifyDel button .modifyDelBtn').index(this);
-// 		    $('.modifyDelBtn').remove();
+// 		 alert(idx);
+		 
+// 		 $('.modifyDelBtn').eq(idx).remove();
+		 $('#modifyList'+index).remove();
+// 		 $('#modifyDelBtn'+index).remove();
 	});
 	
 	
@@ -259,6 +263,11 @@ $(document).ready(function() {
 							<input type="hidden" name="poster" value="<%=collection.get(i).getPoster().split(",")[o]%>">
 							<input type="hidden" name="idx" value="<%=collection.get(i).getIdx()%>">
 					     </div>
+					     
+					     
+					     
+					     
+					     
 				        <%} %>
 		            </div>
 		            
@@ -311,6 +320,22 @@ $(document).ready(function() {
                             
                         });
                         
+                        // ------------------------------------
+                        
+                        $('#eachList<%=i%>').click(function(){
+                    		var eachList = $(this).attr('id');	
+                    		var collectionNum = $(this).closest('.collectionNum').attr('class')
+                    		$('.' + collectionNum).find('.'+eachList).remove();
+                    	});
+                        
+                        $('#eachList<%=i%>').on('click', function() {
+                    		alert("3");
+                    		var index = $('.delBtn').index(this);	
+                    		alert(index);
+                    		$('.eachList').eq(index).remove();
+                    		
+                    	});
+                        
                     });
                     
                     </script>
@@ -318,6 +343,9 @@ $(document).ready(function() {
 	           </div>
             </div>
         </form>
+        
+        
+        
     <%} %>
 </div>
 
