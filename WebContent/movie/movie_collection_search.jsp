@@ -26,26 +26,8 @@ $(document).ready(function() {
 	var query = $('#query').val();
 	var name = $('#name').val();
 	query = query.replace(/ /g,'');
-	var each = null;
-	console.log("zzzzz"+each);
-	var i = 1;
+	var i = 0;
 	
-	
-	function add() {
-	    var element = document.createElement("input");
-	    element.type = 'button';
-	    element.value = "삭제";
-// 	    element.name = "a"+i;
-	    element.id = "each"+i++;
-	    var foo = document.getElementById("eachList");
-	    each = element;
-// 	    foo.appendChild(element);
-		console.log(element);
-	 
-	}
-	
-	
-
 	
 	// 영화 검색(한국, 외국)
 	$.ajax('SearchMoviePro.mo', {
@@ -104,13 +86,15 @@ $(document).ready(function() {
                                 if ($("#movies", opener.document).find('.title').length == 0) {
                                 	console.log("추가되라 ㅠ");
                                     dupCheck = "Y";
-                                    $("#movies", opener.document).slick('slickAdd',"<div class=collectionList>" +
-                                        '<div class=poster style="background-image: url(' + poster + ')"></div>' +
-                                        '<div class=title>' + title4+
-                                        "</div>" +
-                                        "<input type='hidden' value='" + movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
-                                        "<input type='hidden' value='" + poster + "'name = 'poster'>" +
-                                        "<input type='hidden' value='" + title4+ "'name = 'title'></div>")
+                                    $("#movies", opener.document).slick('slickAdd',"<div class=collectionList id=addList"+i+">" +
+                                            '<div class=poster style="background-image: url(' + poster + ')"></div>' +
+                                            '<div class=title>' + title4+
+                                            "</div>" +
+                                            "<div class=addDel>" +
+    	 	  			      				"<input type='button' class='addDelBtn' id='addDelBtn"+i+"' value='삭제'>" +
+                                            "<input type='hidden' value='" + movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
+                                            "<input type='hidden' value='" + poster + "'name = 'poster'>" +
+                                            "<input type='hidden' value='" + title4+ "'name = 'title'></div>")
                                         $('#c_submit', opener.document).show();
                                         	console.log("젭알 ㅠ");
                                         
@@ -130,15 +114,17 @@ $(document).ready(function() {
 
 
                                     if (dupCheck == "Y") {
-                                    	  add();
+                                    	i++
                                     	
-                                        $("#movies", opener.document).slick('slickAdd',"<div class=collectionList>" +
+                                        $("#movies", opener.document).slick('slickAdd',"<div class=collectionList id=addList"+i+">" +
                                             '<div class=poster style="background-image: url(' + poster + ')"></div>' +
                                             '<div class=title>' + title4+
                                             "</div>" +
+                                            "<div class=addDel>" +
+    	 	  			      				"<input type='button' class='addDelBtn' id='addDelBtn"+i+"' value='삭제'>" +
                                             "<input type='hidden' value='" + movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
                                             "<input type='hidden' value='" + poster + "'name = 'poster'>" +
-                                            "<input type='hidden' value='" + title4+ "'name = 'title'>"+each+"</div>")
+                                            "<input type='hidden' value='" + title4+ "'name = 'title'></div>")
                                             $('#c_submit', opener.document).show();
                                       
 
@@ -176,10 +162,12 @@ $(document).ready(function() {
                                   if ($("#movies", opener.document).find('.title').length == 0) {
                                   	console.log("추가되라 ㅠ");
                                       dupCheck = "Y";
-                                      $("#movies", opener.document).slick('slickAdd',"<div class=collectionList>" +
+                                      $("#movies", opener.document).slick('slickAdd',"<div class=collectionList id=addList"+i+">" +
                                           '<div class=poster style="background-image: url(' + poster + ')"></div>' +
                                           '<div class=title>' + title4+
                                           "</div>" +
+                                          "<div class=addDel>" +
+      	 	  			     	   		  "<input type='button' class='addDelBtn' id='addDelBtn"+i+"' value='삭제'>" +
                                           "<input type='hidden' value='" + movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
                                           "<input type='hidden' value='" + poster + "'name = 'poster'>" +
                                           "<input type='hidden' value='" + title4+ "'name = 'title'></div>")
@@ -204,10 +192,13 @@ $(document).ready(function() {
 
 
                                       if (dupCheck == "Y") {
-                                          $("#movies", opener.document).slick('slickAdd',"<div class=collectionList>" +
+                                    	  i++
+                                    	  $("#movies", opener.document).slick('slickAdd',"<div class=collectionList id=addList"+i+">" +
                                               '<div class=poster style="background-image: url(' + poster + ')"></div>' +
                                               '<div class=title>' + title4+
                                               "</div>" +
+                                              "<div class=addDel>" +
+      	 	  			      				  "<input type='button' class='addDelBtn' id='addDelBtn"+i+"' value='삭제'>" +
                                               "<input type='hidden' value='" + movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
                                               "<input type='hidden' value='" + poster + "'name = 'poster'>" +
                                               "<input type='hidden' value='" + title4+ "'name = 'title'></div>")
@@ -351,10 +342,12 @@ $(document).ready(function() {
                                 if ($("#movies", opener.document).find('.title').length == 0) {
                                 	console.log("추가되라 ㅠ");
                                     dupCheck = "Y";
-                                    $("#movies", opener.document).slick('slickAdd',"<div class=collectionList>" +
+                                    $("#movies", opener.document).slick('slickAdd',"<div class=collectionList id=addList"+i+">" +
                                         '<div class=poster style="background-image: url(' + poster + ')"></div>' +
                                         '<div class=title>' + title4+
                                         "</div>" +
+                                        "<div class=addDel>" +
+	 	  			      				"<input type='button' class='addDelBtn' id='addDelBtn"+i+"' value='삭제'>" +
                                         "<input type='hidden' value='" + movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
                                         "<input type='hidden' value='" + poster + "'name = 'poster'>" +
                                         "<input type='hidden' value='" + title4+ "'name = 'title'></div>")
@@ -379,10 +372,13 @@ $(document).ready(function() {
 
 
                                     if (dupCheck == "Y") {
-                                        $("#movies", opener.document).slick('slickAdd',"<div class=collectionList>" +
+                                    	i++
+                                    	 $("#movies", opener.document).slick('slickAdd',"<div class=collectionList id=addList"+i+">" +
                                             '<div class=poster style="background-image: url(' + poster + ')"></div>' +
                                             '<div class=title>' + title4+
                                             "</div>" +
+                                            "<div class=addDel>" +
+    	 	  			      				"<input type='button' class='addDelBtn' id='addDelBtn"+i+"' value='삭제'>" +
                                             "<input type='hidden' value='" + movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
                                             "<input type='hidden' value='" + poster + "'name = 'poster'>" +
                                             "<input type='hidden' value='" + title4+ "'name = 'title'></div>")
@@ -488,10 +484,12 @@ $(document).ready(function() {
                                 if ($("#movies", opener.document).find('.title').length == 0) {
                                 	console.log("추가되라 ㅠ");
                                     dupCheck = "Y";
-                                    $("#movies", opener.document).slick('slickAdd',"<div class=collectionList>" +
+                                    $("#movies", opener.document).slick('slickAdd',"<div class=collectionList id=addList"+i+">" +
                                         '<div class=poster style="background-image: url(' + poster + ')"></div>' +
                                         '<div class=title>' + title4+
                                         "</div>" +
+                                        "<div class=addDel>" +
+	 	  			      				"<input type='button' class='addDelBtn' id='addDelBtn"+i+"' value='삭제'>" +
                                         "<input type='hidden' value='" + movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
                                         "<input type='hidden' value='" + poster + "'name = 'poster'>" +
                                         "<input type='hidden' value='" + title4+ "'name = 'title'></div>")
@@ -516,14 +514,17 @@ $(document).ready(function() {
 
 
                                     if (dupCheck == "Y") {
-                                        $("#movies", opener.document).slick('slickAdd',"<div class=collectionList>" +
-                                            '<div class=poster style="background-image: url(' + poster + ')"></div>' +
-                                            '<div class=title>' + title4+
-                                            "</div>" +
-                                            "<input type='hidden' value='" + movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
-                                            "<input type='hidden' value='" + poster + "'name = 'poster'>" +
-                                            "<input type='hidden' value='" + title4+ "'name = 'title'></div>")
-                                            $('#c_submit', opener.document).show();
+                                    	i++
+                                    	 $("#movies", opener.document).slick('slickAdd',"<div class=collectionList id=addList"+i+">" +
+                                           '<div class=poster style="background-image: url(' + poster + ')"></div>' +
+                                           '<div class=title>' + title4+
+                                           "</div>" +
+                                           "<div class=addDel>" +
+   	 	  			      				   "<input type='button' class='addDelBtn' id='addDelBtn"+i+"' value='삭제'>" +
+                                           "<input type='hidden' value='" + movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
+                                           "<input type='hidden' value='" + poster + "'name = 'poster'>" +
+                                           "<input type='hidden' value='" + title4+ "'name = 'title'></div>")
+                                           $('#c_submit', opener.document).show();
 
                                     } else { 
                                         alert("이미 추가된 영화입니다.")
@@ -625,10 +626,12 @@ $(document).ready(function() {
                                 if ($("#movies", opener.document).find('.title').length == 0) {
                                 	console.log("추가되라 ㅠ");
                                     dupCheck = "Y";
-                                    $("#movies", opener.document).slick('slickAdd',"<div class=collectionList>" +
+                                    $("#movies", opener.document).slick('slickAdd',"<div class=collectionList id=addList"+i+">" +
                                         '<div class=poster style="background-image: url(' + poster + ')"></div>' +
                                         '<div class=title>' + title4+
                                         "</div>" +
+                                        "<div class=addDel>" +
+	 	  			      				"<input type='button' class='addDelBtn' id='addDelBtn"+i+"' value='삭제'>" +
                                         "<input type='hidden' value='" + movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
                                         "<input type='hidden' value='" + poster + "'name = 'poster'>" +
                                         "<input type='hidden' value='" + title4+ "'name = 'title'></div>")
@@ -653,10 +656,13 @@ $(document).ready(function() {
 
 
                                     if (dupCheck == "Y") {
-                                        $("#movies", opener.document).slick('slickAdd',"<div class=collectionList>" +
+                                    	i++
+                                    	 $("#movies", opener.document).slick('slickAdd',"<div class=collectionList id=addList"+i+">" +
                                             '<div class=poster style="background-image: url(' + poster + ')"></div>' +
                                             '<div class=title>' + title4+
                                             "</div>" +
+                                            "<div class=addDel>" +
+    	 	  			      				"<input type='button' class='addDelBtn' id='addDelBtn"+i+"' value='삭제'>" +
                                             "<input type='hidden' value='" + movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
                                             "<input type='hidden' value='" + poster + "'name = 'poster'>" +
                                             "<input type='hidden' value='" + title4+ "'name = 'title'></div>")

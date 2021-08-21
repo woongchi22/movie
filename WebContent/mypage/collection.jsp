@@ -71,13 +71,19 @@ $(document).ready(function() {
 // 		$('.' + collectionNum).find('.'+eachList).remove();
 // 	});
 	
-	$(document).on("click", ".modifyDelBtn", function() {
-		alert("2");
-		var modifyDelBtn = $(this).attr('id');	
-		var collectionNum = $(this).closest('#collectionNum').attr('class')
-		$('.' + collectionNum).find('.'+modifyDelBtn).remove();
-	});
+// 	$(document).on("click", ".modifyDelBtn", function() {
+// 		alert("2");
+// 		var modifyDelBtn = $(this).attr('id');	
+// 		var collectionNum = $(this).closest('#collectionNum').attr('class')
+// 		$('.' + collectionNum).find('.'+modifyDelBtn).remove();
+// 	});
 	
+// 	$(document).on("click", ".addDelBtn", function() {
+// 		alert("5");
+// 		var addDelBtn = $(this).attr('id');	
+// 		var collectionNum = $(this).closest('#collectionNum').attr('class')
+// 		$('.' + collectionNum).find('.'+addDelBtn).remove();
+// 	});
 
 	
 // 	$('.delBtn').on('click', function() {
@@ -89,20 +95,13 @@ $(document).ready(function() {
 // 	});
 	
 	$(document).on("click", ".modifyDelBtn", function() {
-		alert("4");
 		var index =  $(this).attr('id').substring(12); 	
-		 alert(index);
-
-	
-// 		$('#modifyDelBtn').eq(index).remove();
-		
-		
-// 		 var idx = $('.modifyDel button .modifyDelBtn').index(this);
-// 		 alert(idx);
-		 
-// 		 $('.modifyDelBtn').eq(idx).remove();
 		 $('#modifyList'+index).remove();
-// 		 $('#modifyDelBtn'+index).remove();
+	});
+	
+	$(document).on("click", ".addDelBtn", function() {
+		var index =  $(this).attr('id').substring(9); 	
+		 $('#addList'+index).remove();
 	});
 	
 	
@@ -335,6 +334,10 @@ $(document).ready(function() {
                     		$('.eachList').eq(index).remove();
                     		
                     	});
+                        
+                        
+                        
+                        
                         
                     });
                     
