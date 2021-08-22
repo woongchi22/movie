@@ -44,7 +44,7 @@ public class MemberJoinProAction implements Action {
 		} else {
 			forward = new ActionForward();
 			forward.setRedirect(true);
-			forward.setPath("./");
+			forward.setPath("MemberLoginForm.me");
 		}
 		
 		return forward;
