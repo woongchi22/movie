@@ -257,25 +257,32 @@ $(document).ready(function() {
                             
                             // 컬렉션명 변경
                             $('.editable').focus(function() {
-                            	$(this).css("border", "1px solid #FE7F9C");
-                            	$(this).css("padding", "2px");
+                            	var value = $(this).text();
+                            	var input = "<input type='text' class='input-data' value='" + value + "'>";
+                            	$(this).html(input);
+                            	$('.input-data').css("border", "1px solid #FE7F9C");
+//                             	$('.input-data').css("padding", "2px");
 							});
                             
                             $('.editable').blur(function() {
-                            	$('#edi_colName').text($(this).text()); // 나중에 바뀌는 텍스트로 적용해야함
-                            	$(this).css("border", "initial");
-                            	$(this).css("display", "none");
+                            	alert("zzz");
+                            	var value = $(this).text();
+                                var input = "<input type='text' class='input-data2' value='" + value + "'>";
+                                $(this).html(input);
+//                             	$('.input-data').text($(this).text()); // 나중에 바뀌는 텍스트로 적용해야함
+                            	$(this).css("border", "2px solid #FE7F9C");
+                            	$('.editable').css("display", "none");
                             	
                             });
                             
-                            $('.editable').keypress(function(event) {
+                            $('.input-data').keypress(function(event) {
                             	if(event.which == 13){
                             		e.preventDefault();
                             		$(this).blur();
                             	}
                             });
                             
-<%--                             const element = document.getElementById('colName<%=i%>'); --%>
+//                             const element = document.getElementById('edi_colName');
 //                             alert(element.innerText);
                             
                         });

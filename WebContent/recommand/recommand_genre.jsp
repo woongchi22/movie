@@ -35,13 +35,13 @@ $(document).ready(function() {
             
             var plus = '';
             for(var i=0; i<data.length; i++) {
-//              console.log(data[i].genre);
+             console.log(data[i].genre);
                 plus = data[i].genre + ',' + plus // 장르 다 더하기
             }
             
             var comma = plus.slice(0, -1); // 끝에 콤마 삭제
             const strings = comma.split(','); // 배열로 만들기
-//          console.log(strings);
+         console.log(strings);
             
             // 출현빈도 구하기 1 (forEach)
             const counts = {};
@@ -50,7 +50,7 @@ $(document).ready(function() {
             });
             console.log(counts);
             
-            // 출현빈도 구하기 2 (reduec)
+            // 출현빈도 구하기 2 (reduce)
 //             const counts = strings.reduce((x, r) => {
 //             	x[r] = (x[r] || 0) + 1;
 //             	return x;
