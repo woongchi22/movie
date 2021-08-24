@@ -5,7 +5,6 @@ import static db.JdbcUtil.*;
 import java.sql.*;
 import java.util.*;
 
-import board.vo.ReplyBean;
 import board.vo.ReviewBean;
 import movie.vo.MovieBean;
 
@@ -392,119 +391,6 @@ public class BoardDao {
 	
 	
 	
-	
-	
-	// --------------- 보류 ------------------------------------------------------
-	
-	//리뷰 댓글
-	public int insertReply(ReplyBean replyBean, int idx) {
-		
-		System.out.println("dao-insertReply");
-		int insertCount = 0;
-		System.out.println(replyBean.getContent());
-		
-		String sql ="INSERT INTO reply VALUES(idx,?,?,?,0,now())";
-		try {
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, replyBean.getName());
-			pstmt.setInt(2, replyBean.getMovieSeq());
-			pstmt.setString(3, replyBean.getContent());
-			
-			insertCount = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			System.out.println("BoardDao - insertReply() 에러 : " + e.getMessage());
-
-		}finally {
-			close(rs);
-			close(pstmt);
-		}
-		
-		return insertCount;
-	}
-	
-	public ArrayList<ReplyBean> getReplyList(ReplyBean replyBean) {
-		System.out.println("BoardDAO-getListReply");
-		
-		ArrayList<ReplyBean> replyList = new ArrayList<ReplyBean>();
-		
-		try {
-			String sql = "SELECT * FROM reply where movieSeq=? ORDER BY date DESC";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, replyBean.getMovieSeq());
-			
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				ReplyBean reply = new ReplyBean();
-				reply.setIdx(rs.getInt("idx"));
-				reply.setName(rs.getString("name"));
-				reply.setMovieSeq(rs.getInt("movieSeq"));
-				reply.setContent(rs.getString("content"));
-				reply.setRe_ref(rs.getInt("re_ref"));
-				reply.setDate(rs.getDate("date"));
-				
-				replyList.add(reply);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println("BoardDao - getListReply() 에러: " + e.getMessage());
-		} finally {
-			close(rs);
-			close(pstmt);
-		}
-		
-		return replyList;
-	}
-
-	
-
-	public int deleteReply(int idx) {
-		System.out.println("BoardDAO-deleteReply");	
-		int insertCount = 0;
-		
-		try {
-
-			String sql = "delete from reply where idx = ? ";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, idx);
-
-			insertCount = pstmt.executeUpdate();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println("BoardDAO - deleteReply() 에러: " + e.getMessage());
-
-		} finally {
-			close(pstmt);
-		}
-
-		return insertCount;
-	}
-
-	public int updateReply(ReviewBean replyBean) {
-		System.out.println("BoardDAO-updateReply");
-		
-		System.out.println(replyBean.getName());
-		int insertCount = 0;
-		try {
-
-			String sql = "update reply set content = ? where idx = ? ";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, replyBean.getContent());
-			pstmt.setInt(2, replyBean.getIdx());
-
-			insertCount = pstmt.executeUpdate();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rs);
-			close(pstmt);
-		}
-
-		return insertCount;
-	}
 	
 	
 }

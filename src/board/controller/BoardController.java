@@ -87,41 +87,6 @@ public class BoardController extends HttpServlet {
 			}
     	}
     	
-    	
-    	
-//    	if(command.equals("/BoardReply.bo")) {
-//	    	action = new BoardReplyAction();
-//	    	try {
-//				forward = action.execute(request, response);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//    	}
-//    	  if(command.equals("/BoardReplyWrite.bo")) {
-//    		  action = new BoardReplyWriteAction();
-//    		  try {
-//				forward = action.execute(request, response);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//    	  }
-//    	  if(command.equals("/BoardReplyUpdate.bo")) {
-//	  		  action = new BoardReplyUpdateAction();
-//	  		  try {
-//				  forward = action.execute(request, response);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//	  	  }
-//    	  if (command.equals("/BoardReplyDelete.bo")) {
-//			action = new BoardReplyDeleteAction();
-//			try {
-//				forward = action.execute(request, response);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//    	} 
-			
     	  
     	  
     	  

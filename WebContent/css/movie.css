@@ -331,7 +331,7 @@ hr{
     background-color: rgba(0,0,0,0);
     float: right;
     cursor: pointer;
-	margin: -35px 75px 0 0;
+	margin: -35px 0 0 0;
     padding: 5px;
 }
 .replyBtn{

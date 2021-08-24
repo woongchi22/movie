@@ -54,8 +54,8 @@ String grade = (String)request.getAttribute("grade");
 			    <div class="likeImg"></div>
 			    <div class="reviewLc"><%=rb.getLike_count() %></div>
 			    <div>
-			      <a href="BoardReply.bo?movieSeq=<%=rb.getMovieSeq()%>&idx=<%=rb.getIdx()%>">
-	                      <input type="button" value="댓글달기" id="ReviewReply_<%=rb.getIdx() %>" class="replyBtn" ></a>
+<%-- 			      <a href="BoardReply.bo?movieSeq=<%=rb.getMovieSeq()%>&idx=<%=rb.getIdx()%>"> --%>
+<%-- 	                      <input type="button" value="댓글달기" id="ReviewReply_<%=rb.getIdx() %>" class="replyBtn" ></a> --%>
 			      <input class="likeBtn" type="button" id="like_<%=rb.getIdx() %>" value="좋아요">    
 			    </div>
 		    </div>
