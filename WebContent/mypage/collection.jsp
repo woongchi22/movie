@@ -193,7 +193,7 @@ $(document).ready(function() {
 </div>
 
 <div class="myReAll">
-    <div><h3><%=name %>님의 컬렉션 (숫자)</h3></div>
+    <div><h3><%=name %>님의 컬렉션</h3></div>
     <input type="button" value="+ 컬렉션 추가" id="showAddCollection" class="collectionBtn">
     
 	<div style="display: none;" id="showCollection" class="showCollection">
@@ -217,7 +217,7 @@ $(document).ready(function() {
 			<div id="collectionNum" class="collectionNum<%=i%>">
 				<div class="c_list">
 				     <div class="colName editable" id="colName<%=i%>" contenteditable="false"><%=collection.get(i).getCollection_name() %> </div>
-				     <div class="edi_colName" id="edi_colName"></div>
+<!-- 				     <div class="edi_colName" id="edi_colName"></div> -->
 				     <div class="collection">Collection</div>
 				     <div class="append" id="append<%=i%>"></div>
 				     <input type="button" id="c_update<%=i%>" value="수정" class="c_updateBtn">
@@ -249,38 +249,38 @@ $(document).ready(function() {
                     	// 수정 버튼
                         $('#c_update<%=i%>').one("click", function() {
                         	
-                        	document.querySelector("[contenteditable]").contentEditable = true;
-                        	$('#append<%=i%>').append("(컬렉션명 클릭 시 수정 가능)");
+//                         	document.querySelector("[contenteditable]").contentEditable = true;
+<%--                         	$('#append<%=i%>').append("(컬렉션명 클릭 시 수정 가능)"); --%>
                             $('.del<%=i%>').show();
                             $('#complete<%=i%>').css("display", "");
                             $('#add<%=i%>').css("display", "");
                             
-                            // 컬렉션명 변경
-                            $('.editable').focus(function() {
-                            	var value = $(this).text();
-                            	var input = "<input type='text' class='input-data' value='" + value + "'>";
-                            	$(this).html(input);
-                            	$('.input-data').css("border", "1px solid #FE7F9C");
-//                             	$('.input-data').css("padding", "2px");
-							});
+//                             // 컬렉션명 변경
+//                             $('.editable').focus(function() {
+//                             	var value = $(this).text();
+//                             	var input = "<input type='text' class='input-data' value='" + value + "'>";
+//                             	$(this).html(input);
+//                             	$('.input-data').css("border", "1px solid #FE7F9C");
+// //                             	$('.input-data').css("padding", "2px");
+// 							});
                             
-                            $('.editable').blur(function() {
-                            	alert("zzz");
-                            	var value = $(this).text();
-                                var input = "<input type='text' class='input-data2' value='" + value + "'>";
-                                $(this).html(input);
-//                             	$('.input-data').text($(this).text()); // 나중에 바뀌는 텍스트로 적용해야함
-                            	$(this).css("border", "2px solid #FE7F9C");
-                            	$('.editable').css("display", "none");
+//                             $('.editable').blur(function() {
+//                             	alert("zzz");
+//                             	var value = $(this).text();
+//                                 var input = "<input type='text' class='input-data2' value='" + value + "'>";
+//                                 $(this).html(input);
+// //                             	$('.input-data').text($(this).text()); // 나중에 바뀌는 텍스트로 적용해야함
+//                             	$(this).css("border", "2px solid #FE7F9C");
+//                             	$('.editable').css("display", "none");
                             	
-                            });
+//                             });
                             
-                            $('.input-data').keypress(function(event) {
-                            	if(event.which == 13){
-                            		e.preventDefault();
-                            		$(this).blur();
-                            	}
-                            });
+//                             $('.input-data').keypress(function(event) {
+//                             	if(event.which == 13){
+//                             		e.preventDefault();
+//                             		$(this).blur();
+//                             	}
+//                             });
                             
 //                             const element = document.getElementById('edi_colName');
 //                             alert(element.innerText);
